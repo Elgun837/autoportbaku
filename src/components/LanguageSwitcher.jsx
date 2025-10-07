@@ -1,21 +1,63 @@
+import { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { useNavigate } from "react-router-dom";
+import "../assets/styles/Lang.css";
 
 export default function LanguageSwitcher() {
   const { lang, changeLang } = useLanguage();
-  const navigate = useNavigate();
-  const pathname = window.location.pathname;
+  const [open, setOpen] = useState(false);
 
-  const switchLang = (newLang) => {
-    changeLang(newLang);
-    const newPath = pathname.replace(/^\/(en|ru)/, `/${newLang}`);
-    navigate(newPath);
+  const languages = [
+    { code: "en", label: "English", flag: "/flags/en.png" },
+    { code: "ru", label: "Русский", flag: "/flags/ru.png" },
+  ];
+
+  const current = languages.find((l) => l.code === lang);
+
+  const handleSelect = (code) => {
+    changeLang(code);
+    setOpen(false);
   };
 
   return (
-    <div>
-      <button onClick={() => switchLang("en")} disabled={lang === "en"}>EN</button>
-      <button onClick={() => switchLang("ru")} disabled={lang === "ru"}>RU</button>
+    <div className="lang_switch">
+      <button
+        className=""
+        onClick={() => setOpen(!open)}
+      >
+        <img src={current.flag} alt={current.label} className="w-5 h-5" />
+        <i className="drop-icon">
+          <svg
+            width="16"
+            height="17"
+            viewBox="0 0 16 17"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M8 10.8273L11.854 6.9743L11.147 6.2663L8 9.4133L4.854 6.2663L4.146 6.9743L8 10.8273Z"
+              fill="white"
+            />
+          </svg>
+        </i>
+      </button>
+
+      {open && (
+        <div className="drop_lang">
+          {languages
+            .filter((l) => l.code !== lang)
+            .map((l) => (
+              <button
+                key={l.code}
+                onClick={() => handleSelect(l.code)}
+                className=""
+              >
+                <img src={l.flag} alt={l.label} className="" />
+              </button>
+            ))}
+        </div>
+      )}
     </div>
   );
 }
