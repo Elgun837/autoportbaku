@@ -6,7 +6,7 @@ export const translations = {
       products: "Məhsullar",
     },
     home: {
-      welcome: "Xoş gəlmisiniz!",
+      welcome: "Welcome!",
     },
     about: {
       title: "Haqqımızda",
@@ -20,7 +20,7 @@ export const translations = {
       products: "Products",
     },
     home: {
-      welcome: "Welcome!",
+      welcome: "Добро пожаловать!",
     },
     about: {
       title: "About Us",
