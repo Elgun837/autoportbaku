@@ -1,0 +1,7 @@
+.main_bg{
+    background-image: url(/public/bg_block.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 720px;
+}

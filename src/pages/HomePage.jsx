@@ -1,6 +1,7 @@
 import { useLanguage } from "../context/LanguageContext";
 import { useQuery } from "@tanstack/react-query";
 import { getHomeData } from "../api";
+import Slide from "../components/Slide";
 
 export default function HomePage() {
   const { lang, t } = useLanguage();
@@ -13,24 +14,23 @@ export default function HomePage() {
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading data</p>;
   if (!data) return <p>No data returned from API</p>;
+  console.log(data);
 
-  const currentData = data.find(
-    item => item.lang.toLowerCase() === lang.toLowerCase()
-  );
+
+
 
   return (
     <div>
+      <Slide />
       <h1>{t("home.welcome")}</h1>
-
-      {currentData ? (
-        <div>
-          <p>Title: {currentData.title}</p>
-          {currentData.avatar && <p>Avatar: {currentData.avatar}</p>}
-          <p>Created At: {new Date(currentData.createdAt).toLocaleDateString()}</p>
-        </div>
-      ) : (
-        <p>No data available for this language</p>
-      )}
+     <div>
+        {data.map((item, index) => (
+          <div key={index}>
+            <h3>Title:{item.title}</h3>
+            <img src={item.image} alt={item.title} width="500" />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
