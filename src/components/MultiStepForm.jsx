@@ -47,6 +47,12 @@ export default function MultiStepForm() {
 
   return (
     <div style={{ maxWidth: "500px", margin: "auto" }}>
+      <ul>
+        <li className={activeStep === 1 ? "form-step active" : "form-step"}>1</li>
+        <li className={activeStep === 2 ? "form-step active" : "form-step"}>2</li>
+        <li className={activeStep === 3 ? "form-step active" : "form-step"}>3</li>
+        <li className={activeStep === 4 ? "form-step active" : "form-step"}>4</li>
+        </ul>
       <h2>Step {activeStep} of 4</h2>
 
       {/* Step 1 */}
