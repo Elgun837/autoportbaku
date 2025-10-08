@@ -1,23 +1,25 @@
 export const translations = {
   en: {
     header: {
-      home: "Ana Səhifə",
-      about: "Haqqımızda",
-      products: "Məhsullar",
+      home: "Home",
+      about: "About Us",
+      products: "Products",
+      contacts: "Contacts",
     },
     home: {
       welcome: "Welcome!",
     },
     about: {
-      title: "Haqqımızda",
-      content: "Bizim şirkət haqqında məlumat...",
+      title: "About Us",
+      content: "Information about our company...",
     },
   },
   ru: {
     header: {
-      home: "Home",
-      about: "About Us",
-      products: "Products",
+      home: "Главная",
+      about: "О нас",
+      products: "Продукты",
+      contacts: "Контакты",
     },
     home: {
       welcome: "Добро пожаловать!",
@@ -25,7 +27,7 @@ export const translations = {
     about: {
       title: "About Us",
       content: "Information about our company...",
-    },
+    },    
    
   },
 };

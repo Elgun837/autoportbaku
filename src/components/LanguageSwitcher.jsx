@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import "../assets/styles/Lang.css";
+import "../assets/styles/Lang.scss";
 
 export default function LanguageSwitcher() {
   const { lang, changeLang } = useLanguage();

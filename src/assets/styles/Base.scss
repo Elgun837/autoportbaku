@@ -1,0 +1,20 @@
+img {
+  max-width: 100%;
+}
+
+.container {
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
+ 
+}
+
+html,
+body {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  background-color: #fff;
+  color: #000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

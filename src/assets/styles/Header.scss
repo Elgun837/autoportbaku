@@ -1,0 +1,49 @@
+.header {
+  position: absolute;
+  z-index: 40;
+  top: 0;
+  width: 100%;
+  .inner {   
+    max-width: 100%;
+    // width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 80px;
+  }
+
+  .container .right_section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .container nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+  .container nav a {
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 17px;
+    line-height: 110.00000000000001%;
+    letter-spacing: 2%;
+    color: #fff;
+    text-decoration: none;
+  }
+  // Стили только для главной страницы
+  background: rgba(0, 0, 0, 0.34); // Полупрозрачный черный фон
+  &.home {
+    background: transparent;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); // Добавляем тень
+
+    .container nav a {
+      color: #ffffff; // Белый цвет ссылок на главной
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #ffd700; // Золотой цвет при ховере на главной
+      }
+    }
+  }
+}

@@ -1,3 +1,8 @@
+@use 'sass:math';
+@use 'assets/styles/Typography.scss' as *;
+@use 'assets/styles/Base.scss' as *;
+@use 'assets/styles/Page_banners.scss' as *;
+
 @font-face {
   font-family: "Bitter";
   src: url("./assets/fonts/Bitter-Bold.ttf") format("woff2"),
@@ -41,3 +46,4 @@ body {
   font-family: "Bitter", sans-serif;
   margin: 0;
 }
+
