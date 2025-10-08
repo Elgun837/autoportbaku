@@ -4,6 +4,7 @@ import { LanguageProvider, useLanguage } from "./context/LanguageContext";
 
 import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
+import Contacts from "./pages/Contacts";
 
 const queryClient = new QueryClient();
 
@@ -14,6 +15,8 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<Navigate to={`/${lang}`} />} />
       <Route path="/:lang" element={<HomePage />} />
+      <Route path="*" element={<p>404 Not Found</p>} />
+      <Route path="/:lang/contacts" element={<Contacts />} />
     </Routes>
   );
 }
