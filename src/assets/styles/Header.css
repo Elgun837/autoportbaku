@@ -10,6 +10,7 @@ header .container {
   padding: 25px 100px;
   background-color: transparent;
   max-width: 1720px;
+  margin: 0 auto;
 }
 
 header .container .right_section {
