@@ -2,8 +2,6 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 20px;
-    height: 100%;
     max-width: 530px;
     gap: 20px;
     opacity: 1;
@@ -150,20 +148,18 @@
     }
 
     .custom-date-input-field {
-        width: 100%;
-        padding-right: 30px;
-        height: 38px;
+        height: 48px;
         border-radius: 4px;
         border: 1px solid #ccc;
     }
 
     .custom-date-input .date-icon-wrapper {
         position: absolute;
-        right: -34px;
+        right: -0px;
         top: 0px;
         pointer-events: none;
         width: 48px;
-        height: 53px;
+        height: 100%;
         background: #444444;
         display: flex;
         justify-content: center;
