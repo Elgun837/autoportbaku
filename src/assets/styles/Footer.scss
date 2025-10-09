@@ -1,0 +1,83 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  background-image: url("/footer_bg.webp");
+  background-size: cover;
+  .footer_content {
+    display: flex;
+    padding: 20px 80px;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    .logo_menu_wrapper {
+      display: flex;
+      padding: 160px 0;
+      justify-content: space-between;
+      align-items: flex-start;
+      align-self: stretch;
+      .logo {
+        width: 281.303px;
+        height: 210.655px;
+        img {
+          width: 100%;
+          height: auto;
+          aspect-ratio: 281.3/210.65;
+        }
+      }
+      .footer_menu {
+        display: flex;
+        max-width: 300px;
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 30px;
+        .footer_menu_title {
+          color: #fff;
+          font-weight: 400;
+        }
+        .footer_menu_list {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 20px;
+          align-self: stretch;
+          li {
+            a {
+              color: #fff;
+              font-size: 17px;
+            }
+          }
+        }
+      }
+    }
+    .copyright_wrapper {
+      display: flex;
+      padding: 10px;
+      justify-content: space-between;
+      align-items: flex-start;
+      align-self: stretch;
+      .copyright_text {
+        color: var(--White, #fff);
+        font-size: 17px;
+      }
+      .design_text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        span {
+          color: var(--White, #fff);
+          font-size: 17px;
+        }
+        img {
+          width: 98.826px;
+          height: 30px;
+          aspect-ratio: 98.83/30;
+        }
+      }
+    }
+  }
+}

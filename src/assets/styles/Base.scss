@@ -6,7 +6,6 @@ img {
   max-width: 1920px;
   width: 100%;
   margin: 0 auto;
- 
 }
 
 html,
@@ -17,4 +16,21 @@ body {
   color: #000;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.triangle_decor {
+  width: 100%;
+  // margin-bottom: -5px;
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: -1px;
+  }
 }
