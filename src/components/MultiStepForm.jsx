@@ -101,7 +101,8 @@ export default function MultiStepForm() {
       <div className="form-header">
         <div className="steps-indicator">
           {[1, 2, 3, 4].map((step) => (
-            <div
+            <>
+              <div
               key={step}
               className={`form-step 
                 ${activeStep === step ? "active" : ""} 
@@ -109,6 +110,8 @@ export default function MultiStepForm() {
             >
               {step}
             </div>
+            <div className={`line-${step}`}></div>
+            </>
           ))}
         </div>
       </div>
