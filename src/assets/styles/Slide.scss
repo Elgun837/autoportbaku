@@ -1,7 +1,55 @@
-.main_bg{
+.main_bg {
     background-image: url(/bg_block.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 720px;
+    display: flex;
+    justify-content: center;
+
+    .slide_container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+        padding: 180px 100px;
+        max-width: 1720px;
+
+        .text_section {
+            max-width: 730px;
+            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            h1 {
+                font-weight: 500;
+                font-style: Medium;
+                font-size: 84px;
+                line-height: 120%;
+                letter-spacing: 2%;
+                color: #FFFFFF;
+
+            }
+
+            p {
+                font-weight: 400;
+                font-size: 30px;
+                line-height: 110.00000000000001%;
+                letter-spacing: 2%;
+                color: #FFFFFF;
+
+            }
+        }
+
+        .form_section {
+            width: 530px;
+            min-height: 750px;
+            .form {
+                width: 100%;
+                
+            }
+
+        }
+    }
+
 }
