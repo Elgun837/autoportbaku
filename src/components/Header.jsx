@@ -80,6 +80,7 @@ export default function Header() {
                   <Link to={`/${lang}`} onClick={closeMobileMenu}>{t("header.home")}</Link>
                   <Link to={`/${lang}/about`} onClick={closeMobileMenu}>{t("header.about")}</Link>
                   <Link to={`/${lang}/products`} onClick={closeMobileMenu}>{t("header.products")}</Link>
+                  <Link to={`/${lang}/faq`} onClick={closeMobileMenu}>{t("header.faq")}</Link>
                   <Link to={`/${lang}/contacts`} onClick={closeMobileMenu}>{t("header.contacts")}</Link>
                 </nav>
                 <LanguageSwitcher />

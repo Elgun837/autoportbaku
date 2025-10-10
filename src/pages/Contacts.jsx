@@ -1,14 +1,16 @@
 import React from "react";
 import "../assets/styles/Contacts.scss";
 import Footer from "../components/Footer";
+import { useLanguage } from "../context/LanguageContext";
 import Page_small_banner from "../components/Page_small_banner";
 
-export default function Contacts() {
 
+export default function Contacts() {
+    const { t } = useLanguage();
     return (
         <>
-            <Page_small_banner title="Make contact" subtitle="Driver Brussels makes every effort to answer your questions and fulfill your requests" />
-            <section className="contact_form_section">
+            <Page_small_banner  title={t("contacts.title")} subtitle={t("contacts.subtitle")} />
+            <section className="contact_form_section" >
                 <div className="container">
                     <div className="row">
                         <div className="contact_block_wrapper">
@@ -21,7 +23,7 @@ export default function Contacts() {
                                     </svg>
                                 </div>
                                 <div className="text_wrapper">
-                                    <h2 className="title">Phone number:</h2>
+                                    <h2 className="title">{t("contacts.phone")}</h2>
                                     <a href="tel:+994504810081" className="contact_link ">(+994) 50-481-00-81</a>
                                 </div>
                             </div>
@@ -36,7 +38,7 @@ export default function Contacts() {
                                     </svg>
                                 </div>
                                 <div className="text_wrapper">
-                                    <h2 className="title">Address:</h2>
+                                    <h2 className="title">{t("contacts.address")}</h2>
                                     <a href="#" className="contact_link ">Azure Business Center, 15 Nobel Avenue</a>
                                 </div>
                             </div>
@@ -51,7 +53,7 @@ export default function Contacts() {
 
                                 </div>
                                 <div className="text_wrapper">
-                                    <h2 className="title">Email:</h2>
+                                    <h2 className="title">{t("contacts.email")}</h2>
                                     <a href="mailto:info@autoport.com" className="contact_link">info@autoport.com</a>
                                 </div>
                             </div>
