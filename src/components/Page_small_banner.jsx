@@ -8,12 +8,14 @@ export default function Page_small_banner({ title, subtitle }) {
             <section className="small_heading_banner">
                 <img className="banner_image" src={bannerImage} alt="Contacts Banner" />
                 <div className="container">
-                    <div className="inner">
-                        <div className="full_container">
-                            <div className="w70_block">
-                                <div className="page_title_wrapper">
-                                    <h1 className="page_title">{title}</h1>
-                                    <h5 className="page_subtitle">{subtitle}</h5>
+                    <div className="row">
+                        <div className="inner">
+                            <div className="full_container">
+                                <div className="w70_block">
+                                    <div className="page_title_wrapper">
+                                        <h1 className="page_title">{title}</h1>
+                                        <h5 className="page_subtitle">{subtitle}</h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>

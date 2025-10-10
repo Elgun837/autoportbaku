@@ -12,10 +12,18 @@ export default function Footer() {
                     </svg>
                 </div>
                 <div className="container">
-                    <div className="inner">
+                    <div className="row">
                         <div className="footer_content">
-                            <div className="logo_menu_wrapper">
-                                <div className="logo">
+
+                            <div className="logo_menu_wrapper ">
+                                <div className="mobile_visible mobile_visible__logo">
+                                    <div className="logo_wrapper">
+                                        <div className="logo">
+                                            <img src="/logo_big.svg" alt="Logo" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="logo mobile_hidden">
                                     <img src="/logo_big.svg" alt="Logo" />
                                 </div>
                                 <div className="footer_menu">

@@ -1,0 +1,7 @@
+
+@use "Functions.scss" as *; 
+
+@mixin responsive_padding {
+    padding-left: vw(80);
+    padding-right: vw(80);
+}

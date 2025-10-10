@@ -1,3 +1,7 @@
+// Импорт функций
+@use "./functions/functions.scss" as *;
+@use "./functions/Mixins.scss" as *;
+
 .contact_form_section {
   display: flex;
   flex-direction: column;
@@ -6,49 +10,62 @@
   align-self: stretch;
   background: #fff;
   .container {
-    .inner {
+    .contact_block_wrapper {
       display: flex;
-      .contact_block_wrapper {
+      padding-top: vw(150);
+      padding-bottom: vw(150);
+      @include responsive_padding;
+      justify-content: center;
+      align-items: flex-start;
+      gap: vw(90);
+      align-self: stretch;
+      width: 100%;
+      .contact_block {
         display: flex;
-        padding: 150px 80px;
-        justify-content: center;
-        align-items: flex-start;
-        gap: 90px;
+        padding: 40px;
+        flex-direction: column;
+        align-items: center;
+        // gap: 50px;
+        gap: vh(50);
+        flex: 1 1 33.33%;
+        max-width: 33.33%;
         align-self: stretch;
-        width: 100%;
-        .contact_block {
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08);
+        .icon_wrapper {
           display: flex;
-          padding: 40px;
-          flex-direction: column;
+          width: vw(190);
+          height: vh(190);
+          justify-content: center;
           align-items: center;
-          gap: 50px;
-          flex: 1 0 0;
+          gap: 10px;
+          @media (max-width: 992px) {
+            height: vh(120);
+          }
+        }
+        .text_wrapper {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
           align-self: stretch;
-          border-radius: 16px;
-          background: #fff;
-          box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08);
-          .icon_wrapper {
-            display: flex;
-            width: 191px;
-            height: 191px;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+          text-align: center;
+          a {
+            color: var(--blue, #2b4764);
+            text-align: center;
+            font-size: clamp(0.875rem, 2vw, 1.125rem);
+            font-weight: 600;
           }
-          .text_wrapper {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            align-self: stretch;
-            a {
-              color: var(--blue, #2b4764);
-              text-align: center;
-              font-size: 23px;
-              font-weight: 600;
-            }
-          }
+        }
+      }
+      @media (max-width: 992px) {
+        flex-direction: column;
+        gap: vh(50);
+        .contact_block {
+          max-width: 100%;
+          flex: 1 1 100%;
         }
       }
     }

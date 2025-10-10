@@ -1,3 +1,6 @@
+@use "./functions/Functions.scss" as *;
+@use "./functions/Mixins.scss" as *;
+
 .footer {
   display: flex;
   flex-direction: column;
@@ -8,35 +11,91 @@
   .footer_content {
     display: flex;
     padding: 20px 80px;
+    @include responsive_padding;
     flex-direction: column;
     align-items: flex-start;
     align-self: stretch;
+    width: 100%;
+    .mobile_visible__logo {
+      margin-bottom: vh(80);
+      width: 100%;
+      @media (max-width: 576px) {
+        margin-bottom: vh(80);
+      }
+
+      .logo_wrapper {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        .logo {
+          width: vw(600);
+          height: auto;
+          img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 281.3/210.65;
+          }
+        }
+      }
+    }
     .logo_menu_wrapper {
       display: flex;
-      padding: 160px 0;
+      padding: vh(160) 0;
       justify-content: space-between;
       align-items: flex-start;
       align-self: stretch;
+      
+      @media (max-width: 992px) {
+        flex-wrap: wrap;
+        padding-top: vh(80);
+      }
+       @media (max-width: 576px) {
+        padding-bottom: vh(40);
+       }
       .logo {
-        width: 281.303px;
-        height: 210.655px;
+        width: vw(281.3);
+        height: auto;
         img {
           width: 100%;
           height: auto;
           aspect-ratio: 281.3/210.65;
         }
+        @media (max-width: 992px) {
+        }
       }
       .footer_menu {
         display: flex;
-        max-width: 300px;
+        max-width: vw(300);
         width: 100%;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
         gap: 30px;
+        @media (max-width: 1200px) {
+          max-width: vw(400);
+        }
+        @media (max-width: 992px) {
+          max-width: 33.33%;
+          padding-right: vw(100);
+          &:last-child {
+            max-width: 25%;
+            padding-right: 0;
+          }
+        }
+        @media (max-width: 576px) {
+          max-width: 100%;
+          margin-bottom: vh(60);
+          gap: 15px;
+          &:last-child {
+            max-width: 100%;
+            padding-right: vw(100);
+          }
+        }
+
         .footer_menu_title {
           color: #fff;
           font-weight: 400;
+          align-self: stretch;
         }
         .footer_menu_list {
           display: flex;
@@ -47,7 +106,7 @@
           li {
             a {
               color: #fff;
-              font-size: 17px;
+              font-size: var(--body-xl-size);
             }
           }
         }
@@ -59,6 +118,11 @@
       justify-content: space-between;
       align-items: flex-start;
       align-self: stretch;
+      @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
       .copyright_text {
         color: var(--White, #fff);
         font-size: 17px;
