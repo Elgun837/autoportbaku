@@ -10,6 +10,41 @@
     background-color: #222222;
     color: #fff;
 
+    .form-message.success {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        min-height: 400px;
+        max-width: 348px;
+    }
+
+    .form-message.success img {
+        max-width: 105px;
+    }
+
+    h4 {
+        font-weight: 500;
+        font-style: Medium;
+        font-size: 18px;
+        line-height: 110.00000000000001%;
+        letter-spacing: 2%;
+    }
+
+    span {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 150%;
+        letter-spacing: 2%;
+        text-align: center;
+
+    }
+
+    form {
+        width: 100%;
+    }
+
     .form-header {
         width: 100%;
 
@@ -154,6 +189,14 @@
         color: #fff;
         background-color: #4373A4;
 
+    }
+
+    .flex-left {
+        float: left;
+    }
+
+    .flex-right {
+        float: right;
     }
 
     .custom-date-input {

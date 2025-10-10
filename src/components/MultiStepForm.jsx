@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "../assets/styles/MultiStepForm.scss";
 import "react-datepicker/dist/react-datepicker.css";
 export default function MultiStepForm() {
+  const [errorMessage, setErrorMessage] = useState("");
   const [activeStep, setActiveStep] = useState(1);
   const [formData, setFormData] = useState({
     serviceType: "",
@@ -34,16 +35,36 @@ export default function MultiStepForm() {
     if (activeStep > 1) setActiveStep(activeStep - 1);
   };
 
-  const isStep1Valid =
-    formData?.serviceType &&
-    (formData.serviceType === "Tour" ||
-      (formData.pickupDate &&
-        formData.pickupHour &&
-        formData.pickupMinute !== "" &&
-        formData.pickupLocation &&
-        formData.dropoffLocation)) &&
-    (formData.serviceType === "Standart" || formData.selectTour);
+  let isStep1Valid = false;
 
+  if (formData?.serviceType === "Standart") {
+    isStep1Valid =
+      !!formData.serviceType &&
+      !!formData.pickupDate &&
+      !!formData.pickupHour &&
+      !!formData.pickupMinute &&
+      !!formData.pickupLocation &&
+      !!formData.dropoffLocation;
+  } else if (formData?.serviceType === "Tour") {
+    isStep1Valid =
+      !!formData.serviceType &&
+      !!formData.pickupDate &&
+      !!formData.pickupHour &&
+      !!formData.pickupMinute &&
+      !!formData.selectTour;
+  } else {
+    isStep1Valid = false;
+  }
+
+  if (formData.pickupDate) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const selectedDate = new Date(formData.pickupDate);
+
+    if (selectedDate < today) {
+      isStep1Valid = false;
+    }
+  }
   const isStep2Valid = formData.passengers && formData.luggage;
 
   // Custom dropdown icon
@@ -94,6 +115,21 @@ export default function MultiStepForm() {
       styles={customStyles}
     />
   );
+  const [stat, setStat] = useState(""); // "success" or "error"
+  // Submit handler
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      // API çağırışı olacaq (məsələn):
+      // await axios.post("/api/form", formData);
+
+      setStat("success");
+      setActiveStep(4); 
+    } catch (err) {
+      setErrorMessage("Something went wrong!");
+      setStat("error");
+    }
+  };
 
   return (
     <div className="form" style={{ maxWidth: "530px" }}>
@@ -103,188 +139,225 @@ export default function MultiStepForm() {
           {[1, 2, 3, 4].map((step) => (
             <>
               <div
-              key={step}
-              className={`form-step 
+                key={step}
+                className={`form-step 
                 ${activeStep === step ? "active" : ""} 
-                ${activeStep > step ? "completed" : ""}`}
-            >
-              {step}
-            </div>
-            <div className={`line-${step}`}></div>
+                ${(activeStep > step || stat === "success") ? "completed" : ""}`}
+              >
+                {step}
+              </div>
+              <div className={`line-${step}`}></div>
             </>
           ))}
         </div>
       </div>
-
-      {/* Step 1 */}
-      {activeStep === 1 && (
-        <div className="form-step-content">
-          <div className="form-group">
-            <label htmlFor="serviceType">Service Type:</label>
-            {renderSelect(
-              formData.serviceType,
-              (val) => setFormData({ ...formData, serviceType: val }),
-              ["Standard", "Tour"],
-              " "
-            )}
-          </div>
-
-          <div className="time-date-group">
+      
+      {stat === "" && (
+        <form onSubmit={handleSubmit}>
+        {/* Step 1 */}
+        {activeStep === 1 && (
+          <div className="form-step-content">
             <div className="form-group">
-              <label htmlFor="pickupDate">Pickup Date:</label>
-              <div className="custom-date-input">
-                <DatePicker
-                  selected={
-                    formData.pickupDate ? new Date(formData.pickupDate) : null
-                  }
-                  onChange={(date) =>
-                    setFormData({
-                      ...formData,
-                      pickupDate: date.toISOString().split("T")[0],
-                    })
-                  }
-                  dateFormat="yyyy-MM-dd"
-                  placeholderText="Select a date"
-                  customInput={
-                    <input
-                      type="text"
-                      value={formData.pickupDate}
-                      onChange={() => {}}
-                      className="custom-date-input-field"
+              <label htmlFor="serviceType">Service Type:</label>
+              {renderSelect(
+                formData.serviceType,
+                (val) => setFormData({ ...formData, serviceType: val }),
+                ["Standart", "Tour"],
+                " "
+              )}
+            </div>
+
+            <div className="time-date-group">
+              <div className="form-group">
+                <label htmlFor="pickupDate">Pickup Date:</label>
+                <div className="custom-date-input">
+                  <DatePicker
+                    selected={
+                      formData.pickupDate ? new Date(formData.pickupDate) : null
+                    }
+                    onChange={(date) =>
+                      setFormData({
+                        ...formData,
+                        pickupDate: date.toISOString().split("T")[0],
+                      })
+                    }
+                    dateFormat="yyyy-MM-dd"
+                    placeholderText="Select a date"
+                    customInput={
+                      <input
+                        type="text"
+                        value={formData.pickupDate}
+                        onChange={() => {}}
+                        className="custom-date-input-field"
+                      />
+                    }
+                  />
+                  <div className="date-icon-wrapper">
+                    <img
+                      src="/flags/form-drop-icon.svg"
+                      alt="calendar"
+                      className="date-icon"
                     />
-                  }
-                />
-                <div className="date-icon-wrapper">
-                  <img
-                    src="/flags/form-drop-icon.svg"
-                    alt="calendar"
-                    className="date-icon"
+                  </div>
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label>Pickup Time:</label>
+                <div className="time-selectors">
+                  <div className="hour">
+                    {renderSelect(
+                      formData.pickupHour,
+                      (val) => setFormData({ ...formData, pickupHour: val }),
+                      hours.map((h) => h.toString().padStart(2, "0")),
+                      "Hour"
+                    )}
+                  </div>
+                  :
+                  <div className="minute">
+                    {renderSelect(
+                      formData.pickupMinute,
+                      (val) => setFormData({ ...formData, pickupMinute: val }),
+                      minutes.map((m) => m.toString().padStart(2, "0")),
+                      "Minute"
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {(!formData.serviceType || formData.serviceType === "Standart") && (
+              <>
+                <div className="form-group">
+                  <label htmlFor="pickupLocation">Pickup Location:</label>
+                  {renderSelect(
+                    formData.pickupLocation,
+                    (val) => setFormData({ ...formData, pickupLocation: val }),
+                    locations,
+                    "Select Pickup"
+                  )}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="dropoffLocation">Drop-off Location:</label>
+                  {renderSelect(
+                    formData.dropoffLocation,
+                    (val) => setFormData({ ...formData, dropoffLocation: val }),
+                    locations,
+                    "Select Drop-off"
+                  )}
+                </div>
+                <div className="form-group">
+                  <label htmlFor="flightNumber">Flight Number:</label>
+                  <input
+                    type="text"
+                    name="flightNumber"
+                    id="flightNumber"
+                    value={formData.flightNumber}
+                    onChange={handleChange}
                   />
                 </div>
-              </div>
-            </div>
-
-            <div className="form-group">
-              <label>Pickup Time:</label>
-              <div className="time-selectors">
-                <div className="hour">
+              </>
+            )}
+            {formData.serviceType === "Tour" && (
+              <>
+                <div className="form-group">
+                  <label htmlFor="selectTour">Select tour</label>
                   {renderSelect(
-                    formData.pickupHour,
-                    (val) => setFormData({ ...formData, pickupHour: val }),
-                    hours.map((h) => h.toString().padStart(2, "0")),
-                    "Hour"
+                    formData.selectTour,
+                    (val) => setFormData({ ...formData, selectTour: val }),
+                    ["Tour 1", "Tour 2", "Tour 3"],
+                    " Select Tour"
                   )}
                 </div>
-                :
-                <div className="minute">
-                  {renderSelect(
-                    formData.pickupMinute,
-                    (val) => setFormData({ ...formData, pickupMinute: val }),
-                    minutes.map((m) => m.toString().padStart(2, "0")),
-                    "Minute"
-                  )}
-                </div>
-              </div>
-            </div>
+              </>
+            )}
+            <br />
+            <button
+              className="flex-right"
+              onClick={handleNext}
+              disabled={!isStep1Valid}
+            >
+              Next
+            </button>
           </div>
+        )}
 
-          {(!formData.serviceType || formData.serviceType === "Standard") && (
-            <>
-              <div className="form-group">
-                <label htmlFor="pickupLocation">Pickup Location:</label>
-                {renderSelect(
-                  formData.pickupLocation,
-                  (val) => setFormData({ ...formData, pickupLocation: val }),
-                  locations,
-                  "Select Pickup"
-                )}
-              </div>
+        {/* Step 2 */}
+        {activeStep === 2 && (
+          <div className="form-step-content">
+            <label>Number of Passengers:</label>
+            <input
+              type="number"
+              name="passengers"
+              value={formData.passengers}
+              onChange={handleChange}
+            />
 
-              <div className="form-group">
-                <label htmlFor="dropoffLocation">Drop-off Location:</label>
-                {renderSelect(
-                  formData.dropoffLocation,
-                  (val) => setFormData({ ...formData, dropoffLocation: val }),
-                  locations,
-                  "Select Drop-off"
-                )}
-              </div>
-              <div className="form-group">
-                <label htmlFor="flightNumber">Flight Number:</label>
-                <input
-                  type="text"
-                  name="flightNumber"
-                  id="flightNumber"
-                  value={formData.flightNumber}
-                  onChange={handleChange}
-                />
-              </div>
-            </>
-          )}
-          {formData.serviceType === "Tour" && (
-            <>
-              <div className="form-group">
-                <label htmlFor="selectTour">Select tour</label>
-                {renderSelect(
-                  formData.selectTour,
-                  (val) => setFormData({ ...formData, selectTour: val }),
-                  ["Tour 1", "Tour 2", "Tour 3"],
-                  " Select Tour"
-                )}
-              </div>
-            </>
-          )}
-          <br />
-          <button onClick={handleNext} disabled={!isStep1Valid}>
-            Next
-          </button>
+            <br />
+
+            <label>Number of Luggage:</label>
+            <input
+              type="number"
+              name="luggage"
+              value={formData.luggage}
+              onChange={handleChange}
+            />
+
+            <br />
+            <button className="flex-left" onClick={handlePrev}>
+              Previous
+            </button>
+            <button
+              className="flex-right"
+              onClick={handleNext}
+              disabled={!isStep2Valid}
+            >
+              Next
+            </button>
+          </div>
+        )}
+
+        {/* Step 3 */}
+        {activeStep === 3 && (
+          <div className="form-step-content">
+            <p>Step 3 content (to be added later)</p>
+            <button onClick={handlePrev}>Previous</button>
+            <button onClick={handleNext}>Next</button>
+          </div>
+        )}
+
+        {/* Step 4 */}
+        {activeStep === 4 && (
+          <div className="form-step-content">
+            <p>Step 4 content (to be added later)</p>
+            <button className="flex-left" onClick={handlePrev}>
+              Previous
+            </button>
+            <button
+              className="flex-right"
+              onClick={() => alert("Form submitted!")}
+            >
+              Submit
+            </button>
+          </div>
+        )}
+      </form>
+      )}
+
+      {/* Success və ya Error çıxışı */}
+      {stat === "success" && (
+        <div className="form-message success">
+          <img src="/flags/success.svg" alt="success" />
+          <h4>Form submitted successfully!</h4>
+          <span>Thank you! The form has been submited successfully. We will reply you soon</span>
         </div>
       )}
 
-      {/* Step 2 */}
-      {activeStep === 2 && (
-        <div className="form-step-content">
-          <label>Number of Passengers:</label>
-          <input
-            type="number"
-            name="passengers"
-            value={formData.passengers}
-            onChange={handleChange}
-          />
-
-          <br />
-
-          <label>Number of Luggage:</label>
-          <input
-            type="number"
-            name="luggage"
-            value={formData.luggage}
-            onChange={handleChange}
-          />
-
-          <br />
-          <button onClick={handlePrev}>Previous</button>
-          <button onClick={handleNext} disabled={!isStep2Valid}>
-            Next
-          </button>
-        </div>
-      )}
-
-      {/* Step 3 */}
-      {activeStep === 3 && (
-        <div className="form-step-content">
-          <p>Step 3 content (to be added later)</p>
-          <button onClick={handlePrev}>Previous</button>
-          <button onClick={handleNext}>Next</button>
-        </div>
-      )}
-
-      {/* Step 4 */}
-      {activeStep === 4 && (
-        <div className="form-step-content">
-          <p>Step 4 content (to be added later)</p>
-          <button onClick={handlePrev}>Previous</button>
-          <button onClick={() => alert("Form submitted!")}>Submit</button>
+      {stat === "error" && (
+        <div className="form-message error">
+          <img src="/icons/error.svg" alt="error" />
+          <span>{errorMessage}</span>
         </div>
       )}
     </div>
