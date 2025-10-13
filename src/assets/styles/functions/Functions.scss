@@ -1,0 +1,14 @@
+// !TO VW/VH based on design size
+// Assumption: design width 1920px, height 940px; adjust if your design differs
+@use "sass:math";
+
+$design-width: 1920;
+$design-height: 940;
+
+@function vw($px, $base: $design-width) {
+  @return math.div($px, $base) * 100vw;
+}
+
+@function vh($px, $base: $design-height) {
+  @return math.div($px, $base) * 100vh;
+}

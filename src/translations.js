@@ -5,6 +5,7 @@ export const translations = {
       about: "About Us",
       products: "Products",
       contacts: "Contacts",
+      faq: "FAQ",
     },
     home: {
       welcome: "Welcome!",
@@ -13,6 +14,13 @@ export const translations = {
       title: "About Us",
       content: "Information about our company...",
     },
+    contacts: {
+      title: "Make contact",
+      subtitle: "Autoport Baku makes every effort to answer your questions and fulfill your requests",
+      phone: "Phone number:",
+      email: "Email:",
+      address: "Address:",
+    },
   },
   ru: {
     header: {
@@ -20,6 +28,7 @@ export const translations = {
       about: "О нас",
       products: "Продукты",
       contacts: "Контакты",
+      faq: "ЧЗВ",
     },
     home: {
       welcome: "Добро пожаловать!",
@@ -28,6 +37,13 @@ export const translations = {
       title: "About Us",
       content: "Information about our company...",
     },    
+     contacts: {
+      title: "Связаться с нами",
+      subtitle: "Autoport Baku делает все возможное, чтобы ответить на ваши вопросы и выполнить ваши запросы",
+      phone: "Номер телефона:",
+      email: "Электронная почта:",
+      address: "Адрес:",
+    },
    
   },
 };
