@@ -67,7 +67,7 @@ export default function MultiStepForm() {
   }
   const isStep2Valid = formData.passengers && formData.luggage;
 
-  // Custom dropdown icon
+  
   const DropdownIndicator = (props) => (
     <components.DropdownIndicator {...props}>
       <img
@@ -86,21 +86,21 @@ export default function MultiStepForm() {
     }),
     menu: (provided) => ({
       ...provided,
-      backgroundColor: "#f8f8f8", // açılan menyu rəngi
+      backgroundColor: "#f8f8f8", 
     }),
     option: (provided, state) => ({
       ...provided,
       backgroundColor: state.isFocused ? "#eee" : "#fff",
-      color: "#000000ff", // text rəngi
+      color: "#000000ff", 
       cursor: "pointer",
     }),
     placeholder: (provided) => ({
       ...provided,
-      color: "#888", // placeholder rəngi
+      color: "#888", 
     }),
     singleValue: (provided) => ({
       ...provided,
-      color: "#333", // seçilmiş dəyər rəngi
+      color: "#333", 
     }),
   };
   const renderSelect = (value, onChange, options, placeholder) => (
@@ -115,13 +115,11 @@ export default function MultiStepForm() {
       styles={customStyles}
     />
   );
-  const [stat, setStat] = useState(""); // "success" or "error"
-  // Submit handler
+  const [stat, setStat] = useState(""); 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // API çağırışı olacaq (məsələn):
-      // await axios.post("/api/form", formData);
+      // API çağırışı olacaq 
 
       setStat("success");
       setActiveStep(4); 
@@ -133,7 +131,7 @@ export default function MultiStepForm() {
 
   return (
     <div className="form" style={{ maxWidth: "530px" }}>
-      {/* Step indicator */}
+      
       <div className="form-header">
         <div className="steps-indicator">
           {[1, 2, 3, 4].map((step) => (
