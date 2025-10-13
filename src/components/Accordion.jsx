@@ -5,10 +5,7 @@ export default function Accordion({ items }) {
     const [activeIndex, setActiveIndex] = useState(null);
     const contentRefs = useRef([]);
 
-    // Отладочная информация
-    console.log("Accordion items:", items);
-    console.log("Items type:", typeof items);
-    console.log("Items is array:", Array.isArray(items));
+  
 
     // Проверяем, есть ли элементы
     if (!items || !Array.isArray(items) || items.length === 0) {

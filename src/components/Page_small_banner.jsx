@@ -4,6 +4,12 @@ import defaultBannerImage from "../assets/images/small_heading_banner.png";
 
 export default function Page_small_banner({ title, subtitle, bannerImageSrc }) {
     const bannerImage = bannerImageSrc || defaultBannerImage;
+    
+    // Отладочная информация
+    // console.log("Page_small_banner props:", { title, subtitle, bannerImageSrc });
+    // console.log("Final banner image:", bannerImage);
+    // console.log("Default banner image:", defaultBannerImage);
+    
     return (
         <>
             <section className="small_heading_banner">
