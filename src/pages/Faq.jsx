@@ -1,6 +1,5 @@
 import React from "react";
 import "../assets/styles/Faq.scss";
-import Footer from "../components/Footer";
 import Page_small_banner from "../components/Page_small_banner";
 import Accordion from "../components/Accordion";
 import { useLanguage } from "../context/LanguageContext";
@@ -38,7 +37,7 @@ export default function Faq() {
                     </div>
                 </div>
             </section>
-            <Footer />
+           
         </>
     );
 };

@@ -20,8 +20,10 @@
     z-index: 2;
     display: flex;
     width: 100%;
-    padding: 250px 100px 150px 100px;
+    padding-top: vh(250);
+    padding-bottom: vh(150);
     @include responsive_padding;
+
     justify-content: space-between;
     align-items: flex-end;
     @media (max-width: 992px) {
@@ -31,7 +33,7 @@
     .full_container {
       width: 100%;
       .w70_block {
-        max-width: 70%;
+        max-width: 60%;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -74,7 +76,7 @@
 @media (max-width: 768px) {
   .small_heading_banner {
     .inner {
-      padding: 150px 20px 100px 20px;
+      padding: vh(150) vw(20) vh(100) vw(20);
       .full_container {
         .w70_block {
           max-width: 100%;
@@ -94,7 +96,7 @@
 @media (max-width: 480px) {
   .small_heading_banner {
     .inner {
-      padding: 130px 15px 70px 15px;
+      padding: vh(130) vw(15) vh(70) vw(15);
       .full_container {
         .w70_block {
           .page_title_wrapper {
@@ -106,6 +108,26 @@
             }
           }
         }
+      }
+    }
+  }
+}
+
+.small_heading_banner {
+  &__big {
+    .inner {
+      padding-top: vh(350);
+      padding-bottom: vh(250);
+      @include responsive_padding;
+      @media (max-width: 992px) {
+        padding-top: vh(250);
+        padding-bottom: vh(150);
+      }
+      @media (max-width: 768px) {
+        padding: vh(250) vw(20) vh(150) vw(20);
+      }
+      @media (max-width: 480px) {
+        padding: vh(200) vw(15) vh(100) vw(15);
       }
     }
   }

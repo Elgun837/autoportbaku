@@ -1,6 +1,5 @@
 import React from "react";
 import "../assets/styles/Contacts.scss";
-import Footer from "../components/Footer";
 import { useLanguage } from "../context/LanguageContext";
 import Page_small_banner from "../components/Page_small_banner";
 
@@ -60,7 +59,7 @@ export default function Contacts() {
                     </div>
                 </div>
             </section>
-            <Footer />
+           
         </>
 
     );

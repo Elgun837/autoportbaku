@@ -6,6 +6,7 @@ export const translations = {
       products: "Products",
       contacts: "Contacts",
       faq: "FAQ",
+      tours: "Tours",
     },
     home: {
       welcome: "Welcome!",
@@ -49,6 +50,10 @@ export const translations = {
         }
       ]
     },
+    tours: {
+      title: "Exclusive mobility at the highest level",
+      subtitle: "Do you have any questions or would you like to book a trip? Our team is always happy to help. Contact us by phone, email or using our contact form - we will get back to you immediately.",
+    },
   },
   ru: {
     header: {
@@ -57,6 +62,7 @@ export const translations = {
       products: "Продукты",
       contacts: "Контакты",
       faq: "ЧЗВ",
+      tours: "Туры",
     },
     home: {
       welcome: "Добро пожаловать!",

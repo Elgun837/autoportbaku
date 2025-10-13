@@ -5,6 +5,7 @@ import { LanguageProvider, useLanguage } from "./context/LanguageContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
+import Tours from "./pages/Tours";
 import Contacts from "./pages/Contacts";
 import Faq from "./pages/faq";
 
@@ -18,6 +19,7 @@ function AppRoutes() {
       <Route path="/" element={<Navigate to={`/${lang}`} />} />
       <Route path="/:lang" element={<HomePage />} />
       <Route path="*" element={<p>404 Not Found</p>} />
+      <Route path="/:lang/tours" element={<Tours />} />
       <Route path="/:lang/faq" element={<Faq />} />
       <Route path="/:lang/contacts" element={<Contacts />} />
     </Routes>
