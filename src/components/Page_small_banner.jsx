@@ -1,12 +1,13 @@
 import React from "react";
 import "../assets/styles/Page_banners.scss";
-import bannerImage from "/small_heading_banner.png";
+import defaultBannerImage from "../assets/images/small_heading_banner.png";
 
-export default function Page_small_banner({ title, subtitle }) {
+export default function Page_small_banner({ title, subtitle, bannerImageSrc }) {
+    const bannerImage = bannerImageSrc || defaultBannerImage;
     return (
         <>
             <section className="small_heading_banner">
-                <img className="banner_image" src={bannerImage} alt="Contacts Banner" />
+                <img className="banner_image" src={bannerImage} alt="Banner" />
                 <div className="container">
                     <div className="row">
                         <div className="inner">

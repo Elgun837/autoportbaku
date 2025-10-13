@@ -4,6 +4,7 @@
 
 $design-width: 1920;
 $design-height: 940;
+$base-font-size: 16; // Base font size in pixels (usually 16px = 1rem)
 
 @function vw($px, $base: $design-width) {
   @return math.div($px, $base) * 100vw;
@@ -11,4 +12,8 @@ $design-height: 940;
 
 @function vh($px, $base: $design-height) {
   @return math.div($px, $base) * 100vh;
+}
+
+@function rem($px, $base: $base-font-size) {
+  @return math.div($px, $base) * 1rem;
 }

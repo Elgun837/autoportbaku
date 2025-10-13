@@ -6,13 +6,19 @@ const LanguageContext = createContext();
 export function LanguageProvider({ children }) {
   const [lang, setLang] = useState("en");
 
-  const t = (keyPath) => {
+  const t = (keyPath, options = {}) => {
     const keys = keyPath.split(".");
     let value = translations[lang];
     for (let key of keys) {
       value = value?.[key];
       if (!value) return keyPath;
     }
+    
+    // Если returnObjects: true, возвращаем объект как есть
+    if (options.returnObjects && typeof value === 'object') {
+      return value;
+    }
+    
     return value;
   };
 

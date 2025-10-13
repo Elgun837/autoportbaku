@@ -1,0 +1,93 @@
+@use "./functions/Functions.scss" as *;
+@use "./functions/Mixins.scss" as *;
+
+.faq_section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+
+  .blocks_holder {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    @include responsive_padding;
+    padding-top: vw(100);
+    padding-bottom: vw(100);
+    align-items: flex-start;
+    gap: rem(90);
+    align-self: stretch;
+    @media (max-width: 1440px) {
+      gap: rem(60);
+    }
+    .left_block {
+      max-width: 456px;
+      width: 100%;
+      display: flex;
+      padding: vh(20) vw(50) vh(20) 0;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: rem(25); // 24px = 1.5rem
+      @media (max-width: 1200px) {
+        max-width: 270px;
+      }
+      h2 {
+        font-weight: 400;
+      }
+      p {
+        font-size: 17px;
+      }
+    }
+
+    .right_block {
+      display: flex;
+      padding: 0 vw(200) 0 vw(50);
+      align-items: center;
+      gap: rem(10);
+      flex: 1 0 0;
+      .faq_inner {
+        display: flex;
+        padding: rem(20);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: rem(20);
+        flex: 1 0 0;
+        @media (max-width: 992px) {
+          padding: rem(0);
+        }
+      }
+    }
+
+    @media (max-width: 1440px) {
+      .right_block {
+        padding: 0 vw(50) 0 vw(50);
+      }
+    }
+
+    @media (max-width: 992px) {
+      flex-direction: column;
+      gap: rem(48); // 48px = 3rem
+      padding-top: vw(150);
+      padding-bottom: vw(150);
+
+      .left_block {
+        flex: none;
+        max-width: 100%;
+        padding: 0;
+      }
+
+      .right_block {
+        flex: none;
+        max-width: 100%;
+        padding: 0;
+      }
+    }
+    @media (max-width: 768px) {
+      gap: rem(40); // 32px = 2rem
+    }
+    @media (max-width: 576px) {
+        padding-top: vw(250);
+        padding-bottom: vw(250);
+    }      
+  }
+}

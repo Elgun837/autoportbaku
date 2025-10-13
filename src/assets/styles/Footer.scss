@@ -44,14 +44,17 @@
       justify-content: space-between;
       align-items: flex-start;
       align-self: stretch;
-      
+      @media (max-width: 1200px) {
+        padding: vh(80) 0;
+      }
+
       @media (max-width: 992px) {
         flex-wrap: wrap;
         padding-top: vh(80);
       }
-       @media (max-width: 576px) {
+      @media (max-width: 576px) {
         padding-bottom: vh(40);
-       }
+      }
       .logo {
         width: vw(281.3);
         height: auto;

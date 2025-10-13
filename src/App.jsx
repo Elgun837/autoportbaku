@@ -5,7 +5,7 @@ import { LanguageProvider, useLanguage } from "./context/LanguageContext";
 import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import Contacts from "./pages/Contacts";
-import Faq from "./pages/Faq";
+import Faq from "./pages/faq";
 
 const queryClient = new QueryClient();
 
