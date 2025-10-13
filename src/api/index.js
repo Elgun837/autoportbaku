@@ -28,5 +28,35 @@ export const getSettingsData = async (lang = "en") => {
   
   return data;
 };
+export const getPartnersData = async (lang = "en") => {
+  const { data } = await api.get("/partners", {
+    headers: {
+      "contentLanguage": lang,
+      "token": token,
+    },
+  });
+  
+  return data;
+};
+export const getToursData = async (lang = "en") => {
+  const { data } = await api.get("/tours", {
+    headers: {
+      "contentLanguage": lang,
+      "token": token,
+    },
+  });
+  
+  return data;
+};
+export const fetFaqsData = async (lang = "en") => {
+  const { data } = await api.get("/faq", {
+    headers: {
+      "contentLanguage": lang,
+      "token": token,
+    },
+  });
+  
+  return data;
+};
 
 export default api;
