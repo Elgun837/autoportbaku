@@ -1,0 +1,289 @@
+// Импорт функций
+@use "./functions/Functions.scss" as *;
+@use "./functions/Mixins.scss" as *;
+
+.tour-detail-inner {
+  display: flex;
+  width: 100%;
+  padding-top: vh(80);
+  padding-bottom: vh(150);
+  @include responsive_padding;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: rem(90);
+  align-self: stretch;
+  @media (max-width: 992px) {
+    gap: rem(40);
+    padding-bottom: vh(80);
+  }
+  @media (max-width: 576px) {
+    padding-top: vh(40);
+    padding-bottom: vh(60);
+  }
+  .details_holder {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    gap: rem(100);
+    @media (max-width: 992px) {
+      flex-direction: column-reverse;
+      gap: rem(40);
+    }
+    .left_block {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: rem(10);
+      flex: 1 0 0;
+      .small_description {
+      }
+      .parameters {
+        display: flex;
+        padding: rem(10) 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: rem(10);
+        align-self: stretch;
+        .duration,
+        .cancellation {
+          display: flex;
+          align-items: flex-start;
+          gap: rem(10);
+          align-self: stretch;
+          .icon {
+            width: 24px;
+            height: 24px;
+            svg {
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+      }
+      .full_description {
+        margin-top: rem(20);
+
+        h3 {
+          margin-bottom: rem(15);
+          margin-top: rem(25);
+
+          &:first-child {
+            margin-top: 0;
+          }
+        }
+
+        p {
+          margin-bottom: rem(15);
+
+          strong {
+            font-weight: 600;
+          }
+
+          br {
+            line-height: 1.8;
+          }
+        }
+        ul,
+        ol {
+          margin: rem(10) 0;
+          padding-left: rem(20);
+
+          li {
+            margin-bottom: rem(8);
+            color: #333;
+            line-height: 1.5;
+          }
+        }
+      }
+    }
+    .right_block {
+      display: flex;
+      width: vw(988);
+      max-width: 858px;
+      flex: 1 0 0;
+      flex-direction: column;
+      align-items: flex-start;
+      flex-shrink: 0;
+      @media (max-width: 992px) {
+        max-width: 100%;
+        width: 100%;
+      }
+
+      .image_gallery {
+        width: 100%;
+        position: sticky;
+        top: 15px;
+
+        // Фиксированная высота для основных изображений
+        .image-gallery-slide img {
+          height: vh(500) !important;
+          width: 100% !important;
+          object-fit: cover !important;
+          border-radius: rem(12);
+          @media (min-width: 2100px) {
+            height: 500px !important;
+          }
+        }
+
+        // Фиксированная высота для миниатюр
+        .image-gallery-thumbnail img {
+          height: 89px !important;
+          width: 145px !important;
+          object-fit: cover !important;
+          border-radius: rem(8);
+        }
+        .image-gallery-thumbnail {
+          width: 145px !important;
+        }
+
+        // Кастомные стрелки навигации
+        .custom-nav-arrow {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          background: rgba(255, 255, 255, 0.9);
+          border: none;
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+          padding: rem(10);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          z-index: 10;
+          color: #08529f;
+          box-shadow: 0 rem(4) rem(12) rgba(0, 0, 0, 0.15);
+
+          &:hover {
+            background: rgba(255, 255, 255, 1);
+            color: #08529f;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 rem(6) rem(20) rgba(0, 0, 0, 0.25);
+          }
+
+          &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+
+            &:hover {
+              transform: translateY(-50%);
+              background: rgba(255, 255, 255, 0.9);
+            }
+          }
+
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
+
+        .image-gallery-left-nav {
+          left: rem(15);
+        }
+
+        .image-gallery-right-nav {
+          right: rem(15);
+        }
+
+        // Стили для контейнера галереи
+        .image-gallery {
+          border-radius: rem(12);
+          overflow: hidden;
+
+          .image-gallery-content {
+            border-radius: rem(12);
+          }
+
+          .image-gallery-slide-wrapper {
+            border-radius: rem(12);
+          }
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+          .image-gallery-thumbnail:hover {
+            outline: none;
+            border: 0px solid transparent;
+          }
+        }
+        .image-gallery-thumbnail {
+          border: 0px solid transparent;
+        }
+
+        // Стили для миниатюр
+        .image-gallery-thumbnails-wrapper {
+          margin-top: rem(15);
+
+          .image-gallery-thumbnails {
+            .image-gallery-thumbnail {
+              border-radius: rem(8);
+              overflow: hidden;
+              margin: 0 rem(5);
+              transition: all 0.3s ease;
+              opacity: 0.5;
+
+              &.active,
+              &:focus {
+                opacity: 1;
+                border: none;
+              }
+
+              &:hover {
+                opacity: 1;
+                transform: translateY(rem(-2));
+              }
+            }
+          }
+        }
+
+        // Скрытие стандартных стрелок
+        .image-gallery-left-nav:not(.custom-nav-arrow),
+        .image-gallery-right-nav:not(.custom-nav-arrow) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+// Адаптивные стили для мобильных устройств
+@media (max-width: 768px) {
+  .tour-detail-inner {
+    .details_holder {
+      flex-direction: column-reverse;
+      gap: rem(40);
+
+      .right_block {
+        max-width: 100%;
+
+        .image_gallery {
+          .image-gallery-slide img {
+            height: 250px !important;
+          }
+
+          .custom-nav-arrow {
+            width: 40px;
+            height: 40px;
+
+            svg {
+              width: 16px;
+              height: 16px;
+            }
+          }
+
+          .image-gallery-left-nav {
+            left: rem(10);
+          }
+
+          .image-gallery-right-nav {
+            right: rem(10);
+          }
+
+          .image-gallery-thumbnail img {
+          }
+        }
+      }
+    }
+  }
+}

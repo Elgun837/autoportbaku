@@ -38,12 +38,22 @@
         display: flex;
         max-width: 50%;
         max-height: 554px;
+        height: vh(500);
         flex-direction: column;
         justify-content: flex-end;
         align-items: flex-start;
         gap: rem(17);
         @media (max-width: 992px) {
           max-width: 100%;
+        }
+        @media (max-width: 768px) {
+          height: vh(300);
+          width: 100%;
+          img {
+            height: 100%;
+            object-fit: cover;
+            width: 100%;
+          }
         }
         img {
           width: 100%;
@@ -89,5 +99,82 @@
         }
       }
     }
+  }
+}
+
+// Стили для состояний загрузки и ошибки
+.loading-container,
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: vh(40);
+  text-align: center;
+  width: 100%;
+  
+  .loading-spinner {
+    font-size: rem(18);
+    color: #08529F;
+    animation: pulse 1.5s infinite;
+    margin-bottom: rem(20);
+  }
+  
+  p {
+    font-size: rem(16);
+    color: #666;
+    margin-bottom: rem(20);
+  }
+  
+  .btn {
+    padding: rem(12) rem(24);
+    font-size: rem(16);
+    font-weight: 600;
+    border-radius: rem(8);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    
+    &.btn-primary {
+      background: #08529F;
+      color: white;
+      
+      &:hover {
+        background: #06407a;
+        transform: translateY(rem(-2));
+      }
+    }
+  }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+// Стили для мета-информации тура
+.tour-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: rem(15) 0;
+  padding: rem(10) 0;
+  border-top: rem(1) solid #eee;
+  
+  .duration {
+    color: #666;
+    font-size: rem(14);
+    
+    &:before {
+      content: '🕒 ';
+      margin-right: rem(5);
+    }
+  }
+  
+  .price {
+    font-weight: 600;
+    color: #28a745;
+    font-size: rem(16);
   }
 }
