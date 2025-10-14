@@ -3,6 +3,8 @@ import "../assets/styles/Contacts.scss";
 import Footer from "../components/Footer";
 import { useLanguage } from "../context/LanguageContext";
 import Page_small_banner from "../components/Page_small_banner";
+import { getSettingsData } from "../api";
+
 
 
 export default function Contacts() {
