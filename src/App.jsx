@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import Tours from "./pages/Tours";
 import Contacts from "./pages/Contacts";
 import Faq from "./pages/faq";
+import About from "./pages/About";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<Navigate to={`/${lang}`} />} />
       <Route path="/:lang" element={<HomePage />} />
+      <Route path="/:lang/about-us" element={<About />} />
       <Route path="*" element={<p>404 Not Found</p>} />
       <Route path="/:lang/tours" element={<Tours />} />
       <Route path="/:lang/faq" element={<Faq />} />
