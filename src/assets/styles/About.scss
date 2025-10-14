@@ -14,20 +14,23 @@
         letter-spacing: 2%;
 
     }
-    .about_section{
-        .row{
+
+    .about_section {
+        padding-bottom:150px ;
+        .row {
             justify-content: center;
-        }
-    }
-    .about_inner {
-        max-width: 1260px;
 
-        p {
-            font-weight: 400;
-            font-size: 17px;
-            line-height: 150%;
-            letter-spacing: 2%;
+            .about_inner {
+                max-width: 1260px;
 
+                p {
+                    font-weight: 400;
+                    font-size: 17px;
+                    line-height: 150%;
+                    letter-spacing: 2%;
+
+                }
+            }
         }
     }
 }

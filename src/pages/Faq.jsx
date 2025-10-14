@@ -9,8 +9,7 @@ export default function Faq() {
     const { t } = useLanguage();
 
     const faqItems = t("faq.items", { returnObjects: true });
-    // console.log("FAQ: faqBannerImage =", faqBannerImage);
-
+    
     return (
         <>
             <Page_small_banner

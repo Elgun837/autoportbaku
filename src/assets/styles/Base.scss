@@ -10,6 +10,7 @@ img {
   padding-right: 15px;
   width: 100%;
 }
+
 .row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -38,25 +39,41 @@ body {
 
 .triangle_decor {
   width: 100%;
+
   // margin-bottom: -5px;
+  &_top {
+    svg {
+      top: -2px;
+    }
+  }
+
+  &_bottom {
+    svg {
+      bottom: -2px;
+    }
+
+  }
+
   svg {
     display: block;
     width: 100%;
     height: auto;
-    margin-top: -2px;
+    position: relative;
   }
 }
 
 .mobile_visible {
   display: none;
+
   @media (max-width: 992px) {
-    display: block!important;
+    display: block !important;
   }
 }
 
 .mobile_hidden {
   display: block;
+
   @media (max-width: 992px) {
-    display: none!important;
+    display: none !important;
   }
 }

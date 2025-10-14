@@ -21,7 +21,7 @@ export const translations = {
       content1:
         'It should be an experience of comfort, safety, and elegance. “Located in the heart of Baku, we specialize in providing premium chauffeur and driver services, including airport transfers and day tours across Azerbaijan, tailored to the needs of both local and international guests."',
       content2:
-        "Our diverse fleet includes a wide range of Comfort, Business, Luxury, and Premium cars, as well as minivans, vans, and buses to meet any travel requirements. Whether it\'s a single executive ride, a family trip, or group transportation for events, Autoport Baku offers the perfect solution.",
+        "Our diverse fleet includes a wide range of Comfort, Business, Luxury, and Premium cars, as well as minivans, vans, and buses to meet any travel requirements. Whether it's a single executive ride, a family trip, or group transportation for events, Autoport Baku offers the perfect solution.",
       content3:
         "With our VIP and premium vehicles driven by professional chauffeurs, along with our highly skilled and courteous drivers, we ensure that every journey is not only safe but also a memorable experience. Our commitment to excellence and customer satisfaction sets us apart in the industry.",
     },
@@ -72,6 +72,17 @@ export const translations = {
       subtitle:
         "Do you have any questions or would you like to book a trip? Our team is always happy to help. Contact us by phone, email or using our contact form - we will get back to you immediately.",
     },
+    missions: {
+      title: "Our Mission",
+      subtitle:
+        "Our mission at Autoport Baku is to redefine personal and corporate transportation in Azerbaijan by combining luxury, safety, and professionalism.",
+      point1Title: "Reliability, comfort, and excellence",
+      point1Desc:
+        "We are committed to delivering seamless, stress-free, and elegant travel experiences for every client. Whether you need a daily driver, premium chauffeur service, or large-capacity vehicles for groups, Autoport Baku stands for reliability, comfort, and excellence.",
+      point2Title: "24/7 availability and support",
+      point2Desc:
+        "We aim to be the trusted choice for individuals, families, and corporations who value time, comfort, and outstanding  24/7 service.",
+    },
   },
   ru: {
     header: {
@@ -92,7 +103,7 @@ export const translations = {
       secTitle: "Autoport Baku",
       secDesc:
         "Мы считаем, что каждое путешествие должно быть чем-то большим, чем просто транспортировка",
-      content1:   
+      content1:
         'Это должен быть опыт комфорта, безопасности и элегантности. "Расположенная в самом сердце Баку, наша компания специализируется на предоставлении первоклассных услуг водителей и шоферов, включая трансферы из аэропорта и однодневные туры по Азербайджану, адаптированные к потребностям как местных, так и международных гостей."',
       content2:
         "Наш разнообразный автопарк включает широкий ассортимент автомобилей Comfort, Business, Luxury и Premium, а также минивэны, фургоны и автобусы, чтобы удовлетворить любые потребности в путешествиях. Будь то поездка для одного руководителя, семейная поездка или групповая транспортировка для мероприятий, Autoport Baku предлагает идеальное решение.",
@@ -141,5 +152,21 @@ export const translations = {
         },
       ],
     },
+    tours: {
+      title: "Эксклюзивная мобильность на высшем уровне",
+      subtitle:     
+        "У вас есть вопросы или вы хотите забронировать поездку? Наша команда всегда рада помочь. Свяжитесь с нами по телефону, электронной почте или через нашу контактную форму - мы свяжемся с вами немедленно.",  
+    },
+    missions: {
+      title: "Наша миссия", 
+      subtitle:
+        "Наша миссия в Autoport Baku - переопределить личные и корпоративные перевозки в Азербайджане, сочетая роскошь, безопасность и профессионализм.",
+      point1Title: "Надежность, комфорт и совершенство",
+      point1Desc:   
+        "Мы стремимся предоставлять беспроблемные, беззаботные и элегантные впечатления от путешествий для каждого клиента. Независимо от того, нужен ли вам водитель на каждый день, премиальные услуги шофера или транспортные средства большой вместимости для групп, Autoport Baku олицетворяет надежность, комфорт и совершенство.",
+      point2Title: "Круглосуточная доступность и поддержка",
+      point2Desc:
+        "Мы стремимся быть надежным выбором для частных лиц, семей и корпораций, которые ценят время, комфорт и выдающийся сервис 24/7.",
+    }
   },
 };

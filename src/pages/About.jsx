@@ -5,6 +5,7 @@ import Page_big_banner from "../components/Page_big_banner";
 import AboutBanner from "../assets/images/about_us/banner_imge_about.webp";
 import Scrollline from "../components/Scrolline";
 import SectionTitle from "../components/SectionTitle";
+import Mission from "../components/Mission";
 
 function About() {
     
@@ -31,6 +32,7 @@ function About() {
           </div>
         </div>
        </section>
+       <Mission />
     </div>
   );
 }
