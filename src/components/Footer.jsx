@@ -59,7 +59,7 @@ export default function Footer() {
                                 <div className="design_text">
                                     <span>Made by:</span>
                                     <div className="design_link">
-                                        <a href="#"><img src="/amiroff.svg" alt="Amiroff Logo" /></a>
+                                        <a href="https://amiroff.az/"><img src="/amiroff.svg" alt="Amiroff Logo" /></a>
                                     </div>
                                 </div>
                             </div>

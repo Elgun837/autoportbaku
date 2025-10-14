@@ -4,7 +4,7 @@ function SectionTitle({ sectionHeadingSmall, sectionHeadingBig }) {
     <div className="section_title container">
       <div className="inner">
         <div className="section_title_small">
-          <h6>{sectionHeadingSmall}</h6>
+          <h2>{sectionHeadingSmall}</h2>
         </div>
         <div className="section_title_big">
           <h2>{sectionHeadingBig}</h2>
