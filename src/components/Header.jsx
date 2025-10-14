@@ -78,7 +78,7 @@ export default function Header() {
               <div className={`nav_and_lang ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
                 <nav>
                   <Link to={`/${lang}`} onClick={closeMobileMenu}>{t("header.home")}</Link>
-                  <Link to={`/${lang}/about`} onClick={closeMobileMenu}>{t("header.about")}</Link>
+                  <Link to={`/${lang}/about-us`} onClick={closeMobileMenu}>{t("header.about")}</Link>
                   <Link to={`/${lang}/products`} onClick={closeMobileMenu}>{t("header.products")}</Link>
                   <Link to={`/${lang}/tours`} onClick={closeMobileMenu}>{t("header.tours")}</Link>
                   <Link to={`/${lang}/faq`} onClick={closeMobileMenu}>{t("header.faq")}</Link>

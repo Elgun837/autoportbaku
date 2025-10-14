@@ -12,8 +12,8 @@ export const translations = {
       welcome: "Welcome!",
     },
     about: {
-      title: "About Us",
-      content: "Information about our company...",
+      title: "Autoport - More than just a driving service",
+      subtitle: "Your partner for tailor-made mobility, first-class service and exclusive driving experiences.",
     },
     contacts: {
       title: "Make contact",
@@ -68,9 +68,9 @@ export const translations = {
       welcome: "Добро пожаловать!",
     },
     about: {
-      title: "About Us",
-      content: "Information about our company...",
-    },    
+      title: "Autoport — больше, чем просто водительские услуги",
+      subtitle: "Ваш партнер в сфере индивидуальной мобильности, первоклассного обслуживания и эксклюзивных ощущений от вождения.",
+    },  
      contacts: {
       title: "Связаться с нами",
       subtitle: "Autoport Baku делает все возможное, чтобы ответить на ваши вопросы и выполнить ваши запросы",
