@@ -2,7 +2,23 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react({
+      // Enable Fast Refresh
+      fastRefresh: true,
+    })
+  ],
+  server: {
+    // Настройки для лучшего hot reload
+    hmr: {
+      overlay: true
+    },
+    // Следим за изменениями в файлах
+    watch: {
+      usePolling: true,
+      interval: 100
+    }
+  },
   css: {
     devSourcemap: true,
     preprocessorOptions: {

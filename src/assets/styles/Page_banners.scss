@@ -50,9 +50,11 @@
           .page_title {
             color: #fff;
             text-shadow: 0 5px 4.6px rgba(0, 0, 0, 0.29);
+            min-height: vh(70);
           }
           .page_subtitle {
             color: #fff;
+            min-height: vh(31);
           }
         }
       }

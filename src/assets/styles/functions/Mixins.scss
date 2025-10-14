@@ -5,3 +5,7 @@
     padding-left: vw(80);
     padding-right: vw(80);
 }
+
+@mixin transition($properties: cubic-bezier(0.4, 0, 0.2, 1) 0.3s) {
+    transition: $properties;
+}

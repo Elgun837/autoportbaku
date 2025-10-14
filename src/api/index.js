@@ -48,7 +48,19 @@ export const getToursData = async (lang = "en") => {
   
   return data;
 };
+export const getTourBySlug = async (slug, lang = "en") => {
+  const { data } = await api.get(`/tours/${slug}`, {
+    headers: {
+      "contentLanguage": lang,
+      "token": token,
+    },
+  });
+  
+  return data;
+};
+
 export const getFaqsData = async (lang = "en") => {
+
   const { data } = await api.get("/faq", {
     headers: {
       "contentLanguage": lang,

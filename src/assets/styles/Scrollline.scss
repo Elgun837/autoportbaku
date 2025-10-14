@@ -4,6 +4,7 @@
 .scroll_inner {
   display: flex;
   padding: vh(50) vw(80);
+  @include responsive_padding;  
   align-items: flex-start;
   align-self: stretch;
   width: 100%;
@@ -30,12 +31,12 @@
 // Responsive adjustments
 @media (max-width: 768px) {
   .scroll_inner {
-    padding: vh(30) vw(40);
+    padding: vh(30) vw(80);
   }
 }
 
 @media (max-width: 480px) {
   .scroll_inner {
-    padding: vh(20) vw(20);
+    padding: vh(40) vw(80);
   }
 }

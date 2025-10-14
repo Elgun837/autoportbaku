@@ -1,0 +1,180 @@
+// Импорт функций
+@use "./functions/Functions.scss" as *;
+@use "./functions/Mixins.scss" as *;
+
+.tours_section {
+  display: flex;
+  padding-top: vh(50);
+  padding-bottom: vh(150);
+  @media (max-width: 992px) {
+    padding-bottom: vh(70);
+  }
+  @media (max-width: 576px) {
+    padding-top: vh(20);
+    padding-bottom: vh(40);
+  }
+  flex-direction: column;
+  align-items: flex-start;
+  gap: rem(90);
+  align-self: stretch;
+  overflow-x: hidden; // Скрываем элементы за границами экрана
+  .tours_wrapper {
+    display: flex;
+    @include responsive_padding;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: rem(80);
+    flex: 1 0 0;
+    .tour_element {
+      display: flex;
+      align-items: center;
+      gap: rem(100);
+      align-self: stretch;
+      @media (max-width: 992px) {
+        flex-direction: column;
+        gap: rem(30);
+      }
+      .image_block {
+        display: flex;
+        max-width: 50%;
+        max-height: 554px;
+        height: vh(500);
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        gap: rem(17);
+        @media (max-width: 992px) {
+          max-width: 100%;
+        }
+        @media (max-width: 768px) {
+          height: vh(300);
+          width: 100%;
+          img {
+            height: 100%;
+            object-fit: cover;
+            width: 100%;
+          }
+        }
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 16px;
+          object-fit: cover;
+        }
+      }
+      .details_block {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        flex: 1 0 0;
+        h2 {
+          margin-bottom: rem(25);
+          @media (max-width: 992px) {
+            margin-bottom: rem(15);
+          }
+        }
+        p {
+          margin-bottom: rem(40);
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 3;
+          line-clamp: 3; // Стандартное свойство для совместимости
+          align-self: stretch;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          @media (max-width: 992px) {
+            margin-bottom: rem(25);
+          }
+        }
+      }
+      &:nth-child(even) {
+        flex-direction: row-reverse;
+        @media (max-width: 992px) {
+          flex-direction: column;
+          gap: rem(30);
+        }
+        .image_block {
+          justify-content: flex-start;
+          align-items: flex-end;
+        }
+      }
+    }
+  }
+}
+
+// Стили для состояний загрузки и ошибки
+.loading-container,
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: vh(40);
+  text-align: center;
+  width: 100%;
+  
+  .loading-spinner {
+    font-size: rem(18);
+    color: #08529F;
+    animation: pulse 1.5s infinite;
+    margin-bottom: rem(20);
+  }
+  
+  p {
+    font-size: rem(16);
+    color: #666;
+    margin-bottom: rem(20);
+  }
+  
+  .btn {
+    padding: rem(12) rem(24);
+    font-size: rem(16);
+    font-weight: 600;
+    border-radius: rem(8);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    
+    &.btn-primary {
+      background: #08529F;
+      color: white;
+      
+      &:hover {
+        background: #06407a;
+        transform: translateY(rem(-2));
+      }
+    }
+  }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+// Стили для мета-информации тура
+.tour-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: rem(15) 0;
+  padding: rem(10) 0;
+  border-top: rem(1) solid #eee;
+  
+  .duration {
+    color: #666;
+    font-size: rem(14);
+    
+    &:before {
+      content: '🕒 ';
+      margin-right: rem(5);
+    }
+  }
+  
+  .price {
+    font-weight: 600;
+    color: #28a745;
+    font-size: rem(16);
+  }
+}

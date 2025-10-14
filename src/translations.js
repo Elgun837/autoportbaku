@@ -1,5 +1,10 @@
 export const translations = {
   en: {
+    common: {
+      loading: "Loading...",
+      error: "Error loading data. Please try again.",
+      retry: "Retry",
+    },
     header: {
       home: "Home",
       about: "About Us",
@@ -69,6 +74,7 @@ export const translations = {
     },
     tours: {
       title: "Exclusive mobility at the highest level",
+<<<<<<< HEAD
       subtitle:
         "Do you have any questions or would you like to book a trip? Our team is always happy to help. Contact us by phone, email or using our contact form - we will get back to you immediately.",
     },
@@ -82,9 +88,23 @@ export const translations = {
       point2Title: "24/7 availability and support",
       point2Desc:
         "We aim to be the trusted choice for individuals, families, and corporations who value time, comfort, and outstanding  24/7 service.",
+=======
+      subtitle: "Do you have any questions or would you like to book a trip? Our team is always happy to help. Contact us by phone, email or using our contact form - we will get back to you immediately.",
+      learnMore: "Learn More",
+    },
+    tour: {
+      duration: "Duration",
+      cancellation: "Cancellation",
+      bookingLink: "Book a tour",
+>>>>>>> semral
     },
   },
   ru: {
+    common: {
+      loading: "Загрузка...",
+      error: "Ошибка загрузки данных. Попробуйте снова.",
+      retry: "Повторить",
+    },
     header: {
       home: "Главная",
       about: "О нас",
@@ -97,6 +117,7 @@ export const translations = {
       welcome: "Добро пожаловать!",
     },
     about: {
+<<<<<<< HEAD
       title: "Autoport — больше, чем просто водительские услуги",
       subtitle:
         "Ваш партнер в сфере индивидуальной мобильности, первоклассного обслуживания и эксклюзивных ощущений от вождения.",
@@ -109,6 +130,10 @@ export const translations = {
         "Наш разнообразный автопарк включает широкий ассортимент автомобилей Comfort, Business, Luxury и Premium, а также минивэны, фургоны и автобусы, чтобы удовлетворить любые потребности в путешествиях. Будь то поездка для одного руководителя, семейная поездка или групповая транспортировка для мероприятий, Autoport Baku предлагает идеальное решение.",
       content3:
         "С нашими VIP и премиальными автомобилями, управляемыми профессиональными шоферами, а также нашими высококвалифицированными и вежливыми водителями, мы гарантируем, что каждое путешествие будет не только безопасным, но и запоминающимся опытом. Наша приверженность к совершенству и удовлетворенности клиентов выделяет нас в отрасли.",
+=======
+      title: "About Us",
+      content: "Information about our company...",
+>>>>>>> semral
     },
     contacts: {
       title: "Связаться с нами",
@@ -154,6 +179,7 @@ export const translations = {
     },
     tours: {
       title: "Эксклюзивная мобильность на высшем уровне",
+<<<<<<< HEAD
       subtitle:     
         "У вас есть вопросы или вы хотите забронировать поездку? Наша команда всегда рада помочь. Свяжитесь с нами по телефону, электронной почте или через нашу контактную форму - мы свяжемся с вами немедленно.",  
     },
@@ -168,5 +194,15 @@ export const translations = {
       point2Desc:
         "Мы стремимся быть надежным выбором для частных лиц, семей и корпораций, которые ценят время, комфорт и выдающийся сервис 24/7.",
     }
+=======
+      subtitle: "У вас есть вопросы или хотите забронировать поездку? Наша команда всегда рада помочь. Свяжитесь с нами по телефону, электронной почте или через нашу контактную форму - мы ответим немедленно.",
+      learnMore: "Подробнее",
+    },
+    tour: {
+      duration: "Длительность",
+      cancellation: "Отмена",
+      bookingLink: "Забронировать тур",
+    },
+>>>>>>> semral
   },
 };

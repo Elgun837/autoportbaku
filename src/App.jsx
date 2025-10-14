@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import Tours from "./pages/Tours";
+import TourDetail from "./pages/TourDetail";
 import Contacts from "./pages/Contacts";
 import Faq from "./pages/faq";
 import About from "./pages/About";
@@ -19,8 +20,12 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<Navigate to={`/${lang}`} />} />
       <Route path="/:lang" element={<HomePage />} />
+<<<<<<< HEAD
       <Route path="/:lang/about-us" element={<About />} />
+=======
+>>>>>>> semral
       <Route path="/:lang/tours" element={<Tours />} />
+      <Route path="/:lang/tours/:slug" element={<TourDetail />} />
       <Route path="/:lang/faq" element={<Faq />} />
       <Route path="/:lang/contacts" element={<Contacts />} />
       <Route path="*" element={<p>404 Not Found</p>} />
