@@ -45,20 +45,29 @@ export const getToursData = async (lang = "en") => {
       "token": token,
     },
   });
-  
+ 
   return data;
 };
 
 export const getTourBySlug = async (slug, lang = "en") => {
-  const { data } = await api.get(`/tours/${slug}`, {
-    headers: {
-      "contentLanguage": lang,
-      "token": token,
-    },
-  });
-  
-  return data;
+  try {
+    // Ваш API работает по ID, поэтому сначала получаем все туры    
+    const allTours = await getToursData(lang);
+    const tours = allTours.data || allTours || [];    
+    const tour = tours.find(t => t.slug === slug);
+    
+    if (tour) {     
+      return { data: tour };
+    } else {
+      throw new Error('Tour not found');
+    }
+  } catch (error) {
+    console.error('Error in getTourBySlug:', error);
+    throw error;
+  }
 };
+
+
 export const fetFaqsData = async (lang = "en") => {
   const { data } = await api.get("/faq", {
     headers: {

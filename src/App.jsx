@@ -14,6 +14,8 @@ const queryClient = new QueryClient();
 
 function AppRoutes() {
   const { lang } = useLanguage();
+ 
+
 
   return (
     <Routes>

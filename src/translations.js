@@ -4,6 +4,12 @@ export const translations = {
       loading: "Loading...",
       error: "Error loading data. Please try again.",
       retry: "Retry",
+      backToTours: "Back to Tours",
+    },
+    common: {
+      loading: "Loading...",
+      error: "Error loading data. Please try again.",
+      retry: "Retry",
     },
     header: {
       home: "Home",
@@ -71,6 +77,7 @@ export const translations = {
       loading: "Загрузка...",
       error: "Ошибка загрузки данных. Попробуйте снова.",
       retry: "Повторить",
+      backToTours: "Назад к турам",
     },
     header: {
       home: "Главная",

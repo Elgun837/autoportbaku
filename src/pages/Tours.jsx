@@ -13,13 +13,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Tours() {
-    const { t, language } = useLanguage();
+    const { t, currentLang } = useLanguage();
     const { lang } = useParams();
     const toursWrapperRef = useRef(null);
     const [tours, setTours] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const currentLang = language || 'en';
 
     // Загружаем данные туров с API
     useEffect(() => {
@@ -150,29 +149,28 @@ export default function Tours() {
                                 <div key={tour.id || index} className="tour_element">
                                     <div className="image_block">
                                         <img
-                                            src={tour.image || tour.mainImage || tour.featured_image || ToursBannerImage}
-                                            alt={tour.title || tour.name || `Tour ${index + 1}`}
+                                            src={tour.image || ToursBannerImage}
+                                            alt={tour.title || `Tour ${index + 1}`}
                                             onError={(e) => {
                                                 e.target.src = ToursBannerImage; // Fallback изображение
                                             }}
                                         />
                                     </div>
                                     <div className="details_block">
-                                        <h2>{tour.title || tour.name || 'Tour Title'}</h2>
-                                        <p>{tour.description || tour.shortDescription || tour.excerpt || 'Tour description...'}</p>
+                                        <h2>{tour.title}</h2>
+                                        <p>{tour.excerpt}</p>
                                         <div className="tour-meta">
                                             {tour.duration && (
                                                 <span className="duration">{tour.duration}</span>
                                             )}
-                                            {(tour.price || tour.cost) && (
+                                            {tour.price && (
                                                 <span className="price">
-                                                    From ${tour.price || tour.cost}
+                                                    From ${tour.price}
                                                 </span>
                                             )}
                                         </div>
-                                        {console.log(tour)}
                                         <Link
-                                            to={`/${lang}/tours/${tour.slug || tour.id}`}
+                                            to={`/${lang}/tours/${tour.slug}`}
                                             className="btn btn-primary"
                                         >
                                             {t('tours.learnMore', 'Learn More')}
