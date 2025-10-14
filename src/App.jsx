@@ -20,10 +20,10 @@ function AppRoutes() {
       <Route path="/" element={<Navigate to={`/${lang}`} />} />
       <Route path="/:lang" element={<HomePage />} />
       <Route path="/:lang/about-us" element={<About />} />
-      <Route path="*" element={<p>404 Not Found</p>} />
       <Route path="/:lang/tours" element={<Tours />} />
       <Route path="/:lang/faq" element={<Faq />} />
       <Route path="/:lang/contacts" element={<Contacts />} />
+      <Route path="*" element={<p>404 Not Found</p>} />
     </Routes>
   );
 }
@@ -31,13 +31,13 @@ function AppRoutes() {
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <LanguageProvider>
-        <Router>
+      <Router>
+        <LanguageProvider>
           <Header />
           <AppRoutes />
           <Footer />
-        </Router>
-      </LanguageProvider>
+        </LanguageProvider>
+      </Router>
     </QueryClientProvider>
   );
 }
