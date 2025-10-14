@@ -1,25 +1,31 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../assets/styles/Accordion.scss";
-import {getFaqsData} from "../api/index";
+import { getFaqsData } from "../api";
 import { useQuery } from "@tanstack/react-query";
 import { useLanguage } from "../context/LanguageContext";
 
 export default function Accordion() {
-  const { lang } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(null);
   const contentRefs = useRef([]);
+  useEffect(() => {
+    if (activeIndex !== null && contentRefs.current[activeIndex]) {
+      const element = contentRefs.current[activeIndex];
+      // Небольшая задержка для корректного расчета
+      setTimeout(() => {
+        element.style.maxHeight = `${element.scrollHeight}px`;
+      }, 10);
+    }
+  }, [activeIndex]);
+  const { lang } = useLanguage();
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["faqs", lang],
     queryFn: () => getFaqsData(lang),
   });
 
-  console.log("API data:", data);
-  console.log("Type of data:", typeof data);
-  console.log("Is array?", Array.isArray(data));
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading FAQs 😢</p>;
-
+  
   // API cavabı birbaşa array-dir
   const faqs = Array.isArray(data) ? data : [];
 
@@ -31,21 +37,24 @@ export default function Accordion() {
     );
   }
 
+  // Проверяем, есть ли элементы
+  if (!faqs || !Array.isArray(faqs) || faqs.length === 0) {
+    return (
+      <div className="accordion">
+        <p>No FAQ items available</p>
+      </div>
+    );
+  }
+
   const toggleAccordion = (index) => {
-    setActiveIndex((prev) => (prev === index ? null : index));
+    setActiveIndex(activeIndex === index ? null : index);
   };
 
-  // Aktiv bölmə dəyişəndə maxHeight yeniləyirik
-  useEffect(() => {
-    contentRefs.current.forEach((el, idx) => {
-      if (!el) return;
-      el.style.maxHeight = activeIndex === idx ? `${el.scrollHeight}px` : "0px";
-    });
-  }, [activeIndex]);
+  // Пересчитываем высоту при изменении активного элемента
 
   return (
     <div className="accordion">
-      {data.map((item, index) => (
+      {faqs.map((item, index) => (
         <div
           key={index}
           className={`accordion_item ${activeIndex === index ? "active" : ""}`}
@@ -81,7 +90,6 @@ export default function Accordion() {
               </svg>
             </div>
           </div>
-
           <div
             id={`accordion-content-${index}`}
             className={`accordion_content ${

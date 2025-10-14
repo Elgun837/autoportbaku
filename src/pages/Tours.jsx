@@ -40,7 +40,7 @@ export default function Tours() {
 
         fetchTours();
     }, [currentLang]);
-
+ 
     // GSAP анимации для изображений
     useEffect(() => {
         if (tours.length === 0) return;
@@ -170,7 +170,7 @@ export default function Tours() {
                                                 </span>
                                             )}
                                         </div>
-                                        {console.log(tour)}
+                                    
                                         <Link
                                             to={`/${lang}/tours/${tour.slug || tour.id}`}
                                             className="btn btn-primary"

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "api/", 
+  baseURL: "https://admin.autoportbaku.com/api/", 
 });
 
 const token = "KBIzDStUcIw77b4RwpPDqTuIH2v2boErBf7lCTOQFAAM5xV92T5kWdK9afg8DgEx2HTRxc8db2YJDmvZwzZ4SjKH4ClC3AyviAQ1oOWMvhg9F9HGLPHESsGZADEGj62KrDYyzp7fUtqIZ4hbCH9vk1BTesghBrIbK31O";
@@ -67,7 +67,6 @@ export const getFaqsData = async (lang = "en") => {
       "token": token,
     },
   });
-  
   return data;
 };
 
