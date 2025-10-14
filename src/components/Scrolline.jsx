@@ -11,6 +11,7 @@ export default function Scrollline({ maxProgress = 50 }) {
     const sectionRef = useRef(null);
     const scrollTriggerRef = useRef(null);
     const uniqueId = useId(); // Уникальный ID для каждого экземпляра
+ 
 
     useEffect(() => {
         const progressBar = progressRef.current;
@@ -18,10 +19,13 @@ export default function Scrollline({ maxProgress = 50 }) {
 
         if (!progressBar || !section) return;
 
+        // Очищаем предыдущие ScrollTriggers при hot reload
+        ScrollTrigger.refresh();
+
         // Создаем уникальную анимацию прогресс-бара для каждого экземпляра
         const scrollTrigger = ScrollTrigger.create({
             trigger: section,
-            start: "top bottom-=100px", // Начинаем когда секция почти появляется
+            start: "top bottom-=150px", // Начинаем когда секция почти появляется
             end: "bottom top+100px",     // Заканчиваем когда секция почти исчезает
             scrub: 0.5,
             id: `scrollline-${uniqueId}`, // Уникальный ID
@@ -61,6 +65,8 @@ export default function Scrollline({ maxProgress = 50 }) {
                 scrollTriggerRef.current.kill();
                 scrollTriggerRef.current = null;
             }
+            // Обновляем ScrollTrigger после изменений
+            ScrollTrigger.refresh();
         };
     }, [maxProgress, uniqueId]);
 

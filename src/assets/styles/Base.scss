@@ -1,3 +1,6 @@
+@use "./functions/Functions.scss" as *;
+@use "./functions/Mixins.scss" as *;
+
 img {
   max-width: 100%;
 }
@@ -50,13 +53,30 @@ body {
 .mobile_visible {
   display: none;
   @media (max-width: 992px) {
-    display: block!important;
+    display: block !important;
   }
 }
 
 .mobile_hidden {
   display: block;
   @media (max-width: 992px) {
-    display: none!important;
+    display: none !important;
+  }
+}
+
+.btn {
+  &-primary {
+    display: inline-flex;
+    padding: rem(13) rem(49);
+    align-items: flex-start;
+    gap: rem(10);
+    border-radius: 8px;
+    border: 1px solid var(--Black, #000);
+    background: var(--White, #fff);
+    @include transition();
+    &:hover {
+      background: var(--Black, #000);
+      color: var(--White, #fff);
+    }
   }
 }
