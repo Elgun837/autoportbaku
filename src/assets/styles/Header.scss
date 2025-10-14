@@ -111,20 +111,9 @@
               transition: all 0.3s ease;
               opacity: 0;
               transform: translateX(30px);
+              animation: slideInRight 0.3s ease 0.1s forwards;
 
-              // Анимация появления элементов с задержкой
-              &:nth-child(1) {
-                animation: slideInRight 0.3s ease 0.1s forwards;
-              }
-              &:nth-child(2) {
-                animation: slideInRight 0.3s ease 0.2s forwards;
-              }
-              &:nth-child(3) {
-                animation: slideInRight 0.3s ease 0.3s forwards;
-              }
-              &:nth-child(4) {
-                animation: slideInRight 0.3s ease 0.4s forwards;
-              }
+             
 
               &:hover {
                 color: #ffd700;
