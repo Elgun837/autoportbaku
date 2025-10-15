@@ -12,6 +12,33 @@
 
         .inner {
             @include responsive_padding;
+            .services_heading h4{
+                font-size: clamp(1vw, 2.5rem, 5vw);
+                margin-bottom: 60px;
+            }
+            .services_items {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 15px;
+
+                .service_item {
+                    width: calc(25% - 20px);
+                    position: relative;
+
+                    .service_title {
+                        position: absolute;
+                        bottom: 30px;
+                        left: 20px;
+                        color: white;
+                        font-weight: 700;
+                        font-size: 23px;
+                        line-height: 110.00000000000001%;
+                        letter-spacing: 2%;
+
+                    }
+                }
+            }
         }
     }
 
