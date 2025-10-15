@@ -70,4 +70,15 @@ export const getFaqsData = async (lang = "en") => {
   return data;
 };
 
+export const getServiceData = async (lang = "en") => {
+
+  const { data } = await api.get("/services", {
+    headers: {
+      "contentLanguage": lang,
+      "token": token,
+    },
+  });
+  return data;
+};
+
 export default api;

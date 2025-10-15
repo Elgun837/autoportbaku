@@ -1,3 +1,5 @@
+@use './functions/Functions.scss' as *;
+@use './functions/Mixins.scss' as *;
 .mission_setion {
     background: linear-gradient(114.44deg, #2B4764 -0.39%, #19599A 100%);
     margin-bottom: 150px;
@@ -7,6 +9,7 @@
         padding-right: 80px;
         padding-bottom: 150px;
         padding-left: 80px;
+        @include responsive_padding;
         .container{
             display: flex;
             flex-direction: column;
@@ -85,4 +88,19 @@
         }
     }
 
+}
+
+@media (max-width: 768px) {
+    .row.mission_row{
+        flex-wrap: wrap;
+        .mission_left, .mission_right{
+            width: 100%!important;
+        }
+    }
+    .mission_setion .mission_content .container{
+        gap: 40px;
+    }
+    .mission_setion .mission_content .haeding_row p{
+        font-size: 24px;
+    }
 }
