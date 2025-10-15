@@ -110,6 +110,10 @@
           align-items: flex-start;
           gap: 20px;
           align-self: stretch;
+          a {
+            color: #fff;
+            font-size: var(--body-xl-size);
+          }
           li {
             a {
               color: #fff;

@@ -5,12 +5,7 @@ export const translations = {
       error: "Error loading data. Please try again.",
       retry: "Retry",
       backToTours: "Back to Tours",
-    },
-    common: {
-      loading: "Loading...",
-      error: "Error loading data. Please try again.",
-      retry: "Retry",
-    },
+    },   
     header: {
       home: "Home",
       about: "About Us",
@@ -79,6 +74,11 @@ export const translations = {
     },
     services: {
       title: "Our Services",
+    },
+    footer: {
+      company: "Companyyyy",
+      contacts: "Contacts",
+      socialMedia: "Social Media",
     },
   },
   ru: {
@@ -150,8 +150,7 @@ export const translations = {
       point2Desc:
         "Мы стремимся быть надежным выбором для частных лиц, семей и корпораций, которые ценят время, комфорт и выдающийся сервис 24/7.",
     },
-    },
-    tour: {
+     tour: {
       duration: "Длительность",
       cancellation: "Отмена",
       bookingLink: "Забронировать тур",
@@ -159,4 +158,11 @@ export const translations = {
     services: {
       title: "Наши услуги",
     },
+    footer: {
+      company: "Компания",
+      contacts: "Контакты",
+      socialMedia: "Социальные сети",
+    },
+   },
+   
   }

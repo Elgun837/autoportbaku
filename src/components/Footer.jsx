@@ -1,8 +1,32 @@
 
+import React, { useEffect, useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
+import { getSettingsData } from "../api/index";
 import "../assets/styles/Footer.scss";
+import { Link, useLocation } from "react-router-dom";
 
 
 export default function Footer() {
+    const { t, lang } = useLanguage();
+    const [settings, setSettings] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchSettings = async () => {
+            try {
+                setLoading(true);
+                const settingsData = await getSettingsData(lang);
+                setSettings(settingsData.data || settingsData);
+                console.log('Fetched settings:', settingsData);
+            } catch (error) {
+                console.error('Error fetching settings:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchSettings();
+    }, [lang]);
     return (
         <>
             <footer className="footer">
@@ -27,35 +51,82 @@ export default function Footer() {
                                     <img src="/logo_big.svg" alt="Logo" />
                                 </div>
                                 <div className="footer_menu">
-                                    <h3 className="footer_menu_title">Company</h3>
+                                    <h3 className="footer_menu_title"> {t("footer.company")} </h3>
                                     <ul className="footer_menu_list">
-                                        <li><a href="#" className="footer_link">Book a trip</a></li>
-                                        <li><a href="#" className="footer_link">Short distances</a></li>
-                                        <li><a href="#" className="footer_link">Services</a></li>
-                                        <li><a href="#" className="footer_link">Vehicle Fleet</a></li>
-                                        <li><a href="#" className="footer_link">About Us</a></li>
+                                        <Link to={`/${lang}`}>{t("header.home")}</Link>
+                                        <Link to={`/${lang}/about-us`} >{t("header.about")}</Link>
+                                        <Link to={`/${lang}/tours`} >{t("header.tours")}</Link>
+                                        <Link to={`/${lang}/faq`} >{t("header.faq")}</Link>
+                                        <Link to={`/${lang}/contacts`} >{t("header.contacts")}</Link>
+
                                     </ul>
                                 </div>
                                 <div className="footer_menu">
-                                    <h3 className="footer_menu_title">Contacts</h3>
+                                    <h3 className="footer_menu_title"> {t("footer.contacts")} </h3>
                                     <ul className="footer_menu_list">
-                                        <li><a href="#" className="footer_link">Azure Business Center, 15 Nobel Avenue</a></li>
-                                        <li><a href="tel:(+994) 50 -481-00-81" className="footer_link">(+994) 50 -481-00-81</a></li>
-                                        <li><a href="tel:(+994) 12-488-67-98" className="footer_link">(+994) 12-488-67-98</a></li>
-                                        <li><a href="mailto:info@bakutransfers.com" className="footer_link">info@bakutransfers.com</a></li>
+                                        {loading ? (
+                                            <li className="footer_link">Loading...</li>
+                                        ) : (
+                                            <>
+                                                {settings?.address && (
+                                                    <li><a href="https://maps.app.goo.gl/3n1MoL7GDrF7Eb5A7" target="_black" className="footer_link">{settings.address}</a></li>
+                                                )}
+                                                {settings?.phone && (
+                                                    <li><a href={`tel:${settings.phone}`} className="footer_link">{settings.phone}</a></li>
+                                                )}
+                                                {settings?.telephone && (
+                                                    <li><a href={`tel:${settings.telephone}`} className="footer_link">{settings.telephone}</a></li>
+                                                )}
+                                                {settings?.email && (
+                                                    <li><a href={`mailto:${settings.email}`} className="footer_link">{settings.email}</a></li>
+                                                )}
+                                                {/* Fallback если API не работает */}
+                                                {!settings && (
+                                                    <>
+                                                        <li><span className="footer_link">Azure Business Center, 15 Nobel Avenue</span></li>
+                                                        <li><a href="tel:(+994) 50 -481-00-81" className="footer_link">(+994) 50 -481-00-81</a></li>
+                                                        <li><a href="tel:(+994) 12-488-67-98" className="footer_link">(+994) 12-488-67-98</a></li>
+                                                        <li><a href="mailto:info@bakutransfers.com" className="footer_link">info@bakutransfers.com</a></li>
+                                                    </>
+                                                )}
+                                            </>
+                                        )}
                                     </ul>
                                 </div>
                                 <div className="footer_menu">
-                                    <h3 className="footer_menu_title">Social Media</h3>
+                                    <h3 className="footer_menu_title"> {t("footer.socialMedia")} </h3>
                                     <ul className="footer_menu_list">
-                                        <li><a href="#" className="footer_link">Facebook</a></li>
-                                        <li><a href="#" className="footer_link">Instagram</a></li>
-                                        <li><a href="#" className="footer_link">Tik Tok</a></li>
+
+                                        {loading ? (
+                                            <li className="footer_link">Loading...</li>
+                                        ) : (
+                                            <>
+                                                {settings?.facebook && (
+                                                    <li><a href={settings.facebook} target="_blank" rel="noopener noreferrer" className="footer_link">Facebook</a></li>
+                                                )}
+                                                {settings?.instagram && (
+                                                    <li><a href={settings.instagram} target="_blank" rel="noopener noreferrer" className="footer_link">Instagram</a></li>
+                                                )}
+                                                {settings?.tiktok && (
+                                                    <li><a href={settings.tiktok} target="_blank" rel="noopener noreferrer" className="footer_link">Tik Tok</a></li>
+                                                )}
+                                                {/* Fallback если API не работает */}
+                                                {!settings && (
+                                                    <>
+                                                        <li><a href="#" className="footer_link">Facebook</a></li>
+                                                        <li><a href="#" className="footer_link">Instagram</a></li>
+                                                        <li><a href="#" className="footer_link">Tik Tok</a></li>
+                                                    </>
+                                                )}
+                                            </>
+                                        )}
                                     </ul>
                                 </div>
                             </div>
                             <div className="copyright_wrapper">
-                                <div className="copyright_text">© 2024 Baku Transfers. All rights reserved.</div>
+                                <div className="copyright_text">
+                                    {settings?.copyright_text || "© 2024 Baku Transfers. All rights reserved."}
+                                </div>
                                 <div className="design_text">
                                     <span>Made by:</span>
                                     <div className="design_link">
