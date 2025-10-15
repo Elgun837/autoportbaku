@@ -3,13 +3,15 @@ import "../assets/styles/Contacts.scss";
 import { useLanguage } from "../context/LanguageContext";
 import Page_small_banner from "../components/Page_small_banner";
 import { getSettingsData } from "../api";
+import ContactBannerImage from "../assets/images/contacts.png";
+
 
 
 export default function Contacts() {
     const { t } = useLanguage();
     return (
         <>
-            <Page_small_banner  title={t("contacts.title")} subtitle={t("contacts.subtitle")}  />
+            <Page_small_banner  title={t("contacts.title")} subtitle={t("contacts.subtitle")} bannerImageSrc={ContactBannerImage} />
             <section className="contact_form_section" >
                 <div className="container">
                     <div className="row">

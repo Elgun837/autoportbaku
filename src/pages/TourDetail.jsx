@@ -8,22 +8,29 @@ import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 
 export default function TourDetail() {
-    const { slug, lang } = useParams();
-    const { t, currentLang } = useLanguage();
+    const { slug } = useParams();
+    const { t, lang } = useLanguage();
     const [tour, setTour] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+
     useEffect(() => {
         const fetchTour = async () => {
-            try {
+            try {               
                 setLoading(true);
-                const tourData = await getTourBySlug(slug, currentLang);
-                setTour(tourData.data || tourData);
+                const tourData = await getTourBySlug(slug, lang);
+                
+                // Дополнительная проверка на случай, если API вернёт неожиданную структуру
+                if (tourData && typeof tourData === 'object') {
+                    setTour(tourData.data || tourData);
+                } else {
+                    throw new Error('Invalid tour data received');
+                }
                 setError(null);
             } catch (err) {
                 console.error('Error fetching tour:', err);
-                setError('Tour not found');
+                setError(`Tour not found: ${err.message}`);
                 setTour(null);
             } finally {
                 setLoading(false);
@@ -33,10 +40,10 @@ export default function TourDetail() {
         if (slug) {
             fetchTour();
         } else {
-            console.log('No slug provided');
+            setError('No tour slug provided');
             setLoading(false);
         }
-    }, [slug, currentLang]);
+    }, [slug, lang]);
 
     if (loading) {
         return (
@@ -72,34 +79,34 @@ export default function TourDetail() {
     }
 
     // Подготавливаем изображения для галереи
-  
-    
+
+
     let images = [];
-    
+
     // Собираем все доступные изображения
     const imageUrls = [];
-    
+
     // Основное изображение
     if (tour.image) {
         imageUrls.push(tour.image);
     }
-    
+
     // Галерея (в вашем API это строка с URL)
     if (tour.gallery && typeof tour.gallery === 'string') {
         imageUrls.push(tour.gallery);
     }
-    
+
     // Если gallery массив (на случай будущих изменений API)
     if (tour.gallery && Array.isArray(tour.gallery)) {
         imageUrls.push(...tour.gallery);
     }
-    
+
     // Преобразуем в формат для ImageGallery
     images = imageUrls.map(url => ({
         original: url,
         thumbnail: url,
     }));
-    
+
     // Если нет изображений, добавляем заглушку
     if (images.length === 0) {
         images.push({

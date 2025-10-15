@@ -13,8 +13,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Tours() {
-    const { t, currentLang } = useLanguage();
-    const { lang } = useParams();
+    const { t, lang } = useLanguage();  
     const toursWrapperRef = useRef(null);
     const [tours, setTours] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -25,7 +24,7 @@ export default function Tours() {
         const fetchTours = async () => {
             try {
                 setLoading(true);
-                const toursData = await getToursData(currentLang);
+                const toursData = await getToursData(lang);
                 setTours(toursData.data || toursData || []);
                 setError(null);
             } catch (err) {
@@ -38,7 +37,7 @@ export default function Tours() {
         };
 
         fetchTours();
-    }, [currentLang]);
+    }, [lang]);
  
     // GSAP анимации для изображений
     useEffect(() => {

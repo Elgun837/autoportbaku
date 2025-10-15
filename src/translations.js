@@ -53,6 +53,7 @@ export const translations = {
     },
     tours: {
       title: "Exclusive mobility at the highest level",
+      learnMore: "Learn More",
 
       subtitle:
         "Do you have any questions or would you like to book a trip? Our team is always happy to help. Contact us by phone, email or using our contact form - we will get back to you immediately.",
@@ -134,7 +135,7 @@ export const translations = {
     },
     tours: {
       title: "Эксклюзивная мобильность на высшем уровне",
-
+      learnMore: "Узнать больше",
       subtitle:     
         "У вас есть вопросы или вы хотите забронировать поездку? Наша команда всегда рада помочь. Свяжитесь с нами по телефону, электронной почте или через нашу контактную форму - мы свяжемся с вами немедленно.",  
     },

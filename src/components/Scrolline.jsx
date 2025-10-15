@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useId } from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "../assets/styles/Scrollline.scss";
@@ -6,11 +6,9 @@ import "../assets/styles/Scrollline.scss";
 // Регистрируем плагин ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Scrollline({ maxProgress = 50 }) {
+export default function Scrollline({ maxProgress = 100 }) {
     const progressRef = useRef(null);
     const sectionRef = useRef(null);
-    const scrollTriggerRef = useRef(null);
-    const uniqueId = useId(); // Уникальный ID для каждого экземпляра
  
 
     useEffect(() => {
@@ -19,56 +17,79 @@ export default function Scrollline({ maxProgress = 50 }) {
 
         if (!progressBar || !section) return;
 
-        // Очищаем предыдущие ScrollTriggers при hot reload
-        ScrollTrigger.refresh();
+        // Функция инициализации ScrollTrigger
+        const initScrollTrigger = () => {
+            // Устанавливаем начальное состояние
+            gsap.set(progressBar, { width: "0%" });
 
-        // Создаем уникальную анимацию прогресс-бара для каждого экземпляра
-        const scrollTrigger = ScrollTrigger.create({
-            trigger: section,
-            start: "top bottom-=150px", // Начинаем когда секция почти появляется
-            end: "bottom top+100px",     // Заканчиваем когда секция почти исчезает
-            scrub: 0.5,
-            id: `scrollline-${uniqueId}`, // Уникальный ID
-            onUpdate: (self) => {
-                // Рассчитываем прогресс от 0% до maxProgress (по умолчанию 50%)
-                const progress = Math.min(self.progress * maxProgress, maxProgress);
-                gsap.to(progressBar, {
-                    width: `${progress}%`,
-                    duration: 0.3,
-                    ease: "power2.out"
-                });
-            },
-            onEnter: () => {
-                // Начальная анимация появления
-                gsap.fromTo(progressBar,
-                    { width: '0%' },
-                    { width: '0%', duration: 0.1 }
-                );
-            },
-            onLeave: () => {
-                // Когда элемент покидает область видимости
-                gsap.to(progressBar, {
-                    width: `${maxProgress}%`,
-                    duration: 0.3,
-                    ease: "power2.out"
-                });
-            },
-            markers: false // Установите true для отладки
-        });
+            // Обновляем ScrollTrigger перед созданием нового
+            ScrollTrigger.refresh();
 
-        // Сохраняем ссылку на ScrollTrigger
-        scrollTriggerRef.current = scrollTrigger;
+            // Создаем ScrollTrigger анимацию
+            const scrollTrigger = ScrollTrigger.create({
+                trigger: section,
+                start: "top bottom", // Начинаем когда верх секции касается низа viewport
+                end: "bottom top",   // Заканчиваем когда низ секции касается верха viewport
+                scrub: 1, // Плавная анимация привязанная к скроллу
+                onUpdate: (self) => {
+                    // Анимируем от 0% до 100% в зависимости от прогресса
+                    const progress = self.progress * 100;
+                    gsap.to(progressBar, {
+                        width: `${progress}%`,
+                        duration: 0.1,
+                        ease: "none"
+                    });
+                },
+                onEnter: () => {
+              
+                },
+                onLeave: () => {
+                    
+                },
+                onEnterBack: () => {
+               
+                },
+                onLeaveBack: () => {
+                    
+                },
+                markers: false
+            });
 
-        // Очистка при размонтировании - убиваем только этот конкретный trigger
+            return scrollTrigger;
+        };
+
+        let scrollTriggerInstance = null;
+
+        // Проверяем состояние загрузки страницы
+        if (document.readyState === 'complete') {
+            // Страница уже загружена
+            setTimeout(() => {
+                scrollTriggerInstance = initScrollTrigger();
+            }, 100); // Небольшая задержка для стабильности
+        } else {
+            // Ждем полной загрузки страницы
+            const handleLoad = () => {
+                setTimeout(() => {
+                    scrollTriggerInstance = initScrollTrigger();
+                }, 100);
+            };
+
+            window.addEventListener('load', handleLoad);
+
+            // Очистка слушателя если компонент размонтируется до загрузки
+            return () => {
+                window.removeEventListener('load', handleLoad);
+            };
+        }
+
+        // Очистка при размонтировании
         return () => {
-            if (scrollTriggerRef.current) {
-                scrollTriggerRef.current.kill();
-                scrollTriggerRef.current = null;
+            if (scrollTriggerInstance) {
+                scrollTriggerInstance.kill();
             }
-            // Обновляем ScrollTrigger после изменений
             ScrollTrigger.refresh();
         };
-    }, [maxProgress, uniqueId]);
+    }, [maxProgress]);
 
     return (
         <>

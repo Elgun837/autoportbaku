@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../assets/styles/Accordion.scss";
-import { getFaqsData } from "../api";
+import { getFaqsData } from "../api/index";
 import { useQuery } from "@tanstack/react-query";
 import { useLanguage } from "../context/LanguageContext";
 

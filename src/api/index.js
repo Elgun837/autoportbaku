@@ -48,18 +48,26 @@ export const getToursData = async (lang = "en") => {
  
   return data;
 };
+
 export const getTourBySlug = async (slug, lang = "en") => {
   try {
-    // Ваш API работает по ID, поэтому сначала получаем все туры    
+    // Получаем все туры из API
     const allTours = await getToursData(lang);
-    const tours = allTours.data || allTours || [];    
-    const tour = tours.find(t => t.slug === slug);
+    const tours = allTours.data || allTours || [];   
     
-    if (tour) {     
+    // Ищем тур по slug
+    const tour = tours.find(t => t.slug === slug);   
+    if (tour) {       
       return { data: tour };
-    } else {
-      throw new Error('Tour not found');
     }
+    
+    // Если не найден по slug, попробуем по ID
+    const tourById = tours.find(t => t.id === slug || String(t.id) === slug);
+    if (tourById) {
+      return { data: tourById };
+    }
+    
+    throw new Error(`Tour not found with slug: ${slug}`);
   } catch (error) {
     console.error('Error in getTourBySlug:', error);
     throw error;
@@ -67,7 +75,7 @@ export const getTourBySlug = async (slug, lang = "en") => {
 };
 
 
-export const fetFaqsData = async (lang = "en") => {
+export const getFaqsData = async (lang = "en") => {
   const { data } = await api.get("/faq", {
     headers: {
       "contentLanguage": lang,
