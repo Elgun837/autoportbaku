@@ -48,7 +48,6 @@ export const getToursData = async (lang = "en") => {
  
   return data;
 };
-
 export const getTourBySlug = async (slug, lang = "en") => {
   try {
     // Ваш API работает по ID, поэтому сначала получаем все туры    
@@ -75,7 +74,17 @@ export const fetFaqsData = async (lang = "en") => {
       "token": token,
     },
   });
-  
+  return data;
+};
+
+export const getServiceData = async (lang = "en") => {
+
+  const { data } = await api.get("/services", {
+    headers: {
+      "contentLanguage": lang,
+      "token": token,
+    },
+  });
   return data;
 };
 

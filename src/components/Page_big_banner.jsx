@@ -28,7 +28,7 @@ export default function Page_big_banner({ title, subtitle, bannerImageSrc }) {
                         </div>
                     </div>
                 </div>
-                <div className="triangle_decor">
+                <div className="triangle_decor triangle_decor_bottom">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1920" height="54" viewBox="0 0 1920 54" fill="none">
                         <path d="M0 53.6548L1920 0V53.6548H0Z" fill="white" />
                     </svg>

@@ -39,7 +39,7 @@ export default function Tours() {
 
         fetchTours();
     }, [currentLang]);
-
+ 
     // GSAP анимации для изображений
     useEffect(() => {
         if (tours.length === 0) return;

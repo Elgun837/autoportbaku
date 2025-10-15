@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../assets/styles/Lang.scss";
 
 export default function LanguageSwitcher() {
   const { lang, changeLang } = useLanguage();
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const languages = [
     { code: "en", label: "English", flag: "/flags/en.png" },
@@ -16,14 +19,23 @@ export default function LanguageSwitcher() {
   const handleSelect = (code) => {
     changeLang(code);
     setOpen(false);
+
+    const currentPath = location.pathname;
+    const segments = currentPath.split("/").filter(Boolean);
+
+    if (segments.length > 0 && ["en", "ru"].includes(segments[0])) {
+      segments[0] = code;
+    } else {
+      segments.unshift(code);
+    }
+
+    const newPath = "/" + segments.join("/");
+    navigate(newPath);
   };
 
   return (
     <div className="lang_switch">
-      <button
-        className=""
-        onClick={() => setOpen(!open)}
-      >
+      <button onClick={() => setOpen(!open)}>
         <img src={current.flag} alt={current.label} className="w-5 h-5" />
         <i className="drop-icon">
           <svg
@@ -51,9 +63,8 @@ export default function LanguageSwitcher() {
               <button
                 key={l.code}
                 onClick={() => handleSelect(l.code)}
-                className=""
               >
-                <img src={l.flag} alt={l.label} className="" />
+                <img src={l.flag} alt={l.label} />
               </button>
             ))}
         </div>

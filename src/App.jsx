@@ -8,7 +8,8 @@ import HomePage from "./pages/HomePage";
 import Tours from "./pages/Tours";
 import TourDetail from "./pages/TourDetail";
 import Contacts from "./pages/Contacts";
-import Faq from "./pages/faq";
+import Faq from "./pages/Faq";
+import About from "./pages/About";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<Navigate to={`/${lang}`} />} />
       <Route path="/:lang" element={<HomePage />} />
+      <Route path="/:lang/about-us" element={<About />} />
       <Route path="/:lang/tours" element={<Tours />} />
       <Route path="/:lang/tours/:slug" element={<TourDetail />} />
       <Route path="/:lang/faq" element={<Faq />} />
@@ -33,13 +35,13 @@ function AppRoutes() {
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <LanguageProvider>
-        <Router>
+      <Router>
+        <LanguageProvider>
           <Header />
           <AppRoutes />
           <Footer />
-        </Router>
-      </LanguageProvider>
+        </LanguageProvider>
+      </Router>
     </QueryClientProvider>
   );
 }
