@@ -76,7 +76,7 @@ export const translations = {
       title: "Our Services",
     },
     footer: {
-      company: "Companyyyy",
+      company: "Company",
       contacts: "Contacts",
       socialMedia: "Social Media",
     },
