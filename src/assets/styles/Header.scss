@@ -276,12 +276,12 @@
 
               .dropdown-menu {
                 position: static;
-                background: rgba(255, 255, 255, 0.05);
+                background: rgba(255, 255, 255, 0);
                 backdrop-filter: none;
                 border-radius: 0;
                 box-shadow: none;
                 padding: 0;
-                margin-left: 20px;
+                margin-left: 0px;
                 max-height: 0;
                 overflow: hidden;
                 opacity: 0;
@@ -293,7 +293,9 @@
                   max-height: 300px;
                   opacity: 1;
                   visibility: visible;
-                  padding: 10px 0;
+                  overflow: auto;
+                  min-width: unset;
+                  max-width: 100%;
                 }
 
                 .dropdown-item {
