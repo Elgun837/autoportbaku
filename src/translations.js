@@ -63,14 +63,14 @@ export const translations = {
       point2Title: "24/7 availability and support",
       point2Desc:
         "We aim to be the trusted choice for individuals, families, and corporations who value time, comfort, and outstanding  24/7 service.",
-      subtitle: "Do you have any questions or would you like to book a trip? Our team is always happy to help. Contact us by phone, email or using our contact form - we will get back to you immediately.",
+      subtitle:
+        "Do you have any questions or would you like to book a trip? Our team is always happy to help. Contact us by phone, email or using our contact form - we will get back to you immediately.",
       learnMore: "Learn More",
     },
     tour: {
       duration: "Duration",
       cancellation: "Cancellation",
       bookingLink: "Book a tour",
-
     },
     services: {
       title: "Our Services",
@@ -79,6 +79,9 @@ export const translations = {
       company: "Company",
       contacts: "Contacts",
       socialMedia: "Social Media",
+    },
+    BookTrip: {
+      desc: "description",
     },
   },
   ru: {
@@ -100,7 +103,6 @@ export const translations = {
       welcome: "Добро пожаловать!",
     },
     about: {
-
       title: "Autoport — больше, чем просто водительские услуги",
       subtitle:
         "Ваш партнер в сфере индивидуальной мобильности, первоклассного обслуживания и эксклюзивных ощущений от вождения.",
@@ -116,7 +118,6 @@ export const translations = {
 
       title: "About Us",
       content: "Information about our company...",
-
     },
     contacts: {
       title: "Связаться с нами",
@@ -136,15 +137,15 @@ export const translations = {
     tours: {
       title: "Эксклюзивная мобильность на высшем уровне",
       learnMore: "Узнать больше",
-      subtitle:     
-        "У вас есть вопросы или вы хотите забронировать поездку? Наша команда всегда рада помочь. Свяжитесь с нами по телефону, электронной почте или через нашу контактную форму - мы свяжемся с вами немедленно.",  
+      subtitle:
+        "У вас есть вопросы или вы хотите забронировать поездку? Наша команда всегда рада помочь. Свяжитесь с нами по телефону, электронной почте или через нашу контактную форму - мы свяжемся с вами немедленно.",
     },
     missions: {
-      title: "Наша миссия", 
+      title: "Наша миссия",
       subtitle:
         "Наша миссия в Autoport Baku - переопределить личные и корпоративные перевозки в Азербайджане, сочетая роскошь, безопасность и профессионализм.",
       point1Title: "Надежность, комфорт и совершенство",
-      point1Desc:   
+      point1Desc:
         "Мы стремимся предоставлять беспроблемные, беззаботные и элегантные впечатления от путешествий для каждого клиента. Независимо от того, нужен ли вам водитель на каждый день, премиальные услуги шофера или транспортные средства большой вместимости для групп, Autoport Baku олицетворяет надежность, комфорт и совершенство.",
       point2Title: "Круглосуточная доступность и поддержка",
       point2Desc:

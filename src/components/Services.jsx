@@ -21,7 +21,7 @@ export default function Services() {
         <div className="services_container">
           <div className="inner">
             <div className="services_heading">
-              <h2>{t("services.title")}</h2>
+              <h4>{t("services.title")}</h4>
             </div>
             <div className="services_items">
               {services.map((service) => (
@@ -29,7 +29,7 @@ export default function Services() {
                   <div className="icon">
                     <img src={service.image} alt={service.title} />
                   </div>
-                  <div>{service.title}</div>
+                  <div className="service_title">{service.title}</div>
                 </div>
               ))}
             </div>
