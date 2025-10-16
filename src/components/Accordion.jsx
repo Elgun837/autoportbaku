@@ -25,7 +25,7 @@ export default function Accordion() {
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading FAQs 😢</p>;
-  
+
   // API cavabı birbaşa array-dir
   const faqs = Array.isArray(data) ? data : [];
 
@@ -75,26 +75,15 @@ export default function Accordion() {
           >
             <h6 className="accordion_title">{item.question}</h6>
             <div className="accordion_icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="13"
-                viewBox="0 0 14 13"
-                fill="none"
-                className={`chevron ${activeIndex === index ? "rotated" : ""}`}
-              >
-                <path
-                  d="M1.54632 7.21729H6.14174V11.8127C6.14174 12.2798 6.52595 12.6715 7.00056 12.6715C7.47517 12.6715 7.85937 12.2798 7.85937 11.8127V7.21729H12.4548C12.9219 7.21729 13.3136 6.83308 13.3136 6.35847C13.3136 5.88386 12.9219 5.49965 12.4548 5.49965H7.85937V0.904227C7.85937 0.437151 7.47517 0.0454102 7.00056 0.0454102C6.52595 0.0454102 6.14174 0.437151 6.14174 0.904227V5.49965H1.54632C1.07924 5.49965 0.6875 5.88386 0.6875 6.35847C0.6875 6.83308 1.07924 7.21729 1.54632 7.21729Z"
-                  fill="black"
-                />
+              <svg className={`chevron ${activeIndex === index ? "rotated" : ""}`} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 20L12.354 20.354L12 20.707L11.646 20.354L12 20ZM11.5 5.00003C11.5 4.86742 11.5527 4.74024 11.6465 4.64648C11.7402 4.55271 11.8674 4.50003 12 4.50003C12.1326 4.50003 12.2598 4.55271 12.3536 4.64648C12.4473 4.74024 12.5 4.86742 12.5 5.00003H11.5ZM18.354 14.354L12.354 20.354L11.646 19.646L17.646 13.646L18.354 14.354ZM11.646 20.354L5.646 14.354L6.354 13.646L12.354 19.646L11.646 20.354ZM11.5 20L11.5 5.00003H12.5L12.5 20H11.5Z" fill="black" />
               </svg>
             </div>
           </div>
           <div
             id={`accordion-content-${index}`}
-            className={`accordion_content ${
-              activeIndex === index ? "active" : ""
-            }`}
+            className={`accordion_content ${activeIndex === index ? "active" : ""
+              }`}
             ref={(el) => (contentRefs.current[index] = el)}
             style={{
               maxHeight:

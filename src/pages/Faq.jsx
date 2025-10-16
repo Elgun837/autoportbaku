@@ -21,10 +21,7 @@ export default function Faq() {
                 <div className="container">
                     <div className="row">
                         <div className="blocks_holder">
-                            <div className="left_block">
-                                <h2>{t("faq.leftTitle")}</h2>
-                                <p>{t("faq.leftDescription")}</p>
-                            </div>
+                            
                             <div className="right_block">
                                 <div className="faq_inner">
                                     <div className="faq_elements">
