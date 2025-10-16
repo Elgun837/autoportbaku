@@ -7,6 +7,8 @@ import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import Tours from "./pages/Tours";
 import TourDetail from "./pages/TourDetail";
+// import Services from "./pages/Services-dont-need";
+import ServiceDetail from "./pages/ServiceDetail";
 import Contacts from "./pages/Contacts";
 import Faq from "./pages/Faq";
 import About from "./pages/About";
@@ -23,6 +25,8 @@ function AppRoutes() {
       <Route path="/" element={<Navigate to={`/${lang}`} />} />
       <Route path="/:lang" element={<HomePage />} />
       <Route path="/:lang/about-us" element={<About />} />
+      {/* <Route path="/:lang/services" element={<Services />} /> */}
+      <Route path="/:lang/services/:slug" element={<ServiceDetail />} />
       <Route path="/:lang/tours" element={<Tours />} />
       <Route path="/:lang/tours/:slug" element={<TourDetail />} />
       <Route path="/:lang/faq" element={<Faq />} />

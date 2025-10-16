@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { getToursData, getServiceData } from "../api/index";
 import LanguageSwitcher from "./LanguageSwitcher";
 import "../assets/styles/Header.scss";
 import logoImage from "/logo.png";
@@ -10,6 +11,12 @@ export default function Header() {
   const { lang, t } = useLanguage();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileToursDropdownOpen, setIsMobileToursDropdownOpen] = useState(false);
+  const [isMobileServicesDropdownOpen, setIsMobileServicesDropdownOpen] = useState(false);
+  const [tours, setTours] = useState([]);
+  const [services, setServices] = useState([]);
+  const [toursLoading, setToursLoading] = useState(true);
+  const [servicesLoading, setServicesLoading] = useState(true);
 
   // Проверяем, находимся ли мы на главной странице
   const isHomePage = location.pathname === `/${lang}` || location.pathname === '/';
@@ -17,14 +24,64 @@ export default function Header() {
   // Создаем класс для header с условным добавлением класса 'home'
   const headerClass = `header${isHomePage ? ' home' : ''}`;
 
+  // Загрузка туров для выпадающего меню
+  useEffect(() => {
+    const fetchTours = async () => {
+      try {
+        setToursLoading(true);
+        const toursData = await getToursData(lang);
+        const toursArray = toursData.data || toursData || [];
+        setTours(toursArray.slice(0, 5)); // Ограничиваем до 5 туров в меню
+      } catch (error) {
+        console.error('Error fetching tours for menu:', error);
+        setTours([]);
+      } finally {
+        setToursLoading(false);
+      }
+    };
+
+    fetchTours();
+  }, [lang]);
+
+  // Загрузка сервисов для выпадающего меню
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        setServicesLoading(true);
+        const servicesData = await getServiceData(lang);
+        const servicesArray = Array.isArray(servicesData) ? servicesData : (servicesData.data || []);
+        setServices(servicesArray.slice(0, 16)); 
+      } catch (error) {
+        console.error('Error fetching services for menu:', error);
+        setServices([]);
+      } finally {
+        setServicesLoading(false);
+      }
+    };
+
+    fetchServices();
+  }, [lang]);
+
   // Функция для переключения мобильного меню
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  // Функция для переключения мобильного выпадающего меню туров
+  const toggleMobileToursDropdown = () => {
+    setIsMobileToursDropdownOpen(!isMobileToursDropdownOpen);
+  };
+
+  // Функция для переключения мобильного выпадающего меню сервисов
+  const toggleMobileServicesDropdown = () => {
+    setIsMobileServicesDropdownOpen(!isMobileServicesDropdownOpen);
+  };
+
   // Функция для закрытия мобильного меню при клике на ссылку
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+    setIsMobileToursDropdownOpen(false);
+    setIsMobileServicesDropdownOpen(false);
   };
 
   // Отключаем/включаем скролл страницы при открытии/закрытии меню
@@ -44,6 +101,8 @@ export default function Header() {
   // Закрываем меню при изменении маршрута
   useEffect(() => {
     setIsMobileMenuOpen(false);
+    setIsMobileToursDropdownOpen(false);
+    setIsMobileServicesDropdownOpen(false);
   }, [location.pathname]);
 
   // Закрываем меню при нажатии Escape
@@ -51,6 +110,8 @@ export default function Header() {
     const handleEscape = (event) => {
       if (event.key === 'Escape') {
         setIsMobileMenuOpen(false);
+        setIsMobileToursDropdownOpen(false);
+        setIsMobileServicesDropdownOpen(false);
       }
     };
 
@@ -78,8 +139,95 @@ export default function Header() {
               <div className={`nav_and_lang ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
                 <nav>
                   <Link to={`/${lang}`} onClick={closeMobileMenu}>{t("header.home")}</Link>
-                  <Link to={`/${lang}/about-us`} onClick={closeMobileMenu}>{t("header.about")}</Link>                  
-                  <Link to={`/${lang}/tours`} onClick={closeMobileMenu}>{t("header.tours")}</Link>
+                  <Link to={`/${lang}/about-us`} onClick={closeMobileMenu}>{t("header.about")}</Link>  
+                  
+                  {/* Services dropdown menu */}
+                  <div className="nav-item dropdown">
+                    <div className="dropdown-trigger">
+                      <Link to={`#services`} onClick={closeMobileMenu}>{t("header.services", "Services")}</Link>
+                      <span 
+                        className={`dropdown-arrow ${isMobileServicesDropdownOpen ? 'open' : ''}`}
+                        onClick={toggleMobileServicesDropdown}
+                      >
+                        <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </span>
+                    </div>
+                    
+                    <div className={`dropdown-menu ${isMobileServicesDropdownOpen ? 'mobile-open' : ''}`}>
+                      {servicesLoading ? (
+                        <div className="dropdown-item">Loading...</div>
+                      ) : services.length > 0 ? (
+                        <>                       
+                          {services.map((service) => (   
+                                                     
+                            <Link 
+                              key={service.id} 
+                              to={`/${lang}/services/${service.slug || service.id}`} 
+                              className="dropdown-item"
+                              onClick={closeMobileMenu}
+                            >
+                              {service.title || `Service ${service.id}`}
+                            </Link>
+                          ))}
+                          
+                        </>
+                      ) : (
+                        <Link 
+                          to={`/${lang}/services`} 
+                          className="dropdown-item"
+                          onClick={closeMobileMenu}
+                        >
+                          {t("header.services", "Services")}
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                  
+                  {/* Tours dropdown menu */}
+                  <div className="nav-item dropdown">
+                    <div className="dropdown-trigger">
+                      <Link to={`/${lang}/tours`} onClick={closeMobileMenu}>{t("header.tours")}</Link>
+                      <span 
+                        className={`dropdown-arrow ${isMobileToursDropdownOpen ? 'open' : ''}`}
+                        onClick={toggleMobileToursDropdown}
+                      >
+                        <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </span>
+                    </div>
+                    
+                    <div className={`dropdown-menu ${isMobileToursDropdownOpen ? 'mobile-open' : ''}`}>
+                      {toursLoading ? (
+                        <div className="dropdown-item">Loading...</div>
+                      ) : tours.length > 0 ? (
+                        <>
+                          {tours.map((tour) => (
+                            <Link 
+                              key={tour.id} 
+                              to={`/${lang}/tours/${tour.slug || tour.id}`} 
+                              className="dropdown-item"
+                              onClick={closeMobileMenu}
+                            >
+                              {tour.title || `Tour ${tour.id}`}
+                            </Link>
+                          ))}
+                          
+                        </>
+                      ) : (
+                        <Link 
+                          to={`/${lang}/tours`} 
+                          className="dropdown-item"
+                          onClick={closeMobileMenu}
+                        >
+                          {t("header.tours")}
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                  
                   <Link to={`/${lang}/faq`} onClick={closeMobileMenu}>{t("header.faq")}</Link>
                   <Link to={`/${lang}/contacts`} onClick={closeMobileMenu}>{t("header.contacts")}</Link>
                 </nav>

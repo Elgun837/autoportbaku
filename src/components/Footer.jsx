@@ -17,7 +17,7 @@ export default function Footer() {
                 setLoading(true);
                 const settingsData = await getSettingsData(lang);
                 setSettings(settingsData.data || settingsData);
-                console.log('Fetched settings:', settingsData);
+               
             } catch (error) {
                 console.error('Error fetching settings:', error);
             } finally {
@@ -55,6 +55,7 @@ export default function Footer() {
                                     <ul className="footer_menu_list">
                                         <Link to={`/${lang}`}>{t("header.home")}</Link>
                                         <Link to={`/${lang}/about-us`} >{t("header.about")}</Link>
+                                        <Link to={`/${lang}/services`} >{t("header.services")}</Link>
                                         <Link to={`/${lang}/tours`} >{t("header.tours")}</Link>
                                         <Link to={`/${lang}/faq`} >{t("header.faq")}</Link>
                                         <Link to={`/${lang}/contacts`} >{t("header.contacts")}</Link>

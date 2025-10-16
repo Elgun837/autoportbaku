@@ -13,6 +13,7 @@ export const translations = {
       contacts: "Contacts",
       faq: "FAQ",
       tours: "Tours",
+      services: "Services",
     },
     home: {
       welcome: "Welcome!",
@@ -98,6 +99,7 @@ export const translations = {
       contacts: "Контакты",
       faq: "ЧЗВ",
       tours: "Туры",
+      services: "Услуги",
     },
     home: {
       welcome: "Добро пожаловать!",

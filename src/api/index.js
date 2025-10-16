@@ -96,4 +96,29 @@ export const getServiceData = async (lang = "en") => {
   return data;
 };
 
+export const getServiceBySlug = async (slug, lang = "en") => {
+  try {
+    // Получаем все сервисы из API
+    const allServices = await getServiceData(lang);
+    const services = Array.isArray(allServices) ? allServices : (allServices.data || []);   
+    
+    // Ищем сервис по slug
+    const service = services.find(s => s.slug === slug);   
+    if (service) {       
+      return { data: service };
+    }
+    
+    // Если не найден по slug, попробуем по ID
+    const serviceById = services.find(s => s.id === slug || String(s.id) === slug);
+    if (serviceById) {
+      return { data: serviceById };
+    }
+    
+    throw new Error(`Service not found with slug: ${slug}`);
+  } catch (error) {
+    console.error('Error in getServiceBySlug:', error);
+    throw error;
+  }
+};
+
 export default api;

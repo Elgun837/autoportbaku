@@ -1,12 +1,12 @@
 import react from "react";
+import { Link } from "react-router-dom";
 import "../assets/styles/Services.scss";
 import { useLanguage } from "../context/LanguageContext";
 import { getServiceData } from "../api";
 import { useQuery } from "@tanstack/react-query";
 
 export default function Services() {
-  const { t } = useLanguage();
-  const { lang } = useLanguage();
+  const { t, lang } = useLanguage();
   const { data, isLoading, error } = useQuery({
     queryKey: ["services", lang],
     queryFn: () => getServiceData(lang),
@@ -25,12 +25,16 @@ export default function Services() {
             </div>
             <div className="services_items">
               {services.map((service) => (
-                <div key={service.id} className="service_item">
+                <Link 
+                  key={service.id} 
+                  to={`/${lang}/services/${service.slug || service.id}`} 
+                  className="service_item"
+                >
                   <div className="icon">
                     <img src={service.image} alt={service.title} />
                   </div>
                   <div className="service_title">{service.title}</div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

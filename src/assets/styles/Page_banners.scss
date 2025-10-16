@@ -127,9 +127,11 @@
       }
       @media (max-width: 768px) {
         padding: vh(250) vw(20) vh(150) vw(20);
+        @include responsive_padding;
       }
       @media (max-width: 480px) {
         padding: vh(200) vw(15) vh(100) vw(15);
+        @include responsive_padding;
       }
     }
   }
