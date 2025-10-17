@@ -4,7 +4,8 @@ export const translations = {
       loading: "Loading...",
       error: "Error loading data. Please try again.",
       retry: "Retry",
-    },
+      backToTours: "Back to Tours",
+    },   
     header: {
       home: "Home",
       about: "About Us",
@@ -12,6 +13,7 @@ export const translations = {
       contacts: "Contacts",
       faq: "FAQ",
       tours: "Tours",
+      services: "Services",
     },
     home: {
       welcome: "Welcome!",
@@ -47,6 +49,7 @@ export const translations = {
     },
     tours: {
       title: "Exclusive mobility at the highest level",
+      learnMore: "Learn More",
 
       subtitle:
         "Do you have any questions or would you like to book a trip? Our team is always happy to help. Contact us by phone, email or using our contact form - we will get back to you immediately.",
@@ -73,6 +76,11 @@ export const translations = {
     services: {
       title: "Our Services",
     },
+    footer: {
+      company: "Company",
+      contacts: "Contacts",
+      socialMedia: "Social Media",
+    },
     BookTrip: {
       desc: "description",
     },
@@ -82,6 +90,7 @@ export const translations = {
       loading: "Загрузка...",
       error: "Ошибка загрузки данных. Попробуйте снова.",
       retry: "Повторить",
+      backToTours: "Назад к турам",
     },
     header: {
       home: "Главная",
@@ -90,6 +99,7 @@ export const translations = {
       contacts: "Контакты",
       faq: "ЧЗВ",
       tours: "Туры",
+      services: "Услуги",
     },
     home: {
       welcome: "Добро пожаловать!",
@@ -128,7 +138,7 @@ export const translations = {
     },
     tours: {
       title: "Эксклюзивная мобильность на высшем уровне",
-
+      learnMore: "Узнать больше",
       subtitle:
         "У вас есть вопросы или вы хотите забронировать поездку? Наша команда всегда рада помочь. Свяжитесь с нами по телефону, электронной почте или через нашу контактную форму - мы свяжемся с вами немедленно.",
     },
@@ -143,16 +153,19 @@ export const translations = {
       point2Desc:
         "Мы стремимся быть надежным выбором для частных лиц, семей и корпораций, которые ценят время, комфорт и выдающийся сервис 24/7.",
     },
-  },
-  tour: {
-    duration: "Длительность",
-    cancellation: "Отмена",
-    bookingLink: "Забронировать тур",
-  },
-  services: {
-    title: "Наши услуги",
-  },
-  BookTrip: {
-    desc: "description",
-  },
-};
+     tour: {
+      duration: "Длительность",
+      cancellation: "Отмена",
+      bookingLink: "Забронировать тур",
+    },
+    services: {
+      title: "Наши услуги",
+    },
+    footer: {
+      company: "Компания",
+      contacts: "Контакты",
+      socialMedia: "Социальные сети",
+    },
+   },
+   
+  }

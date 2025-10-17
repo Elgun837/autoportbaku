@@ -41,8 +41,9 @@
 
     .right_block {
       display: flex;
-      padding: 0 vw(200) 0 vw(50);
+      padding: 0 vw(50) 0 vw(50);
       align-items: center;
+      justify-content: center;
       gap: rem(10);
       flex: 1 0 0;
       .faq_inner {
@@ -52,8 +53,12 @@
         align-items: flex-start;
         gap: rem(20);
         flex: 1 0 0;
+        max-width: 856px;
         @media (max-width: 992px) {
           padding: rem(0);
+        }
+        .faq_elements {
+          width: 100%;
         }
       }
     }
@@ -86,8 +91,8 @@
       gap: rem(40); // 32px = 2rem
     }
     @media (max-width: 576px) {
-        padding-top: vw(250);
-        padding-bottom: vw(250);
-    }      
+      padding-top: vw(250);
+      padding-bottom: vw(250);
+    }
   }
 }

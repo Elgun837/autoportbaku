@@ -1,31 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams, Navigate, Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { getTourBySlug } from "../api/index";
 import Page_big_banner from "../components/Page_big_banner";
-import Scrollline from "../components/Scrolline";
 import "../assets/styles/TourDetail.scss";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 
 export default function TourDetail() {
-    const { slug, lang } = useParams();
-    const { t, language } = useLanguage();
+    const { slug } = useParams();
+    const { t, lang } = useLanguage();
     const [tour, setTour] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const currentLang = language || 'en';
+
 
     useEffect(() => {
         const fetchTour = async () => {
-            try {
+            try {               
                 setLoading(true);
-                const tourData = await getTourBySlug(slug, currentLang);
-                setTour(tourData.data || tourData);
+                const tourData = await getTourBySlug(slug, lang);
+                
+                // Дополнительная проверка на случай, если API вернёт неожиданную структуру
+                if (tourData && typeof tourData === 'object') {
+                    setTour(tourData.data || tourData);
+                } else {
+                    throw new Error('Invalid tour data received');
+                }
                 setError(null);
             } catch (err) {
                 console.error('Error fetching tour:', err);
-                setError('Tour not found');
+                setError(`Tour not found: ${err.message}`);
                 setTour(null);
             } finally {
                 setLoading(false);
@@ -34,33 +39,81 @@ export default function TourDetail() {
 
         if (slug) {
             fetchTour();
+        } else {
+            setError('No tour slug provided');
+            setLoading(false);
         }
-    }, [slug, currentLang]);
+    }, [slug, lang]);
 
     if (loading) {
         return (
-            <div className="loading-container">
-                <div className="loading-spinner">{t('common.loading', 'Loading tour...')}</div>
-            </div>
+            <>
+                <Page_big_banner
+                    title="Loading..."
+                    subtitle=""
+                    bannerImageSrc=""
+                />
+                <div className="loading-container">
+                    <div className="loading-spinner">{t('common.loading', 'Loading tour...')}</div>
+                </div>
+            </>
         );
     }
 
     if (error || !tour) {
-        return <Navigate to={`/${lang}/tours`} replace />;
+        return (
+            <>
+                <Page_big_banner
+                    title="Tour Not Found"
+                    subtitle="The tour you're looking for doesn't exist"
+                    bannerImageSrc=""
+                />
+                <div className="error-container">
+                    <p>{error || 'Tour not found'}</p>
+                    <Link to={`/${lang}/tours`} className="btn btn-primary">
+                        {t('common.backToTours', 'Back to Tours')}
+                    </Link>
+                </div>
+            </>
+        );
     }
 
     // Подготавливаем изображения для галереи
-    const images = tour.gallery 
-        ? tour.gallery.map(image => ({
-            original: image,
-            thumbnail: image,
-          }))
-        : tour.image || tour.mainImage || tour.featured_image
-        ? [{
-            original: tour.image || tour.mainImage || tour.featured_image,
-            thumbnail: tour.image || tour.mainImage || tour.featured_image,
-          }]
-        : [];
+
+
+    let images = [];
+
+    // Собираем все доступные изображения
+    const imageUrls = [];
+
+    // Основное изображение
+    if (tour.image) {
+        imageUrls.push(tour.image);
+    }
+
+    // Галерея (в вашем API это строка с URL)
+    if (tour.gallery && typeof tour.gallery === 'string') {
+        imageUrls.push(tour.gallery);
+    }
+
+    // Если gallery массив (на случай будущих изменений API)
+    if (tour.gallery && Array.isArray(tour.gallery)) {
+        imageUrls.push(...tour.gallery);
+    }
+
+    // Преобразуем в формат для ImageGallery
+    images = imageUrls.map(url => ({
+        original: url,
+        thumbnail: url,
+    }));
+
+    // Если нет изображений, добавляем заглушку
+    if (images.length === 0) {
+        images.push({
+            original: 'https://via.placeholder.com/800x600?text=No+Image+Available',
+            thumbnail: 'https://via.placeholder.com/150x100?text=No+Image',
+        });
+    }
 
     // Кастомные стрелки навигации
     const renderLeftNav = (onClick, disabled) => (
@@ -94,43 +147,49 @@ export default function TourDetail() {
             <Page_big_banner
                 title={''}
                 subtitle={''}
-                bannerImageSrc={tour.mainImage}
+                bannerImageSrc={tour.image}
             />
 
             <section className="tour-detail">
                 <div className="container">
                     <div className="row">
                         <div className="tour-detail-inner">
-                            <h1>{tour.title[currentLang]}</h1>
+                            <h1>{tour.title}</h1>
                             <div className="details_holder">
                                 <div className="left_block">
                                     <div className="small_description">
-                                        <p>{tour.shortDescription[currentLang]}</p>
+                                        <p>{tour.excerpt}</p>
                                     </div>
                                     <div className="parameters">
-                                        <div className="duration">
-                                            <div className="icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-                                                    <path d="M12 6.65478V12.6548H16.5M21 12.6548C21 13.8367 20.7672 15.007 20.3149 16.0989C19.8626 17.1909 19.1997 18.183 18.364 19.0187C17.5282 19.8545 16.5361 20.5174 15.4442 20.9697C14.3522 21.422 13.1819 21.6548 12 21.6548C10.8181 21.6548 9.64778 21.422 8.55585 20.9697C7.46392 20.5174 6.47177 19.8545 5.63604 19.0187C4.80031 18.183 4.13738 17.1909 3.68508 16.0989C3.23279 15.007 3 13.8367 3 12.6548C3 10.2678 3.94821 7.97865 5.63604 6.29082C7.32387 4.603 9.61305 3.65479 12 3.65479C14.3869 3.65479 16.6761 4.603 18.364 6.29082C20.0518 7.97865 21 10.2678 21 12.6548Z" stroke="#08529F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                </svg>
+                                        {tour.duration && (
+                                            <div className="duration">
+                                                <div className="icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                                        <path d="M12 6.65478V12.6548H16.5M21 12.6548C21 13.8367 20.7672 15.007 20.3149 16.0989C19.8626 17.1909 19.1997 18.183 18.364 19.0187C17.5282 19.8545 16.5361 20.5174 15.4442 20.9697C14.3522 21.422 13.1819 21.6548 12 21.6548C10.8181 21.6548 9.64778 21.422 8.55585 20.9697C7.46392 20.5174 6.47177 19.8545 5.63604 19.0187C4.80031 18.183 4.13738 17.1909 3.68508 16.0989C3.23279 15.007 3 13.8367 3 12.6548C3 10.2678 3.94821 7.97865 5.63604 6.29082C7.32387 4.603 9.61305 3.65479 12 3.65479C14.3869 3.65479 16.6761 4.603 18.364 6.29082C20.0518 7.97865 21 10.2678 21 12.6548Z" stroke="#08529F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                                    </svg>
+                                                </div>
+                                                <strong>{t("tour.duration")}:</strong> {tour.duration}
                                             </div>
-                                            <strong>{t("tour.duration")}:</strong> {tour.duration[currentLang]}
-                                        </div>
-                                        <div className="cancellation">
-                                            <div className="icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-                                                    <path d="M12 6.65478V12.6548H16.5M21 12.6548C21 13.8367 20.7672 15.007 20.3149 16.0989C19.8626 17.1909 19.1997 18.183 18.364 19.0187C17.5282 19.8545 16.5361 20.5174 15.4442 20.9697C14.3522 21.422 13.1819 21.6548 12 21.6548C10.8181 21.6548 9.64778 21.422 8.55585 20.9697C7.46392 20.5174 6.47177 19.8545 5.63604 19.0187C4.80031 18.183 4.13738 17.1909 3.68508 16.0989C3.23279 15.007 3 13.8367 3 12.6548C3 10.2678 3.94821 7.97865 5.63604 6.29082C7.32387 4.603 9.61305 3.65479 12 3.65479C14.3869 3.65479 16.6761 4.603 18.364 6.29082C20.0518 7.97865 21 10.2678 21 12.6548Z" stroke="#08529F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                </svg>
+                                        )}
+                                        {tour.cancellation && (
+                                            <div className="cancellation">
+                                                <div className="icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                                        <path d="M12 6.65478V12.6548H16.5M21 12.6548C21 13.8367 20.7672 15.007 20.3149 16.0989C19.8626 17.1909 19.1997 18.183 18.364 19.0187C17.5282 19.8545 16.5361 20.5174 15.4442 20.9697C14.3522 21.422 13.1819 21.6548 12 21.6548C10.8181 21.6548 9.64778 21.422 8.55585 20.9697C7.46392 20.5174 6.47177 19.8545 5.63604 19.0187C4.80031 18.183 4.13738 17.1909 3.68508 16.0989C3.23279 15.007 3 13.8367 3 12.6548C3 10.2678 3.94821 7.97865 5.63604 6.29082C7.32387 4.603 9.61305 3.65479 12 3.65479C14.3869 3.65479 16.6761 4.603 18.364 6.29082C20.0518 7.97865 21 10.2678 21 12.6548Z" stroke="#08529F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                                    </svg>
+                                                </div>
+                                                <strong>{t("tour.cancellation")}:</strong> {tour.cancellation}
                                             </div>
-                                            <strong>{t("tour.cancellation")}:</strong> {tour.cancellation[currentLang]}
-                                        </div>
+                                        )}
                                     </div>
                                     <div className="full_description text_editor"
-                                        dangerouslySetInnerHTML={{ __html: tour.fullDescription[currentLang] }}>
+                                        dangerouslySetInnerHTML={{ __html: tour.text || 'Tour details will be available soon...' }}>
                                     </div>
-                                    <div className="buttons_holder" >
-                                        <a href={tour.bookingLink} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">{t("tour.bookingLink")}</a>
-                                    </div>
+                                    {tour.bookingLink && (
+                                        <div className="buttons_holder" >
+                                            <a href={tour.bookingLink} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">{t("tour.bookingLink")}</a>
+                                        </div>
+                                    )}
                                 </div>
                                 <div className="right_block">
                                     <div className="image_gallery">
