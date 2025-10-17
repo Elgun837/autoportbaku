@@ -1,6 +1,7 @@
 import { use } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import '../assets/styles/Trip.scss'
+import videoTrip from "../assets/images/file.mp4";
 
 function BookTrip() {
   const { t } = useLanguage();
@@ -21,7 +22,7 @@ function BookTrip() {
             <button className="trip_button">Book a trip</button>
           </div>
           <div className="right_section">
-
+              <video className="trip_video" src={videoTrip} loop autoPlay></video>
           </div>
         </div>
       </div>

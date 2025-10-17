@@ -82,8 +82,9 @@ export const translations = {
       socialMedia: "Social Media",
     },
     BookTrip: {
-      desc: "description",
+      desc: "Start your journey with Autoport and experience first-class comfort and service on every trip.",
     },
+
   },
   ru: {
     common: {
@@ -165,6 +166,9 @@ export const translations = {
       company: "Компания",
       contacts: "Контакты",
       socialMedia: "Социальные сети",
+    },
+    BookTrip: {
+      desc: "Начните свое путешествие с Autoport и ощутите первоклассный комфорт и сервис в каждой поездке.",
     },
    },
    
