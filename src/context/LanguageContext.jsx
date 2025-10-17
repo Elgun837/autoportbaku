@@ -24,18 +24,34 @@ export function LanguageProvider({ children }) {
 
   // ✅ Dili dəyişəndə URL-ni yenilə
   const changeLang = (newLang) => {
-    setLang(newLang);
-    const pathParts = location.pathname.split("/").filter(Boolean);
+  if (!lang) return; // lang undefined olsa çıx
 
-    if (["en", "ru"].includes(pathParts[0])) {
-      pathParts[0] = newLang; // mövcud dili dəyiş
-    } 
-    else {
-      pathParts.unshift(newLang); // yoxdursa, əlavə et
+  const pathParts = location.pathname.split("/").filter(Boolean); // ["en", "about-us"]
+  const currentLang = pathParts[0];
+
+  if (!currentLang || !translations[currentLang]) return; // lang doğru deyilse çıx
+
+  // Slug mapping
+  const currentSlugs = translations[currentLang].slugs || {};
+  const newSlugs = translations[newLang]?.slugs || {};
+
+  const slugMap = {};
+  Object.keys(currentSlugs).forEach((key) => {
+    if (newSlugs[key]) {
+      slugMap[currentSlugs[key]] = newSlugs[key];
     }
+  });
 
-    navigate(`/${pathParts.join("/")}${location.search}`, { replace: true });
-  };
+  // Dili dəyiş
+  pathParts[0] = newLang;
+
+  // Slug-u dəyiş
+  if (pathParts[1] && slugMap[pathParts[1]]) {
+    pathParts[1] = slugMap[pathParts[1]];
+  }
+
+  navigate(`/${pathParts.join("/")}${location.search}`, { replace: true });
+};
 
   // 🔤 Tərcümə funksiyası
   const t = (keyPath, options = {}) => {
