@@ -1,0 +1,88 @@
+.tours_section_main .inner {
+  padding-top: 5.3191489362vh;
+  padding-bottom: 8.5106382979vh;
+  padding-left: 4.1666666667vw;
+  padding-right: 4.1666666667vw;
+}
+.tours_section_main .inner .text_details {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 9.5744680851vh;
+  gap: 3.125rem;
+}
+.tours_section_main .inner .text_details .line_decor {
+  display: flex;
+  width: 100%;
+  padding: 13.829787234vh 7.2916666667vw 2.1276595745vh 7.2916666667vw;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+}
+.tours_section_main .inner .text_details .line_decor span {
+  width: 100%;
+  height: 0.0625rem;
+  background-color: black;
+}
+.tours_section_main .inner .tours_grid {
+  padding: 0 5.2083333333vw;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15.625vw, 1fr));
+  gap: 1.0416666667vw;
+}
+.tours_section_main .inner .tours_grid .tour_card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3.125rem;
+  flex: 1 0 0;
+}
+.tours_section_main .inner .tours_grid .tour_card .tour_image {
+  display: flex;
+  height: 319px;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 0.625rem;
+  align-self: stretch;
+}
+.tours_section_main .inner .tours_grid .tour_card .tour_image a {
+  display: block;
+}
+.tours_section_main .inner .tours_grid .tour_card .tour_image a img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1.25rem;
+  transition: cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+  transition-duration: 0.4s;
+}
+.tours_section_main .inner .tours_grid .tour_card .tour_image a:hover img {
+  transform: translateX(0px) translateY(0px) scaleX(0.95) scaleY(0.95) rotate(0deg) skewX(0deg) skewY(0deg);
+  --comp-rotate-z: 0deg;
+}
+.tours_section_main .inner .tours_grid .tour_card .tour_info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  align-self: stretch;
+}
+.tours_section_main .inner .tours_grid .tour_card .button_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  align-self: stretch;
+}
+.tours_section_main .inner .bottom_button_wrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 9.5744680851vh;
+}/*# sourceMappingURL=ToursCmponents.css.map */

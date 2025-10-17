@@ -5,7 +5,7 @@ export const translations = {
       error: "Error loading data. Please try again.",
       retry: "Retry",
       backToTours: "Back to Tours",
-    },   
+    },
     header: {
       home: "Home",
       about: "About Us",
@@ -53,6 +53,10 @@ export const translations = {
 
       subtitle:
         "Do you have any questions or would you like to book a trip? Our team is always happy to help. Contact us by phone, email or using our contact form - we will get back to you immediately.",
+    },
+    ToursComponent: {
+      subtitle: "Autoport short trip: Exclusive, comfortable and safe on the road",
+      title: "With Autoport you can enjoy short trips at the highest level. Our exclusive chauffeur service offers you the ideal solution to get from A to B in comfort and safety. Whether for business or pleasure, we make sure you arrive on time and relaxed.",
     },
     missions: {
       title: "Our Mission",
@@ -143,6 +147,10 @@ export const translations = {
       subtitle:
         "У вас есть вопросы или вы хотите забронировать поездку? Наша команда всегда рада помочь. Свяжитесь с нами по телефону, электронной почте или через нашу контактную форму - мы свяжемся с вами немедленно.",
     },
+    ToursComponent: {
+      subtitle: "Короткая поездка Autoport: эксклюзивно, комфортно и безопасно в дороге",
+      title: "С Autoport вы сможете наслаждаться короткими поездками на высшем уровне. Наша эксклюзивная услуга водителя — идеальное решение для комфортного и безопасного перемещения из пункта А в пункт Б. Будь то деловая поездка или отдых, мы позаботимся о том, чтобы вы прибыли вовремя и чувствовали себя комфортно.",
+    },
     missions: {
       title: "Наша миссия",
       subtitle:
@@ -154,7 +162,7 @@ export const translations = {
       point2Desc:
         "Мы стремимся быть надежным выбором для частных лиц, семей и корпораций, которые ценят время, комфорт и выдающийся сервис 24/7.",
     },
-     tour: {
+    tour: {
       duration: "Длительность",
       cancellation: "Отмена",
       bookingLink: "Забронировать тур",
@@ -170,6 +178,6 @@ export const translations = {
     BookTrip: {
       desc: "Начните свое путешествие с Autoport и ощутите первоклассный комфорт и сервис в каждой поездке.",
     },
-   },
-   
-  }
+  },
+
+}

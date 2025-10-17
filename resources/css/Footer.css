@@ -1,0 +1,166 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  background-image: url("/footer_bg.webp");
+  background-size: cover;
+}
+.footer .footer_content {
+  display: flex;
+  padding: 20px 80px;
+  padding-left: 4.1666666667vw;
+  padding-right: 4.1666666667vw;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  width: 100%;
+}
+.footer .footer_content .mobile_visible__logo {
+  margin-bottom: 8.5106382979vh;
+  width: 100%;
+}
+@media (max-width: 576px) {
+  .footer .footer_content .mobile_visible__logo {
+    margin-bottom: 8.5106382979vh;
+  }
+}
+.footer .footer_content .mobile_visible__logo .logo_wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.footer .footer_content .mobile_visible__logo .logo_wrapper .logo {
+  width: 31.25vw;
+  height: auto;
+}
+.footer .footer_content .mobile_visible__logo .logo_wrapper .logo img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 281.3/210.65;
+}
+.footer .footer_content .logo_menu_wrapper {
+  display: flex;
+  padding: 17.0212765957vh 0;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+}
+@media (max-width: 1200px) {
+  .footer .footer_content .logo_menu_wrapper {
+    padding: 8.5106382979vh 0;
+  }
+}
+@media (max-width: 992px) {
+  .footer .footer_content .logo_menu_wrapper {
+    flex-wrap: wrap;
+    padding-top: 8.5106382979vh;
+  }
+}
+@media (max-width: 576px) {
+  .footer .footer_content .logo_menu_wrapper {
+    padding-bottom: 4.2553191489vh;
+  }
+}
+.footer .footer_content .logo_menu_wrapper .logo {
+  width: 14.6510416667vw;
+  height: auto;
+}
+@media (min-width: 1650px) {
+  .footer .footer_content .logo_menu_wrapper .logo {
+    padding-right: 2.5rem;
+  }
+}
+.footer .footer_content .logo_menu_wrapper .logo img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 281.3/210.65;
+}
+.footer .footer_content .logo_menu_wrapper .footer_menu {
+  display: flex;
+  max-width: 15.625vw;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+}
+@media (max-width: 1200px) {
+  .footer .footer_content .logo_menu_wrapper .footer_menu {
+    max-width: 20.8333333333vw;
+  }
+}
+@media (max-width: 992px) {
+  .footer .footer_content .logo_menu_wrapper .footer_menu {
+    max-width: 33.33%;
+    padding-right: 5.2083333333vw;
+  }
+  .footer .footer_content .logo_menu_wrapper .footer_menu:last-child {
+    max-width: 25%;
+    padding-right: 0;
+  }
+}
+@media (max-width: 576px) {
+  .footer .footer_content .logo_menu_wrapper .footer_menu {
+    max-width: 100%;
+    margin-bottom: 6.3829787234vh;
+    gap: 15px;
+  }
+  .footer .footer_content .logo_menu_wrapper .footer_menu:last-child {
+    max-width: 100%;
+    padding-right: 5.2083333333vw;
+  }
+}
+.footer .footer_content .logo_menu_wrapper .footer_menu .footer_menu_title {
+  color: #fff;
+  font-weight: 400;
+  align-self: stretch;
+}
+.footer .footer_content .logo_menu_wrapper .footer_menu .footer_menu_list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  align-self: stretch;
+}
+.footer .footer_content .logo_menu_wrapper .footer_menu .footer_menu_list a {
+  color: #fff;
+  font-size: var(--body-xl-size);
+}
+.footer .footer_content .logo_menu_wrapper .footer_menu .footer_menu_list li a {
+  color: #fff;
+  font-size: var(--body-xl-size);
+}
+.footer .footer_content .copyright_wrapper {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+}
+@media (max-width: 768px) {
+  .footer .footer_content .copyright_wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+}
+.footer .footer_content .copyright_wrapper .copyright_text {
+  color: var(--White, #fff);
+  font-size: 17px;
+}
+.footer .footer_content .copyright_wrapper .design_text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.footer .footer_content .copyright_wrapper .design_text span {
+  color: var(--White, #fff);
+  font-size: 17px;
+}
+.footer .footer_content .copyright_wrapper .design_text img {
+  width: 98.826px;
+  height: 30px;
+  aspect-ratio: 98.83/30;
+}/*# sourceMappingURL=Footer.css.map */

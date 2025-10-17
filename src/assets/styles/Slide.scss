@@ -1,90 +1,99 @@
-@use './functions/Functions.scss' as *;
-@use './functions/Mixins.scss' as *;
+@use "./functions/Functions.scss" as *;
+@use "./functions/Mixins.scss" as *;
 
 .main_bg {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+
+  .slide_container {
+    width: 100%;
+    height: 100%;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 180px 100px;
+    @include responsive_padding;
 
-    .slide_container {
-        width: 100%;
-        height: 100%;
+    .slide_inner {
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      z-index: 9;
+      align-items: stretch;
+
+      .text_section {
+        max-width: 730px;
+        gap: 20px;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-direction: row;
-        padding: 180px 100px;
-        
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding-right: vw(50);
 
-        .container {
-            max-width: 1920px;
-            width: 100%;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            z-index: 9;
-            align-items: center;
-            @include responsive_padding;
-            .text_section {
-                max-width: 730px;
-                gap: 20px;
-                display: flex;
-                flex-direction: column;
-
-                h1 {
-                    font-weight: 500;
-                    font-style: Medium;
-                    font-size: 84px;
-                    line-height: 120%;
-                    letter-spacing: 2%;
-                    color: #FFFFFF;
-
-                }
-
-                p {
-                    font-weight: 400;
-                    font-size: 30px;
-                    line-height: 110.00000000000001%;
-                    letter-spacing: 2%;
-                    color: #FFFFFF;
-
-                }
-            }
+        h1 {
+          font-weight: 500;
+         
+          font-size: clamp(40px, 81px, 60px);
+          line-height: 120%;         
+          color: #ffffff;
         }
 
-        .banner_image {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        p {
+          font-weight: 400;
+          font-size: 30px;
+          line-height: 110.00000000000001%;
+          letter-spacing: 2%;
+          color: #ffffff;
         }
-
-        .small_heading_banner .triangle_decor {
-            max-width: 100%;
-            width: 100%;
-            z-index: 3;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            display: flex;
-        }
-
-
-
-        .form_section {
-            width: 530px;
-            min-height: 750px;
-
-            .form {
-                width: 100%;
-
-            }
-
-        }
+      }
     }
 
+    .banner_image {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .small_heading_banner .triangle_decor {
+      max-width: 100%;
+      width: 100%;
+      z-index: 3;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      display: flex;
+    }
+
+    .form_section {
+      width: 530px;
+      min-height: 750px;
+
+      .form {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 1440px) {
+}
+
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 992px) {
+}
+
+@media (max-width: 768px) {
+}
+
+@media (max-width: 576px) {
 }

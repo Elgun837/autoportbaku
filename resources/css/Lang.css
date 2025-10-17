@@ -1,0 +1,13 @@
+.lang_switch {
+  position: relative;
+  display: inline-block;
+}
+
+.lang_switch button {
+  background: none;
+  border: none;
+}
+
+.drop_lang {
+  position: absolute;
+}/*# sourceMappingURL=Lang.css.map */

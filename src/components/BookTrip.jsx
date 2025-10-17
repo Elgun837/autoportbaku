@@ -19,7 +19,7 @@ function BookTrip() {
                 {t("BookTrip.desc")}
             </div>
 
-            <button className="trip_button">Book a trip</button>
+             <a href="#"> <button className="trip_button">Book a trip</button></a>
           </div>
           <div className="right_section">
               <video className="trip_video" src={videoTrip} loop autoPlay></video>
