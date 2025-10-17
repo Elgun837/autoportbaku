@@ -8,7 +8,7 @@ export function LanguageProvider({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [lang, setLang] = useState("en");
+  const [lang, setLang] = useState(null);
 
   // ✅ URL-dən dili oxu (ilk açılışda)
   useEffect(() => {
@@ -22,45 +22,14 @@ export function LanguageProvider({ children }) {
   }, []);
 
   // ✅ Dili dəyişəndə URL-ni yenilə
-  const changeLang = async (newLang) => {
+  const changeLang = (newLang) => {
     setLang(newLang);
     const pathParts = location.pathname.split("/").filter(Boolean);
 
-    // Проверяем, находимся ли мы на странице конкретного тура
-    if (pathParts.length >= 3 && pathParts[1] === 'tours' && pathParts[2]) {
-      const currentSlug = pathParts[2];
-      
-      try {
-        // Импортируем API функцию для получения туров
-        const { getToursData } = await import('../api/index');
-        const toursData = await getToursData(newLang);
-        const tours = toursData.data || toursData || [];
-        
-        // Ищем соответствующий тур на новом языке
-        const cleanSlug = currentSlug.replace(/-ru$|-(en|eng)$/, '');
-        const targetTour = tours.find(tour => {
-          const tourCleanSlug = tour.slug.replace(/-ru$|-(en|eng)$/, '');
-          return tourCleanSlug === cleanSlug;
-        });
-
-        if (targetTour) {
-          // Найден соответствующий тур - переходим к нему
-          navigate(`/${newLang}/tours/${targetTour.slug}`, { replace: true });
-          return;
-        }
-      } catch (error) {
-        console.error('Error finding tour for new language:', error);
-      }
-      
-      // Если не нашли тур, переходим на список туров
-      navigate(`/${newLang}/tours`, { replace: true });
-      return;
-    }
-
-    // Для остальных страниц - стандартная логика
     if (["en", "ru"].includes(pathParts[0])) {
       pathParts[0] = newLang; // mövcud dili dəyiş
-    } else {
+    } 
+    else {
       pathParts.unshift(newLang); // yoxdursa, əlavə et
     }
 

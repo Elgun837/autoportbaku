@@ -1,5 +1,11 @@
 export const translations = {
   en: {
+    routes:{
+      about:"about-us",
+      service:"services",
+      tours:"tours",
+      faq:"faq"
+    },
     common: {
       loading: "Loading...",
       error: "Error loading data. Please try again.",
@@ -87,6 +93,12 @@ export const translations = {
 
   },
   ru: {
+     routes:{
+      about:"o-nas",
+      service:"usluqi",
+      tours:"turi",
+      faq:"faq"
+    },
     common: {
       loading: "Загрузка...",
       error: "Ошибка загрузки данных. Попробуйте снова.",

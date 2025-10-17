@@ -25,6 +25,7 @@ function AppRoutes() {
       <Route path="/" element={<Navigate to={`/${lang}`} />} />
       <Route path="/:lang" element={<HomePage />} />
       <Route path="/:lang/about-us" element={<About />} />
+      <Route path="/:lang/about-us" element={<About />} />
       {/* <Route path="/:lang/services" element={<Services />} /> */}
       <Route path="/:lang/services/:slug" element={<ServiceDetail />} />
       <Route path="/:lang/tours" element={<Tours />} />

@@ -8,14 +8,12 @@ export default function LanguageSwitcher() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-
   const languages = [
     { code: "en", label: "English", flag: "/flags/en.png" },
     { code: "ru", label: "Русский", flag: "/flags/ru.png" },
   ];
-
-  const current = languages.find((l) => l.code === lang);
-
+  const current = languages.find((l) => l.code === lang) || languages[0];
+  
   const handleSelect = (code) => {
     changeLang(code);
     setOpen(false);
