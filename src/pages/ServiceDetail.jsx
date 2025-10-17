@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { getServiceBySlug } from "../api/index";
-import { getLocalizedPath } from "../utils/routes";
 import Page_big_banner from "../components/Page_big_banner";
 import "../assets/styles/ServiceDetail.scss";
 

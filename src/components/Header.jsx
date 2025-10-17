@@ -1,9 +1,7 @@
-import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { getToursData, getServiceData } from "../api/index";
-import { getLocalizedPath } from "../utils/routes";
 import LanguageSwitcher from "./LanguageSwitcher";
 import "../assets/styles/Header.scss";
 import logoImage from "/logo.png";
@@ -32,7 +30,7 @@ export default function Header() {
       try {
         setToursLoading(true);
         const toursData = await getToursData(lang);
-        const toursArray = toursData.data || toursData || [];
+        const toursArray = toursData?.data || toursData || [];
         setTours(toursArray.slice(0, 5)); // Ограничиваем до 5 туров в меню
       } catch (error) {
         console.error('Error fetching tours for menu:', error);
@@ -51,7 +49,7 @@ export default function Header() {
       try {
         setServicesLoading(true);
         const servicesData = await getServiceData(lang);
-        const servicesArray = Array.isArray(servicesData) ? servicesData : (servicesData.data || []);
+        const servicesArray = Array.isArray(servicesData) ? servicesData : (servicesData?.data || []);
         setServices(servicesArray.slice(0, 16)); 
       } catch (error) {
         console.error('Error fetching services for menu:', error);
@@ -132,7 +130,7 @@ export default function Header() {
         <div className="row">
           <div className="inner">
             <div className="logo">
-              <Link to={getLocalizedPath(lang, 'home')}>
+              <Link to={`/${lang}`}>
                 <img src={logoImage} alt="Logo" />
               </Link>
             </div>
@@ -140,13 +138,13 @@ export default function Header() {
             <div className="right_section">
               <div className={`nav_and_lang ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
                 <nav>
-                  <Link to={getLocalizedPath(lang, 'home')} onClick={closeMobileMenu}>{t("header.home")}</Link>
-                  <Link to={getLocalizedPath(lang, 'about')} onClick={closeMobileMenu}>{t("header.about")}</Link>  
+                  <Link to={`/${lang}`} onClick={closeMobileMenu}>{t("header.home")}</Link>
+                  <Link to={`/${lang}/about-us`} onClick={closeMobileMenu}>{t("header.about")}</Link>  
                   
                   {/* Services dropdown menu */}
                   <div className="nav-item dropdown">
                     <div className="dropdown-trigger">
-                      <Link to={getLocalizedPath(lang, 'services')} onClick={closeMobileMenu}>{t("header.services", "Services")}</Link>
+                      <Link to={`#services`} onClick={closeMobileMenu}>{t("header.services", "Services")}</Link>
                       <span 
                         className={`dropdown-arrow ${isMobileServicesDropdownOpen ? 'open' : ''}`}
                         onClick={toggleMobileServicesDropdown}
@@ -159,25 +157,25 @@ export default function Header() {
                     
                     <div className={`dropdown-menu ${isMobileServicesDropdownOpen ? 'mobile-open' : ''}`}>
                       {servicesLoading ? (
-                        <div key="services-loading" className="dropdown-item">Loading...</div>
+                        <div className="dropdown-item">Loading...</div>
                       ) : services.length > 0 ? (
-                        <React.Fragment key="services-list">                       
-                          {services.map((service, index) => (   
+                        <>                       
+                          {services.map((service,index) => (   
+                                                     
                             <Link 
-                              key={`service-${index}`} 
-                              to={getLocalizedPath(lang, 'services', service.slug || service.id)} 
+                              key={index} 
+                              to={`/${lang}/services/${service.slug || service.id}`} 
                               className="dropdown-item"
                               onClick={closeMobileMenu}
                             >
                               {service.title || `Service ${service.id}`}
                             </Link>
                           ))}
-                         
-                        </React.Fragment>
+                          
+                        </>
                       ) : (
                         <Link 
-                          key="services-fallback"
-                          to={getLocalizedPath(lang, 'services')} 
+                          to={`/${lang}/services`} 
                           className="dropdown-item"
                           onClick={closeMobileMenu}
                         >
@@ -190,7 +188,7 @@ export default function Header() {
                   {/* Tours dropdown menu */}
                   <div className="nav-item dropdown">
                     <div className="dropdown-trigger">
-                      <Link to={getLocalizedPath(lang, 'tours')} onClick={closeMobileMenu}>{t("header.tours")}</Link>
+                      <Link to={`/${lang}/tours`} onClick={closeMobileMenu}>{t("header.tours")}</Link>
                       <span 
                         className={`dropdown-arrow ${isMobileToursDropdownOpen ? 'open' : ''}`}
                         onClick={toggleMobileToursDropdown}
@@ -203,13 +201,13 @@ export default function Header() {
                     
                     <div className={`dropdown-menu ${isMobileToursDropdownOpen ? 'mobile-open' : ''}`}>
                       {toursLoading ? (
-                        <div key="tours-loading" className="dropdown-item">Loading...</div>
+                        <div className="dropdown-item">Loading...</div>
                       ) : tours.length > 0 ? (
-                        <React.Fragment key="tours-list">
-                          {tours.map((tour, index) => (
+                        <>
+                          {tours.map((tour) => (
                             <Link 
-                              key={`tour-${index}`} 
-                              to={getLocalizedPath(lang, 'tours', tour.slug || tour.id)} 
+                              key={tour.id} 
+                              to={`/${lang}/tours/${tour.slug || tour.id}`} 
                               className="dropdown-item"
                               onClick={closeMobileMenu}
                             >
@@ -217,11 +215,10 @@ export default function Header() {
                             </Link>
                           ))}
                           
-                        </React.Fragment>
+                        </>
                       ) : (
                         <Link 
-                          key="tours-fallback"
-                          to={getLocalizedPath(lang, 'tours')} 
+                          to={`/${lang}/tours`} 
                           className="dropdown-item"
                           onClick={closeMobileMenu}
                         >
@@ -231,8 +228,8 @@ export default function Header() {
                     </div>
                   </div>
                   
-                  <Link to={getLocalizedPath(lang, 'faq')} onClick={closeMobileMenu}>{t("header.faq")}</Link>
-                  <Link to={getLocalizedPath(lang, 'contacts')} onClick={closeMobileMenu}>{t("header.contacts")}</Link>
+                  <Link to={`/${lang}/faq`} onClick={closeMobileMenu}>{t("header.faq")}</Link>
+                  <Link to={`/${lang}/contacts`} onClick={closeMobileMenu}>{t("header.contacts")}</Link>
                 </nav>
                 <LanguageSwitcher />
               </div>

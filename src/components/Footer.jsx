@@ -16,7 +16,7 @@ export default function Footer() {
             try {
                 setLoading(true);
                 const settingsData = await getSettingsData(lang);
-                setSettings(settingsData.data || settingsData);
+                setSettings(settingsData?.data || settingsData);
                
             } catch (error) {
                 console.error('Error fetching settings:', error);

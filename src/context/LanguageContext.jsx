@@ -2,7 +2,6 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { translations } from "../translations";
 import { useNavigate, useLocation } from "react-router-dom";
 import { getToursData, getServiceData } from "../api/index";
-import { getLocalizedPath } from "../utils/routes";
 
 const LanguageContext = createContext();
 

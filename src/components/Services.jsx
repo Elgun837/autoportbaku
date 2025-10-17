@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "../assets/styles/Services.scss";
 import { useLanguage } from "../context/LanguageContext";
 import { getServiceData } from "../api/index";
-import { getLocalizedPath } from "../utils/routes";
 import { useQuery } from "@tanstack/react-query";
 
 export default function Services() {
@@ -27,8 +26,8 @@ export default function Services() {
             <div className="services_items">
               {services.map((service, index) => (
                 <Link 
-                   key={`service-${index}`} 
-                  to={getLocalizedPath(lang, 'services', service.slug || service.id)} 
+                   key={index} 
+                  to={`/${lang}/services/${service.slug || service.id}`} 
                   className="service_item"
                 >
                   <div className="icon">
