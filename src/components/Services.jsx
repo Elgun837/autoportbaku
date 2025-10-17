@@ -24,8 +24,8 @@ export default function Services() {
               <h4>{t("services.title")}</h4>
             </div>
             <div className="services_items">
-              {services.map((service) => (
-                <div key={service.id} className="service_item">
+              {services.map((service, index) => (
+                <div key={index} className="service_item">
                   <div className="icon">
                     <img src={service.image} alt={service.title} />
                   </div>
