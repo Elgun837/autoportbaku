@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { getServiceData } from "../api/index";
+import { getLocalizedPath } from "../utils/routes";
 import Page_big_banner from "../components/Page_big_banner";
 import "../assets/styles/Services.scss";
 
@@ -75,7 +76,7 @@ export default function Services() {
                         <div className="services-grid">
                             {services.map((service) => (
                                 <div key={service.id} className="service-card">
-                                    <Link to={`/${lang}/services/${service.slug || service.id}`}>
+                                    <Link to={getLocalizedPath(lang, 'services', service.slug || service.id)}>
                                         <div className="service-image">
                                             <img 
                                                 src={service.image || '/default-service.jpg'} 

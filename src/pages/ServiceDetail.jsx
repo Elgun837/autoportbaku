@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { getServiceBySlug } from "../api/index";
+import { getLocalizedPath } from "../utils/routes";
 import Page_big_banner from "../components/Page_big_banner";
 import "../assets/styles/ServiceDetail.scss";
 
@@ -66,7 +67,7 @@ export default function ServiceDetail() {
                 />
                 <div className="error-container">
                     <p>{error || 'Service not found'}</p>
-                    <Link to={`/${lang}/services`} className="btn btn-primary">
+                    <Link to={getLocalizedPath(lang, 'services')} className="btn btn-primary">
                         {t('common.backToServices', 'Back to Services')}
                     </Link>
                 </div>
@@ -141,13 +142,13 @@ export default function ServiceDetail() {
                                 {/* Contact/Book Button */}
                                 <div className="service-actions">
                                     <Link 
-                                        to={`/${lang}/contacts`} 
+                                        to={getLocalizedPath(lang, 'contacts')} 
                                         className="btn btn-primary btn-large"
                                     >
                                         {t('service.bookNow', 'Book This Service')}
                                     </Link>
                                     <Link 
-                                        to={`/${lang}/services`} 
+                                        to={getLocalizedPath(lang, 'services')} 
                                         className="btn btn-secondary"
                                     >
                                         {t('service.backToServices', 'Back to Services')}

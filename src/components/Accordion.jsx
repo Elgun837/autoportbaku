@@ -18,10 +18,12 @@ export default function Accordion() {
   }, [activeIndex]);
   const { lang } = useLanguage();
 
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error } = useQuery({    
     queryKey: ["faqs", lang],
-    queryFn: () => getFaqsData(lang),
-  });
+    queryFn: () => getFaqsData(lang),    
+   });
+   console.log("Fetched FAQs:", data);
+
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading FAQs 😢</p>;

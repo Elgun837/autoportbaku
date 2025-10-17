@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { getTourBySlug } from "../api/index";
+import { getLocalizedPath } from "../utils/routes";
 import Page_big_banner from "../components/Page_big_banner";
 import "../assets/styles/TourDetail.scss";
 import ImageGallery from "react-image-gallery";
@@ -20,6 +21,7 @@ export default function TourDetail() {
             try {               
                 setLoading(true);
                 const tourData = await getTourBySlug(slug, lang);
+                console.log();
                 
                 // Дополнительная проверка на случай, если API вернёт неожиданную структуру
                 if (tourData && typeof tourData === 'object') {
@@ -70,7 +72,7 @@ export default function TourDetail() {
                 />
                 <div className="error-container">
                     <p>{error || 'Tour not found'}</p>
-                    <Link to={`/${lang}/tours`} className="btn btn-primary">
+                    <Link to={getLocalizedPath(lang, 'tours')} className="btn btn-primary">
                         {t('common.backToTours', 'Back to Tours')}
                     </Link>
                 </div>
@@ -110,8 +112,8 @@ export default function TourDetail() {
     // Если нет изображений, добавляем заглушку
     if (images.length === 0) {
         images.push({
-            original: 'https://via.placeholder.com/800x600?text=No+Image+Available',
-            thumbnail: 'https://via.placeholder.com/150x100?text=No+Image',
+            original: '../assets/images/small_heading_banner.png',
+            thumbnail: '../assets/images/small_heading_banner.png',
         });
     }
 

@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import Scrollline from "../components/Scrolline";
 import "../assets/styles/Tours.scss";
 import { useLanguage } from "../context/LanguageContext";
+import { getLocalizedPath } from "../utils/routes";
 import Page_big_banner from "../components/Page_big_banner";
 import ToursBannerImage from "../assets/images/tours.png";
 import { getToursData } from "../api/index";
@@ -169,7 +170,7 @@ export default function Tours() {
                                             )}
                                         </div>
                                         <Link
-                                            to={`/${lang}/tours/${tour.slug}`}
+                                            to={getLocalizedPath(lang, 'tours', tour.slug)}
                                             className="btn btn-primary"
                                         >
                                             {t('tours.learnMore', 'Learn More')}

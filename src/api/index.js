@@ -49,33 +49,44 @@ export const getToursData = async (lang = "en") => {
   return data;
 };
 
-export const getTourBySlug = async (slug, lang = "en") => {
-  try {
-    // Получаем все туры из API
-    const allTours = await getToursData(lang);
-    const tours = allTours.data || allTours || [];   
+export const getTourBySlug = async (slug, lang = "en") => {    
+  const { data } = await api.get(`/tours/${slug}`, {    
+    headers: {
+      "contentLanguage": lang,
+      "token": token,
+    },
+  });
+
+
+ 
+  return data;
+  // try {
+  //   // Получаем все туры из API
+  //   const allTours = await getToursData(lang);
+  //   const tours = allTours.data || allTours || [];   
     
-    // Ищем тур по slug
-    const tour = tours.find(t => t.slug === slug);   
-    if (tour) {       
-      return { data: tour };
-    }
+  //   // Ищем тур по slug
+  //   const tour = tours.find(t => t.slug === slug);   
+  //   if (tour) {       
+  //     return { data: tour };
+  //   }
     
-    // Если не найден по slug, попробуем по ID
-    const tourById = tours.find(t => t.id === slug || String(t.id) === slug);
-    if (tourById) {
-      return { data: tourById };
-    }
+  //   // Если не найден по slug, попробуем по ID
+  //   const tourById = tours.find(t => t.id === slug || String(t.id) === slug);
+  //   if (tourById) {
+  //     return { data: tourById };
+  //   }
     
-    throw new Error(`Tour not found with slug: ${slug}`);
-  } catch (error) {
-    console.error('Error in getTourBySlug:', error);
-    throw error;
-  }
+  //   throw new Error(`Tour not found with slug: ${slug}`);
+  // } catch (error) {
+  //   console.error('Error in getTourBySlug:', error);
+  //   throw error;
+  // }
 };
 
 
 export const getFaqsData = async (lang = "en") => {
+ 
   const { data } = await api.get("/faq", {
     headers: {
       "contentLanguage": lang,

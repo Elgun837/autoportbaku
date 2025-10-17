@@ -1,6 +1,8 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { translations } from "../translations";
 import { useNavigate, useLocation } from "react-router-dom";
+import { getToursData, getServiceData } from "../api/index";
+import { getLocalizedPath } from "../utils/routes";
 
 const LanguageContext = createContext();
 
@@ -26,13 +28,12 @@ export function LanguageProvider({ children }) {
     setLang(newLang);
     const pathParts = location.pathname.split("/").filter(Boolean);
 
-    // Проверяем, находимся ли мы на странице конкретного тура
-    if (pathParts.length >= 3 && pathParts[1] === 'tours' && pathParts[2]) {
+    // Проверяем, находимся ли мы на странице конкретного тура (tours или turi)
+    if (pathParts.length >= 3 && (pathParts[1] === 'tours' || pathParts[1] === 'turi') && pathParts[2]) {
       const currentSlug = pathParts[2];
       
       try {
-        // Импортируем API функцию для получения туров
-        const { getToursData } = await import('../api/index');
+        // Получаем туры для нового языка
         const toursData = await getToursData(newLang);
         const tours = toursData.data || toursData || [];
         
@@ -44,16 +45,50 @@ export function LanguageProvider({ children }) {
         });
 
         if (targetTour) {
-          // Найден соответствующий тур - переходим к нему
-          navigate(`/${newLang}/tours/${targetTour.slug}`, { replace: true });
+          // Найден соответствующий тур - переходим к нему с правильным локализованным путем
+          const newPath = getLocalizedPath(newLang, 'tours', targetTour.slug);
+          navigate(newPath, { replace: true });
           return;
         }
       } catch (error) {
         console.error('Error finding tour for new language:', error);
       }
       
-      // Если не нашли тур, переходим на список туров
-      navigate(`/${newLang}/tours`, { replace: true });
+      // Если не нашли тур, переходим на список туров с правильным локализованным путем
+      const newPath = getLocalizedPath(newLang, 'tours');
+      navigate(newPath, { replace: true });
+      return;
+    }
+
+    // Проверяем, находимся ли мы на странице конкретного сервиса
+    if (pathParts.length >= 3 && (pathParts[1] === 'services' || pathParts[1] === 'servisy') && pathParts[2]) {
+      const currentSlug = pathParts[2];
+      
+      try {
+        // Получаем сервисы для нового языка
+        const servicesData = await getServiceData(newLang);
+        const services = Array.isArray(servicesData) ? servicesData : (servicesData.data || []);
+        
+        // Ищем соответствующий сервис на новом языке
+        const cleanSlug = currentSlug.replace(/-ru$|-(en|eng)$/, '');
+        const targetService = services.find(service => {
+          const serviceCleanSlug = service.slug.replace(/-ru$|-(en|eng)$/, '');
+          return serviceCleanSlug === cleanSlug;
+        });
+
+        if (targetService) {
+          // Найден соответствующий сервис - переходим к нему с правильным локализованным путем
+          const newPath = getLocalizedPath(newLang, 'services', targetService.slug);
+          navigate(newPath, { replace: true });
+          return;
+        }
+      } catch (error) {
+        console.error('Error finding service for new language:', error);
+      }
+      
+      // Если не нашли сервис, переходим на список сервисов
+      const newPath = getLocalizedPath(newLang, 'services');
+      navigate(newPath, { replace: true });
       return;
     }
 

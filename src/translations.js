@@ -5,7 +5,7 @@ export const translations = {
       error: "Error loading data. Please try again.",
       retry: "Retry",
       backToTours: "Back to Tours",
-    },   
+    },
     header: {
       home: "Home",
       about: "About Us",
@@ -50,9 +50,9 @@ export const translations = {
     tours: {
       title: "Exclusive mobility at the highest level",
       learnMore: "Learn More",
-
       subtitle:
         "Do you have any questions or would you like to book a trip? Our team is always happy to help. Contact us by phone, email or using our contact form - we will get back to you immediately.",
+      slug: "tours",
     },
     missions: {
       title: "Our Mission",
@@ -72,9 +72,11 @@ export const translations = {
       duration: "Duration",
       cancellation: "Cancellation",
       bookingLink: "Book a tour",
+
     },
     services: {
       title: "Our Services",
+      slug: "services",
     },
     footer: {
       company: "Company",
@@ -84,6 +86,7 @@ export const translations = {
     BookTrip: {
       desc: "description",
     },
+
   },
   ru: {
     common: {
@@ -141,6 +144,7 @@ export const translations = {
       learnMore: "Узнать больше",
       subtitle:
         "У вас есть вопросы или вы хотите забронировать поездку? Наша команда всегда рада помочь. Свяжитесь с нами по телефону, электронной почте или через нашу контактную форму - мы свяжемся с вами немедленно.",
+      slug: "turi",
     },
     missions: {
       title: "Наша миссия",
@@ -153,19 +157,20 @@ export const translations = {
       point2Desc:
         "Мы стремимся быть надежным выбором для частных лиц, семей и корпораций, которые ценят время, комфорт и выдающийся сервис 24/7.",
     },
-     tour: {
+    tour: {
       duration: "Длительность",
       cancellation: "Отмена",
       bookingLink: "Забронировать тур",
     },
     services: {
       title: "Наши услуги",
+      slug: "servisy",
     },
     footer: {
       company: "Компания",
       contacts: "Контакты",
       socialMedia: "Социальные сети",
     },
-   },
-   
-  }
+  },
+
+}

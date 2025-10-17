@@ -19,8 +19,9 @@ export default function LanguageSwitcher() {
   const handleSelect = (code) => {
     changeLang(code);
     setOpen(false);
-
+    
     const currentPath = location.pathname;
+    
     const segments = currentPath.split("/").filter(Boolean);
 
     if (segments.length > 0 && ["en", "ru"].includes(segments[0])) {
@@ -32,6 +33,8 @@ export default function LanguageSwitcher() {
     const newPath = "/" + segments.join("/");
     navigate(newPath);
   };
+
+ 
 
   return (
     <div className="lang_switch">
