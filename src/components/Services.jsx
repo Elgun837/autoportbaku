@@ -24,19 +24,14 @@ export default function Services() {
               <h4>{t("services.title")}</h4>
             </div>
             <div className="services_items">
-<<<<<<< HEAD
-              {services.map((service, index) => (
-                <div key={index} className="service_item">
-=======
               {services.map((service) => (
                 <Link 
                   key={service.id} 
                   to={`/${lang}/services/${service.slug || service.id}`} 
                   className="service_item"
                 >
->>>>>>> semral
                   <div className="icon">
-                    <img src={service.image} alt={service.title} />
+                    <img src={service.main_image} alt={service.title} />
                   </div>
                   <div className="service_title">{service.title}</div>
                 </Link>
