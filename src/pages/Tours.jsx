@@ -174,6 +174,7 @@ export default function Tours() {
                     <Link
                       to={`/${lang}/${routes.tours || "tours"}/${tour.slug}`}
                       className="btn btn-primary"
+                      onClick={() => localStorage.setItem("tourId", tour.id)}
                     >
                       {t("tours.learnMore", "Learn More")}
                     </Link>
