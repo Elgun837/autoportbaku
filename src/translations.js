@@ -1,10 +1,25 @@
 export const translations = {
   en: {
-    routes:{
-      about:"about-us",
-      service:"services",
-      tours:"tours",
-      faq:"faq"
+    whyUs: {
+      subtitle: "Why Autoport Baku",
+      title: "Exclusivity, safety and comfort for every journey",
+      affordablePrices: "Affordable prices",
+      cancellationFree: "Cancellation free of charge",
+      securePayment: "Secure payment",
+      support: "24/7 support",
+    },
+
+    cars: {
+      subtitle: "Autoport vehicles: Modern VIP limousines for exclusivity and comfort",
+      title: "Our Autoport vehicles offer exclusive driving comfort and are suitable for any occasion - whether VIP limousine service, airport transfers, weddings or large events. With our modern and luxurious vehicles, you'll always travel in style and relaxation, benefiting from generous space and state-of-the-art amenities. Whether for business or pleasure, Driver Now offers you the ideal combination of exclusivity, safety and comfort for your travels. Our Business and First Class fleet consists exclusively of Mercedes-Benz vehicles.",
+      passengers: "Passengers",
+      pieces: "Pieces of Luggage",
+    },
+    routes: {
+      about: "about-us",
+      service: "services",
+      tours: "tours",
+      faq: "faq"
     },
     common: {
       loading: "Loading...",
@@ -99,11 +114,25 @@ export const translations = {
 
   },
   ru: {
-     routes:{
-      about:"o-nas",
-      service:"usluqi",
-      tours:"turi",
-      faq:"faq"
+    whyUs: {
+      subtitle: "Почему Autoport Baku",
+      title: "Эксклюзивность, безопасность и комфорт для каждого путешествия",
+      affordablePrices: "Доступные цены",
+      cancellationFree: "Бесплатная отмена",
+      securePayment: "Безопасный платеж",
+      support: "Круглосуточная поддержка",
+    },
+    cars: {
+      subtitle: "Автомобили Autoport: Современные VIP-лимузины для эксклюзивности и комфорта",
+      title: "Наши автомобили Autoport предлагают эксклюзивный комфорт вождения и подходят для любого случая - будь то VIP-лимузинный сервис, трансферы из аэропорта, свадьбы или крупные мероприятия. С нашими современными и роскошными автомобилями вы всегда будете путешествовать со стилем и расслаблением, пользуясь просторным салоном и современными удобствами. Будь то деловая поездка или отдых, Autoport Baku предлагает вам идеальное сочетание эксклюзивности, безопасности и комфорта для ваших поездок. Наш парк автомобилей Business и First Class состоит исключительно из автомобилей Mercedes-Benz.",
+      passengers: "Пассажиров",
+      pieces: "Мест для багажа",
+    },
+    routes: {
+      about: "o-nas",
+      service: "usluqi",
+      tours: "turi",
+      faq: "faq"
     },
     common: {
       loading: "Загрузка...",

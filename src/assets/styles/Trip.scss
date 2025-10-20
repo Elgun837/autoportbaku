@@ -1,61 +1,75 @@
 @use "./functions/Functions.scss" as *;
 @use "./functions/Mixins.scss" as *;
 
-
 .trip_section.bg_black {
-    background-color: #000;
+  background-color: #000;
 
-    .container {
-        padding: 175px 0;
-
-        .inner {
-            @include responsive_padding;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-
-            .right_section {
-                width: 50%;
-                display: flex;
-                justify-content: center;
-                justify-content: flex-start;
-
-                .trip_video {
-                    width: 100%;
-                }
-
-            }
-
-            .left_section {
-                width: 50%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: flex-start;
-                gap: 30px;
-
-                .desc_text {
-                    color: #fff;
-                    font-weight: 600;
-                    font-size: clamp(1vw, 4rem, 5vw);
-                    line-height: 130%;
-                    letter-spacing: 2%;
-
-                }
-
-                button {
-                    color: #fff;
-                    background: rgba(197, 38, 44, 1);
-                    border-radius: 8px;
-                    padding-top: 13px;
-                    padding-right: 49px;
-                    padding-bottom: 13px;
-                    padding-left: 49px;
-
-                }
-            }
-        }
+  .container {
+    padding: 175px 0;
+    @media (max-width: 992px) {
+      padding: vh(100) 0;
     }
 
+    .inner {
+      @include responsive_padding;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      @media (max-width: 576px) {
+        flex-direction: column;
+      }
 
+      .right_section {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        justify-content: flex-start;
+        @media (max-width: 576px) {
+          width: 100%;
+          margin-top: rem(50);
+        }
+
+        .trip_video {
+          width: 100%;
+        }
+      }
+
+      .left_section {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 30px;
+        padding-right: vw(150);
+        @media (max-width: 1200px) {
+          padding-right: vw(30);
+        }
+        @media (max-width: 576px) {
+          width: 100%;
+          justify-content: center;
+          text-align: center;
+          align-items: center;
+        }
+
+        .desc_text {
+          color: #fff;
+          font-weight: 600;
+          font-size: clamp(1vw, 4vw, 55px);
+          line-height: 130%;
+          letter-spacing: 2%;
+        }
+
+        button {
+          color: #fff;
+          background: rgba(197, 38, 44, 1);
+          border-radius: 8px;
+          padding-top: 13px;
+          padding-right: 49px;
+          padding-bottom: 13px;
+          padding-left: 49px;
+        }
+      }
+    }
+  }
 }

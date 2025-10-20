@@ -130,7 +130,7 @@ export default function MultiStepForm() {
   };
 
   return (
-    <div className="form" style={{ maxWidth: "530px" }}>
+    <div className="form" >
       
       <div className="form-header">
         <div className="steps-indicator">

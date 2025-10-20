@@ -1,0 +1,92 @@
+@use "./functions/Functions.scss" as *;
+@use "./functions/Mixins.scss" as *;
+
+.why_us_section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: rem(90);
+  align-self: stretch;
+  .inner_why_us_section {
+    width: 100%;
+    display: flex;
+    // padding: 50px 80px 80px 80px;
+    padding-top: vh(50);
+    padding-bottom: vh(80);
+    @include responsive_padding;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: rem(90);
+    @media (max-width: 992px) {
+      gap: rem(0);
+    }
+
+    .why_us_wrapper {
+      width: 100%;
+      background-size: cover;
+      background-position: top;
+      height: vh(606);
+      @media (max-width: 1200px) {
+        height: vh(406);
+      }
+      @media (max-width: 992px) {
+        height: auto;
+      }
+      .why_us_wrapper_items {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        flex: 1 0 0;
+        align-self: stretch;
+        height: 100%;
+        flex-wrap: wrap;
+        .why_us_wrapper_item {
+          display: flex;
+          //   padding: 80px 50px;
+          padding: rem(80) rem(50);
+          flex-direction: column;
+          justify-content: flex-end;
+          align-items: center;
+          gap: 10px;
+          flex: 1 0 0;
+          align-self: stretch;
+          @media (max-width: 576px) {
+            padding: rem(40) rem(25);
+            width: 50%;
+          }
+
+          .item_container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: rem(25);
+            align-self: stretch;
+            .icon {
+              width: rem(150);
+              height: rem(150);
+              @media (max-width: 576px) {
+                width: rem(75);
+                height: rem(75);
+              }
+
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+            .info {
+              color: var(--input_dark_gray, #444);
+              text-align: center;
+
+              font-style: normal;
+              font-weight: 500;
+              line-height: 130%; /* 31.2px */
+              letter-spacing: 0.48px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

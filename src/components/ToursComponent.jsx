@@ -22,7 +22,7 @@ function BookTrip() {
                 <div className="tour_card">
                   <div className="tour_image tour_image_1">
                     <a href="#">
-                      <img src='src/assets/images/tours/1.png' alt="Tour 1" />
+                      <img src='/src/assets/images/tours/1.png' alt="Tour 1" />
                     </a>
                   </div>
                   <div className="tour_info">
@@ -36,7 +36,7 @@ function BookTrip() {
                 <div className="tour_card">
                   <div className="tour_image tour_image_1">
                     <a href="#">
-                      <img src='src/assets/images/tours/2.png' alt="Tour 2" />
+                      <img src='/src/assets/images/tours/2.png' alt="Tour 2" />
                     </a>
                   </div>
                   <div className="tour_info">
@@ -51,7 +51,7 @@ function BookTrip() {
                 <div className="tour_card">
                   <div className="tour_image tour_image_1">
                     <a href="#">
-                      <img src='src/assets/images/tours/3.png' alt="Tour 3" />
+                      <img src='/src/assets/images/tours/3.png' alt="Tour 3" />
                     </a>
                   </div>
                   <div className="tour_info">
