@@ -5,24 +5,26 @@ import { getToursData, getServiceData } from "../api/index";
 import LanguageSwitcher from "./LanguageSwitcher";
 import "../assets/styles/Header.scss";
 import logoImage from "/logo.png";
-
-
+import { translations } from "../translations";
 export default function Header() {
   const { lang, t } = useLanguage();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isMobileToursDropdownOpen, setIsMobileToursDropdownOpen] = useState(false);
-  const [isMobileServicesDropdownOpen, setIsMobileServicesDropdownOpen] = useState(false);
+  const [isMobileToursDropdownOpen, setIsMobileToursDropdownOpen] =
+    useState(false);
+  const [isMobileServicesDropdownOpen, setIsMobileServicesDropdownOpen] =
+    useState(false);
   const [tours, setTours] = useState([]);
   const [services, setServices] = useState([]);
   const [toursLoading, setToursLoading] = useState(true);
   const [servicesLoading, setServicesLoading] = useState(true);
 
   // Проверяем, находимся ли мы на главной странице
-  const isHomePage = location.pathname === `/${lang}` || location.pathname === '/';
+  const isHomePage =
+    location.pathname === `/${lang}` || location.pathname === "/";
 
   // Создаем класс для header с условным добавлением класса 'home'
-  const headerClass = `header${isHomePage ? ' home' : ''}`;
+  const headerClass = `header${isHomePage ? " home" : ""}`;
 
   // Загрузка туров для выпадающего меню
   useEffect(() => {
@@ -33,7 +35,7 @@ export default function Header() {
         const toursArray = toursData?.data || toursData || [];
         setTours(toursArray.slice(0, 5)); // Ограничиваем до 5 туров в меню
       } catch (error) {
-        console.error('Error fetching tours for menu:', error);
+        console.error("Error fetching tours for menu:", error);
         setTours([]);
       } finally {
         setToursLoading(false);
@@ -49,10 +51,12 @@ export default function Header() {
       try {
         setServicesLoading(true);
         const servicesData = await getServiceData(lang);
-        const servicesArray = Array.isArray(servicesData) ? servicesData : (servicesData?.data || []);
-        setServices(servicesArray.slice(0, 16)); 
+        const servicesArray = Array.isArray(servicesData)
+          ? servicesData
+          : servicesData?.data || [];
+        setServices(servicesArray.slice(0, 16));
       } catch (error) {
-        console.error('Error fetching services for menu:', error);
+        console.error("Error fetching services for menu:", error);
         setServices([]);
       } finally {
         setServicesLoading(false);
@@ -87,14 +91,14 @@ export default function Header() {
   // Отключаем/включаем скролл страницы при открытии/закрытии меню
   useEffect(() => {
     if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
 
     // Cleanup при размонтировании компонента
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isMobileMenuOpen]);
 
@@ -108,7 +112,7 @@ export default function Header() {
   // Закрываем меню при нажатии Escape
   useEffect(() => {
     const handleEscape = (event) => {
-      if (event.key === 'Escape') {
+      if (event.key === "Escape") {
         setIsMobileMenuOpen(false);
         setIsMobileToursDropdownOpen(false);
         setIsMobileServicesDropdownOpen(false);
@@ -116,16 +120,20 @@ export default function Header() {
     };
 
     if (isMobileMenuOpen) {
-      document.addEventListener('keydown', handleEscape);
+      document.addEventListener("keydown", handleEscape);
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener("keydown", handleEscape);
     };
   }, [isMobileMenuOpen]);
 
+  if (!lang) return null;
+
+  const slugs = translations[lang]?.routes || {};
+
   return (
-    <header className={headerClass} >
+    <header className={headerClass}>
       <div className="container">
         <div className="row">
           <div className="inner">
@@ -136,89 +144,115 @@ export default function Header() {
             </div>
 
             <div className="right_section">
-              <div className={`nav_and_lang ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+              <div
+                className={`nav_and_lang ${
+                  isMobileMenuOpen ? "mobile-open" : ""
+                }`}
+              >
                 <nav>
-                  <Link to={`/${lang}`} onClick={closeMobileMenu}>{t("header.home")}</Link>
-                  <Link to={`/${lang}/about-us`} onClick={closeMobileMenu}>{t("header.about")}</Link>  
-                  
-                  {/* Services dropdown menu */}
+                  <Link to={`/${lang}`} onClick={closeMobileMenu}>
+                    {t("header.home")}
+                  </Link>
+
+                  <Link
+                    to={`/${lang}/${slugs.about || "about-us"}`}
+                    onClick={closeMobileMenu}
+                  >
+                    {t("header.about")}
+                  </Link>
+                  {/* Services dropdown */}
                   <div className="nav-item dropdown">
                     <div className="dropdown-trigger">
-                      <Link to={`#services`} onClick={closeMobileMenu}>{t("header.services", "Services")}</Link>
-                      <span 
-                        className={`dropdown-arrow ${isMobileServicesDropdownOpen ? 'open' : ''}`}
+                      <Link
+                        to="#"
+                        onClick={closeMobileMenu}
+                      >
+                        {t("header.services")}
+                      </Link>
+                      <span
+                        className={`dropdown-arrow ${
+                          isMobileServicesDropdownOpen ? "open" : ""
+                        }`}
                         onClick={toggleMobileServicesDropdown}
                       >
-                        <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
+                        ▼
                       </span>
                     </div>
-                    
-                    <div className={`dropdown-menu ${isMobileServicesDropdownOpen ? 'mobile-open' : ''}`}>
+
+                    <div
+                      className={`dropdown-menu ${
+                        isMobileServicesDropdownOpen ? "mobile-open" : ""
+                      }`}
+                    >
                       {servicesLoading ? (
                         <div className="dropdown-item">Loading...</div>
                       ) : services.length > 0 ? (
-                        <>                       
-                          {services.map((service,index) => (   
-                                                     
-                            <Link 
-                              key={index} 
-                              to={`/${lang}/services/${service.slug || service.id}`} 
-                              className="dropdown-item"
-                              onClick={closeMobileMenu}
-                            >
-                              {service.title || `Service ${service.id}`}
-                            </Link>
-                          ))}
-                          
-                        </>
+                        services.map((service, i) => (
+                          <Link
+                            key={i}
+                            to={`/${lang}/${slugs.services || "services"}/${
+                              service.slug || service.id
+                            }`}
+                            className="dropdown-item"
+                            onClick={closeMobileMenu}
+                          >
+                            {service.title || `Service ${service.id}`}
+                          </Link>
+                        ))
                       ) : (
-                        <Link 
-                          to={`/${lang}/services`} 
+                        <Link
+                          to={`/${lang}/${slugs.services || "services"}`}
                           className="dropdown-item"
                           onClick={closeMobileMenu}
                         >
-                          {t("header.services", "Services")}
+                          {t("header.services")}
                         </Link>
                       )}
                     </div>
                   </div>
-                  
-                  {/* Tours dropdown menu */}
+
+                  {/* --- Tours dropdown --- */}
                   <div className="nav-item dropdown">
                     <div className="dropdown-trigger">
-                      <Link to={`/${lang}/tours`} onClick={closeMobileMenu}>{t("header.tours")}</Link>
-                      <span 
-                        className={`dropdown-arrow ${isMobileToursDropdownOpen ? 'open' : ''}`}
+                      <Link
+                        to={`/${lang}/${slugs.tours || "tours"}`}
+                        onClick={closeMobileMenu}
+                      >
+                        {t("header.tours")}
+                      </Link>
+                      <span
+                        className={`dropdown-arrow ${
+                          isMobileToursDropdownOpen ? "open" : ""
+                        }`}
                         onClick={toggleMobileToursDropdown}
                       >
-                        <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
+                        ▼
                       </span>
                     </div>
-                    
-                    <div className={`dropdown-menu ${isMobileToursDropdownOpen ? 'mobile-open' : ''}`}>
+
+                    <div
+                      className={`dropdown-menu ${
+                        isMobileToursDropdownOpen ? "mobile-open" : ""
+                      }`}
+                    >
                       {toursLoading ? (
                         <div className="dropdown-item">Loading...</div>
                       ) : tours.length > 0 ? (
-                        <>
-                          {tours.map((tour) => (
-                            <Link 
-                              key={tour.id} 
-                              to={`/${lang}/tours/${tour.slug || tour.id}`} 
-                              className="dropdown-item"
-                              onClick={closeMobileMenu}
-                            >
-                              {tour.title || `Tour ${tour.id}`}
-                            </Link>
-                          ))}
-                          
-                        </>
+                        tours.map((tour) => (
+                          <Link
+                            key={tour.id}
+                            to={`/${lang}/${slugs.tours || "tours"}/${
+                              tour.slug || tour.id
+                            }`}
+                            className="dropdown-item"
+                            onClick={closeMobileMenu}
+                          >
+                            {tour.title || `Tour ${tour.id}`}
+                          </Link>
+                        ))
                       ) : (
-                        <Link 
-                          to={`/${lang}/tours`} 
+                        <Link
+                          to={`/${lang}/${slugs.tours || "tours"}`}
                           className="dropdown-item"
                           onClick={closeMobileMenu}
                         >
@@ -227,10 +261,22 @@ export default function Header() {
                       )}
                     </div>
                   </div>
-                  
-                  <Link to={`/${lang}/faq`} onClick={closeMobileMenu}>{t("header.faq")}</Link>
-                  <Link to={`/${lang}/contacts`} onClick={closeMobileMenu}>{t("header.contacts")}</Link>
+
+                  <Link
+                    to={`/${lang}/${slugs.faq || "faq"}`}
+                    onClick={closeMobileMenu}
+                  >
+                    {t("header.faq")}
+                  </Link>
+
+                  <Link
+                    to={`/${lang}/${slugs.contacts || "contacts"}`}
+                    onClick={closeMobileMenu}
+                  >
+                    {t("header.contacts")}
+                  </Link>
                 </nav>
+
                 <LanguageSwitcher />
               </div>
 
@@ -240,9 +286,21 @@ export default function Header() {
               )}
 
               <div className="burger_menu">
-                <div className={`burger_icon ${isMobileMenuOpen ? 'active' : ''}`} onClick={toggleMobileMenu}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4.5 6C4.5 5.86739 4.55268 5.74021 4.64645 5.64645C4.74021 5.55268 4.86739 5.5 5 5.5H19C19.1326 5.5 19.2598 5.55268 19.3536 5.64645C19.4473 5.74021 19.5 5.86739 19.5 6C19.5 6.13261 19.4473 6.25979 19.3536 6.35355C19.2598 6.44732 19.1326 6.5 19 6.5H5C4.86739 6.5 4.74021 6.44732 4.64645 6.35355C4.55268 6.25979 4.5 6.13261 4.5 6ZM4.5 12C4.5 11.8674 4.55268 11.7402 4.64645 11.6464C4.74021 11.5527 4.86739 11.5 5 11.5H19C19.1326 11.5 19.2598 11.5527 19.3536 11.6464C19.4473 11.7402 19.5 11.8674 19.5 12C19.5 12.1326 19.4473 12.2598 19.3536 12.3536C19.2598 12.4473 19.1326 12.5 19 12.5H5C4.86739 12.5 4.74021 12.4473 4.64645 12.3536C4.55268 12.2598 4.5 12.1326 4.5 12ZM5 17.5C4.86739 17.5 4.74021 17.5527 4.64645 17.6464C4.55268 17.7402 4.5 17.8674 4.5 18C4.5 18.1326 4.55268 18.2598 4.64645 18.3536C4.74021 18.4473 4.86739 18.5 5 18.5H19C19.1326 18.5 19.2598 18.4473 19.3536 18.3536C19.4473 18.2598 19.5 18.1326 19.5 18C19.5 17.8674 19.4473 17.7402 19.3536 17.6464C19.2598 17.5527 19.1326 17.5 19 17.5H5Z" fill="white" />
+                <div
+                  className={`burger_icon ${isMobileMenuOpen ? "active" : ""}`}
+                  onClick={toggleMobileMenu}
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M4.5 6C4.5 5.86739 4.55268 5.74021 4.64645 5.64645C4.74021 5.55268 4.86739 5.5 5 5.5H19C19.1326 5.5 19.2598 5.55268 19.3536 5.64645C19.4473 5.74021 19.5 5.86739 19.5 6C19.5 6.13261 19.4473 6.25979 19.3536 6.35355C19.2598 6.44732 19.1326 6.5 19 6.5H5C4.86739 6.5 4.74021 6.44732 4.64645 6.35355C4.55268 6.25979 4.5 6.13261 4.5 6ZM4.5 12C4.5 11.8674 4.55268 11.7402 4.64645 11.6464C4.74021 11.5527 4.86739 11.5 5 11.5H19C19.1326 11.5 19.2598 11.5527 19.3536 11.6464C19.4473 11.7402 19.5 11.8674 19.5 12C19.5 12.1326 19.4473 12.2598 19.3536 12.3536C19.2598 12.4473 19.1326 12.5 19 12.5H5C4.86739 12.5 4.74021 12.4473 4.64645 12.3536C4.55268 12.2598 4.5 12.1326 4.5 12ZM5 17.5C4.86739 17.5 4.74021 17.5527 4.64645 17.6464C4.55268 17.7402 4.5 17.8674 4.5 18C4.5 18.1326 4.55268 18.2598 4.64645 18.3536C4.74021 18.4473 4.86739 18.5 5 18.5H19C19.1326 18.5 19.2598 18.4473 19.3536 18.3536C19.4473 18.2598 19.5 18.1326 19.5 18C19.5 17.8674 19.4473 17.7402 19.3536 17.6464C19.2598 17.5527 19.1326 17.5 19 17.5H5Z"
+                      fill="white"
+                    />
                   </svg>
                 </div>
               </div>

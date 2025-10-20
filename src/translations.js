@@ -23,7 +23,8 @@ export const translations = {
       about: "about-us",
       service: "services",
       tours: "tours",
-      faq: "faq"
+      faq: "faq",
+      contacts: "contacts",
     },
     common: {
       loading: "Loading...",
@@ -131,12 +132,13 @@ export const translations = {
       title: "Наши автомобили Autoport предлагают эксклюзивный комфорт вождения и подходят для любого случая - будь то VIP-лимузинный сервис, трансферы из аэропорта, свадьбы или крупные мероприятия. С нашими современными и роскошными автомобилями вы всегда будете путешествовать со стилем и расслаблением, пользуясь просторным салоном и современными удобствами. Будь то деловая поездка или отдых, Autoport Baku предлагает вам идеальное сочетание эксклюзивности, безопасности и комфорта для ваших поездок. Наш парк автомобилей Business и First Class состоит исключительно из автомобилей Mercedes-Benz.",
       passengers: "Пассажиров",
       pieces: "Мест для багажа",
-    },
-    routes: {
-      about: "o-nas",
-      service: "usluqi",
-      tours: "turi",
-      faq: "faq"
+    }, 
+    routes:{
+      about:"o-nas",
+      service:"usluqi",
+      tours:"turi",
+      faq:"faq",
+      contacts:"kontakty",
     },
     common: {
       loading: "Загрузка...",
