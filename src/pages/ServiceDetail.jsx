@@ -66,7 +66,7 @@ export default function ServiceDetail() {
                 />
                 <div className="error-container">
                     <p>{error || 'Service not found'}</p>
-                    <Link to={`/${lang}/services`} className="btn btn-primary">
+                    <Link to={getLocalizedPath(lang, 'services')} className="btn btn-primary">
                         {t('common.backToServices', 'Back to Services')}
                     </Link>
                 </div>
@@ -141,13 +141,13 @@ export default function ServiceDetail() {
                                 {/* Contact/Book Button */}
                                 <div className="service-actions">
                                     <Link 
-                                        to={`/${lang}/contacts`} 
+                                        to={getLocalizedPath(lang, 'contacts')} 
                                         className="btn btn-primary btn-large"
                                     >
                                         {t('service.bookNow', 'Book This Service')}
                                     </Link>
                                     <Link 
-                                        to={`/${lang}/services`} 
+                                        to={getLocalizedPath(lang, 'services')} 
                                         className="btn btn-secondary"
                                     >
                                         {t('service.backToServices', 'Back to Services')}

@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { translations } from "../translations";
 import { useNavigate, useLocation } from "react-router-dom";
+import { getToursData, getServiceData } from "../api/index";
 
 const LanguageContext = createContext();
 
@@ -8,7 +9,7 @@ export function LanguageProvider({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [lang, setLang] = useState("en");
+  const [lang, setLang] = useState(null);
 
   // ✅ URL-dən dili oxu (ilk açılışda)
   useEffect(() => {
@@ -22,50 +23,35 @@ export function LanguageProvider({ children }) {
   }, []);
 
   // ✅ Dili dəyişəndə URL-ni yenilə
-  const changeLang = async (newLang) => {
-    setLang(newLang);
-    const pathParts = location.pathname.split("/").filter(Boolean);
+  const changeLang = (newLang) => {
+  if (!lang) return; // lang undefined olsa çıx
 
-    // Проверяем, находимся ли мы на странице конкретного тура
-    if (pathParts.length >= 3 && pathParts[1] === 'tours' && pathParts[2]) {
-      const currentSlug = pathParts[2];
-      
-      try {
-        // Импортируем API функцию для получения туров
-        const { getToursData } = await import('../api/index');
-        const toursData = await getToursData(newLang);
-        const tours = toursData.data || toursData || [];
-        
-        // Ищем соответствующий тур на новом языке
-        const cleanSlug = currentSlug.replace(/-ru$|-(en|eng)$/, '');
-        const targetTour = tours.find(tour => {
-          const tourCleanSlug = tour.slug.replace(/-ru$|-(en|eng)$/, '');
-          return tourCleanSlug === cleanSlug;
-        });
+  const pathParts = location.pathname.split("/").filter(Boolean); // ["en", "about-us"]
+  const currentLang = pathParts[0];
 
-        if (targetTour) {
-          // Найден соответствующий тур - переходим к нему
-          navigate(`/${newLang}/tours/${targetTour.slug}`, { replace: true });
-          return;
-        }
-      } catch (error) {
-        console.error('Error finding tour for new language:', error);
-      }
-      
-      // Если не нашли тур, переходим на список туров
-      navigate(`/${newLang}/tours`, { replace: true });
-      return;
+  if (!currentLang || !translations[currentLang]) return; // lang doğru deyilse çıx
+
+  // Slug mapping
+  const currentSlugs = translations[currentLang].slugs || {};
+  const newSlugs = translations[newLang]?.slugs || {};
+
+  const slugMap = {};
+  Object.keys(currentSlugs).forEach((key) => {
+    if (newSlugs[key]) {
+      slugMap[currentSlugs[key]] = newSlugs[key];
     }
+  });
 
-    // Для остальных страниц - стандартная логика
-    if (["en", "ru"].includes(pathParts[0])) {
-      pathParts[0] = newLang; // mövcud dili dəyiş
-    } else {
-      pathParts.unshift(newLang); // yoxdursa, əlavə et
-    }
+  // Dili dəyiş
+  pathParts[0] = newLang;
 
-    navigate(`/${pathParts.join("/")}${location.search}`, { replace: true });
-  };
+  // Slug-u dəyiş
+  if (pathParts[1] && slugMap[pathParts[1]]) {
+    pathParts[1] = slugMap[pathParts[1]];
+  }
+
+  navigate(`/${pathParts.join("/")}${location.search}`, { replace: true });
+};
 
   // 🔤 Tərcümə funksiyası
   const t = (keyPath, options = {}) => {

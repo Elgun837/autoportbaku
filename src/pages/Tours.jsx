@@ -169,7 +169,7 @@ export default function Tours() {
                                             )}
                                         </div>
                                         <Link
-                                            to={`/${lang}/tours/${tour.slug}`}
+                                            to={getLocalizedPath(lang, 'tours', tour.slug)}
                                             className="btn btn-primary"
                                         >
                                             {t('tours.learnMore', 'Learn More')}

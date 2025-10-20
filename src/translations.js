@@ -1,5 +1,11 @@
 export const translations = {
   en: {
+    routes:{
+      about:"about-us",
+      service:"services",
+      tours:"tours",
+      faq:"faq"
+    },
     common: {
       loading: "Loading...",
       error: "Error loading data. Please try again.",
@@ -50,9 +56,9 @@ export const translations = {
     tours: {
       title: "Exclusive mobility at the highest level",
       learnMore: "Learn More",
-
       subtitle:
         "Do you have any questions or would you like to book a trip? Our team is always happy to help. Contact us by phone, email or using our contact form - we will get back to you immediately.",
+      slug: "tours",
     },
     ToursComponent: {
       subtitle: "Autoport short trip: Exclusive, comfortable and safe on the road",
@@ -76,9 +82,11 @@ export const translations = {
       duration: "Duration",
       cancellation: "Cancellation",
       bookingLink: "Book a tour",
+
     },
     services: {
       title: "Our Services",
+      slug: "services",
     },
     footer: {
       company: "Company",
@@ -91,6 +99,12 @@ export const translations = {
 
   },
   ru: {
+     routes:{
+      about:"o-nas",
+      service:"usluqi",
+      tours:"turi",
+      faq:"faq"
+    },
     common: {
       loading: "Загрузка...",
       error: "Ошибка загрузки данных. Попробуйте снова.",
@@ -146,6 +160,7 @@ export const translations = {
       learnMore: "Узнать больше",
       subtitle:
         "У вас есть вопросы или вы хотите забронировать поездку? Наша команда всегда рада помочь. Свяжитесь с нами по телефону, электронной почте или через нашу контактную форму - мы свяжемся с вами немедленно.",
+      slug: "turi",
     },
     ToursComponent: {
       subtitle: "Короткая поездка Autoport: эксклюзивно, комфортно и безопасно в дороге",
@@ -169,6 +184,7 @@ export const translations = {
     },
     services: {
       title: "Наши услуги",
+      slug: "servisy",
     },
     footer: {
       company: "Компания",

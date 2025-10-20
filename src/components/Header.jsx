@@ -30,7 +30,7 @@ export default function Header() {
       try {
         setToursLoading(true);
         const toursData = await getToursData(lang);
-        const toursArray = toursData.data || toursData || [];
+        const toursArray = toursData?.data || toursData || [];
         setTours(toursArray.slice(0, 5)); // Ограничиваем до 5 туров в меню
       } catch (error) {
         console.error('Error fetching tours for menu:', error);
@@ -49,7 +49,7 @@ export default function Header() {
       try {
         setServicesLoading(true);
         const servicesData = await getServiceData(lang);
-        const servicesArray = Array.isArray(servicesData) ? servicesData : (servicesData.data || []);
+        const servicesArray = Array.isArray(servicesData) ? servicesData : (servicesData?.data || []);
         setServices(servicesArray.slice(0, 16)); 
       } catch (error) {
         console.error('Error fetching services for menu:', error);
@@ -160,10 +160,10 @@ export default function Header() {
                         <div className="dropdown-item">Loading...</div>
                       ) : services.length > 0 ? (
                         <>                       
-                          {services.map((service) => (   
+                          {services.map((service,index) => (   
                                                      
                             <Link 
-                              key={service.id} 
+                              key={index} 
                               to={`/${lang}/services/${service.slug || service.id}`} 
                               className="dropdown-item"
                               onClick={closeMobileMenu}

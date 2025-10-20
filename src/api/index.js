@@ -1,123 +1,128 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://admin.autoportbaku.com/api/", 
+  baseURL: "https://admin.autoportbaku.com/api/",
 });
 
 const token = "KBIzDStUcIw77b4RwpPDqTuIH2v2boErBf7lCTOQFAAM5xV92T5kWdK9afg8DgEx2HTRxc8db2YJDmvZwzZ4SjKH4ClC3AyviAQ1oOWMvhg9F9HGLPHESsGZADEGj62KrDYyzp7fUtqIZ4hbCH9vk1BTesghBrIbK31O";
 
-
-export const getHomeData = async (lang = "en") => {
-  const { data } = await api.get("/services", {
-    headers: {
-      "contentLanguage": lang,
-      "token": token,
-    },
-  });
-  
-  return data;
-};
-
-export const getSettingsData = async (lang = "en") => {
-  const { data } = await api.get("/settings", {
-    headers: {
-      "contentLanguage": lang,
-      "token": token,
-    },
-  });
-  
-  return data;
-};
-export const getPartnersData = async (lang = "en") => {
-  const { data } = await api.get("/partners", {
-    headers: {
-      "contentLanguage": lang,
-      "token": token,
-    },
-  });
-  
-  return data;
-};
-export const getToursData = async (lang = "en") => {
-  const { data } = await api.get("/tours", {
-    headers: {
-      "contentLanguage": lang,
-      "token": token,
-    },
-  });
- 
-  return data;
-};
-
-export const getTourBySlug = async (slug, lang = "en") => {
+// Home
+export const getHomeData = async (lang) => {
+  if (!lang) return null;
   try {
-    // Получаем все туры из API
-    const allTours = await getToursData(lang);
-    const tours = allTours.data || allTours || [];   
-    
-    // Ищем тур по slug
-    const tour = tours.find(t => t.slug === slug);   
-    if (tour) {       
-      return { data: tour };
-    }
-    
-    // Если не найден по slug, попробуем по ID
-    const tourById = tours.find(t => t.id === slug || String(t.id) === slug);
-    if (tourById) {
-      return { data: tourById };
-    }
-    
-    throw new Error(`Tour not found with slug: ${slug}`);
+    const { data } = await api.get("/services", {
+      headers: { contentLanguage: lang, token },
+    });
+    return data;
   } catch (error) {
-    console.error('Error in getTourBySlug:', error);
-    throw error;
+    console.error("getHomeData xətası:", error);
+    return null;
   }
 };
 
-
-export const getFaqsData = async (lang = "en") => {
-  const { data } = await api.get("/faq", {
-    headers: {
-      "contentLanguage": lang,
-      "token": token,
-    },
-  });
-  return data;
-};
-
-export const getServiceData = async (lang = "en") => {
-
-  const { data } = await api.get("/services", {
-    headers: {
-      "contentLanguage": lang,
-      "token": token,
-    },
-  });
-  return data;
-};
-
-export const getServiceBySlug = async (slug, lang = "en") => {
+// Settings
+export const getSettingsData = async (lang) => {
+  if (!lang) return null;
   try {
-    // Получаем все сервисы из API
-    const allServices = await getServiceData(lang);
-    const services = Array.isArray(allServices) ? allServices : (allServices.data || []);   
-    
-    // Ищем сервис по slug
-    const service = services.find(s => s.slug === slug);   
-    if (service) {       
-      return { data: service };
-    }
-    
-    // Если не найден по slug, попробуем по ID
-    const serviceById = services.find(s => s.id === slug || String(s.id) === slug);
-    if (serviceById) {
-      return { data: serviceById };
-    }
-    
-    throw new Error(`Service not found with slug: ${slug}`);
+    const { data } = await api.get("/settings", {
+      headers: { contentLanguage: lang, token },
+    });
+    return data;
   } catch (error) {
-    console.error('Error in getServiceBySlug:', error);
-    throw error;
+    console.error("getSettingsData xətası:", error);
+    return null;
+  }
+};
+
+// Partners
+export const getPartnersData = async (lang) => {
+  if (!lang) return null;
+  try {
+    const { data } = await api.get("/partners", {
+      headers: { contentLanguage: lang, token },
+    });
+    return data;
+  } catch (error) {
+    console.error("getPartnersData xətası:", error);
+    return null;
+  }
+};
+
+// Tours
+export const getToursData = async (lang) => {
+  if (!lang) return null;
+  try {
+    const { data } = await api.get("/tours", {
+      headers: { contentLanguage: lang, token },
+    });
+    return data;
+  } catch (error) {
+    console.error("getToursData xətası:", error);
+    return null;
+  }
+};
+
+// Tour by slug
+export const getTourBySlug = async (slug, lang) => {
+  if (!lang) return null;
+  try {
+    const allTours = await getToursData(lang);
+    const tours = allTours?.data || allTours || [];
+
+    let tour = tours.find((t) => t.slug === slug);
+    if (!tour) tour = tours.find((t) => t.id === slug || String(t.id) === slug);
+
+    if (!tour) throw new Error(`Tour not found with slug: ${slug}`);
+    return { data: tour };
+  } catch (error) {
+    console.error("getTourBySlug xətası:", error);
+    return null;
+  }
+};
+
+// FAQ
+export const getFaqsData = async (lang) => {
+  if (!lang) return null;
+  try {
+    const { data } = await api.get("/faq", {
+      headers: { contentLanguage: lang, token },
+    });
+    return data;
+  } catch (error) {
+    console.error("getFaqsData xətası:", error);
+    return null;
+  }
+};
+
+// Services
+export const getServiceData = async (lang) => {
+  if (!lang) return null;
+  try {
+    const { data } = await api.get("/services", {
+      headers: { contentLanguage: lang, token },
+    });
+    return data;
+  } catch (error) {
+    console.error("getServiceData xətası:", error);
+    return null;
+  }
+};
+
+// Service by slug
+export const getServiceBySlug = async (slug, lang) => {
+  if (!lang) return null;
+  try {
+    const allServices = await getServiceData(lang);
+    const services = Array.isArray(allServices) ? allServices : allServices?.data || [];
+
+    let service = services.find((s) => s.slug === slug);
+    if (!service) service = services.find((s) => s.id === slug || String(s.id) === slug);
+
+    if (!service) throw new Error(`Service not found with slug: ${slug}`);
+    return { data: service };
+  } catch (error) {
+    console.error("getServiceBySlug xətası:", error);
+    return null;
   }
 };
 
