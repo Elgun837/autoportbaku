@@ -24,35 +24,33 @@ export function LanguageProvider({ children }) {
 
   // ✅ Dili dəyişəndə URL-ni yenilə
   const changeLang = (newLang) => {
-  if (!lang) return; // lang undefined olsa çıx
+    if (!lang || newLang === lang) return;
 
-  const pathParts = location.pathname.split("/").filter(Boolean); // ["en", "about-us"]
-  const currentLang = pathParts[0];
+    const pathParts = location.pathname.split("/").filter(Boolean);
+    const currentLang = pathParts[0];
 
-  if (!currentLang || !translations[currentLang]) return; // lang doğru deyilse çıx
+    if (!currentLang || !translations[currentLang]) return;
 
-  // Slug mapping
-  const currentSlugs = translations[currentLang].slugs || {};
-  const newSlugs = translations[newLang]?.slugs || {};
+    // ✅ Use routes instead of slugs
+    const currentRoutes = translations[currentLang].routes || {};
+    const newRoutes = translations[newLang]?.routes || {};
 
-  const slugMap = {};
-  Object.keys(currentSlugs).forEach((key) => {
-    if (newSlugs[key]) {
-      slugMap[currentSlugs[key]] = newSlugs[key];
+    // Həmin slug hansı açara uyğun gəlir
+    const slugKey = Object.keys(currentRoutes).find(
+      (key) => currentRoutes[key] === pathParts[1]
+    );
+
+    // dil hissəsini dəyiş
+    pathParts[0] = newLang;
+
+    // slug varsa yeni dildə dəyiş
+    if (slugKey && newRoutes[slugKey]) {
+      pathParts[1] = newRoutes[slugKey];
     }
-  });
 
-  // Dili dəyiş
-  pathParts[0] = newLang;
-
-  // Slug-u dəyiş
-  if (pathParts[1] && slugMap[pathParts[1]]) {
-    pathParts[1] = slugMap[pathParts[1]];
-  }
-
-  navigate(`/${pathParts.join("/")}${location.search}`, { replace: true });
-};
-
+    setLang(newLang);
+    navigate(`/${pathParts.join("/")}${location.search}`, { replace: true });
+  };
   // 🔤 Tərcümə funksiyası
   const t = (keyPath, options = {}) => {
     const keys = keyPath.split(".");

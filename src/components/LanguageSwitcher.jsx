@@ -1,38 +1,26 @@
 import { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { useNavigate, useLocation } from "react-router-dom";
 import "../assets/styles/Lang.scss";
 
 export default function LanguageSwitcher() {
   const { lang, changeLang } = useLanguage();
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
+
   const languages = [
     { code: "en", label: "English", flag: "/flags/en.png" },
     { code: "ru", label: "Русский", flag: "/flags/ru.png" },
   ];
+
   const current = languages.find((l) => l.code === lang) || languages[0];
-  
+
   const handleSelect = (code) => {
-    changeLang(code);
     setOpen(false);
-    
-    const currentPath = location.pathname;
-    
-    const segments = currentPath.split("/").filter(Boolean);
-
-    if (segments.length > 0 && ["en", "ru"].includes(segments[0])) {
-      segments[0] = code;
-    } else {
-      segments.unshift(code);
+    if (code !== lang) {
+      // Burada sadəcə changeLang çağırırıq
+      // URL-i tam düzgün slug mapping ilə changeLang özü dəyişdirəcək
+      changeLang(code);
     }
-
-    const newPath = "/" + segments.join("/");
-    navigate(newPath);
   };
-
- 
 
   return (
     <div className="lang_switch">
@@ -61,10 +49,7 @@ export default function LanguageSwitcher() {
           {languages
             .filter((l) => l.code !== lang)
             .map((l) => (
-              <button
-                key={l.code}
-                onClick={() => handleSelect(l.code)}
-              >
+              <button key={l.code} onClick={() => handleSelect(l.code)}>
                 <img src={l.flag} alt={l.label} />
               </button>
             ))}

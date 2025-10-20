@@ -4,7 +4,8 @@ export const translations = {
       about:"about-us",
       service:"services",
       tours:"tours",
-      faq:"faq"
+      faq:"faq",
+      contacts:"contacts"
     },
     common: {
       loading: "Loading...",
@@ -99,7 +100,8 @@ export const translations = {
       about:"o-nas",
       service:"usluqi",
       tours:"turi",
-      faq:"faq"
+      faq:"faq",
+      contacts:"kontakty"
     },
     common: {
       loading: "Загрузка...",
