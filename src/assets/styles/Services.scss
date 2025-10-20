@@ -16,11 +16,13 @@
     display: flex;
 
     .inner {
+      width: 100%;
       .services_heading * {
         // font-size: clamp(1vw, 2.5rem, 8vw);
         margin-bottom: rem(60);
       }
       .services_items {
+        width: 100%;
         padding-right: vw(50);
         padding-left: vw(50);
         display: flex;
