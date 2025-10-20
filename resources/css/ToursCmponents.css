@@ -42,7 +42,7 @@
 }
 .tours_section_main .inner .tours_grid .tour_card .tour_image {
   display: flex;
-  height: 319px;
+  height: auto;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
