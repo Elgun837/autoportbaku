@@ -33,7 +33,7 @@ export default function Services() {
                   <div className="icon">
                     <img src={service.main_image} alt={service.title} />
                   </div>
-                  <div className="service_title">{service.title}</div>
+                  <h6 className="service_title">{service.title}</h6>
                 </Link>
               ))}
             </div>

@@ -1,0 +1,235 @@
+@charset "UTF-8";
+.service-detail {
+  padding: 60px 0;
+}
+.service-detail .service-detail-content {
+  max-width: 100%;
+  width: 100%;
+}
+.service-detail .service-detail-content .service-main-image {
+  margin-bottom: 40px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+.service-detail .service-detail-content .service-main-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+}
+@media (max-width: 768px) {
+  .service-detail .service-detail-content .service-main-image img {
+    height: 250px;
+  }
+}
+.service-detail .service-detail-content .service-info .service-description {
+  margin-bottom: 40px;
+}
+.service-detail .service-detail-content .service-info .service-description .service-description-html {
+  line-height: 1.8;
+  color: #333;
+}
+.service-detail .service-detail-content .service-info .service-description .service-description-html h1, .service-detail .service-detail-content .service-info .service-description .service-description-html h2, .service-detail .service-detail-content .service-info .service-description .service-description-html h3, .service-detail .service-detail-content .service-info .service-description .service-description-html h4, .service-detail .service-detail-content .service-info .service-description .service-description-html h5, .service-detail .service-detail-content .service-info .service-description .service-description-html h6 {
+  margin: 30px 0 20px 0;
+  color: #2c3e50;
+}
+.service-detail .service-detail-content .service-info .service-description .service-description-html h1:first-child, .service-detail .service-detail-content .service-info .service-description .service-description-html h2:first-child, .service-detail .service-detail-content .service-info .service-description .service-description-html h3:first-child, .service-detail .service-detail-content .service-info .service-description .service-description-html h4:first-child, .service-detail .service-detail-content .service-info .service-description .service-description-html h5:first-child, .service-detail .service-detail-content .service-info .service-description .service-description-html h6:first-child {
+  margin-top: 0;
+}
+.service-detail .service-detail-content .service-info .service-description .service-description-html h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.service-detail .service-detail-content .service-info .service-description .service-description-html p {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+.service-detail .service-detail-content .service-info .service-description .service-description-html ul, .service-detail .service-detail-content .service-info .service-description .service-description-html ol {
+  margin: 20px 0;
+  padding-left: 30px;
+}
+.service-detail .service-detail-content .service-info .service-description .service-description-html ul li, .service-detail .service-detail-content .service-info .service-description .service-description-html ol li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+.service-detail .service-detail-content .service-info .service-description .service-description-html strong {
+  color: #2c3e50;
+  font-weight: 600;
+}
+.service-detail .service-detail-content .service-info .service-description .service-description-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 20px;
+}
+.service-detail .service-detail-content .service-info .service-features {
+  margin-bottom: 40px;
+  padding: 30px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border-left: 4px solid #007bff;
+}
+.service-detail .service-detail-content .service-info .service-features h3 {
+  margin: 0 0 20px 0;
+  color: #2c3e50;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.service-detail .service-detail-content .service-info .service-features ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.service-detail .service-detail-content .service-info .service-features ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid #e9ecef;
+  position: relative;
+  padding-left: 25px;
+}
+.service-detail .service-detail-content .service-info .service-features ul li:last-child {
+  border-bottom: none;
+}
+.service-detail .service-detail-content .service-info .service-features ul li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  color: #28a745;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.service-detail .service-detail-content .service-info .service-pricing {
+  margin-bottom: 40px;
+  padding: 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  color: white;
+  text-align: center;
+}
+.service-detail .service-detail-content .service-info .service-pricing h3 {
+  margin: 0 0 20px 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.service-detail .service-detail-content .service-info .service-pricing .price-info .price {
+  font-size: 2.5rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 10px;
+}
+.service-detail .service-detail-content .service-info .service-pricing .price-info .price-note {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+.service-detail .service-detail-content .service-info .service-actions {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
+}
+@media (max-width: 768px) {
+  .service-detail .service-detail-content .service-info .service-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.service-detail .service-detail-content .service-info .service-actions .btn {
+  padding: 15px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  min-width: 200px;
+}
+.service-detail .service-detail-content .service-info .service-actions .btn.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+.service-detail .service-detail-content .service-info .service-actions .btn.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+.service-detail .service-detail-content .service-info .service-actions .btn.btn-secondary {
+  background: transparent;
+  color: #667eea;
+  border-color: #667eea;
+}
+.service-detail .service-detail-content .service-info .service-actions .btn.btn-secondary:hover {
+  background: #667eea;
+  color: white;
+  transform: translateY(-2px);
+}
+.service-detail .service-detail-content .service-info .service-actions .btn.btn-large {
+  padding: 18px 40px;
+  font-size: 1.2rem;
+}
+
+.loading-container, .error-container {
+  padding: 80px 20px;
+  text-align: center;
+}
+.loading-container .loading-spinner, .error-container .loading-spinner {
+  font-size: 1.2rem;
+  color: #666;
+}
+.loading-container p, .error-container p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 30px;
+}
+.loading-container .btn, .error-container .btn {
+  padding: 12px 24px;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+.loading-container .btn:hover, .error-container .btn:hover {
+  background: #0056b3;
+}
+
+@media (max-width: 992px) {
+  .service-detail {
+    padding: 40px 0;
+  }
+  .service-detail .service-detail-content .service-info .service-features, .service-detail .service-detail-content .service-info .service-pricing {
+    padding: 20px;
+  }
+  .service-detail .service-detail-content .service-info .service-actions {
+    margin-top: 30px;
+  }
+  .service-detail .service-detail-content .service-info .service-actions .btn {
+    min-width: 180px;
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+}
+@media (max-width: 576px) {
+  .service-detail {
+    padding: 30px 0;
+  }
+  .service-detail .service-detail-content .service-main-image {
+    margin-bottom: 30px;
+    border-radius: 8px;
+  }
+  .service-detail .service-detail-content .service-info .service-description .service-description-html h3 {
+    font-size: 1.3rem;
+  }
+  .service-detail .service-detail-content .service-info .service-description .service-description-html p {
+    font-size: 1rem;
+  }
+  .service-detail .service-detail-content .service-info .service-pricing .price-info .price {
+    font-size: 2rem;
+  }
+  .service-detail .service-detail-content .service-info .service-actions .btn {
+    min-width: 100%;
+    padding: 15px 20px;
+  }
+}/*# sourceMappingURL=ServiceDetail.css.map */

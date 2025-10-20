@@ -51,7 +51,7 @@ export default function Footer() {
                                     <img src="/logo_big.svg" alt="Logo" />
                                 </div>
                                 <div className="footer_menu">
-                                    <h3 className="footer_menu_title"> {t("footer.company")} </h3>
+                                    <h6 className="footer_menu_title"> {t("footer.company")} </h6>
                                     <ul className="footer_menu_list">
                                         <Link to={`/${lang}`}>{t("header.home")}</Link>
                                         <Link to={`/${lang}/about-us`} >{t("header.about")}</Link>
@@ -63,7 +63,7 @@ export default function Footer() {
                                     </ul>
                                 </div>
                                 <div className="footer_menu">
-                                    <h3 className="footer_menu_title"> {t("footer.contacts")} </h3>
+                                    <h6 className="footer_menu_title"> {t("footer.contacts")} </h6>
                                     <ul className="footer_menu_list">
                                         {loading ? (
                                             <li className="footer_link">Loading...</li>
@@ -95,7 +95,7 @@ export default function Footer() {
                                     </ul>
                                 </div>
                                 <div className="footer_menu">
-                                    <h3 className="footer_menu_title"> {t("footer.socialMedia")} </h3>
+                                    <h6 className="footer_menu_title"> {t("footer.socialMedia")} </h6>
                                     <ul className="footer_menu_list">
 
                                         {loading ? (

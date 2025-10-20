@@ -8,12 +8,16 @@ export default function Slide() {
       <div className="slide_container small_heading_banner">
         <img src="/bg_block.webp" alt="" className="banner_image" />
         <div className="container">
-          <div className="text_section">
-            <h1>Your personal chauffeur service</h1>
-            <p>Exclusivity . Safety . Comfort</p>
-          </div>
-          <div className="form_section">
-            <MultiStepForm />
+          <div className="row">
+            <div className="slide_inner">
+              <div className="text_section">
+                <h1>Your personal chauffeur service</h1>
+                <p>Exclusivity . Safety . Comfort</p>
+              </div>
+              <div className="form_section">
+                <MultiStepForm />
+              </div>
+            </div>
           </div>
         </div>
         <div className="triangle_decor">

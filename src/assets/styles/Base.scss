@@ -37,7 +37,7 @@ body {
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 .triangle_decor {
@@ -54,7 +54,6 @@ body {
     svg {
       bottom: -2px;
     }
-
   }
 
   svg {
@@ -107,12 +106,11 @@ body {
     color: var(--White, #fff);
     @include transition();
     &:hover {
-      background:  var(--White, #fff);
+      background: var(--White, #fff);
       color: var(--Blue, #2b4764);
     }
   }
 }
-
 
 .loading-container {
   display: flex;
@@ -136,5 +134,39 @@ body {
   }
   100% {
     opacity: 0.5;
+  }
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+  cursor: pointer;
+}
+.css-hlgwow {
+  height: 48px;
+}
+
+.text_details {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: vh(90);
+  gap: rem(50);
+  .line_decor {
+    display: flex;
+    width: 100%;
+    padding: vh(130) vw(140) vh(20) vw(140);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    span {
+      width: 100%;
+      height: rem(1);
+      background-color: black;
+    }
+  }
+  .text_details_section_title {
   }
 }

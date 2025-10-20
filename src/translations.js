@@ -1,11 +1,30 @@
 export const translations = {
   en: {
-    routes:{
-      about:"about-us",
-      service:"services",
-      tours:"tours",
-      faq:"faq",
-      contacts:"contacts"
+    partners: {
+      title: "Our Partners",
+      subtitle: "Learn more about our partners",
+    },
+    whyUs: {
+      subtitle: "Why Autoport Baku",
+      title: "Exclusivity, safety and comfort for every journey",
+      affordablePrices: "Affordable prices",
+      cancellationFree: "Cancellation free of charge",
+      securePayment: "Secure payment",
+      support: "24/7 support",
+    },
+
+    cars: {
+      subtitle: "Autoport vehicles: Modern VIP limousines for exclusivity and comfort",
+      title: "Our Autoport vehicles offer exclusive driving comfort and are suitable for any occasion - whether VIP limousine service, airport transfers, weddings or large events. With our modern and luxurious vehicles, you'll always travel in style and relaxation, benefiting from generous space and state-of-the-art amenities. Whether for business or pleasure, Driver Now offers you the ideal combination of exclusivity, safety and comfort for your travels. Our Business and First Class fleet consists exclusively of Mercedes-Benz vehicles.",
+      passengers: "Passengers",
+      pieces: "Pieces of Luggage",
+    },
+    routes: {
+      about: "about-us",
+      service: "services",
+      tours: "tours",
+      faq: "faq",
+      contacts: "contacts",
     },
     common: {
       loading: "Loading...",
@@ -61,6 +80,10 @@ export const translations = {
         "Do you have any questions or would you like to book a trip? Our team is always happy to help. Contact us by phone, email or using our contact form - we will get back to you immediately.",
       slug: "tours",
     },
+    ToursComponent: {
+      subtitle: "Autoport short trip: Exclusive, comfortable and safe on the road",
+      title: "With Autoport you can enjoy short trips at the highest level. Our exclusive chauffeur service offers you the ideal solution to get from A to B in comfort and safety. Whether for business or pleasure, we make sure you arrive on time and relaxed.",
+    },
     missions: {
       title: "Our Mission",
       subtitle:
@@ -96,12 +119,26 @@ export const translations = {
 
   },
   ru: {
-     routes:{
+    whyUs: {
+      subtitle: "Почему Autoport Baku",
+      title: "Эксклюзивность, безопасность и комфорт для каждого путешествия",
+      affordablePrices: "Доступные цены",
+      cancellationFree: "Бесплатная отмена",
+      securePayment: "Безопасный платеж",
+      support: "Круглосуточная поддержка",
+    },
+    cars: {
+      subtitle: "Автомобили Autoport: Современные VIP-лимузины для эксклюзивности и комфорта",
+      title: "Наши автомобили Autoport предлагают эксклюзивный комфорт вождения и подходят для любого случая - будь то VIP-лимузинный сервис, трансферы из аэропорта, свадьбы или крупные мероприятия. С нашими современными и роскошными автомобилями вы всегда будете путешествовать со стилем и расслаблением, пользуясь просторным салоном и современными удобствами. Будь то деловая поездка или отдых, Autoport Baku предлагает вам идеальное сочетание эксклюзивности, безопасности и комфорта для ваших поездок. Наш парк автомобилей Business и First Class состоит исключительно из автомобилей Mercedes-Benz.",
+      passengers: "Пассажиров",
+      pieces: "Мест для багажа",
+    }, 
+    routes:{
       about:"o-nas",
       service:"usluqi",
       tours:"turi",
       faq:"faq",
-      contacts:"kontakty"
+      contacts:"kontakty",
     },
     common: {
       loading: "Загрузка...",
@@ -160,6 +197,10 @@ export const translations = {
         "У вас есть вопросы или вы хотите забронировать поездку? Наша команда всегда рада помочь. Свяжитесь с нами по телефону, электронной почте или через нашу контактную форму - мы свяжемся с вами немедленно.",
       slug: "turi",
     },
+    ToursComponent: {
+      subtitle: "Короткая поездка Autoport: эксклюзивно, комфортно и безопасно в дороге",
+      title: "С Autoport вы сможете наслаждаться короткими поездками на высшем уровне. Наша эксклюзивная услуга водителя — идеальное решение для комфортного и безопасного перемещения из пункта А в пункт Б. Будь то деловая поездка или отдых, мы позаботимся о том, чтобы вы прибыли вовремя и чувствовали себя комфортно.",
+    },
     missions: {
       title: "Наша миссия",
       subtitle:
@@ -188,6 +229,6 @@ export const translations = {
     BookTrip: {
       desc: "Начните свое путешествие с Autoport и ощутите первоклассный комфорт и сервис в каждой поездке.",
     },
-   },
-   
-  }
+  },
+
+}

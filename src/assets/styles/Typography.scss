@@ -1,3 +1,5 @@
+@use './functions/Functions.scss' as *;
+
 :root {
   /* Font Family */
   --font-family: 'Bitter', sans-serif;
@@ -15,32 +17,32 @@
   --display-md-line-height: 1.55;
   --display-md-letter-spacing: 0.015em;
 
-  --h1-size: clamp(2rem, 4vw, 2.8rem);
+  --h1-size: clamp(#{rem(40)}, #{vw(68)}, #{rem(68)});
   --h1-weight: 500;
   --h1-line-height: 1.55;
   --h1-letter-spacing: 0.015em;
 
-  --h2-size: clamp(1.5rem, 3vw, 1.78rem);
+  --h2-size: clamp(#{rem(32)}, #{vw(55)}, #{rem(55)});
   --h2-weight: 500;
   --h2-line-height: 1.55;
   --h2-letter-spacing: 0.02em;
 
-  --h3-size: clamp(1.25rem, 2.5vw, 1.54rem);
+  --h3-size: clamp(#{rem(28)}, #{vw(50)}, #{rem(50)});
   --h3-weight: 500;
   --h3-line-height: 1.55;
   --h3-letter-spacing: 0.02em;
 
-  --h4-size: clamp(1.125rem, 2vw, 1.33rem);
+  --h4-size: clamp(#{rem(24)}, #{vw(40)}, #{rem(40)});
   --h4-weight: 500;
   --h4-line-height: 1.6;
   --h4-letter-spacing: 0.025em;
 
-  --h5-size: clamp(1rem, 2.5vw, 1.24rem);
+  --h5-size: clamp(#{rem(22)}, #{vw(30)}, #{rem(30)});
   --h5-weight: 500;
   --h5-line-height: 1.6;
   --h5-letter-spacing: 0.03em;
 
-  --h6-size: clamp(0.95rem, 1.5vw, 1.15rem);
+  --h6-size: clamp(#{rem(18)}, #{vw(24)}, #{rem(24)});
   --h6-weight: 500;
   --h6-line-height: 1.6;
   --h6-letter-spacing: 0.03em;
@@ -85,21 +87,28 @@
 @media (max-width: 320px) {
   :root {
     /* Extra small screens - minimum readable sizes */
-    --display-lg-size: 2rem;
-    --display-md-size: 1.8rem;
-    --h1-size: 1.6rem;
-    --h2-size: 1.4rem;
-    --h3-size: 1.2rem;
+    --display-lg-size: #{rem(32)};
+    --display-md-size: #{rem(28)};
+    --h1-size: #{rem(32)};
+    --h2-size: #{rem(28)};
+    --h3-size: #{rem(24)};
+    --h4-size: #{rem(20)};
+    --h5-size: #{rem(18)};
+    --h6-size: #{rem(16)};
   }
 }
 
 @media (min-width: 1400px) {
   :root {
     /* Large screens - maximum sizes for better readability */
-    --display-lg-size: 3.5rem;
-    --display-md-size: 3rem;
-    --h1-size: 3rem;
-    --h2-size: 2rem;
+    --display-lg-size: #{rem(56)};
+    --display-md-size: #{rem(48)};
+    --h1-size: #{rem(68)};
+    --h2-size: #{rem(55)};
+    --h3-size: #{rem(50)};
+    --h4-size: #{rem(40)};
+    --h5-size: #{rem(30)};
+    --h6-size: #{rem(24)};
   }
 }
 

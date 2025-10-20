@@ -1,0 +1,110 @@
+// Импорт функций
+@use "./functions/Functions.scss" as *;
+@use "./functions/Mixins.scss" as *;
+
+.tours_section_main {
+  .inner {
+    padding-top: vh(50);
+    padding-bottom: vh(80);
+    @include responsive_padding;
+    // .text_details {
+    //   display: flex;
+    //   width: 100%;
+    //   flex-direction: column;
+    //   align-items: flex-start;
+    //   margin-bottom: vh(90);
+    //   gap: rem(50);
+    //   .line_decor {
+    //     display: flex;
+    //     width: 100%;
+    //     padding: vh(130) vw(140) vh(20) vw(140);
+    //     flex-direction: column;
+    //     justify-content: center;
+    //     align-items: center;
+    //     gap: 10px;
+    //     align-self: stretch;
+    //     span {
+    //       width: 100%;
+    //       height: rem(1);
+    //       background-color: black;
+    //     }
+    //   }
+    //   .text_details_section_title{
+
+    //   }
+    // }
+    .tours_grid {
+      padding: 0 vw(100);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(vw(300), 1fr));
+      gap: vw(20);
+      @media (max-width: 992px) {
+        grid-template-columns: 1fr;
+        padding: 0;
+        gap: rem(60);
+      }
+      .tour_card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: rem(50);
+        flex: 1 0 0;
+        @media (max-width: 992px) {
+          gap: rem(25);
+        }
+        .tour_image {
+          display: flex;
+          height: auto;
+          flex-direction: column;
+          justify-content: flex-end;
+          align-items: flex-start;
+          gap: rem(10);
+          align-self: stretch;
+          a {
+            display: block;
+            @media (max-width: 992px) {
+              width: 100%;
+            }
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              border-radius: rem(20);
+              @include transition();
+              transition-duration: 0.4s;
+            }
+            &:hover {
+              img {
+                transform: translateX(0px) translateY(0px) scaleX(0.95)
+                  scaleY(0.95) rotate(0deg) skewX(0deg) skewY(0deg);
+                --comp-rotate-z: 0deg;
+              }
+            }
+          }
+        }
+        .tour_info {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: rem(12);
+          align-self: stretch;
+        }
+        .button_wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: rem(12);
+          align-self: stretch;
+        }
+      }
+    }
+    .bottom_button_wrapper {
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin-top: vh(90);
+    }
+  }
+}
