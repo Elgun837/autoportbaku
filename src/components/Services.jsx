@@ -1,4 +1,4 @@
-import react from "react";
+import {useEffect} from "react";
 import { Link } from "react-router-dom";
 import "../assets/styles/Services.scss";
 import { useLanguage } from "../context/LanguageContext";
@@ -6,6 +6,8 @@ import { getServiceData } from "../api/index";
 import { useQuery } from "@tanstack/react-query";
 
 export default function Services() {
+  
+
   const { t, lang } = useLanguage();
   const { data, isLoading, error } = useQuery({
     queryKey: ["services", lang],
@@ -27,13 +29,13 @@ export default function Services() {
               {services.map((service, index) => (
                 <Link 
                    key={index} 
-                  to={`/${lang}/services/${service.slug || service.id}`} 
+                  to={`/${lang}/services/${service.slug[lang]}`} 
                   className="service_item"
                 >
                   <div className="icon">
                     <img src={service.main_image} alt={service.title} />
                   </div>
-                  <h6 className="service_title">{service.title}</h6>
+                  <h6 className="service_title">{service.mini_title}</h6>
                 </Link>
               ))}
             </div>

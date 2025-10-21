@@ -5,7 +5,7 @@ import { getToursData } from "../api";
 import { useQuery } from "@tanstack/react-query";
 import { translations } from "../translations";
 
-function BookTrip() {
+function ToursComponent() {
   const { t, lang } = useLanguage();
   const {
     data: toursData,
@@ -93,4 +93,4 @@ function BookTrip() {
   );
 }
 
-export default BookTrip;
+export default ToursComponent;

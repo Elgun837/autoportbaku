@@ -114,6 +114,34 @@ export const getServiceData = async (lang) => {
     return null;
   }
 };
+export const getVehicleData = async (lang) => {
+  if (!lang) return null;
+  try {
+    const { data } = await api.get("/vehicles", {
+      headers: { contentLanguage: lang, token },
+    });
+    return data;
+  } catch (error) {
+    console.error("getVehicleData xətası:", error);
+    return null;
+  }
+};
+
+export const getVehicleSearch = async (lang,ServiceType) => {
+  if (!lang) return null;
+  try {
+    const { data } = await api.post("/vehicles/search", {
+      headers: { contentLanguage: lang, token },
+      Type: 1,
+      passengers: 3,
+      luggage: 2,
+    });
+    return data;
+  } catch (error) {
+    console.error("getVehicleSearch xətası:", error);
+    return null;
+  }
+};
 
 
 
