@@ -6,6 +6,7 @@ import BookTrip from "../components/BookTrip";
 import ToursComponent from "../components/ToursComponent";
 import Cars from "../components/Cars";
 import WhyUs from "../components/WhyUs";
+import Partners from "../components/Partners";
 export default function HomePage() {
   const { lang, t } = useLanguage();
 
@@ -17,6 +18,8 @@ export default function HomePage() {
   return (
     <div>
       <Slide />
+       <Scrollline />
+       <Partners />
       <Scrollline maxProgress={100} />
       <Services />
       <BookTrip />
@@ -24,6 +27,7 @@ export default function HomePage() {
       <Cars />
       <Scrollline maxProgress={100} />
       <WhyUs />
+     
     </div>
   );
 }

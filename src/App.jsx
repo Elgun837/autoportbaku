@@ -42,7 +42,7 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <Router>
         <LanguageProvider>
-          <Scrolltop />
+          {/* <Scrolltop /> */}
           <Header />
           <AppRoutes />
           <Footer />

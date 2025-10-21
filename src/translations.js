@@ -1,8 +1,8 @@
 export const translations = {
   en: {
     partners: {
-      title: "Our Partners",
-      subtitle: "Learn more about our partners",
+      title: "Learn more about our partners",
+      subtitle: "Partners",
     },
     whyUs: {
       subtitle: "Why Autoport Baku",
