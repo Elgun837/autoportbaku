@@ -51,6 +51,8 @@ function ToursComponent() {
                         }`}
                       >
                         <img
+                        height="319"
+                        width="506"
                           src={
                             tour.image ||
                             `/src/assets/images/tours/${index + 1}.png`
