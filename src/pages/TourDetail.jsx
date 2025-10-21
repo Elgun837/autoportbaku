@@ -11,7 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 export default function TourDetail() {
   const { t, lang } = useLanguage();
   const { slug } = useParams();
-
+  
   // API sorğusu (slug və lang əsasında)
   const {
     data: tourData,

@@ -83,6 +83,7 @@ export const translations = {
     ToursComponent: {
       subtitle: "Autoport short trip: Exclusive, comfortable and safe on the road",
       title: "With Autoport you can enjoy short trips at the highest level. Our exclusive chauffeur service offers you the ideal solution to get from A to B in comfort and safety. Whether for business or pleasure, we make sure you arrive on time and relaxed.",
+      btn: "Discover all tours",
     },
     missions: {
       title: "Our Mission",
@@ -200,6 +201,7 @@ export const translations = {
     ToursComponent: {
       subtitle: "Короткая поездка Autoport: эксклюзивно, комфортно и безопасно в дороге",
       title: "С Autoport вы сможете наслаждаться короткими поездками на высшем уровне. Наша эксклюзивная услуга водителя — идеальное решение для комфортного и безопасного перемещения из пункта А в пункт Б. Будь то деловая поездка или отдых, мы позаботимся о том, чтобы вы прибыли вовремя и чувствовали себя комфортно.",
+      btn: "Узнать все туры",
     },
     missions: {
       title: "Наша миссия",
