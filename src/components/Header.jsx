@@ -7,6 +7,12 @@ import "../assets/styles/Header.scss";
 import logoImage from "/logo.png";
 import { translations } from "../translations";
 export default function Header() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 50); // 50ms gözlə
+  }, [pathname]);
   const { lang, t } = useLanguage();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -163,10 +169,7 @@ export default function Header() {
                   {/* Services dropdown */}
                   <div className="nav-item dropdown">
                     <div className="dropdown-trigger">
-                      <Link
-                        to="#"
-                        onClick={closeMobileMenu}
-                      >
+                      <Link to="#" onClick={closeMobileMenu}>
                         {t("header.services")}
                       </Link>
                       <span
@@ -194,7 +197,7 @@ export default function Header() {
                             className="dropdown-item"
                             onClick={closeMobileMenu}
                           >
-                            {service.title || `Service ${service.id}`}
+                            {service.mini_title || `Service ${service.id}`}
                           </Link>
                         ))
                       ) : (
@@ -213,7 +216,6 @@ export default function Header() {
                   <div className="nav-item dropdown">
                     <div className="dropdown-trigger">
                       <Link
-                      
                         to={`/${lang}/${slugs.tours || "tours"}`}
                         onClick={closeMobileMenu}
                       >

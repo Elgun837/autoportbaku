@@ -12,6 +12,7 @@ import Contacts from "./pages/Contacts";
 import Faq from "./pages/Faq";
 import About from "./pages/About";
 import { translations } from "./translations";
+import Scrolltop from "./components/Scrolltop";
 
 const queryClient = new QueryClient();
 
@@ -41,11 +42,12 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <Router>
         <LanguageProvider>
+          <Scrolltop />
           <Header />
           <AppRoutes />
           <Footer />
         </LanguageProvider>
       </Router>
     </QueryClientProvider>
-  );
+  ); 
 }

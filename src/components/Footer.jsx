@@ -53,12 +53,11 @@ export default function Footer() {
                                 <div className="footer_menu">
                                     <h6 className="footer_menu_title"> {t("footer.company")} </h6>
                                     <ul className="footer_menu_list">
-                                        <Link to={`/${lang}`}>{t("header.home")}</Link>
-                                        <Link to={`/${lang}/about-us`} >{t("header.about")}</Link>
-                                        <Link to={`/${lang}/services`} >{t("header.services")}</Link>
-                                        <Link to={`/${lang}/tours`} >{t("header.tours")}</Link>
-                                        <Link to={`/${lang}/faq`} >{t("header.faq")}</Link>
-                                        <Link to={`/${lang}/contacts`} >{t("header.contacts")}</Link>
+                                        <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}`}>{t("header.home")}</Link>
+                                        <Link  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/about-us`} >{t("header.about")}</Link>
+                                        <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/tours`} >{t("header.tours")}</Link>
+                                        <Link  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/faq`} >{t("header.faq")}</Link>
+                                        <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/contacts`} >{t("header.contacts")}</Link>
 
                                     </ul>
                                 </div>
