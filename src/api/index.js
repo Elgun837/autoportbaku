@@ -91,25 +91,6 @@ export const getServiceData = async (lang) => {
   }
 };
 
-// Service by slug
-export const getServiceBySlug = async (slug, lang) => {
-  if (!lang) return null;
-  try {
-    const allServices = await getServiceData(lang);
-    const services = Array.isArray(allServices)
-      ? allServices
-      : allServices?.data || [];
 
-    let service = services.find((s) => s.slug === slug);
-    if (!service)
-      service = services.find((s) => s.id === slug || String(s.id) === slug);
-
-    if (!service) throw new Error(`Service not found with slug: ${slug}`);
-    return { data: service };
-  } catch (error) {
-    console.error("getServiceBySlug xətası:", error);
-    return null;
-  }
-};
 
 export default api;

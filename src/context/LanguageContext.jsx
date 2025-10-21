@@ -39,54 +39,63 @@ export function LanguageProvider({ children }) {
     // Dil hissəsini dəyiş
     pathParts[0] = newLang;
 
-    // Statik səhifələr üçün slug dəyişdir
+    // Statik səhifələr üçün route dəyişdir
     if (slugKey && newRoutes[slugKey]) {
       pathParts[1] = newRoutes[slugKey];
     }
 
     let newSlug = null;
 
-    // Dinamik səhifələr üçün API-dən slug tap
+    // 🔹 Dinamik səhifələr üçün (tours / services)
     if (pathParts[2]) {
       try {
+        // Köhnə dilin datalarını və cari slug-u tap
+        let oldData = null;
+        let newData = null;
+
         if (slugKey === "tours") {
-          const toursData = await getToursData(newLang);
-          const toursArray = Array.isArray(toursData)
-            ? toursData
-            : toursData?.data || [];
-
-          const tour = toursArray.find(
-            (t) =>
-              t.id.toString() === pathParts[2] ||
-              t.slug.replace(/-(en|ru)$/i, "") ===
-                pathParts[2].replace(/-(en|ru)$/i, "")
-          );
-          if (tour) newSlug = tour.slug;
+          oldData = await getToursData(lang);
+          newData = await getToursData(newLang);
         } else if (slugKey === "services") {
-          const servicesData = await getServiceData(newLang);
-          const servicesArray = Array.isArray(servicesData)
-            ? servicesData
-            : servicesData?.data || [];
+          oldData = await getServiceData(lang);
+          newData = await getServiceData(newLang);
+        }
 
-          const service = servicesArray.find(
-            (s) =>
-              s.id.toString() === pathParts[2] ||
-              s.slug.replace(/-(en|ru)$/i, "") ===
-                pathParts[2].replace(/-(en|ru)$/i, "")
+        const oldArray = Array.isArray(oldData) ? oldData : oldData?.data || [];
+        const newArray = Array.isArray(newData) ? newData : newData?.data || [];
+
+        // Hazırkı səhifənin obyektini köhnə dildə tap
+        const currentItem = oldArray.find(
+          (item) =>
+            item.slug === pathParts[2] ||
+            item.id?.toString() === pathParts[2] ||
+            item.slug?.replace(/-(en|ru)$/i, "") ===
+              pathParts[2].replace(/-(en|ru)$/i, "")
+        );
+
+        // Yeni dildə eyni id-li obyektin slug-ını tap
+        if (currentItem) {
+          const translatedItem = newArray.find(
+            (item) =>
+              item.id === currentItem.id ||
+              (item.uuid && item.uuid === currentItem.uuid)
           );
-          if (service) newSlug = service.slug;
+
+          if (translatedItem) {
+            newSlug = translatedItem.slug;
+          }
         }
       } catch (err) {
         console.warn(`Failed to fetch ${slugKey}`, err);
       }
     }
 
-    // 🔹 Əgər yeni slug tapılıbsa, onu dəyiş
+    // 🔹 Yeni slug tapılıbsa onu dəyiş
     if (newSlug) {
       pathParts[2] = newSlug;
     }
 
-    // 🔹 Navigate yalnız slug hazır olduqda
+    // 🔹 Navigate yalnız hər şey hazır olanda getsin
     setLang(newLang);
     navigate(`/${pathParts.join("/")}${location.search}`, { replace: true });
   };

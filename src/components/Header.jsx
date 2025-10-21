@@ -163,10 +163,7 @@ export default function Header() {
                   {/* Services dropdown */}
                   <div className="nav-item dropdown">
                     <div className="dropdown-trigger">
-                      <Link
-                        to="#"
-                        onClick={closeMobileMenu}
-                      >
+                      <Link to="#" onClick={closeMobileMenu}>
                         {t("header.services")}
                       </Link>
                       <span
@@ -191,7 +188,7 @@ export default function Header() {
                           <Link
                             key={i}
                             to={`/${lang}/${slugs.services || "services"}/${
-                              service.slug || service.id
+                              service.slug || service.index
                             }`}
                             className="dropdown-item"
                             onClick={closeMobileMenu}

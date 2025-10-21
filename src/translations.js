@@ -21,7 +21,7 @@ export const translations = {
     },
     routes: {
       about: "about-us",
-      service: "services",
+      services: "services",
       tours: "tours",
       faq: "faq",
       contacts: "contacts",
@@ -135,7 +135,7 @@ export const translations = {
     }, 
     routes:{
       about:"o-nas",
-      service:"usluqi",
+      services:"usluqi",
       tours:"turi",
       faq:"faq",
       contacts:"kontakty",
