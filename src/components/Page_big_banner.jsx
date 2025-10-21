@@ -9,7 +9,7 @@ export default function Page_big_banner({ title, subtitle, bannerImageSrc }) {
     
     return (
         <>
-            <section className="small_heading_banner small_heading_banner__big">
+            <section className="small_heading_banner small_heading_banner__big ">
                 <img className="banner_image" src={bannerImage} alt="Banner" />
                 <div className="container">
                     <div className="row">
