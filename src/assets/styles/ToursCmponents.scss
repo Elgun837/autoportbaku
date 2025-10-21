@@ -72,6 +72,7 @@
               border-radius: rem(20);
               @include transition();
               transition-duration: 0.4s;
+              aspect-ratio: 506 / 319;
             }
             &:hover {
               img {
