@@ -20,6 +20,7 @@ export default function ServiceDetail() {
     queryFn: () => getServicesSlug(lang, slug),
     enabled: !!slug && !!lang,
   });
+  
   const serviceArray = Array.isArray(serviceData)
     ? serviceData
     : Array.isArray(serviceData?.data)
@@ -27,7 +28,7 @@ export default function ServiceDetail() {
     : [];
 
   const service = serviceArray[0] || null;
-  console.log("service", service);
+  
 
   if (isError || !service) {
     return (
@@ -54,7 +55,6 @@ export default function ServiceDetail() {
                 <p>{service.subtitle}</p>
                 <p>{service.mini_title}</p>
                 <p>{service.text}</p>
-                <p>{service.additional_text.title[lang]}</p>
                 <p>{service.main_image}</p>
                 <p>{service.image_1}</p>
                 <p>{service.banner_2}</p>
