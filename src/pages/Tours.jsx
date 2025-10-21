@@ -172,7 +172,7 @@ export default function Tours() {
                       )}
                     </div>
                     <Link
-                      to={`/${lang}/${routes.tours || "tours"}/${tour.slug}`}
+                      to={`/${lang}/${routes.tours}/${tour.slug[lang]}`}
                       className="btn btn-primary"
                       onClick={() => localStorage.setItem("tourId", tour.id)}
                     >
