@@ -62,6 +62,30 @@ export const getToursData = async (lang) => {
     return null;
   }
 };
+export const getToursSlug = async (lang,slug) => {
+  if (!lang) return null;
+  try {
+    const { data } = await api.get(`/tours/${slug}`, {
+      headers: { contentLanguage: lang, token },
+    });
+    return data;
+  } catch (error) {
+    console.error("getToursSlug xətası:", error);
+    return null;
+  }
+};
+export const getServicesSlug = async (lang,slug) => {
+  if (!lang) return null;
+  try {
+    const { data } = await api.get(`/services/${slug}`, {
+      headers: { contentLanguage: lang, token },
+    });
+    return data;
+  } catch (error) {
+    console.error("getServicesSlug xətası:", error);
+    return null;
+  }
+};
 
 // FAQ
 export const getFaqsData = async (lang) => {

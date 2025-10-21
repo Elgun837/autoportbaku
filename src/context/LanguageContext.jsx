@@ -22,83 +22,133 @@ export function LanguageProvider({ children }) {
   }, []);
 
   // 🔹 Dili dəyişəndə URL-i yenilə
-  const changeLang = async (newLang) => {
-    if (!lang || newLang === lang) return;
+  // const changeLang = async (newLang) => {
+  //   if (!lang || newLang === lang) return;
 
-    const pathParts = location.pathname.split("/").filter(Boolean);
-    const currentLang = pathParts[0];
-    if (!currentLang || !translations[currentLang]) return;
+  //   const pathParts = location.pathname.split("/").filter(Boolean);
+  //   const currentLang = pathParts[0];
+  //   if (!currentLang || !translations[currentLang]) return;
 
-    const currentRoutes = translations[currentLang].routes || {};
-    const newRoutes = translations[newLang]?.routes || {};
+  //   const currentRoutes = translations[currentLang].routes || {};
+  //   const newRoutes = translations[newLang]?.routes || {};
 
-    const slugKey = Object.keys(currentRoutes).find(
-      (key) => currentRoutes[key] === pathParts[1]
-    );
+  //   const slugKey = Object.keys(currentRoutes).find(
+  //     (key) => currentRoutes[key] === pathParts[1]
+  //   );
 
-    // Dil hissəsini dəyiş
-    pathParts[0] = newLang;
+  //   // Dil hissəsini dəyiş
+  //   pathParts[0] = newLang;
 
-    // Statik səhifələr üçün route dəyişdir
-    if (slugKey && newRoutes[slugKey]) {
-      pathParts[1] = newRoutes[slugKey];
-    }
+  //   // Statik səhifələr üçün route dəyişdir
+  //   if (slugKey && newRoutes[slugKey]) {
+  //     pathParts[1] = newRoutes[slugKey];
+  //   }
 
-    let newSlug = null;
+  //   let newSlug = null;
 
-    // 🔹 Dinamik səhifələr üçün (tours / services)
-    if (pathParts[2]) {
-      try {
-        // Köhnə dilin datalarını və cari slug-u tap
-        let oldData = null;
-        let newData = null;
+  //   // 🔹 Dinamik səhifələr üçün (tours / services)
+  //   if (pathParts[2]) {
+  //     try {
+  //       // Köhnə dilin datalarını və cari slug-u tap
+  //       let oldData = null;
+  //       let newData = null;
 
-        if (slugKey === "tours") {
-          oldData = await getToursData(lang);
-          newData = await getToursData(newLang);
-        } else if (slugKey === "services") {
-          oldData = await getServiceData(lang);
-          newData = await getServiceData(newLang);
+  //       if (slugKey === "tours") {
+  //         oldData = await getToursData(lang);
+  //         newData = await getToursData(newLang);
+  //       } else if (slugKey === "services") {
+  //         oldData = await getServiceData(lang);
+  //         newData = await getServiceData(newLang);
+  //       }
+
+  //       const oldArray = Array.isArray(oldData) ? oldData : oldData?.data || [];
+  //       const newArray = Array.isArray(newData) ? newData : newData?.data || [];
+
+  //       // Hazırkı səhifənin obyektini köhnə dildə tap
+  //       const currentItem = oldArray.find(
+  //         (item) =>
+  //           item.slug === pathParts[2] ||
+  //           item.id?.toString() === pathParts[2] ||
+  //           item.slug?.replace(/-(en|ru)$/i, "") ===
+  //             pathParts[2].replace(/-(en|ru)$/i, "")
+  //       );
+
+  //       // Yeni dildə eyni id-li obyektin slug-ını tap
+  //       if (currentItem) {
+  //         const translatedItem = newArray.find(
+  //           (item) =>
+  //             item.id === currentItem.id ||
+  //             (item.uuid && item.uuid === currentItem.uuid)
+  //         );
+
+  //         if (translatedItem) {
+  //           newSlug = translatedItem.slug;
+  //         }
+  //       }
+  //     } catch (err) {
+  //       console.warn(`Failed to fetch ${slugKey}`, err);
+  //     }
+  //   }
+
+  //   // 🔹 Yeni slug tapılıbsa onu dəyiş
+  //   if (newSlug) {
+  //     pathParts[2] = newSlug;
+  //   }
+
+  //   // 🔹 Navigate yalnız hər şey hazır olanda getsin
+  //   setLang(newLang);
+  //   navigate(`/${pathParts.join("/")}${location.search}`, { replace: true });
+  // };
+
+ const changeLang = async (newLang) => {
+  if (!lang || newLang === lang) return;
+
+  const pathParts = location.pathname.split("/").filter(Boolean);
+  const currentLang = pathParts[0];
+  if (!currentLang || !translations[currentLang]) return;
+
+  const currentRoutes = translations[currentLang].routes || {};
+  const newRoutes = translations[newLang]?.routes || {};
+  const slugKey = Object.keys(currentRoutes).find(
+    (key) => currentRoutes[key] === pathParts[1]
+  );
+
+  // 1️⃣ Dil hissəsini dəyiş
+  pathParts[0] = newLang;
+
+  // 2️⃣ Statik səhifələr üçün slug dəyişdir
+  if (slugKey && newRoutes[slugKey]) {
+    pathParts[1] = newRoutes[slugKey];
+  }
+
+  let newSlug = null;
+
+  // 3️⃣ Dinamik səhifələr üçün API-dən yeni dilə uyğun slug tap
+  if (pathParts[2]) {
+    try {
+      if (slugKey === "tours") {
+        const tourData = await getToursSlug(newLang, pathParts[2]);
+        if (tourData?.slug && typeof tourData.slug === "object") {
+          newSlug = tourData.slug[newLang] || tourData.slug.en;
         }
-
-        const oldArray = Array.isArray(oldData) ? oldData : oldData?.data || [];
-        const newArray = Array.isArray(newData) ? newData : newData?.data || [];
-
-        // Hazırkı səhifənin obyektini köhnə dildə tap
-        const currentItem = oldArray.find(
-          (item) =>
-            item.slug === pathParts[2] ||
-            item.id?.toString() === pathParts[2] ||
-            item.slug?.replace(/-(en|ru)$/i, "") ===
-              pathParts[2].replace(/-(en|ru)$/i, "")
-        );
-
-        // Yeni dildə eyni id-li obyektin slug-ını tap
-        if (currentItem) {
-          const translatedItem = newArray.find(
-            (item) =>
-              item.id === currentItem.id ||
-              (item.uuid && item.uuid === currentItem.uuid)
-          );
-
-          if (translatedItem) {
-            newSlug = translatedItem.slug;
-          }
+      } else if (slugKey === "services") {
+        const serviceData = await getServiceData(newLang, pathParts[2]);
+        if (serviceData?.slug && typeof serviceData.slug === "object") {
+          newSlug = serviceData.slug[newLang] || serviceData.slug.en;
         }
-      } catch (err) {
-        console.warn(`Failed to fetch ${slugKey}`, err);
       }
+    } catch (err) {
+      console.warn(`Failed to fetch ${slugKey} for lang=${newLang}`, err);
     }
+  }
 
-    // 🔹 Yeni slug tapılıbsa onu dəyiş
-    if (newSlug) {
-      pathParts[2] = newSlug;
-    }
+  // 4️⃣ Əgər yeni slug tapılıbsa, onu URL-də dəyiş
+  if (newSlug) pathParts[2] = newSlug;
 
-    // 🔹 Navigate yalnız hər şey hazır olanda getsin
-    setLang(newLang);
-    navigate(`/${pathParts.join("/")}${location.search}`, { replace: true });
-  };
+  // 5️⃣ Navigate və lang state update
+  setLang(newLang);
+  navigate(`/${pathParts.join("/")}${location.search}`, { replace: true });
+};
 
   // 🔤 Tərcümə funksiyası
   const t = (keyPath, options = {}) => {

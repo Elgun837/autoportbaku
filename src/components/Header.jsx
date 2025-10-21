@@ -163,7 +163,10 @@ export default function Header() {
                   {/* Services dropdown */}
                   <div className="nav-item dropdown">
                     <div className="dropdown-trigger">
-                      <Link to="#" onClick={closeMobileMenu}>
+                      <Link
+                        to="#"
+                        onClick={closeMobileMenu}
+                      >
                         {t("header.services")}
                       </Link>
                       <span
@@ -187,9 +190,7 @@ export default function Header() {
                         services.map((service, i) => (
                           <Link
                             key={i}
-                            to={`/${lang}/${slugs.services || "services"}/${
-                              service.slug || service.index
-                            }`}
+                            to={`/${lang}/${slugs.services}/${service.slug[lang]}`}
                             className="dropdown-item"
                             onClick={closeMobileMenu}
                           >
@@ -212,6 +213,7 @@ export default function Header() {
                   <div className="nav-item dropdown">
                     <div className="dropdown-trigger">
                       <Link
+                      
                         to={`/${lang}/${slugs.tours || "tours"}`}
                         onClick={closeMobileMenu}
                       >
@@ -238,9 +240,7 @@ export default function Header() {
                         tours.map((tour) => (
                           <Link
                             key={tour.id}
-                            to={`/${lang}/${slugs.tours || "tours"}/${
-                              tour.slug || tour.id
-                            }`}
+                            to={`/${lang}/${slugs.tours}/${tour.slug[lang]}`}
                             className="dropdown-item"
                             onClick={closeMobileMenu}
                           >

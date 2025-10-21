@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
-import { getToursData } from "../api/index";
+import { getToursSlug } from "../api/index";
 import Page_big_banner from "../components/Page_big_banner";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
@@ -10,31 +10,25 @@ import { useQuery } from "@tanstack/react-query";
 
 export default function TourDetail() {
   const { t, lang } = useLanguage();
-  const { slug: originalSlug, id } = useParams();
-  const [slug, setSlug] = useState(originalSlug);
-  const navigate = useNavigate();
-  const [tourId, setTourId] = useState(
-    () => localStorage.getItem("tourId") || null
-  );
-  // API-dən bütün turları çəkirik
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ["tours", lang, originalSlug],
-    queryFn: async () => getToursData(lang),
-    keepPreviousData: true,
+  const { slug } = useParams();
+
+  // API sorğusu (slug və lang əsasında)
+  const {
+    data: tourData,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["tour", lang, slug],
+    queryFn: () => getToursSlug(lang, slug),
+    enabled: !!slug && !!lang,
   });
+  const tourArray = Array.isArray(tourData)
+  ? tourData
+  : Array.isArray(tourData?.data)
+  ? tourData.data
+  : [];
 
-  // Data-dan array əldə edirik
-  const tours = Array.isArray(data)
-    ? data
-    : Array.isArray(data?.data)
-    ? data.data
-    : [];
-
-  // id və ya slug-a uyğun turu tapırıq
-  const tour = React.useMemo(() => {
-    if (!tours.length) return null;
-    return tours.find((t) => t.slug === originalSlug);
-  }, [tours, originalSlug]);  
+const tour = tourArray[0] || null; // tək tour-u götürürük
 
   if (isLoading) {
     return (
@@ -53,7 +47,7 @@ export default function TourDetail() {
     );
   }
 
-  if (isError || !tours) {
+  if (isError || !tour) {
     return (
       <>
         <Page_big_banner

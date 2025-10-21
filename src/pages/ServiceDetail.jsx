@@ -1,52 +1,73 @@
 import React, {  useState } from "react";
 import { useParams,useNavigate  } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
-import { getServiceData } from "../api/index";
+import { getServicesSlug } from "../api/index";
 import Page_big_banner from "../components/Page_big_banner";
 import "../assets/styles/ServiceDetail.scss";
 import { useQuery } from "@tanstack/react-query";
 
 export default function ServiceDetail() {
-  const { t, lang } = useLanguage();
-  const { slug: originalSlug, id } = useParams();
-  const [slug, setSlug] = useState(originalSlug);
-  const navigate = useNavigate();
-  const [serviceId, setserviceId] = useState(
-    () => localStorage.getItem("serviceId") || null
-  );
-  // API-dən bütün servisleri çəkirik
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ["service", lang, originalSlug],
-    queryFn: async () => getServiceData(lang),
-    keepPreviousData: true,
-  });
+    const { t, lang } = useLanguage();
+    const { slug } = useParams();
   
-  // Data-dan array əldə edirik
-  const services = Array.isArray(data)
-    ? data
-    : Array.isArray(data?.data)
-    ? data.data
+    // API sorğusu (slug və lang əsasında)
+    const {
+      data: serviceData,
+      isLoading,
+      isError,
+    } = useQuery({
+      queryKey: ["service", lang, slug],
+      queryFn: () => getServicesSlug(lang, slug),
+      enabled: !!slug && !!lang,
+    });
+    const serviceArray = Array.isArray(serviceData)
+    ? serviceData
+    : Array.isArray(serviceData?.data)
+    ? serviceData.data
     : [];
-  // id və ya slug-a uyğun turu tapırıq
-  const service = React.useMemo(() => {
-    if (!services.length) return null;
-    return services.find((t) => t.slug === originalSlug);
-  }, [services, originalSlug]);
   
+  const service = serviceArray[0] || null; 
+  console.log("service", service);
+
+
+  
+    if (isError || !service) {
+      return (
+        <>
+          <Page_big_banner
+            title={t("service.notFound", "Service Not Found")}
+            subtitle={t(
+              "service.notFoundSubtitle",
+              "The tour you're looking for doesn't exist"
+            )}
+            bannerImageSrc=""
+          />
+        </>
+      );
+    }
 
   return (
     <>
-      {/* <Page_big_banner
-        // title={service.title || "Service Details"}
-        // subtitle={service.shortDescription || ""}
-        // bannerImageSrc={service.mainImage || service.image || ""}
-      /> */}
+      <Page_big_banner
+        title={service.title || "Service Details"}
+        subtitle={service.subtitle || ""}
+        bannerImageSrc={service.banner || service.banner || ""}
+      />
 
       <section className="service-detail">
         <div className="container">
           <div className="row">
             <div className="service-detail-content">
-                  test
+                  
+              <h2>{service.title}</h2>
+              <p>{service.subtitle}</p>  
+              <p>{service.mini_title}</p>  
+              <p>{service.text}</p>  
+              <p>{service.additional_text.title[lang]}</p>  
+              <p>{service.main_image}</p>  
+              <p>{service.image_1}</p>  
+              <p>{service.banner_2}</p>
+              
             </div>
           </div>
         </div>
