@@ -132,7 +132,6 @@ export const getVehicleSearch = async (lang,ServiceType) => {
   try {
     const { data } = await api.post("/vehicles/search", {
       headers: { contentLanguage: lang, token },
-      Type: 1,
       passengers: 3,
       luggage: 2,
     });

@@ -167,6 +167,9 @@ body {
       background-color: black;
     }
   }
-  .text_details_section_title {
-  }
+  
 }
+.services-detail .small_heading_banner__big  .banner_image,
+.tours_details .small_heading_banner__big  .banner_image{
+  filter: brightness(50%);
+} 

@@ -163,14 +163,7 @@ export default function Tours() {
                   <div className="details_block">
                     <h2>{tour.title}</h2>
                     <p>{tour.excerpt}</p>
-                    <div className="tour-meta">
-                      {tour.duration && (
-                        <span className="duration">{tour.duration}</span>
-                      )}
-                      {tour.price && (
-                        <span className="price">From ${tour.price}</span>
-                      )}
-                    </div>
+                    
                     <Link
                       to={`/${lang}/${routes.tours}/${tour.slug[lang]}`}
                       className="btn btn-primary"

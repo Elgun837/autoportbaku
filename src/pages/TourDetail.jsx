@@ -11,7 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 export default function TourDetail() {
   const { t, lang } = useLanguage();
   const { slug } = useParams();
-  
+
   // API sorğusu (slug və lang əsasında)
   const {
     data: tourData,
@@ -23,12 +23,12 @@ export default function TourDetail() {
     enabled: !!slug && !!lang,
   });
   const tourArray = Array.isArray(tourData)
-  ? tourData
-  : Array.isArray(tourData?.data)
-  ? tourData.data
-  : [];
+    ? tourData
+    : Array.isArray(tourData?.data)
+    ? tourData.data
+    : [];
 
-const tour = tourArray[0] || null; // tək tour-u götürürük
+  const tour = tourArray[0] || null; // tək tour-u götürürük
 
   if (isLoading) {
     return (
@@ -103,6 +103,7 @@ const tour = tourArray[0] || null; // tək tour-u götürürük
 
   return (
     <>
+      <div className="tours_details">
       <Page_big_banner
         title={tour.title || ""}
         subtitle={tour.excerpt || ""}
@@ -122,11 +123,41 @@ const tour = tourArray[0] || null; // tək tour-u götürürük
                   <div className="parameters">
                     {tour.duration && (
                       <div className="duration">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                        >
+                          <path
+                            d="M9.75 3.75V9.75H14.25M18.75 9.75C18.75 10.9319 18.5172 12.1022 18.0649 13.1942C17.6126 14.2861 16.9497 15.2782 16.114 16.114C15.2782 16.9497 14.2861 17.6126 13.1942 18.0649C12.1022 18.5172 10.9319 18.75 9.75 18.75C8.5681 18.75 7.39778 18.5172 6.30585 18.0649C5.21392 17.6126 4.22177 16.9497 3.38604 16.114C2.55031 15.2782 1.88738 14.2861 1.43508 13.1942C0.982792 12.1022 0.75 10.9319 0.75 9.75C0.75 7.36305 1.69821 5.07387 3.38604 3.38604C5.07387 1.69821 7.36305 0.75 9.75 0.75C12.1369 0.75 14.4261 1.69821 16.114 3.38604C17.8018 5.07387 18.75 7.36305 18.75 9.75Z"
+                            stroke="#08529F"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
                         <strong>{t("tour.duration")}:</strong> {tour.duration}
                       </div>
                     )}
                     {tour.cancellation && (
                       <div className="cancellation">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                        >
+                          <path
+                            d="M9.75 3.75V9.75H14.25M18.75 9.75C18.75 10.9319 18.5172 12.1022 18.0649 13.1942C17.6126 14.2861 16.9497 15.2782 16.114 16.114C15.2782 16.9497 14.2861 17.6126 13.1942 18.0649C12.1022 18.5172 10.9319 18.75 9.75 18.75C8.5681 18.75 7.39778 18.5172 6.30585 18.0649C5.21392 17.6126 4.22177 16.9497 3.38604 16.114C2.55031 15.2782 1.88738 14.2861 1.43508 13.1942C0.982792 12.1022 0.75 10.9319 0.75 9.75C0.75 7.36305 1.69821 5.07387 3.38604 3.38604C5.07387 1.69821 7.36305 0.75 9.75 0.75C12.1369 0.75 14.4261 1.69821 16.114 3.38604C17.8018 5.07387 18.75 7.36305 18.75 9.75Z"
+                            stroke="#08529F"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
                         <strong>{t("tour.cancellation")}:</strong>{" "}
                         {tour.cancellation}
                       </div>
@@ -180,6 +211,7 @@ const tour = tourArray[0] || null; // tək tour-u götürürük
           </div>
         </div>
       </section>
+      </div>
     </>
   );
 }
