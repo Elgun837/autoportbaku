@@ -4,7 +4,8 @@ const api = axios.create({
   baseURL: "https://admin.autoportbaku.com/api/",
 });
 
-const token = "KBIzDStUcIw77b4RwpPDqTuIH2v2boErBf7lCTOQFAAM5xV92T5kWdK9afg8DgEx2HTRxc8db2YJDmvZwzZ4SjKH4ClC3AyviAQ1oOWMvhg9F9HGLPHESsGZADEGj62KrDYyzp7fUtqIZ4hbCH9vk1BTesghBrIbK31O";
+const token =
+  "KBIzDStUcIw77b4RwpPDqTuIH2v2boErBf7lCTOQFAAM5xV92T5kWdK9afg8DgEx2HTRxc8db2YJDmvZwzZ4SjKH4ClC3AyviAQ1oOWMvhg9F9HGLPHESsGZADEGj62KrDYyzp7fUtqIZ4hbCH9vk1BTesghBrIbK31O";
 
 // Home
 export const getHomeData = async (lang) => {
@@ -62,24 +63,6 @@ export const getToursData = async (lang) => {
   }
 };
 
-// Tour by slug
-export const getTourBySlug = async (slug, lang) => {
-  if (!lang) return null;
-  try {
-    const allTours = await getToursData(lang);
-    const tours = allTours?.data || allTours || [];
-
-    let tour = tours.find((t) => t.slug === slug);
-    if (!tour) tour = tours.find((t) => t.id === slug || String(t.id) === slug);
-
-    if (!tour) throw new Error(`Tour not found with slug: ${slug}`);
-    return { data: tour };
-  } catch (error) {
-    console.error("getTourBySlug xətası:", error);
-    return null;
-  }
-};
-
 // FAQ
 export const getFaqsData = async (lang) => {
   if (!lang) return null;
@@ -113,10 +96,13 @@ export const getServiceBySlug = async (slug, lang) => {
   if (!lang) return null;
   try {
     const allServices = await getServiceData(lang);
-    const services = Array.isArray(allServices) ? allServices : allServices?.data || [];
+    const services = Array.isArray(allServices)
+      ? allServices
+      : allServices?.data || [];
 
     let service = services.find((s) => s.slug === slug);
-    if (!service) service = services.find((s) => s.id === slug || String(s.id) === slug);
+    if (!service)
+      service = services.find((s) => s.id === slug || String(s.id) === slug);
 
     if (!service) throw new Error(`Service not found with slug: ${slug}`);
     return { data: service };
