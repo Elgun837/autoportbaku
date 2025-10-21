@@ -71,6 +71,7 @@ export default function ServiceDetail() {
                     <div className="descr_block">
                       <div className="description_content">
                         <p>увуа</p>
+                        <img src={service.banner_2} alt="" />
                       </div>
                     </div>
                   </div>
