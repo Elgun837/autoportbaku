@@ -12,7 +12,7 @@ useEffect(() => {
       // Debounce ilə scroll
       if (timeoutId) clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
-        document.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }, 50);
     });
 
