@@ -5,6 +5,8 @@ import { getServicesSlug } from "../api/index";
 import Page_big_banner from "../components/Page_big_banner";
 import "../assets/styles/ServiceDetail.scss";
 import { useQuery } from "@tanstack/react-query";
+import Scrollline from "../components/Scrolline";
+import SectionTitle from "../components/SectionTitle";
 
 export default function ServiceDetail() {
   const { t, lang } = useLanguage();
@@ -20,15 +22,15 @@ export default function ServiceDetail() {
     queryFn: () => getServicesSlug(lang, slug),
     enabled: !!slug && !!lang,
   });
-  
+
   const serviceArray = Array.isArray(serviceData)
     ? serviceData
     : Array.isArray(serviceData?.data)
-    ? serviceData.data
-    : [];
+      ? serviceData.data
+      : [];
 
   const service = serviceArray[0] || null;
-  
+
 
   if (isError || !service) {
     return (
@@ -42,24 +44,39 @@ export default function ServiceDetail() {
     <>
       <div className="services-detail">
         <Page_big_banner
-          title={service.title || "Service Details"}
+          title={service.mini_title || "Service Details"}
           subtitle={service.subtitle || ""}
           bannerImageSrc={service.banner || service.banner || ""}
         />
-
+        <Scrollline maxProgress={100} />
+        <SectionTitle sectionHeadingBig={service.title} sectionHeadingSmall="" />
         <section className="service-detail">
           <div className="container">
             <div className="row">
-              <div className="service-detail-content">
-                <h2>{service.title}</h2>
-                <p>{service.subtitle}</p>
-                <p>{service.mini_title}</p>
-                <p>{service.text}</p>
-                <p>{service.main_image}</p>
-                <p>{service.image_1}</p>
-                <p>{service.banner_2}</p>
+              <div className="inner">
+                <div className="title_small_text">
+                  <div className="title_small_text_wrapper">
+                    <p>{service.text}</p>
+                  </div>
+                </div>
               </div>
             </div>
+            <div className="row">
+              <div className="inner">
+                <div className="image_descr">
+                  <div className="image_descr_inner">
+                    <div className="image_block">
+                      <img src={service.image_1} alt={service.title} />
+                    </div>
+                    <div className="descr_block">
+                      <div className="description_content">
+                        <p>увуа</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
           </div>
         </section>
       </div>

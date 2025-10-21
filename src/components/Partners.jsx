@@ -112,7 +112,7 @@ const Partners = () => {
                                     }
                                     
                                     autoplay={{
-                                        delay: 300000,
+                                        delay: 3000,
                                     }}
                                     loop={partners.length > 3}
                                     className="partners_swiper"
@@ -122,7 +122,7 @@ const Partners = () => {
                                             <div className="partner_logo">
                                                 <div className="logo_container">
                                                     <a href={partner.link} target="_blank" rel="noopener noreferrer">
-                                                        <img src={partner.image} alt={`Partner ${index + 1}`} />
+                                                        <img width="121" height="121" src={partner.image} alt={`Partner ${index + 1}`} />
                                                     </a>
                                                 </div>
                                                 <div className="separator">

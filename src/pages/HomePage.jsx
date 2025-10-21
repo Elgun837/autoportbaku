@@ -10,7 +10,7 @@ import Partners from "../components/Partners";
 export default function HomePage() {
   const { lang, t } = useLanguage();
 
- 
+
 
 
 
@@ -18,8 +18,6 @@ export default function HomePage() {
   return (
     <div>
       <Slide />
-       <Scrollline />
-       <Partners />
       <Scrollline maxProgress={100} />
       <Services />
       <BookTrip />
@@ -27,7 +25,9 @@ export default function HomePage() {
       <Cars />
       <Scrollline maxProgress={100} />
       <WhyUs />
-     
+      <Scrollline />
+      <Partners />
+
     </div>
   );
 }
