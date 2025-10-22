@@ -10,7 +10,7 @@ export default function Header() {
   const { pathname } = useLocation();
   useEffect(() => {
     setTimeout(() => {
-      window.scrollTo(0, 0);
+     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     }, 50); // 50ms gözlə
   }, [pathname]);
   const { lang, t } = useLanguage();
