@@ -1,36 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
-import { getToursSlug } from "../api/index";
 import Page_big_banner from "../components/Page_big_banner";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import "../assets/styles/TourDetail.scss";
-import { useQuery } from "@tanstack/react-query";
-
+import { useTours } from "../context/TourContext";
 export default function TourDetail() {
   const { t, lang } = useLanguage();
   const { slug } = useParams();
 
-  // API sorğusu (slug və lang əsasında)
-  const {
-    data: tourData,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ["tour", lang, slug],
-    queryFn: () => getToursSlug(lang, slug),
-    enabled: !!slug && !!lang,
-  });
-  const tourArray = Array.isArray(tourData)
-    ? tourData
-    : Array.isArray(tourData?.data)
-    ? tourData.data
-    : [];
+const { tours, loading: toursLoading } = useTours();
 
-  const tour = tourArray[0] || null; // tək tour-u götürürük
-
-  if (isLoading) {
+if (toursLoading) {
     return (
       <>
         <Page_big_banner
@@ -47,20 +29,14 @@ export default function TourDetail() {
     );
   }
 
-  if (isError || !tour) {
-    return (
-      <>
-        <Page_big_banner
-          title={t("tour.notFound", "Tour Not Found")}
-          subtitle={t(
-            "tour.notFoundSubtitle",
-            "The tour you're looking for doesn't exist"
-          )}
-          bannerImageSrc=""
-        />
-      </>
-    );
-  }
+const tour = tours.find(t => t.slug?.[lang] === slug) || null;
+
+if (!tour) {
+  return <div>Tour not found</div>;
+}
+  
+
+  
 
   // Prepare images for gallery
   const imageUrls = [];

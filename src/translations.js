@@ -1,5 +1,15 @@
+import { types } from "sass";
+
 export const translations = {
   en: {
+    formsLocation: {
+      types: {
+        transfer: "Transfer",
+        tour: "Tour",
+      },
+      AirpirtBaku: "Airport City Centre",
+      BakuAirport: "City Centre-Airport",
+    },
     fleet: {
       title: "Our Fleet",
       description: "Comfortable rides with style and safety.",
@@ -124,6 +134,14 @@ export const translations = {
 
   },
   ru: {
+    formsLocation: {
+      types: {
+        transfer: "Трансфер",
+        tour: "Тур",
+      },
+      AirpirtBaku: "Аэропорт - Центр города",
+      BakuAirport: "Центр города - Аэропорт",
+    },  
     fleet: {
       title: "Наш автопарк",
       description: "Комфортные поездки со стилем и безопасностью.",

@@ -7,8 +7,11 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import "../assets/styles/Header.scss";
 import logoImage from "/logo.png";
 import { translations } from "../translations";
+import { useTours } from "../context/TourContext";
 export default function Header() {
   const { pathname } = useLocation();
+  const { tours, loading: toursLoading } = useTours();
+
   useEffect(() => {
     setTimeout(() => {
      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -21,9 +24,8 @@ export default function Header() {
     useState(false);
   const [isMobileServicesDropdownOpen, setIsMobileServicesDropdownOpen] =
     useState(false);
-  const [tours, setTours] = useState([]);
+  
   const [services, setServices] = useState([]);
-  const [toursLoading, setToursLoading] = useState(true);
   const [servicesLoading, setServicesLoading] = useState(true);
 
   // Проверяем, находимся ли мы на главной странице
@@ -34,23 +36,6 @@ export default function Header() {
   const headerClass = `header${isHomePage ? " home" : ""}`;
 
   // Загрузка туров для выпадающего меню
-  useEffect(() => {
-    const fetchTours = async () => {
-      try {
-        setToursLoading(true);
-        const toursData = await getToursData(lang);
-        const toursArray = toursData?.data || toursData || [];
-        setTours(toursArray.slice(0, 16)); // Ограничиваем до 5 туров в меню
-      } catch (error) {
-        console.error("Error fetching tours for menu:", error);
-        setTours([]);
-      } finally {
-        setToursLoading(false);
-      }
-    };
-
-    fetchTours();
-  }, [lang]);
 
   // Загрузка сервисов для выпадающего меню
   useEffect(() => {

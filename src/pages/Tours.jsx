@@ -5,39 +5,16 @@ import "../assets/styles/Tours.scss";
 import { useLanguage } from "../context/LanguageContext";
 import Page_big_banner from "../components/Page_big_banner";
 import ToursBannerImage from "../assets/images/tours.png";
-import { getToursData } from "../api/index";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { translations } from "../translations";
-
+import { useTours } from "../context/TourContext";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Tours() {
   const { t, lang } = useLanguage();
   const toursWrapperRef = useRef(null);
-  const [tours, setTours] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  // Загружаем данные туров с API
-  useEffect(() => {
-    const fetchTours = async () => {
-      try {
-        setLoading(true);
-        const toursData = await getToursData(lang);
-        setTours(toursData.data || toursData || []);
-        setError(null);
-      } catch (err) {
-        console.error("Error fetching tours:", err);
-        setError("Failed to load tours");
-        setTours([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchTours();
-  }, [lang]);
+  const { tours, loading, error } = useTours();
 
   // GSAP анимации для изображений
   useEffect(() => {

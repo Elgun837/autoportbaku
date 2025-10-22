@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LanguageProvider, useLanguage } from "./context/LanguageContext";
 import { useEffect } from "react";
@@ -15,6 +20,7 @@ import Faq from "./pages/Faq";
 import About from "./pages/About";
 import { translations } from "./translations";
 import Scrolltop from "./components/Scrolltop";
+import { TourProvider } from "./context/TourContext";
 
 const queryClient = new QueryClient();
 
@@ -29,7 +35,10 @@ function AppRoutes() {
       <Route path="/" element={<Navigate to={`/${lang}`} />} />
       <Route path={`/:lang`} element={<HomePage />} />
       <Route path={`/:lang/${slugs.about}`} element={<About />} />
-      <Route path={`/:lang/${slugs.services}/:slug`} element={<ServiceDetail />} />
+      <Route
+        path={`/:lang/${slugs.services}/:slug`}
+        element={<ServiceDetail />}
+      />
       <Route path={`/:lang/${slugs.tours}`} element={<Tours />} />
       <Route path={`/:lang/${slugs.tours}/:slug`} element={<TourDetail />} />
       <Route path={`/:lang/${slugs.faq}`} element={<Faq />} />
@@ -50,12 +59,13 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <Router>
         <LanguageProvider>
-
-          <Header />
-          <AppRoutes />
-          <Footer />
+          <TourProvider>
+            <Header />
+            <AppRoutes />
+            <Footer />
+          </TourProvider>
         </LanguageProvider>
       </Router>
     </QueryClientProvider>
-  ); 
+  );
 }
