@@ -76,7 +76,7 @@
             transition: color 0.3s ease;
 
             &:hover {
-              color: #ffd700;
+              color: #e6e6e6;
             }
           }
 
@@ -100,7 +100,7 @@
                 transition: color 0.3s ease;
 
                 &:hover {
-                  color: #ffd700;
+                   color: #e6e6e6;
                 }
               }
 
@@ -403,5 +403,90 @@
         }
       }
     }
+  }
+}
+
+// Skeleton loading styles for Header
+.skeleton-header-container {
+  .react-loading-skeleton {
+    border-radius: 4px;
+    
+    &::before {
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    }
+  }
+  
+  .skeleton-nav {
+    display: flex;
+    align-items: center;
+    
+    .skeleton-nav-item {
+      display: flex;
+      align-items: center;
+      
+      &.nav-item.dropdown {
+        position: relative;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      display: none; // Скрываем desktop nav в мобильной версии
+    }
+  }
+  
+  .skeleton-language-switcher {
+    margin-left: 30px;
+    
+    @media (max-width: 992px) {
+      display: none; // Скрываем в мобильной версии
+    }
+  }
+  
+  .skeleton-mobile-toggle {
+    display: none;
+    
+    @media (max-width: 992px) {
+      display: block;
+    }
+  }
+  
+  // Специальные стили для home версии skeleton
+  &.home {
+    .react-loading-skeleton {
+      &::before {
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      }
+    }
+  }
+  
+  // Адаптивность для mobile
+  @media (max-width: 992px) {
+    .right_section {
+      .nav_and_lang {
+        display: none;
+      }
+    }
+    
+    .skeleton-mobile-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+// Fade-in animation for header content
+.header-fade-in {
+  animation: headerContentFadeIn 0.4s ease-out;
+}
+
+@keyframes headerContentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

@@ -62,6 +62,19 @@ export const SKELETON_CONFIG = {
       minLoadingTime: 700,
       maxLoadingTime: 2000
     }
+  },
+  
+  // Настройки для хедера
+  header: {
+    logoWidth: '310px',
+    logoHeight: '60px',
+    navItemWidth: '80px',
+    navItemHeight: '20px',
+    languageSwitcherWidth: '60px',
+    languageSwitcherHeight: '30px',
+    minLoadingTime: 500,
+    maxLoadingTime: 1500,
+    navItemsCount: 5 // количество пунктов навигации
   }
 };
 
