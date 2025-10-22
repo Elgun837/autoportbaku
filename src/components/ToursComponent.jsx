@@ -18,8 +18,8 @@ function ToursComponent() {
   const tours = Array.isArray(toursData)
     ? toursData
     : Array.isArray(toursData?.data)
-    ? toursData.data
-    : [];
+      ? toursData.data
+      : [];
 
 
   const slugs = translations[lang]?.routes || {};
@@ -36,8 +36,18 @@ function ToursComponent() {
                 <div className="line_decor">
                   <span></span>
                 </div>
-                <h6 className="subtitle">{t("ToursComponent.subtitle")}</h6>
-                <h5 className="text_details_section_title">
+                <h6 className="subtitle"
+                  data-aos="flip-up"
+                  data-aos-delay="100"
+                  data-aos-duration="800"
+                  data-aos-mirror="true"
+                >{t("ToursComponent.subtitle")}</h6>
+                <h5
+                  className="text_details_section_title"
+                  data-aos="flip-up"
+                  data-aos-delay="200"
+                  data-aos-duration="800"
+                  data-aos-mirror="true">
                   {t("ToursComponent.title")}
                 </h5>
               </div>
@@ -46,13 +56,12 @@ function ToursComponent() {
                   <div className="tour_card" key={index}>
                     <div className="tour_image tour_image_1">
                       <a
-                        href={`/${lang}/tours/${
-                          tour.slug[lang] || tour.slug.en
-                        }`}
+                        href={`/${lang}/tours/${tour.slug[lang] || tour.slug.en
+                          }`}
                       >
                         <img
-                        height="319"
-                        width="506"
+                          height="319"
+                          width="506"
                           src={
                             tour.image ||
                             `/src/assets/images/tours/${index + 1}.png`
@@ -67,9 +76,8 @@ function ToursComponent() {
                     </div>
                     <div className="button_wrapper">
                       <a
-                        href={`/${lang}/tours/${
-                          tour.slug[lang] || tour.slug.en
-                        }`}
+                        href={`/${lang}/tours/${tour.slug[lang] || tour.slug.en
+                          }`}
                         className="btn btn-primary"
                       >
                         {t("tour.bookingLink", "Book Now")}

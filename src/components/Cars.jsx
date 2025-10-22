@@ -42,7 +42,11 @@ export default function Cars() {
         <div className="container">
           <div className="row">
             <div className="inner_cars_section">
-              <div className="text_details">
+              <div className="text_details" 
+                   data-aos="fade-right" 
+                   data-aos-delay="200"
+                   data-aos-duration="800"
+                   data-aos-mirror="true">
                 <div className="line_decor">
                   <span></span>
                 </div>
@@ -51,13 +55,22 @@ export default function Cars() {
                   {t("cars.title")}
                 </h5>
               </div>
-              <div className="cars_wrapper">
+              <div className="cars_wrapper" 
+                   data-aos="fade-up" 
+                   data-aos-delay="400"
+                   data-aos-duration="800"
+                   data-aos-mirror="true">
                 <div className="car_wrapper_items">
                   {/* car item */}
                   {/* car item */}
                   {vehicles.map((vehicle, index) => (
                     
-                        <div className="car_item" key={index}>
+                        <div className="car_item" 
+                             key={index}
+                             data-aos="slide-up" 
+                             data-aos-delay={600 + index * 200}
+                             data-aos-duration="800"
+                             data-aos-mirror="true">
                             <div className="wrapper">
                           <div className="left_details">
                             <div className="top">

@@ -3,9 +3,11 @@ import "../assets/styles/Slide.scss";
 import MultiStepForm from "./MultiStepForm";
 import SkeletonSlide from "./SkeletonSlide";
 import useImageLoading from "../hooks/useImageLoading";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Slide() {
   const { isLoading, imageLoaded } = useImageLoading("/bg_block.webp", 1000, 3000);
+  const { t } = useLanguage();
 
   if (isLoading) {
     return <SkeletonSlide />;
@@ -28,10 +30,10 @@ export default function Slide() {
             <div className="row">
               <div className="slide_inner">
                 <div className="text_section">
-                  <h1>Your personal chauffeur service</h1>
-                  <p>Exclusivity . Safety . Comfort</p>
+                  <h1 className="animate__animated animate__zoomIn">{t("slide.title")}</h1>
+                  <p className="animate__animated animate__zoomIn">{t("slide.subtitle")}</p>
                 </div>
-                <div className="form_section">
+                <div className="form_section ">
                   <MultiStepForm />
                 </div>
               </div>

@@ -12,10 +12,10 @@ export default function Header({ showSkeleton = true, skeletonDuration = 400 }) 
   const { pathname } = useLocation();
   useEffect(() => {
     setTimeout(() => {
-     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     }, 50); // 50ms gözlə
   }, [pathname]);
-  
+
   const { lang, t } = useLanguage();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -172,7 +172,7 @@ export default function Header({ showSkeleton = true, skeletonDuration = 400 }) 
       <div className="container">
         <div className="row">
           <div className="inner">
-            <div className="logo">
+            <div className="logo animate__animated animate__fadeIn">
               <Link to={`/${lang}`}>
                 <img src={logoImage} alt="Logo" />
               </Link>
@@ -180,9 +180,7 @@ export default function Header({ showSkeleton = true, skeletonDuration = 400 }) 
 
             <div className="right_section">
               <div
-                className={`nav_and_lang ${
-                  isMobileMenuOpen ? "mobile-open" : ""
-                }`}
+                className={`animate__animated animate__fadeIn nav_and_lang ${isMobileMenuOpen ? "mobile-open" : "" }`}
               >
                 <nav>
                   <Link to={`/${lang}`} onClick={closeMobileMenu}>
@@ -202,9 +200,8 @@ export default function Header({ showSkeleton = true, skeletonDuration = 400 }) 
                         {t("header.services")}
                       </Link>
                       <span
-                        className={`dropdown-arrow ${
-                          isMobileServicesDropdownOpen ? "open" : ""
-                        }`}
+                        className={`dropdown-arrow ${isMobileServicesDropdownOpen ? "open" : ""
+                          }`}
                         onClick={toggleMobileServicesDropdown}
                       >
                         ▼
@@ -212,9 +209,8 @@ export default function Header({ showSkeleton = true, skeletonDuration = 400 }) 
                     </div>
 
                     <div
-                      className={`dropdown-menu ${
-                        isMobileServicesDropdownOpen ? "mobile-open" : ""
-                      }`}
+                      className={`dropdown-menu ${isMobileServicesDropdownOpen ? "mobile-open" : ""
+                        }`}
                     >
                       {servicesLoading ? (
                         <div className="dropdown-item">Loading...</div>
@@ -251,9 +247,8 @@ export default function Header({ showSkeleton = true, skeletonDuration = 400 }) 
                         {t("header.tours")}
                       </Link>
                       <span
-                        className={`dropdown-arrow ${
-                          isMobileToursDropdownOpen ? "open" : ""
-                        }`}
+                        className={`dropdown-arrow ${isMobileToursDropdownOpen ? "open" : ""
+                          }`}
                         onClick={toggleMobileToursDropdown}
                       >
                         ▼
@@ -261,9 +256,8 @@ export default function Header({ showSkeleton = true, skeletonDuration = 400 }) 
                     </div>
 
                     <div
-                      className={`dropdown-menu ${
-                        isMobileToursDropdownOpen ? "mobile-open" : ""
-                      }`}
+                      className={`dropdown-menu ${isMobileToursDropdownOpen ? "mobile-open" : ""
+                        }`}
                     >
                       {toursLoading ? (
                         <div className="dropdown-item">Loading...</div>

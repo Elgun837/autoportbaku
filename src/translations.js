@@ -48,6 +48,10 @@ export const translations = {
     home: {
       welcome: "Welcome!",
     },
+    slide: {
+      title: "Your personal chauffeur service",
+      subtitle: "Exclusivity . Safety . Comfort",
+    },
     about: {
       title: "Autoport - More than just a driving service",
       subtitle:
@@ -166,6 +170,10 @@ export const translations = {
     },
     home: {
       welcome: "Добро пожаловать!",
+    },
+    slide: {
+      title: "Ваш персональный сервис шофёра",
+      subtitle: "Эксклюзивность . Безопасность . Комфорт",
     },
     about: {
       title: "Autoport — больше, чем просто водительские услуги",

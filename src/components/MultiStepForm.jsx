@@ -146,7 +146,7 @@ export default function MultiStepForm() {
   };
 
   return (
-    <div className="form" >
+    <div className="form animate__animated animate__fadeIn">
       
       <div className="form-header">
         <div className="steps-indicator">
