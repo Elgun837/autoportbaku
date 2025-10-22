@@ -1,7 +1,12 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { translations } from "../translations";
 import { useNavigate, useLocation } from "react-router-dom";
-import { getToursData, getServiceData } from "../api/index";
+import {
+  getToursData,
+  getServiceData,
+  getToursSlug,
+  getServicesSlug,
+} from "../api/index";
 
 const LanguageContext = createContext();
 
@@ -100,55 +105,129 @@ export function LanguageProvider({ children }) {
   //   navigate(`/${pathParts.join("/")}${location.search}`, { replace: true });
   // };
 
- const changeLang = async (newLang) => {
-  if (!lang || newLang === lang) return;
+  const changeLang = async (newLang) => {
+    if (!lang || newLang === lang) return;
 
-  const pathParts = location.pathname.split("/").filter(Boolean);
-  const currentLang = pathParts[0];
-  if (!currentLang || !translations[currentLang]) return;
+    const pathParts = location.pathname.split("/").filter(Boolean);
+    const currentLang = pathParts[0];
+    if (!currentLang || !translations[currentLang]) return;
 
-  const currentRoutes = translations[currentLang].routes || {};
-  const newRoutes = translations[newLang]?.routes || {};
-  const slugKey = Object.keys(currentRoutes).find(
-    (key) => currentRoutes[key] === pathParts[1]
-  );
+    const currentRoutes = translations[currentLang].routes || {};
+    const newRoutes = translations[newLang]?.routes || {};
+    const slugKey = Object.keys(currentRoutes).find(
+      (key) => currentRoutes[key] === pathParts[1]
+    );
 
-  // 1️⃣ Dil hissəsini dəyiş
-  pathParts[0] = newLang;
+    // 1️⃣ Dil hissəsini dəyiş
+    pathParts[0] = newLang;
 
-  // 2️⃣ Statik səhifələr üçün slug dəyişdir
-  if (slugKey && newRoutes[slugKey]) {
-    pathParts[1] = newRoutes[slugKey];
-  }
-
-  let newSlug = null;
-
-  // 3️⃣ Dinamik səhifələr üçün API-dən yeni dilə uyğun slug tap
-  if (pathParts[2]) {
-    try {
-      if (slugKey === "tours") {
-        const tourData = await getToursSlug(newLang, pathParts[2]);
-        if (tourData?.slug && typeof tourData.slug === "object") {
-          newSlug = tourData.slug[newLang] || tourData.slug.en;
-        }
-      } else if (slugKey === "services") {
-        const serviceData = await getServiceData(newLang, pathParts[2]);
-        if (serviceData?.slug && typeof serviceData.slug === "object") {
-          newSlug = serviceData.slug[newLang] || serviceData.slug.en;
-        }
-      }
-    } catch (err) {
-      console.warn(`Failed to fetch ${slugKey} for lang=${newLang}`, err);
+    // 2️⃣ Statik səhifələr üçün slug dəyişdir
+    if (slugKey && newRoutes[slugKey]) {
+      pathParts[1] = newRoutes[slugKey];
     }
-  }
 
-  // 4️⃣ Əgər yeni slug tapılıbsa, onu URL-də dəyiş
-  if (newSlug) pathParts[2] = newSlug;
+    let newSlug = null;
 
-  // 5️⃣ Navigate və lang state update
-  setLang(newLang);
-  navigate(`/${pathParts.join("/")}${location.search}`, { replace: true });
-};
+    // 3️⃣ Dinamik səhifələr üçün API-dən yeni dilə uyğun slug tap
+    if (pathParts[2]) {
+      try {
+        let slugToUse = pathParts[2]; // default olaraq URL-dən gələn slug
+        let slugData = null; // burada tanıtdıq
+
+        // Əgər yeni dil currentLang-dən fərqlidirsə, yeni dil slug-u tap
+        if (newLang !== currentLang) {
+          // if (slugKey === "tours") {
+          //   slugData = await getToursSlug(currentLang, pathParts[2]);
+          //   console.log("slugData:", slugData);
+          // } else if (slugKey === "services") {
+          //   slugData = await getServicesSlug(currentLang, pathParts[2]);
+          // }
+          // if (slugData) {
+          //   if (typeof slugData.slug === "object") {
+          //     slugToUse = slugData.slug[newLang] || slugData.slug.en;
+          //   } else if (typeof slugData.slug === "string") {
+          //     slugToUse = slugData.slug;
+          //   } else if (typeof slugData === "object" && slugData[newLang]) {
+          //     // API birbaşa {en: "...", ru: "..."} formatında gəlirsə
+          //     slugToUse = slugData[newLang] || slugData.en;
+          //   } else if (typeof slugData === "string") {
+          //     slugToUse = slugData; // sadəcə stringdirsə
+          //   }
+          //   console.log("slugToUse:", slugToUse);
+          // }
+
+          let slugMapping;
+          if (slugKey === "tours") {
+            slugMapping = await getToursSlug(currentLang, pathParts[2]);
+          } else if (slugKey === "services") {
+            slugMapping = await getServicesSlug(currentLang, pathParts[2]);
+          }
+
+          // Yeni dil slug-u tap
+          let slugToUse = pathParts[2]; // default
+          if (Array.isArray(slugMapping)) {
+            // API array qaytarırsa
+            slugMapping = slugMapping[0];
+          }
+
+          if (slugMapping) {
+            if (typeof slugMapping.slug === "object") {
+              slugToUse = slugMapping.slug[newLang] || slugMapping.slug.en;
+            } else if (
+              typeof slugMapping === "object" &&
+              slugMapping[newLang]
+            ) {
+              slugToUse = slugMapping[newLang] || slugMapping.en;
+            } else if (typeof slugMapping.slug === "string") {
+              slugToUse = slugMapping.slug;
+            } else if (typeof slugMapping === "string") {
+              slugToUse = slugMapping;
+            }
+          }
+
+          if (slugKey === "tours") {
+            
+            const tourDataArray = await getToursSlug(newLang, slugToUse);
+            if (Array.isArray(tourDataArray) && tourDataArray.length > 0) {
+              const tourData = tourDataArray[0];
+              if (tourData.slug && typeof tourData.slug === "object") {
+                newSlug = tourData.slug[newLang] || tourData.slug.en;
+                console.log("newSlug:", newSlug);
+              } else if (typeof tourData.slug === "string") {
+                newSlug = tourData.slug;
+              }
+            } else {
+              console.warn("tourData array boşdur!");
+            }
+          } else if (slugKey === "services") {
+            const serviceDataArray = await getServiceData(newLang, slugToUse);
+            if (Array.isArray(serviceDataArray) && serviceDataArray.length > 0) {
+              const serviceData = serviceDataArray[0];
+              if (serviceData.slug && typeof serviceData.slug === "object") {
+                newSlug = serviceData.slug[newLang] || tourData.slug.en;
+                console.log("newSlug:", newSlug);
+              } else if (typeof serviceData.slug === "string") {
+                newSlug = serviceData.slug;
+              }
+            } else {
+              console.warn("tourData array boşdur!");
+            }
+          }
+        }
+
+        // İndi slugToUse ilə API çağırışı et
+      } catch (err) {
+        console.warn(`Failed to fetch ${slugKey} for lang=${newLang}`, err);
+      }
+    }
+
+    // 4️⃣ Əgər yeni slug tapılıbsa, onu URL-də dəyiş
+    if (newSlug) pathParts[2] = newSlug;
+
+    // 5️⃣ Navigate və lang state update
+    setLang(newLang);
+    navigate(`/${pathParts.join("/")}${location.search}`, { replace: true });
+  };
 
   // 🔤 Tərcümə funksiyası
   const t = (keyPath, options = {}) => {
