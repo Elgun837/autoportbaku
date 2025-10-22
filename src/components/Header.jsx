@@ -39,7 +39,7 @@ export default function Header() {
         setToursLoading(true);
         const toursData = await getToursData(lang);
         const toursArray = toursData?.data || toursData || [];
-        setTours(toursArray.slice(0, 5)); // Ограничиваем до 5 туров в меню
+        setTours(toursArray.slice(0, 15)); // Ограничиваем до 5 туров в меню
       } catch (error) {
         console.error("Error fetching tours for menu:", error);
         setTours([]);
