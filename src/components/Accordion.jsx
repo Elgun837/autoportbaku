@@ -22,7 +22,7 @@ export default function Accordion() {
     queryKey: ["faqs", lang],
     queryFn: () => getFaqsData(lang),    
    });
-   console.log("Fetched FAQs:", data);
+  //  console.log("Fetched FAQs:", data);
 
 
   if (isLoading) return <p>Loading...</p>;
