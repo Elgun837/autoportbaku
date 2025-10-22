@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { getToursData, getServiceData } from "../api/index";
 import LanguageSwitcher from "./LanguageSwitcher";
+// import ImageWithFallback from "./ImageWithFallback";
 import "../assets/styles/Header.scss";
 import logoImage from "/logo.png";
 import { translations } from "../translations";

@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LanguageProvider, useLanguage } from "./context/LanguageContext";
+import { useEffect } from "react";
+import { initImageFallback } from "./utils/imageUtils";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -38,6 +40,12 @@ function AppRoutes() {
 }
 
 export default function App() {
+  // Инициализируем систему fallback для изображений
+  useEffect(() => {
+    const cleanup = initImageFallback();
+    return cleanup;
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
