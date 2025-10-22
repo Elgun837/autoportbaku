@@ -1,8 +1,12 @@
 export const translations = {
   en: {
+    fleet: {
+      title: "Our Fleet",
+      description: "Comfortable rides with style and safety.",
+    },
     partners: {
-      title: "Our Partners",
-      subtitle: "Learn more about our partners",
+      title: "Learn more about our partners",
+      subtitle: "Partners",
     },
     whyUs: {
       subtitle: "Why Autoport Baku",
@@ -120,6 +124,10 @@ export const translations = {
 
   },
   ru: {
+    fleet: {
+      title: "Наш автопарк",
+      description: "Комфортные поездки со стилем и безопасностью.",
+    },
     whyUs: {
       subtitle: "Почему Autoport Baku",
       title: "Эксклюзивность, безопасность и комфорт для каждого путешествия",

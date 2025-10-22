@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { getToursData, getServiceData } from "../api/index";
 import LanguageSwitcher from "./LanguageSwitcher";
+// import ImageWithFallback from "./ImageWithFallback";
 import "../assets/styles/Header.scss";
 import logoImage from "/logo.png";
 import { translations } from "../translations";
@@ -39,7 +40,7 @@ export default function Header() {
         setToursLoading(true);
         const toursData = await getToursData(lang);
         const toursArray = toursData?.data || toursData || [];
-        setTours(toursArray.slice(0, 15)); // Ограничиваем до 5 туров в меню
+        setTours(toursArray.slice(0, 16)); // Ограничиваем до 5 туров в меню
       } catch (error) {
         console.error("Error fetching tours for menu:", error);
         setTours([]);
