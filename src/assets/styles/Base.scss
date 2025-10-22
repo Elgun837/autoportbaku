@@ -181,8 +181,13 @@ body {
   .title_small_text_wrapper {
     max-width: 1320px;
     margin: 0 auto;
-    p{
+    p {
       font-size: rem(20);
     }
   }
+}
+
+span[aria-live="polite"] {
+  display: inline-flex;
+  width: 100%;
 }

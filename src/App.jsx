@@ -50,7 +50,6 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <Router>
         <LanguageProvider>
-
           <Header />
           <AppRoutes />
           <Footer />

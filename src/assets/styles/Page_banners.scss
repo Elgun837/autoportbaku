@@ -47,6 +47,10 @@
           align-items: flex-start;
           gap: rem(20);
           align-self: stretch;
+          span[aria-live="polite"] {
+            display: inline-flex;
+            width: 100%;
+          }
           .page_title {
             color: #fff;
             text-shadow: 0 5px 4.6px rgba(0, 0, 0, 0.29);
@@ -134,5 +138,47 @@
         @include responsive_padding;
       }
     }
+  }
+}
+
+// Skeleton loading styles for Page Big Banner
+.skeleton-page-banner-container {
+  .react-loading-skeleton {
+    border-radius: 8px;
+
+    &::before {
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+      );
+    }
+  }
+
+  .skeleton-title-wrapper {
+    .react-loading-skeleton {
+      margin-bottom: 15px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// Fade-in animation for page banner content
+.page-banner-fade-in {
+  animation: pageBannerContentFadeIn 0.6s ease-out;
+}
+
+@keyframes pageBannerContentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
