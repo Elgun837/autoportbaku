@@ -17,7 +17,7 @@ export default function MultiStepForm() {
   // });
 
   // const vehicles = Array.isArray(data) ? data : [];
-  // console.log(vehicles);
+  // // console.log(vehicles);
  
   const [activeStep, setActiveStep] = useState(1);
   const [formData, setFormData] = useState({

@@ -1,14 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { getToursData, getServiceData } from "../api/index";
 import LanguageSwitcher from "./LanguageSwitcher";
-// import ImageWithFallback from "./ImageWithFallback";
+import SkeletonHeader from "./SkeletonHeader";
 import "../assets/styles/Header.scss";
 import logoImage from "/logo.png";
 import { translations } from "../translations";
 import { useTours } from "../context/TourContext";
 import { useServices } from "../context/ServiceContext";
+
 export default function Header() {
   const { pathname } = useLocation();
   const { tours, loading: toursLoading } = useTours();
@@ -19,6 +19,7 @@ export default function Header() {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     }, 50); // 50ms gözlə
   }, [pathname]);
+  
   const { lang, t } = useLanguage();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -27,16 +28,53 @@ export default function Header() {
   const [isMobileServicesDropdownOpen, setIsMobileServicesDropdownOpen] =
     useState(false);
 
+
   // Проверяем, находимся ли мы на главной странице
   const isHomePage =
     location.pathname === `/${lang}` || location.pathname === "/";
 
   // Создаем класс для header с условным добавлением класса 'home'
-  const headerClass = `header${isHomePage ? " home" : ""}`;
+  const headerClass = `header${isHomePage ? " home" : ""} header-fade-in`;
 
   // Загрузка туров для выпадающего меню
+  useEffect(() => {
+    const fetchTours = async () => {
+      try {
+        setToursLoading(true);
+        const toursData = await getToursData(lang);
+        const toursArray = toursData?.data || toursData || [];
+        setTours(toursArray.slice(0, 16)); // Ограничиваем до 5 туров в меню
+      } catch (error) {
+        console.error("Error fetching tours for menu:", error);
+        setTours([]);
+      } finally {
+        setToursLoading(false);
+      }
+    };
+
+    fetchTours();
+  }, [lang]);
 
   // Загрузка сервисов для выпадающего меню
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        setServicesLoading(true);
+        const servicesData = await getServiceData(lang);
+        const servicesArray = Array.isArray(servicesData)
+          ? servicesData
+          : servicesData?.data || [];
+        setServices(servicesArray.slice(0, 16));
+      } catch (error) {
+        console.error("Error fetching services for menu:", error);
+        setServices([]);
+      } finally {
+        setServicesLoading(false);
+      }
+    };
+
+    fetchServices();
+  }, [lang]);
 
   // Функция для переключения мобильного меню
   const toggleMobileMenu = () => {
@@ -101,6 +139,11 @@ export default function Header() {
   }, [isMobileMenuOpen]);
 
   if (!lang) return null;
+
+  // Показываем skeleton во время загрузки
+  if (isSkeletonLoading) {
+    return <SkeletonHeader isHomePage={isHomePage} />;
+  }
 
   const slugs = translations[lang]?.routes || {};
 

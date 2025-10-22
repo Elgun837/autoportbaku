@@ -192,7 +192,7 @@ export function LanguageProvider({ children }) {
               const tourData = tourDataArray[0];
               if (tourData.slug && typeof tourData.slug === "object") {
                 newSlug = tourData.slug[newLang] || tourData.slug.en;
-                console.log("newSlug:", newSlug);
+                // console.log("newSlug:", newSlug);
               } else if (typeof tourData.slug === "string") {
                 newSlug = tourData.slug;
               }
@@ -205,7 +205,7 @@ export function LanguageProvider({ children }) {
               const serviceData = serviceDataArray[0];
               if (serviceData.slug && typeof serviceData.slug === "object") {
                 newSlug = serviceData.slug[newLang] || tourData.slug.en;
-                console.log("newSlug:", newSlug);
+                // console.log("newSlug:", newSlug);
               } else if (typeof serviceData.slug === "string") {
                 newSlug = serviceData.slug;
               }
