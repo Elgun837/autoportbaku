@@ -7,18 +7,20 @@ import { getVehicleSearch } from "../api";
 import { useLanguage } from "../context/LanguageContext";
 import { useQuery } from "@tanstack/react-query";
 export default function MultiStepForm() {
-  // const { t, lang } = useLanguage();
-  //   const { data, isLoading, error } = useQuery({
-  //     queryKey: ["vehicle", lang],
-  //     queryFn: () => getVehicleSearch(lang),
-  //   });
+
+  const { t, lang } = useLanguage();
+    const { data, isLoading, error } = useQuery({
+      queryKey: ["vehicle", lang],
+      queryFn: () => getVehicleSearch(lang),
+    });
     
-  //   if (isLoading) return <p>Loading...</p>;
-  //   if (error) return <p>Error loading Services 😢</p>;
+    
 
 
-  //   const vehicles = Array.isArray(data) ? data : [];
-  const [errorMessage, setErrorMessage] = useState("");
+    const vehicles = Array.isArray(data) ? data : [];
+    console.log(vehicles);
+
+
   const [activeStep, setActiveStep] = useState(1);
   const [formData, setFormData] = useState({
     serviceType: "",
