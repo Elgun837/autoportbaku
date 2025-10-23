@@ -9,7 +9,8 @@ import { translations } from "../translations";
 import { useTours } from "../context/TourContext";
 import { useServices } from "../context/ServiceContext";
 
-export default function Header({ showSkeleton = true, skeletonDuration = 400 }) {
+export default function Header() {
+
   const { pathname } = useLocation();
   const { tours, loading: toursLoading } = useTours();
   const { services, loading: servicesLoading } = useServices();
@@ -34,10 +35,6 @@ export default function Header({ showSkeleton = true, skeletonDuration = 400 }) 
 
   // Создаем класс для header с условным добавлением класса 'home'
   const headerClass = `header${isHomePage ? " home" : ""} header-fade-in`;
-
-
-
-
 
   // Функция для переключения мобильного меню
   const toggleMobileMenu = () => {

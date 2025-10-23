@@ -10,6 +10,7 @@ import { useTours } from "../context/TourContext";
 export default function MultiStepForm() {
   const { t, lang } = useLanguage();
   const { tours } = useTours();
+
   const [formData, setFormData] = useState({
     serviceType: "",
     pickupDate: "",
@@ -34,23 +35,11 @@ export default function MultiStepForm() {
     isFetching: vehiclesLoading,
     refetch: refetchVehicles,
   } = useQuery({
-    queryKey: [
-      "vehicle",
-      lang,
-      tourId,
-      passengers,
-      luggage
-    ],
-    queryFn: () =>
-      getVehicleSearch(
-        lang,
-        tourId,
-        passengers,
-        luggage
-      ),
+    queryKey: ["vehicle", lang, tourId, passengers, luggage],
+    queryFn: () => getVehicleSearch(lang, tourId, passengers, luggage),
     enabled: false, // avtomatik çağırılmasın
   });
-  
+
   const vehicles = Array.isArray(vehiclesData) ? vehiclesData : [];
 
   const [activeStep, setActiveStep] = useState(1);
@@ -63,16 +52,16 @@ export default function MultiStepForm() {
   const hours = Array.from({ length: 24 }, (_, i) => i);
   const minutes = Array.from({ length: 12 }, (_, i) => i * 5);
   const handleChange = (e) => {
-  const { name, value } = e.target;
+    const { name, value } = e.target;
 
-  setFormData({
-    ...formData,
-    [name]: name === "passengers" || name === "luggage" ? Number(value) : value,
-  });
-};
+    setFormData({
+      ...formData,
+      [name]:
+        name === "passengers" || name === "luggage" ? Number(value) : value,
+    });
+  };
 
   const handleNext = async (e) => {
-
     e.preventDefault();
     if (activeStep === 2) {
       await refetchVehicles(); // maşınları yalnız step 3-ə keçərkən çağırırıq
@@ -181,7 +170,6 @@ export default function MultiStepForm() {
   };
   return (
     <div className="form animate__animated animate__fadeIn">
-      
       <div className="form-header">
         <div className="steps-indicator">
           {[1, 2, 3, 4].map((step) => (
