@@ -129,16 +129,19 @@ export const getVehicleData = async (lang) => {
   }
 };
 
-export const getVehicleSearch = async (lang,tourId,passengers,luggage) => {
+export const getVehicleSearch = async (lang, tourId, formPassengers, formLuggage) => {
   if (!lang) return null;
   try {
+    console.log("API çağırılır:", { lang, tourId, formPassengers, formLuggage });
     const { data } = await api.post("/vehicles/search", {
       headers: { contentLanguage: lang, token },
-      passengers: passengers,
-      luggage: luggage,
+      passengers: formPassengers,
+      luggage: formLuggage,
       tour_id: tourId,
     });
+    console.log("API cavabı alındı:", data);
     return data;
+    
   } catch (error) {
     console.error("getVehicleSearch xətası:", error);
     return null;

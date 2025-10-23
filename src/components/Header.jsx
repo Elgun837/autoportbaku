@@ -9,7 +9,7 @@ import { translations } from "../translations";
 import { useTours } from "../context/TourContext";
 import { useServices } from "../context/ServiceContext";
 
-export default function Header() {
+export default function Header({ showSkeleton = true, skeletonDuration = 400 }) {
   const { pathname } = useLocation();
   const { tours, loading: toursLoading } = useTours();
   const { services, loading: servicesLoading } = useServices();
@@ -28,7 +28,6 @@ export default function Header() {
   const [isMobileServicesDropdownOpen, setIsMobileServicesDropdownOpen] =
     useState(false);
 
-
   // Проверяем, находимся ли мы на главной странице
   const isHomePage =
     location.pathname === `/${lang}` || location.pathname === "/";
@@ -36,45 +35,9 @@ export default function Header() {
   // Создаем класс для header с условным добавлением класса 'home'
   const headerClass = `header${isHomePage ? " home" : ""} header-fade-in`;
 
-  // Загрузка туров для выпадающего меню
-  useEffect(() => {
-    const fetchTours = async () => {
-      try {
-        setToursLoading(true);
-        const toursData = await getToursData(lang);
-        const toursArray = toursData?.data || toursData || [];
-        setTours(toursArray.slice(0, 16)); // Ограничиваем до 5 туров в меню
-      } catch (error) {
-        console.error("Error fetching tours for menu:", error);
-        setTours([]);
-      } finally {
-        setToursLoading(false);
-      }
-    };
 
-    fetchTours();
-  }, [lang]);
 
-  // Загрузка сервисов для выпадающего меню
-  useEffect(() => {
-    const fetchServices = async () => {
-      try {
-        setServicesLoading(true);
-        const servicesData = await getServiceData(lang);
-        const servicesArray = Array.isArray(servicesData)
-          ? servicesData
-          : servicesData?.data || [];
-        setServices(servicesArray.slice(0, 16));
-      } catch (error) {
-        console.error("Error fetching services for menu:", error);
-        setServices([]);
-      } finally {
-        setServicesLoading(false);
-      }
-    };
 
-    fetchServices();
-  }, [lang]);
 
   // Функция для переключения мобильного меню
   const toggleMobileMenu = () => {
@@ -140,10 +103,7 @@ export default function Header() {
 
   if (!lang) return null;
 
-  // Показываем skeleton во время загрузки
-  if (isSkeletonLoading) {
-    return <SkeletonHeader isHomePage={isHomePage} />;
-  }
+
 
   const slugs = translations[lang]?.routes || {};
 
