@@ -69,6 +69,7 @@
 
           .service_title {
             position: absolute;
+            font-size: clamp(#{rem(20)}, #{vw(22)}, #{rem(22)});
             bottom: 30px;
             left: 20px;
             color: white;
