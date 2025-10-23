@@ -43,6 +43,10 @@ function ToursComponent() {
                       <a
                         href={`/${lang}/tours/${tour.slug[lang] || tour.slug.en
                           }`}
+                          data-aos="fade-down"
+                          data-aos-delay={`${300 + index * 200}`}
+                          data-aos-duration="800"
+                          data-aos-mirror="true"
                       >
                         <img
                           height="319"
@@ -56,14 +60,18 @@ function ToursComponent() {
                       </a>
                     </div>
                     <div className="tour_info">
-                      <h6 className="tour_title">{tour.title}</h6>
-                      <div className="tour_desc">{tour.excerpt}</div>
+                      <h6 className="tour_title" data-aos="fade-down" data-aos-delay={`${300 + index * 200}`} data-aos-duration="800" data-aos-mirror="true">{tour.title}</h6>
+                      <div className="tour_desc" data-aos="fade-down" data-aos-delay={`${300 + index * 200}`} data-aos-duration="800" data-aos-mirror="true">{tour.excerpt}</div>
                     </div>
                     <div className="button_wrapper">
                       <a
                         href={`/${lang}/tours/${tour.slug[lang] || tour.slug.en
                           }`}
                         className="btn btn-primary"
+                        data-aos="fade-down"
+                        data-aos-delay={`${300 + index * 200}`}
+                        data-aos-duration="800"
+                        data-aos-mirror="true"
                       >
                         {t("tour.bookingLink", "Book Now")}
                       </a>
@@ -76,6 +84,10 @@ function ToursComponent() {
                 <a
                   href={`/${lang}/${slugs.tours || "tours"}`}
                   className="btn btn-secondary"
+                  data-aos="fade-in"
+                  data-aos-delay={`${300 + 3 * 200}`}
+                  data-aos-duration="800"
+                  data-aos-mirror="true"
                 >
                   {t("ToursComponent.btn", "Discover all tours")}
                 </a>

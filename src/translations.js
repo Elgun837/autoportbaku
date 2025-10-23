@@ -1,7 +1,7 @@
 import { types } from "sass";
 
 export const translations = {
-  en: {
+  en: {   
     formsLocation: {
       types: {
         transfer: "Transfer",
@@ -134,10 +134,12 @@ export const translations = {
     },
     BookTrip: {
       desc: "Start your journey with Autoport and experience first-class comfort and service on every trip.",
+      buttonText: "Забронировать поездку",
     },
 
   },
   ru: {
+    
     formsLocation: {
       types: {
         transfer: "Трансфер",
@@ -264,6 +266,7 @@ export const translations = {
     },
     BookTrip: {
       desc: "Начните свое путешествие с Autoport и ощутите первоклассный комфорт и сервис в каждой поездке.",
+      buttonText: "Забронировать поездку",
     },
   },
 

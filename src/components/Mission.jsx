@@ -20,17 +20,32 @@ export default function Mission() {
         <div className="container">
           <div className="row haeding_row">
             <div className="mission_heading">
-              <h2>{t("missions.title")} </h2>
+              <h2 
+              data-aos="fade-up"
+              data-aos-delay="200"
+              data-aos-duration="800"
+              data-aos-mirror="true"
+              >{t("missions.title")} </h2>
             </div>
             <div className="mission_subtitle">
-              <p>
+              <p
+               data-aos="fade-up"
+               data-aos-delay="300"
+               data-aos-duration="800"
+               data-aos-mirror="true"
+              >
                 {t("missions.subtitle")}
               </p>
             </div>
           </div>
           <div className="row mission_row">
             <div className="mission_left">
-              <div className="miss_icon">
+              <div className="miss_icon"
+               data-aos="zoom-in"
+               data-aos-delay="400"
+               data-aos-duration="300"
+               data-aos-mirror="true"
+              >
                 <svg
                   width="194"
                   height="194"
@@ -45,14 +60,29 @@ export default function Mission() {
                 </svg>
               </div>
               <div className="mis_title">
-                <h6>{t("missions.point1Title")}</h6>
-                <p>
+                <h6
+                  data-aos="fade-up"
+                  data-aos-delay="500"
+                  data-aos-duration="800"
+                  data-aos-mirror="true"
+                >{t("missions.point1Title")}</h6>
+                <p
+                  data-aos="fade-up"
+                  data-aos-delay="600"
+                  data-aos-duration="800"
+                  data-aos-mirror="true"
+                >
                  {t("missions.point1Desc")}
                 </p>
               </div>
             </div>
             <div className="mission_right">
-              <div className="miss_icon">
+              <div className="miss_icon"
+               data-aos="zoom-in"
+               data-aos-delay="400"
+               data-aos-duration="300"
+               data-aos-mirror="true"
+              >
                 <svg
                   width="194"
                   height="194"
@@ -71,8 +101,18 @@ export default function Mission() {
                 </svg>
               </div>
               <div className="mis_title">
-                <h6>{t("missions.point2Title")}</h6>
-                <p>
+                <h6
+                data-aos="fade-up"
+                data-aos-delay="500"
+                data-aos-duration="800"
+                data-aos-mirror="true"
+                >{t("missions.point2Title")}</h6>
+                <p
+                data-aos="fade-up"
+                data-aos-delay="600"
+                data-aos-duration="800"
+                data-aos-mirror="true"
+                >
                   {t("missions.point2Desc")}
                 </p>
               </div>

@@ -1,23 +1,23 @@
 @use './functions/Functions.scss' as *;
 @use './functions/Mixins.scss' as *;
+
 .mission_setion {
     background: linear-gradient(114.44deg, #2B4764 -0.39%, #19599A 100%);
-    margin-bottom: 150px;
+    margin-bottom: clamp(#{rem(80)}, #{vh(120)}, #{rem(150)});
 
     .mission_content {
-        padding-top: 150px;
-        padding-right: 80px;
-        padding-bottom: 150px;
-        padding-left: 80px;
+        padding-top: clamp(#{rem(80)}, #{vh(120)}, #{rem(150)});
+        padding-bottom: clamp(#{rem(80)}, #{vh(120)}, #{rem(150)});
         @include responsive_padding;
-        .container{
+        
+        .container {
             display: flex;
             flex-direction: column;
-        gap: 120px;
+            gap: clamp(#{rem(60)}, #{vh(100)}, #{rem(120)});
         }
 
         .row {
-            padding: 0 4%;
+            padding: 0 vw(40);
         }
 
         .haeding_row {
@@ -25,23 +25,21 @@
             flex-direction: column;
             color: white;
             text-align: center;
-            gap: 30px;
+            gap: rem(30);
 
             h2 {
                 font-weight: 600;
-                font-size: 50px;
-                line-height: 120%;
-                letter-spacing: 2%;
-
+                font-size: clamp(#{rem(32)}, #{vw(50)}, #{rem(50)});
+             
+                letter-spacing: 0.02em;
             }
 
             p {
                 font-weight: 400;
-                font-size: 40px;
-                line-height: 150%;
-                letter-spacing: 2%;
+                font-size: clamp(#{rem(24)}, #{vw(40)}, #{rem(40)});
+          
+                letter-spacing: 0.02em;
                 text-align: center;
-
             }
         }
 
@@ -56,51 +54,79 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 20px;
-                .mis_title{
+                gap: rem(20);
+                
+                .mis_title {
                     display: flex;
                     flex-direction: column;
-                    gap: 20px;
+                    gap: rem(20);
                 }
+                
                 p {
                     font-weight: 400;
-                    font-size: 17px;
-                    line-height: 150%;
-                    letter-spacing: 2%;
+                    font-size: clamp(#{rem(15)}, #{vw(17)}, #{rem(17)});
+               
+                    letter-spacing: 0.02em;
                     text-align: center;
-
                 }
 
                 h6 {
                     font-weight: 400;
-                    font-size: 24px;
-                    line-height: 150%;
-                    letter-spacing: 2%;
+                    font-size: clamp(#{rem(20)}, #{vw(24)}, #{rem(24)});
+              
+                    letter-spacing: 0.02em;
                     text-align: center;
-
                 }
             }
 
             .miss_icon {
                 display: flex;
                 justify-content: center;
+                max-width: vh(180);
+                svg{
+                    width: 100%;
+                    height: 100%;
+                }
             }
         }
     }
-
 }
 
 @media (max-width: 768px) {
-    .row.mission_row{
+    .row.mission_row {
         flex-wrap: wrap;
-        .mission_left, .mission_right{
-            width: 100%!important;
+        gap: rem(40);
+        
+        .mission_left, .mission_right {
+            width: 100% !important;
         }
     }
-    .mission_setion .mission_content .container{
-        gap: 40px;
+    
+    .mission_setion .mission_content .container {
+        gap: clamp(#{rem(30)}, #{vh(40)}, #{rem(40)});
     }
-    .mission_setion .mission_content .haeding_row p{
-        font-size: 24px;
+    
+    .mission_setion .mission_content .haeding_row {
+        h2 {
+            font-size: clamp(#{rem(24)}, #{vw(32)}, #{rem(32)});
+        }
+        
+        p {
+            font-size: clamp(#{rem(18)}, #{vw(24)}, #{rem(24)});
+        }
+    }
+    
+    .mission_setion .mission_content .mission_row {
+        .mission_left, .mission_right {
+            gap: rem(15);
+            
+            h6 {
+                font-size: clamp(#{rem(18)}, #{vw(20)}, #{rem(20)});
+            }
+            
+            p {
+                font-size: clamp(#{rem(14)}, #{vw(15)}, #{rem(15)});
+            }
+        }
     }
 }

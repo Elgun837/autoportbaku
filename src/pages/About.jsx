@@ -28,9 +28,24 @@ function About() {
         <div className="container">
           <div className="row"> 
             <div className="about_inner">
-              <p>{t("about.content1")}</p>
-              <p>{t("about.content2")}</p>
-              <p>{t("about.content3")}</p>
+              <p 
+              data-aos="fade-up"
+              data-aos-delay="200"
+              data-aos-duration="800"
+              data-aos-mirror="true"
+              >{t("about.content1")}</p>
+              <p
+              data-aos="fade-up"
+              data-aos-delay="400"
+              data-aos-duration="800"
+              data-aos-mirror="true"
+              >{t("about.content2")}</p>
+              <p
+              data-aos="fade-up"
+              data-aos-delay="600"
+              data-aos-duration="800"
+              data-aos-mirror="true"
+              >{t("about.content3")}</p>
             </div>
           </div>
         </div>

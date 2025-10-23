@@ -1,11 +1,13 @@
 import { use } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import "../assets/styles/Trip.scss";
+import { translations } from "../translations";
 import videoTrip from "../assets/images/file.mp4";
 
 function BookTrip() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   return (
+    <>
     <div className="trip_section bg_black">
       <div className="triangle_decor triangle_decor_top">
         <svg
@@ -21,9 +23,15 @@ function BookTrip() {
       <div className="container">
         <div className="inner">
           <div className="left_section">
-            <div className="desc_text">{t("BookTrip.desc")}</div>
+            <div className="desc_text"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >{t("BookTrip.desc")}</div>
 
-             <a href="#"> <button className="trip_button">Book a trip</button></a>
+            <a href="#"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            > <button className="trip_button"><span>{t("BookTrip.buttonText", "Book a trip")}</span></button></a>
           </div>
           <div className="right_section">
             <video className="trip_video" playsInline src={videoTrip} muted loop autoPlay></video>
@@ -42,6 +50,7 @@ function BookTrip() {
         </svg>
       </div>
     </div>
+    </>
   );
 }
 

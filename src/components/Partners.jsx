@@ -38,8 +38,18 @@ const Partners = () => {
                     <div className="row">
                         <div className="inner_slider">                           
                             <div className="text_details">
-                                <h6 className="subtitle">{t("partners.subtitle")}</h6>
-                                <h2 className="text_details_section_title">{t("partners.title")}</h2>
+                                <h6 className="subtitle"
+                                    data-aos="flip-up"
+                                    data-aos-delay="400"
+                                    data-aos-duration="800"
+                                    data-aos-mirror="true"
+                                >{t("partners.subtitle")}</h6>
+                                <h2 className="text_details_section_title"
+                                    data-aos="flip-up"
+                                    data-aos-delay="500"
+                                    data-aos-duration="800"
+                                    data-aos-mirror="true"
+                                >{t("partners.title")}</h2>
                             </div>
                             <div className='full_nav_block'>
                                 <div className='nav_slider'>
