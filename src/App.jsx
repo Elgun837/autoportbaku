@@ -8,6 +8,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LanguageProvider, useLanguage } from "./context/LanguageContext";
 import { useEffect } from "react";
 import { initImageFallback } from "./utils/imageUtils";
+import 'animate.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -24,6 +29,8 @@ import { TourProvider } from "./context/TourContext";
 import { ServiceProvider } from "./context/ServiceContext";
 
 const queryClient = new QueryClient();
+
+
 
 function AppRoutes() {
   const { lang } = useLanguage();
@@ -54,6 +61,34 @@ export default function App() {
   useEffect(() => {
     const cleanup = initImageFallback();
     return cleanup;
+  }, []);
+
+  // Инициализируем AOS (Animate On Scroll)
+  useEffect(() => {
+    AOS.init({
+      duration: 800,         // длительность анимации в миллисекундах (уменьшил для более отзывчивости)
+      delay: 0,              // задержка анимации
+      easing: 'ease-in-out', // тип easing для анимации (более плавный)
+      once: false,           // анимация НЕ происходит только один раз (повторяется)
+      mirror: true,          // элементы анимируются при прокрутке обратно (обратная анимация)
+      anchorPlacement: 'top-bottom', // определение когда элемент считается в области видимости
+      offset: 100,           // отступ (в px) от исходной точки срабатывания (увеличил для раннего срабатывания)
+      disable: false,        // условие отключения AOS
+      startEvent: 'DOMContentLoaded', // имя события, после которого AOS будет инициализирован
+      animatedClassName: 'aos-animate', // класс, применяемый к анимированному элементу
+      initClassName: 'aos-init', // класс, применяемый после инициализации
+      useClassNames: false,  // если true, добавит `data-aos` как классы
+      disableMutationObserver: false, // отключить автоматическое обнаружение мутаций
+      debounceDelay: 50,     // задержка для debounce при изменении размера окна
+      throttleDelay: 99,     // задержка для throttle при прокрутке
+    });
+
+    // Обновляем AOS при изменении контента
+    AOS.refresh();
+
+    return () => {
+      // Очистка при размонтировании не требуется для AOS
+    };
   }, []);
 
   return (

@@ -6,10 +6,20 @@ function SectionTitle({ sectionHeadingSmall, sectionHeadingBig }) {
         <div className="row">
           <div className="inner">
             <div className="section_title_small">
-              <h4>{sectionHeadingSmall}</h4>
+              <h4
+               data-aos="fade-up"
+               data-aos-delay="200"
+               data-aos-duration="800"
+               data-aos-mirror="true"
+              >{sectionHeadingSmall}</h4>
             </div>
             <div className="section_title_big">
-              <h2>{sectionHeadingBig}</h2>
+              <h2
+               data-aos="fade-up"
+               data-aos-delay="300"
+               data-aos-duration="800"
+               data-aos-mirror="true"
+              >{sectionHeadingBig}</h2>
             </div>
           </div>
         </div>

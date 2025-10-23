@@ -97,7 +97,12 @@ export default function ServiceDetail() {
               <div className="inner">
                 <div className="title_small_text">
                   <div className="title_small_text_wrapper">
-                    <p>{service.text}</p>
+                    <p
+                      data-aos="fade-up"
+                      data-aos-delay="200"
+                      data-aos-duration="800"
+                      data-aos-mirror="true"
+                    >{service.text}</p>
                   </div>
                 </div>
               </div>
@@ -107,14 +112,34 @@ export default function ServiceDetail() {
                 <div className="image_descr">
                   <div className="image_descr_inner">
                     <div className="image_block">
-                      <img width="750" height="549" src={service.image_1} alt={service.title} />
+                      <img
+                      data-aos="fade-in"
+                      data-aos-delay="200"
+                      data-aos-duration="800"
+                      data-aos-mirror="true"
+                       width="750" height="549" src={service.image_1} alt={service.title} />
                     </div>
                     <div className="descr_block">
                       {service.additional_text && service.additional_text.map((item, index) => (
                         <div className="description_content" key={index}>
-                          <h5>{item.title[lang] || item.title.en}</h5>
-                          <p>{item.text[lang] || item.text.en}</p>
-                          <div className="separator"></div>
+                          <h5
+                            data-aos="fade-up"
+                            data-aos-delay={200 + index * 100}
+                            data-aos-duration="800"
+                            data-aos-mirror="true"
+                          >{item.title[lang] || item.title.en}</h5>
+                          <p
+                            data-aos="fade-up"
+                            data-aos-delay={300 + index * 100}
+                            data-aos-duration="800"
+                            data-aos-mirror="true"
+                          >{item.text[lang] || item.text.en}</p>
+                          <div className="separator"
+                            data-aos="fade-up"
+                            data-aos-delay={400 + index * 100}
+                            data-aos-duration="800"
+                            data-aos-mirror="true"
+                          ></div>
                         </div>
                       ))}
                     </div>
@@ -125,8 +150,15 @@ export default function ServiceDetail() {
           </div>
         </section>
         <section className="service-banner-2">
-          <div className="banner_2_holder">
-            <img src={service.banner_2} alt={service.title} />
+          <div className="banner_2_holder"
+           
+          >
+            <img 
+             data-aos="zoom-up"
+            data-aos-delay="300"  
+            data-aos-duration="400"
+            data-aos-mirror="true"
+            src={service.banner_2} alt={service.title} />
           </div>
         </section>
         <section className="fleet_section">
@@ -134,8 +166,18 @@ export default function ServiceDetail() {
             <div className="row">
               <div className="fleet_inner">
                 <div className="fleet_title">
-                  <h2>{t("fleet.title")}</h2>
-                  <p>{t("fleet.description")}</p>
+                  <h2
+                    data-aos="fade-down"
+                    data-aos-delay="200"
+                    data-aos-duration="800"
+                    data-aos-mirror="true"
+                  >{t("fleet.title")}</h2>
+                  <p
+                    data-aos="fade-up"
+                    data-aos-delay="400"
+                    data-aos-duration="800"
+                    data-aos-mirror="true"
+                  >{t("fleet.description")}</p>
                 </div>
                 <div className="fleet_cars">
 
@@ -195,10 +237,20 @@ export default function ServiceDetail() {
                         <SwiperSlide key={vehicle.id || index}>
                           <div className="car_item">
                             <div className="car_image">
-                              <img src={vehicle.image} alt={vehicle.title} />
+                              <img
+                                data-aos="fade-in"
+                                data-aos-delay="200"
+                                data-aos-duration="800"
+                                data-aos-mirror="true"
+                              src={vehicle.image} alt={vehicle.title} />
                             </div>
                             <div className="car_info">
-                              <h4 className="car_title">{vehicle.title}</h4>
+                              <h4 className="car_title"
+                                data-aos="fade-up"
+                                data-aos-delay="300"
+                                data-aos-duration="800"
+                                data-aos-mirror="true"
+                              >{vehicle.title}</h4>
 
                             </div>
                           </div>

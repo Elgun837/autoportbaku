@@ -17,7 +17,7 @@ export default function Footer() {
                 setLoading(true);
                 const settingsData = await getSettingsData(lang);
                 setSettings(settingsData?.data || settingsData);
-               
+
             } catch (error) {
                 console.error('Error fetching settings:', error);
             } finally {
@@ -43,27 +43,51 @@ export default function Footer() {
                                 <div className="mobile_visible mobile_visible__logo">
                                     <div className="logo_wrapper">
                                         <div className="logo">
-                                            <img src="/logo_big.svg" alt="Logo" />
+                                            <img
+                                                data-aos="fade-in"
+                                                data-aos-delay="100"
+                                                data-aos-duration="600"
+                                                src="/logo_big.svg" alt="Logo" />
                                         </div>
                                     </div>
                                 </div>
                                 <div className="logo mobile_hidden">
-                                    <img src="/logo_big.svg" alt="Logo" />
+                                    <img
+                                        data-aos="fade-in"
+                                        data-aos-delay="100"
+                                        data-aos-duration="600"
+                                        src="/logo_big.svg" alt="Logo" />
                                 </div>
                                 <div className="footer_menu">
-                                    <h6 className="footer_menu_title"> {t("footer.company")} </h6>
-                                    <ul className="footer_menu_list">
+                                    <h6 className="footer_menu_title"
+                                        data-aos="fade-up"
+                                        data-aos-delay="200"
+                                        data-aos-duration="600"
+                                    > {t("footer.company")} </h6>
+                                    <ul className="footer_menu_list"
+                                        data-aos="fade-up"
+                                        data-aos-delay="300"
+                                        data-aos-duration="600"
+                                    >
                                         <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}`}>{t("header.home")}</Link>
-                                        <Link  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/about-us`} >{t("header.about")}</Link>
+                                        <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/about-us`} >{t("header.about")}</Link>
                                         <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/tours`} >{t("header.tours")}</Link>
-                                        <Link  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/faq`} >{t("header.faq")}</Link>
+                                        <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/faq`} >{t("header.faq")}</Link>
                                         <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/contacts`} >{t("header.contacts")}</Link>
 
                                     </ul>
                                 </div>
                                 <div className="footer_menu">
-                                    <h6 className="footer_menu_title"> {t("footer.contacts")} </h6>
-                                    <ul className="footer_menu_list">
+                                    <h6 className="footer_menu_title"
+                                        data-aos="fade-up"
+                                        data-aos-delay="300"
+                                        data-aos-duration="600"
+                                    > {t("footer.contacts")} </h6>
+                                    <ul className="footer_menu_list"
+                                        data-aos="fade-up"
+                                        data-aos-delay="350"
+                                        data-aos-duration="600"
+                                    >
                                         {loading ? (
                                             <li className="footer_link">Loading...</li>
                                         ) : (
@@ -94,8 +118,16 @@ export default function Footer() {
                                     </ul>
                                 </div>
                                 <div className="footer_menu">
-                                    <h6 className="footer_menu_title"> {t("footer.socialMedia")} </h6>
-                                    <ul className="footer_menu_list">
+                                    <h6 className="footer_menu_title"
+                                        data-aos="fade-up"
+                                        data-aos-delay="400"
+                                        data-aos-duration="600"
+                                    > {t("footer.socialMedia")} </h6>
+                                    <ul className="footer_menu_list"
+                                        data-aos="fade-up"
+                                        data-aos-delay="700"
+                                        data-aos-duration="600"
+                                    >
 
                                         {loading ? (
                                             <li className="footer_link">Loading...</li>
@@ -124,10 +156,18 @@ export default function Footer() {
                                 </div>
                             </div>
                             <div className="copyright_wrapper">
-                                <div className="copyright_text">
+                                <div className="copyright_text"
+                                    data-aos="fade-up"
+                                    data-aos-delay="300"
+                                    data-aos-duration="600"
+                                >
                                     {settings?.copyright_text || "© 2024 Baku Transfers. All rights reserved."}
                                 </div>
-                                <div className="design_text">
+                                <div className="design_text"
+                                    data-aos="fade-up"
+                                    data-aos-delay="400"
+                                    data-aos-duration="600"
+                                >
                                     <span>Made by:</span>
                                     <div className="design_link">
                                         <a href="https://amiroff.az/"><img src="/amiroff.svg" alt="Amiroff Logo" /></a>

@@ -97,7 +97,12 @@ export default function Scrollline({ maxProgress = 100 }) {
                 <div className="container">
                     <div className="row">
                         <div className="scroll_inner">
-                            <div className="scroll_bar">
+                            <div className="scroll_bar"
+                            data-aos="fade-in"
+                            data-aos-delay="200"
+                            data-aos-duration="800"
+                            data-aos-mirror="true"
+                            >
                                 <div
                                     className="scroll_progress"
                                     ref={progressRef}

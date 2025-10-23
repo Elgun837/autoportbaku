@@ -17,7 +17,7 @@ export default function Contacts() {
                     <div className="row">
                         <div className="contact_block_wrapper">
                             <div className="contact_block">
-                                <div className="icon_wrapper">
+                                <div className="icon_wrapper animate__animated animate__fadeInUp">
                                     <svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect x="0.833984" y="0.654785" width="191" height="191" rx="95.5" fill="#EDEDED" />
                                         <path opacity="0.2" d="M110.968 106.799L114.46 103.307C116.131 101.635 118.116 100.309 120.3 99.4041C122.484 98.4993 124.825 98.0337 127.189 98.0337C129.553 98.0337 131.894 98.4993 134.078 99.4041C136.262 100.309 138.246 101.635 139.918 103.307L148.402 111.797C151.776 115.172 153.672 119.75 153.672 124.523C153.672 129.296 151.776 133.873 148.402 137.249L131.566 154.085C130.747 154.904 129.708 155.468 128.575 155.71C127.442 155.952 126.264 155.86 125.182 155.447C86.2418 140.579 59.5778 113.735 45.3338 75.5748C44.9314 74.4967 44.8476 73.3256 45.0923 72.2011C45.337 71.0766 45.8998 70.0463 46.7138 69.2328L63.5498 52.3968C66.9253 49.0223 71.5029 47.1266 76.2758 47.1266C81.0488 47.1266 85.6263 49.0223 89.0018 52.3968L97.4858 60.8808C99.1576 62.5523 100.484 64.5367 101.389 66.7208C102.293 68.9049 102.759 71.2458 102.759 73.6098C102.759 75.9739 102.293 78.3148 101.389 80.4988C100.484 82.6829 99.1576 84.6673 97.4858 86.3388L94.0058 89.8188C99.2884 95.8381 104.954 101.51 110.968 106.799Z" fill="#2B4764" />
@@ -25,12 +25,14 @@ export default function Contacts() {
                                     </svg>
                                 </div>
                                 <div className="text_wrapper">
-                                    <h2 className="title">{t("contacts.phone")}</h2>
-                                    <a href="tel:+994504810081" className="contact_link ">(+994) 50-481-00-81</a>
+                                    <h2 className="title animate__animated animate__fadeInUp">{t("contacts.phone")}</h2>
+                                    <a href="tel:+994504810081" className="contact_link "
+                                    data-aos="fadeInUp" data-aos-delay="200"
+                                    >(+994) 50-481-00-81</a>
                                 </div>
                             </div>
                             <div className="contact_block">
-                                <div className="icon_wrapper">
+                                <div className="icon_wrapper animate__animated animate__fadeInUp animate__delay-1s">
                                     <svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect x="0.5" y="0.654785" width="191" height="191" rx="95.5" fill="#EDEDED" />
                                         <path opacity="0.2" fillRule="evenodd" clipRule="evenodd" d="M130.14 93.3588C132.766 94.2894 135.141 95.8169 137.076 97.8212C139.012 99.8254 140.456 102.252 141.294 104.909L149.1 129.209C152.172 138.773 147.12 149.081 137.826 152.237C136.034 152.843 134.156 153.153 132.264 153.155H83.724C73.944 153.155 66 144.995 66 134.927C66 132.989 66.3 131.057 66.9 129.215L74.7 104.915C75.5382 102.256 76.9826 99.8281 78.9193 97.8227C80.8559 95.8173 83.232 94.2892 85.86 93.3588C84.696 89.5608 84 85.9368 84 82.8708C84 68.6688 94.74 57.1548 108 57.1548C121.26 57.1548 132 68.6688 132 82.8708C132 85.9368 131.31 89.5608 130.14 93.3588Z" fill="#2B4764" />
@@ -40,12 +42,13 @@ export default function Contacts() {
                                     </svg>
                                 </div>
                                 <div className="text_wrapper">
-                                    <h2 className="title">{t("contacts.address")}</h2>
-                                    <a href="#" className="contact_link ">Azure Business Center, 15 Nobel Avenue</a>
+                                    <h2 className="title animate__animated animate__fadeInUp animate__delay-1s">{t("contacts.address")}</h2>
+                                    <a href="#" className="contact_link "
+                                    data-aos="fadeInUp" data-aos-delay="200">Azure Business Center, 15 Nobel Avenue</a>
                                 </div>
                             </div>
                             <div className="contact_block">
-                                <div className="icon_wrapper">
+                                <div className="icon_wrapper animate__animated animate__fadeInUp animate__delay-2s">
 
                                     <svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect x="0.167969" y="0.654785" width="191" height="191" rx="95.5" fill="#EDEDED" />
@@ -55,8 +58,9 @@ export default function Contacts() {
 
                                 </div>
                                 <div className="text_wrapper">
-                                    <h2 className="title">{t("contacts.email")}</h2>
-                                    <a href="mailto:info@autoport.com" className="contact_link">info@autoport.com</a>
+                                    <h2 className="title animate__animated animate__fadeInUp animate__delay-2s">{t("contacts.email")}</h2>
+                                    <a href="mailto:info@autoport.com" className="contact_link"
+                                     data-aos="fadeInUp" data-aos-delay="200">info@autoport.com</a>
                                 </div>
                             </div>
                         </div>

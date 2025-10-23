@@ -9,7 +9,8 @@ import { translations } from "../translations";
 import { useTours } from "../context/TourContext";
 import { useServices } from "../context/ServiceContext";
 
-export default function Header({ showSkeleton = true, skeletonDuration = 400 }) {
+export default function Header() {
+
   const { pathname } = useLocation();
   const { tours, loading: toursLoading } = useTours();
   const { services, loading: servicesLoading } = useServices();
@@ -19,7 +20,7 @@ export default function Header({ showSkeleton = true, skeletonDuration = 400 }) 
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     }, 50); // 50ms gözlə
   }, [pathname]);
-  
+
   const { lang, t } = useLanguage();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -35,9 +36,54 @@ export default function Header({ showSkeleton = true, skeletonDuration = 400 }) 
   // Создаем класс для header с условным добавлением класса 'home'
   const headerClass = `header${isHomePage ? " home" : ""} header-fade-in`;
 
+  // Загрузка туров для выпадающего меню
+<<<<<<<<< Temporary merge branch 1
+  useEffect(() => {
+    const fetchTours = async () => {
+      try {
+        setToursLoading(true);
+        const toursData = await getToursData(lang);
+        const toursArray = toursData?.data || toursData || [];
+        setTours(toursArray.slice(0, 16)); // Ограничиваем до 16 туров в меню
+      } catch (error) {
+        console.error("Error fetching tours for menu:", error);
+        setTours([]);
+      } finally {
+        setToursLoading(false);
+      }
+    };
 
+    if (lang) {
+      fetchTours();
+    }
+  }, [lang]);
 
+  // Загрузка сервисов для выпадающего меню
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        setServicesLoading(true);
+        const servicesData = await getServiceData(lang);
+        const servicesArray = Array.isArray(servicesData)
+          ? servicesData
+          : servicesData?.data || [];
+        setServices(servicesArray.slice(0, 16));
+      } catch (error) {
+        console.error("Error fetching services for menu:", error);
+        setServices([]);
+      } finally {
+        setServicesLoading(false);
+      }
+    };
 
+    if (lang) {
+      fetchServices();
+    }
+  }, [lang]);
+=========
+
+  // Загрузка сервисов для выпадающего меню
+>>>>>>>>> Temporary merge branch 2
 
   // Функция для переключения мобильного меню
   const toggleMobileMenu = () => {
@@ -112,7 +158,7 @@ export default function Header({ showSkeleton = true, skeletonDuration = 400 }) 
       <div className="container">
         <div className="row">
           <div className="inner">
-            <div className="logo">
+            <div className="logo animate__animated animate__fadeIn">
               <Link to={`/${lang}`}>
                 <img src={logoImage} alt="Logo" />
               </Link>
@@ -120,9 +166,7 @@ export default function Header({ showSkeleton = true, skeletonDuration = 400 }) 
 
             <div className="right_section">
               <div
-                className={`nav_and_lang ${
-                  isMobileMenuOpen ? "mobile-open" : ""
-                }`}
+                className={`animate__animated animate__fadeIn nav_and_lang ${isMobileMenuOpen ? "mobile-open" : "" }`}
               >
                 <nav>
                   <Link to={`/${lang}`} onClick={closeMobileMenu}>
@@ -142,9 +186,8 @@ export default function Header({ showSkeleton = true, skeletonDuration = 400 }) 
                         {t("header.services")}
                       </Link>
                       <span
-                        className={`dropdown-arrow ${
-                          isMobileServicesDropdownOpen ? "open" : ""
-                        }`}
+                        className={`dropdown-arrow ${isMobileServicesDropdownOpen ? "open" : ""
+                          }`}
                         onClick={toggleMobileServicesDropdown}
                       >
                         ▼
@@ -152,9 +195,8 @@ export default function Header({ showSkeleton = true, skeletonDuration = 400 }) 
                     </div>
 
                     <div
-                      className={`dropdown-menu ${
-                        isMobileServicesDropdownOpen ? "mobile-open" : ""
-                      }`}
+                      className={`dropdown-menu ${isMobileServicesDropdownOpen ? "mobile-open" : ""
+                        }`}
                     >
                       {servicesLoading ? (
                         <div className="dropdown-item">Loading...</div>
@@ -191,9 +233,8 @@ export default function Header({ showSkeleton = true, skeletonDuration = 400 }) 
                         {t("header.tours")}
                       </Link>
                       <span
-                        className={`dropdown-arrow ${
-                          isMobileToursDropdownOpen ? "open" : ""
-                        }`}
+                        className={`dropdown-arrow ${isMobileToursDropdownOpen ? "open" : ""
+                          }`}
                         onClick={toggleMobileToursDropdown}
                       >
                         ▼
@@ -201,9 +242,8 @@ export default function Header({ showSkeleton = true, skeletonDuration = 400 }) 
                     </div>
 
                     <div
-                      className={`dropdown-menu ${
-                        isMobileToursDropdownOpen ? "mobile-open" : ""
-                      }`}
+                      className={`dropdown-menu ${isMobileToursDropdownOpen ? "mobile-open" : ""
+                        }`}
                     >
                       {toursLoading ? (
                         <div className="dropdown-item">Loading...</div>

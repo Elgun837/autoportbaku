@@ -9,7 +9,12 @@ import { useQuery } from "@tanstack/react-query";
 import { useTours } from "../context/TourContext";
 export default function MultiStepForm() {
   const { t, lang } = useLanguage();
+
+
+
+
   const { tours } = useTours();
+  
   const [formData, setFormData] = useState({
     serviceType: "",
     pickupDate: "",
@@ -180,7 +185,8 @@ export default function MultiStepForm() {
     }
   };
   return (
-    <div className="form">
+    <div className="form animate__animated animate__fadeIn">
+      
       <div className="form-header">
         <div className="steps-indicator">
           {[1, 2, 3, 4].map((step) => (
