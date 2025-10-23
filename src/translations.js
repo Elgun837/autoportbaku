@@ -9,6 +9,7 @@ export const translations = {
       },
       AirpirtBaku: "Airport City Centre",
       BakuAirport: "City Centre-Airport",
+      
     },
     fleet: {
       title: "Our Fleet",

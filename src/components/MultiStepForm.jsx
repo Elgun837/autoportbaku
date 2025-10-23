@@ -18,7 +18,7 @@ export default function MultiStepForm() {
   const { tours } = useTours();
   const [phone, setPhone] = useState("");
   const { currency, rate } = useCurrency();
-  
+
   const [formData, setFormData] = useState({
     serviceType: "",
     pickupDate: "",
@@ -100,7 +100,10 @@ export default function MultiStepForm() {
 
   const transferLabel = t("formsLocation.types.transfer");
   const tourLabel = t("formsLocation.types.tour");
-
+    const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
   let isStep1Valid = false;
 
   if (formData?.serviceType === transferLabel) {
@@ -138,6 +141,7 @@ export default function MultiStepForm() {
   const isStep4Valid =
     formData.user_name?.trim() &&
     formData.email?.trim() &&
+    validateEmail(formData.email) && // <-- email format check əlavə edildi
     formData.phone?.trim();
   const DropdownIndicator = (props) => (
     <components.DropdownIndicator {...props}>
@@ -187,6 +191,8 @@ export default function MultiStepForm() {
     />
   );
   const [stat, setStat] = useState("");
+
+
   const handleSubmit = async (e) => {
     e.preventDefault(); // form default davranışını dayandırır
 
@@ -194,9 +200,10 @@ export default function MultiStepForm() {
     if (
       !formData.user_name?.trim() ||
       !formData.email?.trim() ||
+      !validateEmail(formData.email) || // <-- email regex yoxlanışı
       !formData.phone?.trim()
     ) {
-      alert("Please fill all required fields!");
+      alert("Please fill all required fields with valid data!");
       return;
     }
 
@@ -234,6 +241,7 @@ export default function MultiStepForm() {
       setStat("error");
     }
   };
+
   return (
     <div className="form animate__animated animate__fadeIn">
       <div className="form-header">
@@ -459,7 +467,9 @@ export default function MultiStepForm() {
                   >
                     <h4>{v.title}</h4>
                     <img src={v.image} alt={v.image} className="" />
-                    <p className="price"><Price price={v.price} /></p>
+                    <p className="price">
+                      <Price price={v.price} />
+                    </p>
                     <p className="vehicle_desc">{v.text}</p>
                     <div className="vehicle-spec">
                       <p>
@@ -549,6 +559,9 @@ export default function MultiStepForm() {
                     setFormData({ ...formData, email: e.target.value })
                   }
                 />
+                {!validateEmail(formData.email) && formData.email && (
+                  <p className="error">Email format is incorrect</p>
+                )}
               </div>
               <div className="form-group">
                 <label htmlFor="">Phone:</label>
