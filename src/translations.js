@@ -2,6 +2,47 @@ import { types } from "sass";
 
 export const translations = {
   en: {   
+    seo: {
+      defaultTitle: "AutoPortBaku - Premium Transportation Services",
+      defaultDescription: "AutoPortBaku offers premium transfers, tours and transportation services in Azerbaijan. Reliable drivers, comfortable vehicles.",
+      defaultKeywords: "autoport, baku, transfer, tours, azerbaijan, transportation, chauffeur",
+      homePage: {
+        title: "AutoPortBaku - Premium Transportation Services in Azerbaijan",
+        description: "Experience luxury and comfort with AutoPortBaku's exclusive chauffeur services, airport transfers, and tailored tours across Azerbaijan.",
+        keywords: "autoport baku, airport transfer baku, tours azerbaijan, car rental baku"
+      },
+      toursPage: {
+        title: "Tours in Azerbaijan - AutoPortBaku",
+        description: "Discover amazing tours and excursions in Azerbaijan. Explore Baku, Gobustan, Sheki and other attractions with AutoPortBaku.",
+        keywords: "tours azerbaijan, excursions baku, gobustan, sheki, azerbaijan tourism"
+      },
+      servicesPage: {
+        title: "Transportation Services in Baku - AutoPortBaku", 
+        description: "Professional transportation services in Baku and throughout Azerbaijan. Airport transfers, car rental, sightseeing trips.",
+        keywords: "transfer baku, car rental baku, transportation services azerbaijan"
+      },
+      aboutPage: {
+        title: "About Us - AutoPortBaku",
+        description: "AutoPortBaku is a reliable transportation company with years of experience. Professional drivers, comfortable fleet, individual approach.",
+        keywords: "about autoportbaku, transportation company baku, reliable transfers"
+      },
+      contactsPage: {
+        title: "Contacts - AutoPortBaku",
+        description: "Contact AutoPortBaku for booking transfers and transportation services in Baku. 24/7 customer support.",
+        keywords: "contacts autoportbaku, book transfer baku, autoport phone"
+      }
+    },
+    breadcrumbs: {
+      home: "Home",
+      tours: "Tours", 
+      services: "Services",
+      about: "About",
+      contacts: "Contacts"
+    },
+    homePage: {
+      title: "Autoport Baku - Your Premium Chauffeur Service in Azerbaijan",
+      description: "Experience luxury and comfort with Autoport Baku's exclusive chauffeur services, airport transfers, and tailored tours across Azerbaijan.",
+    },
     formsLocation: {
       types: {
         transfer: "Transfer",
@@ -139,7 +180,47 @@ export const translations = {
 
   },
   ru: {
-    
+    seo: {
+      defaultTitle: "АвтоПорт Баку - Премиум транспортные услуги",
+      defaultDescription: "Автопорт Баку предлагает premium трансферы, экскурсии и транспортные услуги в Азербайджане. Надежные водители, комфортные автомобили.",
+      defaultKeywords: "автопорт, баку, трансфер, экскурсии, азербайджан, туры, автомобили",
+      homePage: {
+        title: "АвтоПорт Баку - Премиум транспортные услуги в Азербайджане",
+        description: "Надежные трансферы из аэропорта, экскурсии по достопримечательностям и аренда автомобилей в Баку. Профессиональные водители, современный автопарк.",
+        keywords: "автопорт баку, трансфер аэропорт баку, экскурсии азербайджан, аренда авто баку"
+      },
+      toursPage: {
+        title: "Туры по Азербайджану - АвтоПорт Баку",
+        description: "Увлекательные экскурсионные туры по Азербайджану. Откройте для себя красоты Баку, Гобустан, Шеки и другие достопримечательности с АвтоПорт Баку.",
+        keywords: "туры азербайджан, экскурсии баку, гобустан, шеки, туры по азербайджану"
+      },
+      servicesPage: {
+        title: "Транспортные услуги в Баку - АвтоПорт Баку",
+        description: "Профессиональные транспортные услуги в Баку и по всему Азербайджану. Трансферы из аэропорта, аренда автомобилей, экскурсионные поездки.",
+        keywords: "трансфер баку, аренда автомобилей баку, транспортные услуги азербайджан"
+      },
+      aboutPage: {
+        title: "О нас - АвтоПорт Баку",
+        description: "АвтоПорт Баку - надежная транспортная компания с многолетним опытом. Профессиональные водители, комфортный автопарк, индивидуальный подход к каждому клиенту.",
+        keywords: "о компании автопорт баку, транспортная компания баку, надежные перевозки"
+      },
+      contactsPage: {
+        title: "Контакты - АвтоПорт Баку",
+        description: "Свяжитесь с АвтоПорт Баку для заказа трансферов и транспортных услуг в Баку. Круглосуточная поддержка клиентов.",
+        keywords: "контакты автопорт баку, заказать трансфер баку, телефон автопорт"
+      }
+    },
+    breadcrumbs: {
+      home: "Главная",
+      tours: "Туры", 
+      services: "Услуги",
+      about: "О нас",
+      contacts: "Контакты"
+    },
+    homePage: { 
+      title: "Autoport Baku - Ваш премиальный сервис шофёра в Азербайджане",
+      description: "Ощутите роскошь и комфорт с эксклюзивными услугами шофёра Autoport Baku, трансферами из аэропорта и индивидуальными турами по Азербайджану.",
+    },
     formsLocation: {
       types: {
         transfer: "Трансфер",

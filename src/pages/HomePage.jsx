@@ -7,6 +7,8 @@ import ToursComponent from "../components/ToursComponent";
 import Cars from "../components/Cars";
 import WhyUs from "../components/WhyUs";
 import Partners from "../components/Partners";
+import SEOHead from "../components/SEOHead";
+
 
 
 
@@ -15,6 +17,9 @@ export default function HomePage() {
 
   return (
     <div>
+      <SEOHead
+        pageType="homePage"
+      />
       <Slide />
         <Scrollline maxProgress={100} />
         <Services />     

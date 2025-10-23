@@ -5,56 +5,67 @@ import AboutBanner from "../assets/images/about_us/banner_imge_about.webp";
 import Scrollline from "../components/Scrolline";
 import SectionTitle from "../components/SectionTitle";
 import Mission from "../components/Mission";
+import SEOHead from '../components/SEOHead';
 
 
 
 
 
 function About() {
-  
+
+
+
   const { t } = useLanguage();
   const secHead = t("about.secTitle");
   const secDescription = t("about.secDesc");
   return (
-  
-    < div className="about_page" >
-      <Page_big_banner
-        title={t("about.title")}
-        subtitle={t("about.subtitle")}
-        bannerImageSrc={AboutBanner}
-        
+    <>
+      <SEOHead
+        title="About Us - AutoPortBaku"
+        description="Learn more about AutoPortBaku, a leading transportation company in Azerbaijan offering premium services with professional drivers and a comfortable fleet."
+        keywords="автопорт, баку, трансфер, экскурсии, азербайджан, туры, автомобили"
+        ogImage="/src/assets/images/about_us/og-about-us.jpg"
       />
-       <Scrollline maxProgress={100} />
-       <SectionTitle sectionHeadingBig={secDescription} sectionHeadingSmall={secHead} />
-       <section className="about_section">
-        <div className="container">
-          <div className="row"> 
-            <div className="about_inner">
-              <p 
-              data-aos="fade-up"
-              data-aos-delay="200"
-              data-aos-duration="800"
-              data-aos-mirror="true"
-              >{t("about.content1")}</p>
-              <p
-              data-aos="fade-up"
-              data-aos-delay="400"
-              data-aos-duration="800"
-              data-aos-mirror="true"
-              >{t("about.content2")}</p>
-              <p
-              data-aos="fade-up"
-              data-aos-delay="600"
-              data-aos-duration="800"
-              data-aos-mirror="true"
-              >{t("about.content3")}</p>
+
+      < div className="about_page" >
+        <Page_big_banner
+          title={t("about.title")}
+          subtitle={t("about.subtitle")}
+          bannerImageSrc={AboutBanner}
+
+        />
+        <Scrollline maxProgress={100} />
+        <SectionTitle sectionHeadingBig={secDescription} sectionHeadingSmall={secHead} />
+        <section className="about_section">
+          <div className="container">
+            <div className="row">
+              <div className="about_inner">
+                <p
+                  data-aos="fade-up"
+                  data-aos-delay="200"
+                  data-aos-duration="800"
+                  data-aos-mirror="true"
+                >{t("about.content1")}</p>
+                <p
+                  data-aos="fade-up"
+                  data-aos-delay="400"
+                  data-aos-duration="800"
+                  data-aos-mirror="true"
+                >{t("about.content2")}</p>
+                <p
+                  data-aos="fade-up"
+                  data-aos-delay="600"
+                  data-aos-duration="800"
+                  data-aos-mirror="true"
+                >{t("about.content3")}</p>
+              </div>
             </div>
           </div>
-        </div>
-       </section>
-       <Mission />
-    </div>
-   
+        </section>
+        <Mission />
+      </div>
+    </>
+
   );
 }
 
