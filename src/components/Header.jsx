@@ -36,55 +36,6 @@ export default function Header() {
   // Создаем класс для header с условным добавлением класса 'home'
   const headerClass = `header${isHomePage ? " home" : ""} header-fade-in`;
 
-  // Загрузка туров для выпадающего меню
-<<<<<<<<< Temporary merge branch 1
-  useEffect(() => {
-    const fetchTours = async () => {
-      try {
-        setToursLoading(true);
-        const toursData = await getToursData(lang);
-        const toursArray = toursData?.data || toursData || [];
-        setTours(toursArray.slice(0, 16)); // Ограничиваем до 16 туров в меню
-      } catch (error) {
-        console.error("Error fetching tours for menu:", error);
-        setTours([]);
-      } finally {
-        setToursLoading(false);
-      }
-    };
-
-    if (lang) {
-      fetchTours();
-    }
-  }, [lang]);
-
-  // Загрузка сервисов для выпадающего меню
-  useEffect(() => {
-    const fetchServices = async () => {
-      try {
-        setServicesLoading(true);
-        const servicesData = await getServiceData(lang);
-        const servicesArray = Array.isArray(servicesData)
-          ? servicesData
-          : servicesData?.data || [];
-        setServices(servicesArray.slice(0, 16));
-      } catch (error) {
-        console.error("Error fetching services for menu:", error);
-        setServices([]);
-      } finally {
-        setServicesLoading(false);
-      }
-    };
-
-    if (lang) {
-      fetchServices();
-    }
-  }, [lang]);
-=========
-
-  // Загрузка сервисов для выпадающего меню
->>>>>>>>> Temporary merge branch 2
-
   // Функция для переключения мобильного меню
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
