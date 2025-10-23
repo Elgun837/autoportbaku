@@ -269,3 +269,7 @@
     cursor: pointer;
   }
 }
+
+.react-datepicker-popper{
+  margin-left: calc(vw(25) + 10px);
+}
