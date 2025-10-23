@@ -10,10 +10,15 @@ import { useTours } from "../context/TourContext";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { getVehicleRequest } from "../api";
+import { useCurrency } from "../context/CurrencyContext";
+import Price from "./Price";
+
 export default function MultiStepForm() {
   const { t, lang } = useLanguage();
   const { tours } = useTours();
   const [phone, setPhone] = useState("");
+  const { currency, rate } = useCurrency();
+  
   const [formData, setFormData] = useState({
     serviceType: "",
     pickupDate: "",
@@ -218,11 +223,8 @@ export default function MultiStepForm() {
         )
       );
 
-
       // getVehicleRequest funksiyasını çağırıb payload göndərmək
       const response = await getVehicleRequest(lang, cleanedPayload); // lang varsa formData-dan al
-
-      
 
       // Success status və step dəyişimi
       setStat("success");
@@ -410,7 +412,7 @@ export default function MultiStepForm() {
                 <input
                   type="number"
                   name="passengers"
-                  value={formData.passengers || 1}
+                  value={formData.passengers || 0}
                   onChange={handleChange}
                 />
               </div>
@@ -420,7 +422,7 @@ export default function MultiStepForm() {
                 <input
                   type="number"
                   name="luggage"
-                  value={formData.luggage || 1}
+                  value={formData.luggage || 0}
                   onChange={handleChange}
                 />
               </div>
@@ -457,7 +459,7 @@ export default function MultiStepForm() {
                   >
                     <h4>{v.title}</h4>
                     <img src={v.image} alt={v.image} className="" />
-                    <p className="price">{v.price} $</p>
+                    <p className="price"><Price price={v.price} /></p>
                     <p className="vehicle_desc">{v.text}</p>
                     <div className="vehicle-spec">
                       <p>
