@@ -130,6 +130,64 @@
     padding-right: 12px;
     scrollbar-width: thin;
     scrollbar-color: #888 transparent;
+    textarea{
+      border-radius: 8px;
+      min-height: 80px;
+    }
+    .react-tel-input{
+      font-family: inherit;
+      input{
+        padding-left: 50px!important;
+      }
+    }
+    .react-tel-input .country-list{
+      color: black;
+      max-width: 220px;
+      padding-left: 20px;
+      
+    }
+    .vehicle-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      
+    }
+
+    p.price {
+      background: white;
+      color: rgba(68, 68, 68, 1);
+      padding: 4px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    p.vehicle_desc {
+      font-family: Bitter;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 150%;
+      text-align: center;
+    }
+
+    .vehicle-spec {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+
+      p {
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+
+      }
+    }
+
     @media (max-width: 992px) {
       max-height: unset;
       height: auto;

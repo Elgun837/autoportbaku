@@ -56,15 +56,14 @@ export const getToursData = async (lang) => {
     const { data } = await api.get("/tours", {
       headers: { contentLanguage: lang, token },
     });
-    
+
     return data;
-    
   } catch (error) {
     console.error("getToursData xətası:", error);
     return null;
   }
 };
-export const getToursSlug = async (lang,slug) => {
+export const getToursSlug = async (lang, slug) => {
   if (!lang) return null;
   try {
     const { data } = await api.get(`/tours/${slug}`, {
@@ -76,7 +75,7 @@ export const getToursSlug = async (lang,slug) => {
     return null;
   }
 };
-export const getServicesSlug = async (lang,slug) => {
+export const getServicesSlug = async (lang, slug) => {
   if (!lang) return null;
   try {
     const { data } = await api.get(`/services/${slug}`, {
@@ -129,10 +128,20 @@ export const getVehicleData = async (lang) => {
   }
 };
 
-export const getVehicleSearch = async (lang, tourId, formPassengers, formLuggage) => {
+export const getVehicleSearch = async (
+  lang,
+  tourId,
+  formPassengers,
+  formLuggage
+) => {
   if (!lang) return null;
   try {
-    console.log("API çağırılır:", { lang, tourId, formPassengers, formLuggage });
+    console.log("API çağırılır:", {
+      lang,
+      tourId,
+      formPassengers,
+      formLuggage,
+    });
     const { data } = await api.post("/vehicles/search", {
       headers: { contentLanguage: lang, token },
       passengers: formPassengers,
@@ -141,13 +150,28 @@ export const getVehicleSearch = async (lang, tourId, formPassengers, formLuggage
     });
     console.log("API cavabı alındı:", data);
     return data;
-    
   } catch (error) {
     console.error("getVehicleSearch xətası:", error);
     return null;
   }
 };
-
-
+export const getVehicleRequest = async (lang, payload) => {
+  if (!lang) return null;
+  console.log("API çağırılır:", { lang, payload });
+  try {
+    const { data } = await api.post("/vehicle/request", payload, {
+      headers: {
+        contentLanguage: lang,
+        token,
+        Accept: "application/json",
+      },
+    });
+    console.log("API cavabı alındı:", data);
+    return data;
+  } catch (error) {
+    console.error("getVehicleRequest xətası:", error);
+    return null;
+  }
+};
 
 export default api;
