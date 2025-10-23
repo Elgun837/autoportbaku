@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Select, { components } from "react-select";
 import DatePicker from "react-datepicker";
 import "../assets/styles/MultiStepForm.scss";
@@ -10,16 +10,6 @@ import { useTours } from "../context/TourContext";
 export default function MultiStepForm() {
   const { t, lang } = useLanguage();
   const { tours } = useTours();
-  
-  // const { data, isLoading, error } = useQuery({
-  //   queryKey: ["vehicle", lang],
-  //   queryFn: () => getVehicleSearch(lang),
-  // });
-
-  // const vehicles = Array.isArray(data) ? data : [];
-  // console.log(vehicles);
- 
-  const [activeStep, setActiveStep] = useState(1);
   const [formData, setFormData] = useState({
     serviceType: "",
     pickupDate: "",
@@ -30,7 +20,40 @@ export default function MultiStepForm() {
     flightNumber: "",
     passengers: "",
     luggage: "",
+    selectTour: "",
+    selectedVehicle: "",
+    tourId: "",
   });
+
+  const passengers = Number(formData.passengers) || 1;
+  const luggage = Number(formData.luggage) || 0;
+  const tourId = formData.tourId;
+  console.log(luggage);
+  const {
+    data: vehiclesData,
+    isFetching: vehiclesLoading,
+    refetch: refetchVehicles,
+  } = useQuery({
+    queryKey: [
+      "vehicle",
+      lang,
+      tourId,
+      passengers,
+      luggage
+    ],
+    queryFn: () =>
+      getVehicleSearch(
+        lang,
+        tourId,
+        passengers,
+        luggage
+      ),
+    enabled: false, // avtomatik çağırılmasın
+  });
+  
+  const vehicles = Array.isArray(vehiclesData) ? vehiclesData : [];
+
+  const [activeStep, setActiveStep] = useState(1);
 
   const locations = [
     t("formsLocation.AirpirtBaku"),
@@ -39,12 +62,21 @@ export default function MultiStepForm() {
 
   const hours = Array.from({ length: 24 }, (_, i) => i);
   const minutes = Array.from({ length: 12 }, (_, i) => i * 5);
-
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const { name, value } = e.target;
 
-  const handleNext = () => {
+  setFormData({
+    ...formData,
+    [name]: name === "passengers" || name === "luggage" ? Number(value) : value,
+  });
+};
+
+  const handleNext = async (e) => {
+
+    e.preventDefault();
+    if (activeStep === 2) {
+      await refetchVehicles(); // maşınları yalnız step 3-ə keçərkən çağırırıq
+    }
     if (activeStep < 4) setActiveStep(activeStep + 1);
   };
 
@@ -52,9 +84,11 @@ export default function MultiStepForm() {
     if (activeStep > 1) setActiveStep(activeStep - 1);
   };
 
-  let isStep1Valid = false;
   const transferLabel = t("formsLocation.types.transfer");
   const tourLabel = t("formsLocation.types.tour");
+
+  let isStep1Valid = false;
+
   if (formData?.serviceType === transferLabel) {
     isStep1Valid =
       !!formData.serviceType &&
@@ -83,7 +117,10 @@ export default function MultiStepForm() {
       isStep1Valid = false;
     }
   }
-  const isStep2Valid = formData.passengers && formData.luggage;
+  const isStep2Valid =
+    Number(formData.passengers) > 0 && Number(formData.luggage) >= 0;
+
+  const isStep3Valid = !!formData.selectedVehicle;
 
   const DropdownIndicator = (props) => (
     <components.DropdownIndicator {...props}>
@@ -136,16 +173,12 @@ export default function MultiStepForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // API çağırışı olacaq
-
       setStat("success");
-      setActiveStep(4);
     } catch (err) {
       setErrorMessage("Something went wrong!");
       setStat("error");
     }
   };
-
   return (
     <div className="form animate__animated animate__fadeIn">
       
@@ -222,7 +255,7 @@ export default function MultiStepForm() {
                 </div>
 
                 <div className="form-group">
-                  <label>Pickup Time:</label>
+                  <label htmlFor="">Pickup Time:</label>
                   <div className="time-selectors">
                     <div className="hour">
                       {renderSelect(
@@ -287,9 +320,20 @@ export default function MultiStepForm() {
                   <div className="form-group">
                     <label htmlFor="selectTour">Select tour</label>
                     {renderSelect(
-                      formData.selectTour,
-                      (val) => setFormData({ ...formData, selectTour: val }),
-                      ["Tour 1", "Tour 2", "Tour 3"],
+                      formData.selectTour, // hazırki seçilmiş tour-un title-ı (string)
+                      (selectedTitle) => {
+                        const tour = tours.find(
+                          (t) => (t.title?.[lang] || t.title) === selectedTitle
+                        );
+                        setFormData({
+                          ...formData,
+                          selectTour: selectedTitle, // React-Select üçün lazım
+                          tourId: tour?.id || null, // API üçün lazım
+                        });
+                      },
+                      tours.map(
+                        (t) => t.title?.[lang] || t.title || "No title"
+                      ), // string array
                       ""
                     )}
                   </div>
@@ -309,25 +353,26 @@ export default function MultiStepForm() {
           {/* Step 2 */}
           {activeStep === 2 && (
             <div className="form-step-content">
-              <label>Number of Passengers:</label>
-              <input
-                type="number"
-                name="passengers"
-                value={formData.passengers}
-                onChange={handleChange}
-              />
+              <div className="customer_detail">
+                <label htmlFor="passenger">Number of Passengers:</label>
+                <input
+                  type="number"
+                  name="passengers"
+                  value={formData.passengers || 1}
+                  onChange={handleChange}
+                />
+              </div>
 
-              <br />
+              <div className="customer_detail">
+                <label htmlFor="luggage">Number of Luggage:</label>
+                <input
+                  type="number"
+                  name="luggage"
+                  value={formData.luggage || 1}
+                  onChange={handleChange}
+                />
+              </div>
 
-              <label>Number of Luggage:</label>
-              <input
-                type="number"
-                name="luggage"
-                value={formData.luggage}
-                onChange={handleChange}
-              />
-
-              <br />
               <button className="flex-left" onClick={handlePrev}>
                 Previous
               </button>
@@ -344,16 +389,51 @@ export default function MultiStepForm() {
           {/* Step 3 */}
           {activeStep === 3 && (
             <div className="form-step-content">
-              <p>Step 3 content (to be added later)</p>
-              <button onClick={handlePrev}>Previous</button>
-              <button onClick={handleNext}>Next</button>
+              {vehiclesLoading && <p>Loading vehicles...</p>}
+
+              {!vehiclesLoading && vehicles.length === 0 && (
+                <p>No vehicles found for your selection.</p>
+              )}
+
+              {!vehiclesLoading &&
+                vehicles.map((v) => (
+                  <div
+                    key={v.id}
+                    className={`vehicle-card ${
+                      formData.selectedVehicle === v.id ? "selected" : ""
+                    }`}
+                  >
+                    <img
+                      src={v.image}
+                      alt={v.title}
+                      className="w-full h-40 object-cover"
+                    />
+                    <h4>{v.title}</h4>
+                    <p>Passengers: {v.passengers}</p>
+                    <p>Luggage: {v.luggage}</p>
+                    {v.price && <p>{v.price} $</p>}
+
+                    <button
+                      className="select-vehicle-btn"
+                      onClick={(e) => {
+                        setFormData({ ...formData, selectedVehicle: v.id });
+                        handleNext(e); // növbəti step-ə keç
+                      }}
+                    >
+                      Select This Vehicle
+                    </button>
+                  </div>
+                ))}
+
+              <button className="flex-left" onClick={handlePrev}>
+                Previous
+              </button>
             </div>
           )}
 
           {/* Step 4 */}
           {activeStep === 4 && (
             <div className="form-step-content">
-              <p>Step 4 content (to be added later)</p>
               <button className="flex-left" onClick={handlePrev}>
                 Previous
               </button>

@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { getToursData, getServiceData } from "../api/index";
 import LanguageSwitcher from "./LanguageSwitcher";
 import SkeletonHeader from "./SkeletonHeader";
 import "../assets/styles/Header.scss";
@@ -29,23 +28,6 @@ export default function Header({ showSkeleton = true, skeletonDuration = 400 }) 
   const [isMobileServicesDropdownOpen, setIsMobileServicesDropdownOpen] =
     useState(false);
 
-  // Простое skeleton loading управление без дополнительных API запросов
-  const [isSkeletonLoading, setIsSkeletonLoading] = useState(showSkeleton);
-
-  // Эффект для скрытия skeleton через заданное время
-  useEffect(() => {
-    if (!showSkeleton) {
-      setIsSkeletonLoading(false);
-      return;
-    }
-
-    const timer = setTimeout(() => {
-      setIsSkeletonLoading(false);
-    }, skeletonDuration);
-
-    return () => clearTimeout(timer);
-  }, [showSkeleton, skeletonDuration]);
-
   // Проверяем, находимся ли мы на главной странице
   const isHomePage =
     location.pathname === `/${lang}` || location.pathname === "/";
@@ -53,28 +35,9 @@ export default function Header({ showSkeleton = true, skeletonDuration = 400 }) 
   // Создаем класс для header с условным добавлением класса 'home'
   const headerClass = `header${isHomePage ? " home" : ""} header-fade-in`;
 
-  // Загрузка туров для выпадающего меню
 
-  // Загрузка сервисов для выпадающего меню
-  useEffect(() => {
-    const fetchServices = async () => {
-      try {
-        setServicesLoading(true);
-        const servicesData = await getServiceData(lang);
-        const servicesArray = Array.isArray(servicesData)
-          ? servicesData
-          : servicesData?.data || [];
-        setServices(servicesArray.slice(0, 16));
-      } catch (error) {
-        console.error("Error fetching services for menu:", error);
-        setServices([]);
-      } finally {
-        setServicesLoading(false);
-      }
-    };
 
-    fetchServices();
-  }, [lang]);
+
 
   // Функция для переключения мобильного меню
   const toggleMobileMenu = () => {
@@ -140,10 +103,7 @@ export default function Header({ showSkeleton = true, skeletonDuration = 400 }) 
 
   if (!lang) return null;
 
-  // Показываем skeleton во время загрузки
-  if (isSkeletonLoading) {
-    return <SkeletonHeader isHomePage={isHomePage} />;
-  }
+
 
   const slugs = translations[lang]?.routes || {};
 

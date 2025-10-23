@@ -14,6 +14,7 @@
   padding-right: calc(rem(20) - 12px);
   background-color: #222222;
   color: #fff;
+
   @media (max-width: 992px) {
     max-width: 100%;
     width: 100%;
@@ -67,9 +68,11 @@
       border-radius: 8px;
       margin: 0;
       background-color: #fff;
+
       @media (max-width: 576px) {
         gap: rem(7);
       }
+
       .line-4 {
         display: none;
       }
@@ -133,6 +136,12 @@
     }
 
 
+    .customer_detail {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 20px;
+    }
+
     .form-group {
       display: flex;
       flex-direction: column;
@@ -166,6 +175,7 @@
         @media (max-width: 576px) {
           width: 100%;
         }
+
         .time-selectors {
           display: flex;
           flex-direction: row;
@@ -184,6 +194,7 @@
       -moz-appearance: none;
       padding: rem(2) rem(8);
       position: relative;
+
       @media (max-width: 576px) {
         width: 100%;
       }
@@ -230,7 +241,7 @@
     position: relative;
     display: inline-block;
     width: 100%;
-     cursor: pointer;
+    cursor: pointer;
   }
 
   .custom-date-input-field {
@@ -253,6 +264,7 @@
     border-radius: 0 6px 6px 0;
     cursor: pointer;
   }
+
   .react-datepicker__input-container {
     cursor: pointer;
   }
