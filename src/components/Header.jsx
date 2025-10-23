@@ -7,9 +7,14 @@ import SkeletonHeader from "./SkeletonHeader";
 import "../assets/styles/Header.scss";
 import logoImage from "/logo.png";
 import { translations } from "../translations";
+import { useTours } from "../context/TourContext";
+import { useServices } from "../context/ServiceContext";
 
 export default function Header({ showSkeleton = true, skeletonDuration = 400 }) {
   const { pathname } = useLocation();
+  const { tours, loading: toursLoading } = useTours();
+  const { services, loading: servicesLoading } = useServices();
+
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -23,10 +28,6 @@ export default function Header({ showSkeleton = true, skeletonDuration = 400 }) 
     useState(false);
   const [isMobileServicesDropdownOpen, setIsMobileServicesDropdownOpen] =
     useState(false);
-  const [tours, setTours] = useState([]);
-  const [services, setServices] = useState([]);
-  const [toursLoading, setToursLoading] = useState(true);
-  const [servicesLoading, setServicesLoading] = useState(true);
 
   // Простое skeleton loading управление без дополнительных API запросов
   const [isSkeletonLoading, setIsSkeletonLoading] = useState(showSkeleton);
@@ -53,48 +54,8 @@ export default function Header({ showSkeleton = true, skeletonDuration = 400 }) 
   const headerClass = `header${isHomePage ? " home" : ""} header-fade-in`;
 
   // Загрузка туров для выпадающего меню
-  useEffect(() => {
-    const fetchTours = async () => {
-      try {
-        setToursLoading(true);
-        const toursData = await getToursData(lang);
-        const toursArray = toursData?.data || toursData || [];
-        setTours(toursArray.slice(0, 16)); // Ограничиваем до 16 туров в меню
-      } catch (error) {
-        console.error("Error fetching tours for menu:", error);
-        setTours([]);
-      } finally {
-        setToursLoading(false);
-      }
-    };
-
-    if (lang) {
-      fetchTours();
-    }
-  }, [lang]);
 
   // Загрузка сервисов для выпадающего меню
-  useEffect(() => {
-    const fetchServices = async () => {
-      try {
-        setServicesLoading(true);
-        const servicesData = await getServiceData(lang);
-        const servicesArray = Array.isArray(servicesData)
-          ? servicesData
-          : servicesData?.data || [];
-        setServices(servicesArray.slice(0, 16));
-      } catch (error) {
-        console.error("Error fetching services for menu:", error);
-        setServices([]);
-      } finally {
-        setServicesLoading(false);
-      }
-    };
-
-    if (lang) {
-      fetchServices();
-    }
-  }, [lang]);
 
   // Функция для переключения мобильного меню
   const toggleMobileMenu = () => {

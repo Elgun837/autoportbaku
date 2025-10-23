@@ -56,7 +56,9 @@ export const getToursData = async (lang) => {
     const { data } = await api.get("/tours", {
       headers: { contentLanguage: lang, token },
     });
+    
     return data;
+    
   } catch (error) {
     console.error("getToursData xətası:", error);
     return null;
@@ -127,13 +129,14 @@ export const getVehicleData = async (lang) => {
   }
 };
 
-export const getVehicleSearch = async (lang,ServiceType) => {
+export const getVehicleSearch = async (lang,tourId,passengers,luggage) => {
   if (!lang) return null;
   try {
     const { data } = await api.post("/vehicles/search", {
       headers: { contentLanguage: lang, token },
-      passengers: 3,
-      luggage: 2,
+      passengers: passengers,
+      luggage: luggage,
+      tour_id: tourId,
     });
     return data;
   } catch (error) {

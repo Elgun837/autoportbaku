@@ -2,21 +2,18 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../assets/styles/Services.scss";
 import { useLanguage } from "../context/LanguageContext";
-import { getServiceData } from "../api/index";
-import { useQuery } from "@tanstack/react-query";
+import { useServices } from "../context/ServiceContext";
 
 export default function Services() {
 
 
   const { t, lang } = useLanguage();
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["services", lang],
-    queryFn: () => getServiceData(lang),
-  });
+  const { services, loading } = useServices();
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error loading Services 😢</p>;
-  const services = Array.isArray(data) ? data : [];
+  if (loading || services.length === 0) {
+    return null; // Yüklənmə zamanı heç nə göstərmirik
+  }
+
   return (
     <div>
       <section className="services_section">

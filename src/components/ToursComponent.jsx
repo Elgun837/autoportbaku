@@ -1,26 +1,11 @@
-import { use } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import "../assets/styles/ToursCmponents.scss";
-import { getToursData } from "../api";
-import { useQuery } from "@tanstack/react-query";
 import { translations } from "../translations";
+import { useTours } from "../context/TourContext";
 
 function ToursComponent() {
   const { t, lang } = useLanguage();
-  const {
-    data: toursData,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ["tours", lang],
-    queryFn: () => getToursData(lang),
-  });
-  const tours = Array.isArray(toursData)
-    ? toursData
-    : Array.isArray(toursData?.data)
-      ? toursData.data
-      : [];
-
+  const { tours, loading: isLoading } = useTours();
 
   const slugs = translations[lang]?.routes || {};
   if (isLoading) {
