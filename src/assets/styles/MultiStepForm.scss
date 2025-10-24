@@ -31,7 +31,10 @@
   }
 
   .form-message.success img {
-    max-width: 105px;
+ 
+    max-width: 80px;
+    width: 80px;
+    height: auto;
   }
 
   h4 {
@@ -113,8 +116,8 @@
       .form-step.completed::before {
         content: url("../../../public/flags/check.svg");
         position: absolute;
-        right: 0px;
-        bottom: 10px;
+        right: -8px;
+        bottom: -6px;
         height: 19px;
         width: 19px;
       }
@@ -153,6 +156,9 @@
       justify-content: center;
       gap: 10px;
       margin-bottom: 60px;
+      img {
+        width: auto;
+      }
     }
 
     p.price {
@@ -281,6 +287,10 @@
     padding-left: rem(20);
     color: #fff;
     background-color: #4373a4;
+    @include transition();
+    &:hover {
+      background-color: #365f85;
+    }
   }
 
   .flex-left {

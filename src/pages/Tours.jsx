@@ -141,7 +141,7 @@ export default function Tours() {
                     <OptimizedImage
                       src={tour.image || ToursBannerImage}
                       alt={tour.title || `Tour ${index + 1}`}
-                      lazy={true}
+                      lazy={false}
                       width={400}
                       height={300}
                       onError={(e) => {
