@@ -5,8 +5,16 @@ import { useQuery } from "@tanstack/react-query";
 import { useLanguage } from "../context/LanguageContext";
 
 export default function Accordion() {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
   const contentRefs = useRef([]);
+  
+  const { lang } = useLanguage();
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["faqs", lang],
+    queryFn: () => getFaqsData(lang),
+  });
+
   useEffect(() => {
     if (activeIndex !== null && contentRefs.current[activeIndex]) {
       const element = contentRefs.current[activeIndex];
@@ -16,12 +24,16 @@ export default function Accordion() {
       }, 10);
     }
   }, [activeIndex]);
-  const { lang } = useLanguage();
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["faqs", lang],
-    queryFn: () => getFaqsData(lang),
-  });
+  // Дополнительный useEffect для расчета высоты первого аккордеона после загрузки данных
+  useEffect(() => {
+    if (data && activeIndex === 0 && contentRefs.current[0]) {
+      const element = contentRefs.current[0];
+      setTimeout(() => {
+        element.style.maxHeight = `${element.scrollHeight}px`;
+      }, 50);
+    }
+  }, [data, activeIndex]);
   //  console.log("Fetched FAQs:", data);
 
 
