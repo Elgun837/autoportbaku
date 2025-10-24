@@ -31,8 +31,8 @@ export const translations = {
         prevBtn: "Previous",
         nextBtn: "Next",
       },
-      AirpirtBaku: "Airport City Centre",
-      BakuAirport: "City Centre-Airport",
+      AirpirtBaku: "Airport",
+      BakuAirport: "City Centre",
       
     },
     fleet: {
@@ -194,8 +194,8 @@ export const translations = {
         prevBtn: "Назад",
         nextBtn: "Далее",
       },
-      AirpirtBaku: "Аэропорт - Центр города",
-      BakuAirport: "Центр города - Аэропорт",
+      AirpirtBaku: "Аэропорт",
+      BakuAirport: "Центр города",
     },  
     fleet: {
       title: "Наш автопарк",

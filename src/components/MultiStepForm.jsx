@@ -64,9 +64,9 @@ export default function MultiStepForm() {
     queryFn: () => getVehicleSearch(lang, tourId, passengers, luggage),
     enabled: false, // avtomatik çağırılmasın
   });
-  
+
   const vehicles = Array.isArray(vehiclesData) ? vehiclesData : [];
-  
+
   const [activeStep, setActiveStep] = useState(1);
 
   const locations = [
@@ -100,7 +100,7 @@ export default function MultiStepForm() {
 
   const transferLabel = t("formsLocation.types.transfer");
   const tourLabel = t("formsLocation.types.tour");
-    const validateEmail = (email) => {
+  const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
   };
@@ -192,7 +192,6 @@ export default function MultiStepForm() {
   );
   const [stat, setStat] = useState("");
 
-
   const handleSubmit = async (e) => {
     e.preventDefault(); // form default davranışını dayandırır
 
@@ -267,7 +266,9 @@ export default function MultiStepForm() {
           {activeStep === 1 && (
             <div className="form-step-content">
               <div className="form-group">
-                <label htmlFor="serviceType">{t("formsLocation.types.serviceType")}:</label>
+                <label htmlFor="serviceType">
+                  {t("formsLocation.types.serviceType")}:
+                </label>
                 {renderSelect(
                   formData.serviceType,
                   (val) => setFormData({ ...formData, serviceType: val }),
@@ -281,7 +282,9 @@ export default function MultiStepForm() {
 
               <div className="time-date-group">
                 <div className="form-group">
-                  <label htmlFor="pickupDate">{t("formsLocation.types.pickupDate")}:</label>
+                  <label htmlFor="pickupDate">
+                    {t("formsLocation.types.pickupDate")}:
+                  </label>
                   <div className="custom-date-input">
                     <DatePicker
                       selected={
@@ -316,7 +319,9 @@ export default function MultiStepForm() {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="">{t("formsLocation.types.pickupTime")}:</label>
+                  <label htmlFor="">
+                    {t("formsLocation.types.pickupTime")}:
+                  </label>
                   <div className="time-selectors">
                     <div className="hour">
                       {renderSelect(
@@ -344,28 +349,44 @@ export default function MultiStepForm() {
                 formData.serviceType === transferLabel) && (
                 <>
                   <div className="form-group">
-                    <label htmlFor="pickupLocation">{t("formsLocation.types.pickupLocation")}:</label>
+                    <label htmlFor="pickupLocation">
+                      {t("formsLocation.types.pickupLocation")}:
+                    </label>
                     {renderSelect(
                       formData.pickupLocation,
                       (val) =>
-                        setFormData({ ...formData, pickupLocation: val }),
+                        setFormData({
+                          ...formData,
+                          pickupLocation: val,
+                          dropoffLocation:
+                            formData.dropoffLocation === val
+                              ? null
+                              : formData.dropoffLocation,
+                        }),
                       locations,
                       `${t("formsLocation.types.pickupPlace")}`
                     )}
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="dropoffLocation">{t("formsLocation.types.dropoffLocation")}:</label>
+                    <label htmlFor="dropoffLocation">
+                      {t("formsLocation.types.dropoffLocation")}:
+                    </label>
                     {renderSelect(
                       formData.dropoffLocation,
                       (val) =>
                         setFormData({ ...formData, dropoffLocation: val }),
-                      locations,
+                      // pickupLocation-ı çıxırıq
+                      locations.filter(
+                        (loc) => loc !== formData.pickupLocation
+                      ),
                       `${t("formsLocation.types.dropoffPlace")}`
                     )}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="flightNumber">{t("formsLocation.types.flightNumber")}:</label>
+                    <label htmlFor="flightNumber">
+                      {t("formsLocation.types.flightNumber")}:
+                    </label>
                     <input
                       type="text"
                       name="flightNumber"
@@ -379,7 +400,9 @@ export default function MultiStepForm() {
               {formData.serviceType === tourLabel && (
                 <>
                   <div className="form-group">
-                    <label htmlFor="selectTour">{t("formsLocation.types.selectTour")}</label>
+                    <label htmlFor="selectTour">
+                      {t("formsLocation.types.selectTour")}
+                    </label>
                     {renderSelect(
                       formData.selectTour, // hazırki seçilmiş tour-un title-ı (string)
                       (selectedTitle) => {
@@ -415,7 +438,9 @@ export default function MultiStepForm() {
           {activeStep === 2 && (
             <div className="form-step-content">
               <div className="customer_detail">
-                <label htmlFor="passenger">{t("formsLocation.types.passengers")}:</label>
+                <label htmlFor="passenger">
+                  {t("formsLocation.types.passengers")}:
+                </label>
                 <input
                   type="number"
                   name="passengers"
@@ -425,7 +450,9 @@ export default function MultiStepForm() {
               </div>
 
               <div className="customer_detail">
-                <label htmlFor="luggage">{t("formsLocation.types.luggage")}:</label>
+                <label htmlFor="luggage">
+                  {t("formsLocation.types.luggage")}:
+                </label>
                 <input
                   type="number"
                   name="luggage"
@@ -488,7 +515,8 @@ export default function MultiStepForm() {
                             fill="white"
                           />
                         </svg>
-                        max {v.passengers} {t("formsLocation.types.maxPassengers")}
+                        max {v.passengers}{" "}
+                        {t("formsLocation.types.maxPassengers")}
                       </p>
                       <p>
                         <svg
@@ -536,7 +564,9 @@ export default function MultiStepForm() {
           {activeStep === 4 && (
             <div className="form-step-content">
               <div className="form-group">
-                <label htmlFor="user_name">{t("formsLocation.types.name")}</label>
+                <label htmlFor="user_name">
+                  {t("formsLocation.types.name")}
+                </label>
                 <input
                   type="text"
                   name="user_name"
@@ -573,7 +603,9 @@ export default function MultiStepForm() {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="special_req">{t("formsLocation.types.specialRequests")}:</label>
+                <label htmlFor="special_req">
+                  {t("formsLocation.types.specialRequests")}:
+                </label>
                 <textarea
                   name="special_req"
                   id="special_req"
@@ -605,9 +637,7 @@ export default function MultiStepForm() {
         <div className="form-message success">
           <img src="/flags/success.svg" alt="success" />
           <h4>{t("formsLocation.types.iconMsg")}!</h4>
-          <span>
-            {t("formsLocation.types.successMsg")}
-          </span>
+          <span>{t("formsLocation.types.successMsg")}</span>
         </div>
       )}
 
