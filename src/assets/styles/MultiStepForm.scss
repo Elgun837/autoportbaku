@@ -133,6 +133,7 @@
     textarea {
       border-radius: 8px;
       min-height: 80px;
+      padding: 10px;
     }
     .react-tel-input {
       font-family: inherit;
@@ -259,8 +260,6 @@
   }
 
   button:disabled {
-    width: 79;
-    height: 39;
     gap: 10px;
     opacity: 1;
     border-radius: 8px;
@@ -273,8 +272,6 @@
   }
 
   button {
-    width: 79;
-    height: 39;
     gap: 10px;
     opacity: 1;
     border-radius: 8px;

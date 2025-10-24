@@ -8,6 +8,7 @@ import logoImage from "/logo.png";
 import { translations } from "../translations";
 import { useTours } from "../context/TourContext";
 import { useServices } from "../context/ServiceContext";
+import CurrencySwitcher from "./CurrencySwitcher";
 
 export default function Header() {
 
@@ -237,6 +238,7 @@ export default function Header() {
                 </nav>
 
                 <LanguageSwitcher />
+                <CurrencySwitcher />
               </div>
 
               {/* Overlay для мобильного меню */}

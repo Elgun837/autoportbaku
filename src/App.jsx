@@ -25,14 +25,11 @@ import Contacts from "./pages/Contacts";
 import Faq from "./pages/Faq";
 import About from "./pages/About";
 import { translations } from "./translations";
-import Scrolltop from "./components/Scrolltop";
 import { TourProvider } from "./context/TourContext";
 import { ServiceProvider } from "./context/ServiceContext";
 import { SettingsProvider } from "./context/SettingsContext";
 
 const queryClient = new QueryClient();
-
-
 
 function AppRoutes() {
   const { lang } = useLanguage();
@@ -81,8 +78,8 @@ export default function App() {
       initClassName: 'aos-init', // класс, применяемый после инициализации
       useClassNames: false,  // если true, добавит `data-aos` как классы
       disableMutationObserver: false, // отключить автоматическое обнаружение мутаций
-      debounceDelay: 50,     // задержка для debounce при изменении размера окна
-      throttleDelay: 99,     // задержка для throttle при прокрутке
+      debounceDelay: 50, // задержка для debounce при изменении размера окна
+      throttleDelay: 99, // задержка для throttle при прокрутке
     });
 
     // Обновляем AOS при изменении контента

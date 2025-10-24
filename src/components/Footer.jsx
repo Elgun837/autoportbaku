@@ -8,7 +8,26 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function Footer() {
     const { t, lang } = useLanguage();
-    const { settings, loading } = useSettings();
+    const [settings, setSettings] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchSettings = async () => {
+            try {
+                setLoading(true);
+                const settingsData = await getSettingsData(lang);
+                setSettings(settingsData?.data || settingsData);
+
+            } catch (error) {
+                console.error('Error fetching settings:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchSettings();
+    }, [lang]);
+     const currentYear = new Date().getFullYear(); 
     return (
         <>
             <footer className="footer">
@@ -143,7 +162,7 @@ export default function Footer() {
                                     data-aos-delay="300"
                                     data-aos-duration="600"
                                 >
-                                    {settings?.copyright_text || "© 2024 Baku Transfers. All rights reserved."}
+                                © {currentYear} AutoportBaku. All rights reserved.
                                 </div>
                                 <div className="design_text"
                                     data-aos="fade-up"

@@ -1,0 +1,15 @@
+.currency_switch {
+  position: relative;
+  display: inline-block;
+  color: #fff;
+}
+.currency_switch button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size:  clamp(1rem, 1.25vw, 1.07rem);
+  font-weight: 400;
+}
+.drop_lang {
+    position: absolute;
+}

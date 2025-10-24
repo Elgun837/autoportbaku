@@ -142,12 +142,18 @@ export const getVehicleSearch = async (
       formPassengers,
       formLuggage,
     });
-    const { data } = await api.post("/vehicles/search", {
-      headers: { contentLanguage: lang, token },
-      passengers: formPassengers,
-      luggage: formLuggage,
-      tour_id: tourId,
-    });
+    const { data } = await api.post(
+      "/vehicles/search",
+      {
+        passengers: formPassengers,
+        luggage: formLuggage,
+        tour_id: tourId,
+      },
+      {
+        headers: { contentLanguage: lang, token },
+      }
+    );
+    console.log(lang);
     console.log("API cavabı alındı:", data);
     return data;
   } catch (error) {
