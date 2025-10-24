@@ -118,7 +118,7 @@ export default function Cars() {
                                 </div>
                                 <h6 className="detais_numbers">
                                   <span className="value">
-                                    {vehicle.passenger}
+                                    {vehicle.passengers}
                                   </span>
                                   <span className="label">
                                     {t("cars.passengers")}
@@ -158,7 +158,7 @@ export default function Cars() {
                                     {vehicle.luggage}
                                   </span>
                                   <span className="label">
-                                    {t("cars.passengers")}
+                                    {t("cars.pieces")}
                                   </span>
                                 </h6>
                               </div>

@@ -27,6 +27,7 @@ export default function Footer() {
 
         fetchSettings();
     }, [lang]);
+     const currentYear = new Date().getFullYear(); 
     return (
         <>
             <footer className="footer">
@@ -161,7 +162,7 @@ export default function Footer() {
                                     data-aos-delay="300"
                                     data-aos-duration="600"
                                 >
-                                    {settings?.copyright_text || "© 2024 Baku Transfers. All rights reserved."}
+                                © {currentYear} AutoportBaku. All rights reserved.
                                 </div>
                                 <div className="design_text"
                                     data-aos="fade-up"
