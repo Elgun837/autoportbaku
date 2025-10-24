@@ -6,7 +6,7 @@ export const SettingsContext = createContext();
 
 export const SettingsProvider = ({ children }) => {
   const { lang } = useLanguage();
-  const [settings, setSettings] = useState(null);
+  const [settings, setSettings] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

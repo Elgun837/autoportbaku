@@ -99,13 +99,13 @@ export default function App() {
           <LanguageProvider>
             <SettingsProvider>
               <CurrencyProvider>
-                <TourProvider>
-                  <ServiceProvider>
-                    <Header />
-                    <AppRoutes />
-                    <Footer />
-                  </ServiceProvider>
-                </TourProvider>
+              <TourProvider>
+                <ServiceProvider>
+                  <Header />
+                  <AppRoutes />
+                  <Footer />
+                </ServiceProvider>
+              </TourProvider>
               </CurrencyProvider>
             </SettingsProvider>
           </LanguageProvider>
