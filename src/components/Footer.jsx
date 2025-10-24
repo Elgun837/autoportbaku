@@ -11,8 +11,6 @@ import OptimizedImage from "./OptimizedImage";
 export default function Footer() {
     const { t, lang } = useLanguage();
     const { settings, loading: settingsLoading } = useSettings();
-    const [loading, setLoading] = useState(true);
-
     const currentYear = new Date().getFullYear(); 
     return (
         <>
@@ -85,24 +83,22 @@ export default function Footer() {
                                         data-aos-delay="350"
                                         data-aos-duration="600"
                                     >
-                                        {loading ? (
-                                            <li className="footer_link">Loading...</li>
-                                        ) : (
-                                            <>
-                                                {setting?.address && (
-                                                    <li><a href="https://maps.app.goo.gl/3n1MoL7GDrF7Eb5A7" target="_black" className="footer_link">{setting.address}</a></li>
+                                        {
+                                        <>
+                                                {settings?.address && (
+                                                    <li><a href="https://maps.app.goo.gl/3n1MoL7GDrF7Eb5A7" target="_black" className="footer_link">{settings.address}</a></li>
                                                 )}
-                                                {setting?.phone && (
-                                                    <li><a href={`tel:${setting.phone}`} className="footer_link">{setting.phone}</a></li>
+                                                {settings?.phone && (
+                                                    <li><a href={`tel:${settings.phone}`} className="footer_link">{settings.phone}</a></li>
                                                 )}
-                                                {setting?.telephone && (
-                                                    <li><a href={`tel:${setting.telephone}`} className="footer_link">{setting.telephone}</a></li>
+                                                {settings?.telephone && (
+                                                    <li><a href={`tel:${settings.telephone}`} className="footer_link">{settings.telephone}</a></li>
                                                 )}
-                                                {setting?.email && (
-                                                    <li><a href={`mailto:${setting.email}`} className="footer_link">{setting.email}</a></li>
+                                                {settings?.email && (
+                                                    <li><a href={`mailto:${settings.email}`} className="footer_link">{settings.email}</a></li>
                                                 )}
                                                 {/* Fallback если API не работает */}
-                                                {!setting && (
+                                                {!settings && (
                                                     <>
                                                         <li><span className="footer_link">Azure Business Center, 15 Nobel Avenue</span></li>
                                                         <li><a href="tel:(+994) 50 -481-00-81" className="footer_link">(+994) 50 -481-00-81</a></li>
@@ -111,7 +107,7 @@ export default function Footer() {
                                                     </>
                                                 )}
                                             </>
-                                        )}
+                                        }
                                     </ul>
                                 </div>
                                 <div className="footer_menu">
@@ -126,9 +122,7 @@ export default function Footer() {
                                         data-aos-duration="600"
                                     >
 
-                                        {loading ? (
-                                            <li className="footer_link">Loading...</li>
-                                        ) : (
+                                        {
                                             <>
                                                 {settings?.facebook && (
                                                     <li><a href={settings.facebook} target="_blank" rel="noopener noreferrer" className="footer_link">Facebook</a></li>
@@ -146,9 +140,9 @@ export default function Footer() {
                                                         <li><a href="#" className="footer_link">Instagram</a></li>
                                                         <li><a href="#" className="footer_link">Tik Tok</a></li>
                                                     </>
-                                                )}
+                                                )}  
                                             </>
-                                        )}
+                                        }
                                     </ul>
                                 </div>
                             </div>
