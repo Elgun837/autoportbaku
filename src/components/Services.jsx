@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../assets/styles/Services.scss";
 import { useLanguage } from "../context/LanguageContext";
 import { useServices } from "../context/ServiceContext";
+import OptimizedImage from "./OptimizedImage";
 
 
 export default function Services() {
@@ -40,7 +41,13 @@ export default function Services() {
                   data-aos-mirror="false"                 
                 >
                   <div className="icon">
-                    <img src={service.main_image} alt={service.title} />
+                    <OptimizedImage 
+                      src={service.main_image} 
+                      alt={service.title}
+                      lazy={true}
+                      width={309}
+                      height={244}
+                    />
                   </div>
                   <h6 className="service_title">{service.mini_title}</h6>
                 </Link>

@@ -1,33 +1,21 @@
 import React from "react";
 import "../assets/styles/Page_banners.scss";
 import defaultBannerImage from "../assets/images/small_heading_banner.webp";
-import SkeletonPageSmallBanner from "./SkeletonPageSmallBanner";
-import useImageLoading from "../hooks/useImageLoading";
-import { SKELETON_CONFIG } from "../config/skeletonConfig";
+import OptimizedImage from "./OptimizedImage";
 
 export default function Page_small_banner({ title, subtitle, bannerImageSrc }) {
     const bannerImage = bannerImageSrc || defaultBannerImage;
-    const smallBannerConfig = SKELETON_CONFIG.bannerTypes.small;
-    const { isLoading, imageLoaded } = useImageLoading(
-        bannerImage, 
-        smallBannerConfig.minLoadingTime, 
-        smallBannerConfig.maxLoadingTime
-    );
     
-    if (isLoading) {
-        return <SkeletonPageSmallBanner />;
-    }
     return (
         <>
             <section className="small_heading_banner page-banner-fade-in">
-                <img 
+                <OptimizedImage 
                     className="banner_image" 
                     src={bannerImage} 
-                    alt="Banner"
-                    style={{ 
-                        opacity: imageLoaded ? 1 : 0, 
-                        transition: 'opacity 0.3s ease-in-out' 
-                    }}
+                    alt="Small page banner"
+                    lazy={false}
+                    width={1920}
+                    height={400}
                 />
                 <div className="container">
                     <div className="row">

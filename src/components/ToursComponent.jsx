@@ -2,6 +2,7 @@ import { useLanguage } from "../context/LanguageContext";
 import "../assets/styles/ToursCmponents.scss";
 import { translations } from "../translations";
 import { useTours } from "../context/TourContext";
+import OptimizedImage from "./OptimizedImage";
 
 function ToursComponent() {
   const { t, lang } = useLanguage();
@@ -47,15 +48,17 @@ function ToursComponent() {
                           data-aos-delay={`${300 + index * 200}`}
                           data-aos-duration="800"
                           data-aos-mirror="true"
-                      >
-                        <img
-                          height="319"
-                          width="506"
+                      >                        
+                        <OptimizedImage 
                           src={
                             tour.image ||
-                            `/src/assets/images/tours/${index + 1}.webp`
+                            `/src/assets/images/tours/${index + 1}.png`
                           }
+                          height="319"
+                          width="506"
                           alt={tour.title}
+                          lazy={true}
+                         
                         />
                       </a>
                     </div>

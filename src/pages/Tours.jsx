@@ -8,6 +8,7 @@ import ToursBannerImage from "../assets/images/tours.webp";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { translations } from "../translations";
+import OptimizedImage from "../components/OptimizedImage";
 import { useTours } from "../context/TourContext";
 import SEOHead from "../components/SEOHead";
 import { ToursPageSEO } from '../components/SEOComponents';
@@ -136,9 +137,12 @@ export default function Tours() {
               {tours.map((tour, index) => (
                 <div key={tour.id || index} className="tour_element">
                   <div className="image_block">
-                    <img
+                    <OptimizedImage
                       src={tour.image || ToursBannerImage}
                       alt={tour.title || `Tour ${index + 1}`}
+                      lazy={true}
+                      width={400}
+                      height={300}
                       onError={(e) => {
                         e.target.src = ToursBannerImage; // Fallback изображение
                       }}

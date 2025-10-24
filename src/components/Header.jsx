@@ -2,12 +2,12 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import LanguageSwitcher from "./LanguageSwitcher";
-import SkeletonHeader from "./SkeletonHeader";
 import "../assets/styles/Header.scss";
 import logoImage from "/logo.webp";
 import { translations } from "../translations";
 import { useTours } from "../context/TourContext";
 import { useServices } from "../context/ServiceContext";
+import OptimizedImage from "./OptimizedImage";
 import CurrencySwitcher from "./CurrencySwitcher";
 
 export default function Header() {
@@ -35,7 +35,7 @@ export default function Header() {
     location.pathname === `/${lang}` || location.pathname === "/";
 
   // Создаем класс для header с условным добавлением класса 'home'
-  const headerClass = `header${isHomePage ? " home" : ""} header-fade-in`;
+  const headerClass = `header${isHomePage ? " home" : ""} `;
 
   // Функция для переключения мобильного меню
   const toggleMobileMenu = () => {
@@ -112,7 +112,7 @@ export default function Header() {
           <div className="inner">
             <div className="logo animate__animated animate__fadeIn">
               <Link to={`/${lang}`}>
-                <img src={logoImage} alt="Logo" />
+                <img width="285" height="64" src={logoImage} alt="Logo" />
               </Link>
             </div>
 

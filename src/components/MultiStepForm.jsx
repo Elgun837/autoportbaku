@@ -12,6 +12,7 @@ import "react-phone-input-2/lib/style.css";
 import { getVehicleRequest } from "../api";
 import { useCurrency } from "../context/CurrencyContext";
 import Price from "./Price";
+import OptimizedImage from "./OptimizedImage";
 
 export default function MultiStepForm() {
   const { t, lang } = useLanguage();
@@ -145,10 +146,12 @@ export default function MultiStepForm() {
     formData.phone?.trim();
   const DropdownIndicator = (props) => (
     <components.DropdownIndicator {...props}>
-      <img
+      <OptimizedImage
         src="/flags/form-drop-icon.svg"
         alt="dropdown"
-        style={{ width: 16, height: 16 }}
+        width={16}
+        height={16}
+        lazy={true}
       />
     </components.DropdownIndicator>
   );
@@ -316,10 +319,13 @@ export default function MultiStepForm() {
                       }
                     />
                     <div className="date-icon-wrapper">
-                      <img
+                      <OptimizedImage
                         src="/flags/form-drop-icon.svg"
                         alt="calendar"
                         className="date-icon"
+                        lazy={true}
+                        width={16}
+                        height={16}
                       />
                     </div>
                   </div>
@@ -499,7 +505,14 @@ export default function MultiStepForm() {
                     }`}
                   >
                     <h4>{v.title}</h4>
-                    <img src={v.image} alt={v.image} className="" />
+                    <OptimizedImage 
+                      src={v.image} 
+                      alt={`${v.title} vehicle`} 
+                      className=""
+                      lazy={true}
+                      width={200}
+                      height={150}
+                    />
                     <p className="price">
                       <Price price={v.price} />
                     </p>
@@ -642,7 +655,13 @@ export default function MultiStepForm() {
       {/* Success və ya Error çıxışı */}
       {stat === "success" && (
         <div className="form-message success">
-          <img src="/flags/success.svg" alt="success" />
+          <OptimizedImage 
+            src="/flags/success.svg" 
+            alt="success" 
+            lazy={true}
+            width={24}
+            height={24}
+          />
           <h4>{t("formsLocation.types.iconMsg")}!</h4>
           <span>{t("formsLocation.types.successMsg")}</span>
         </div>
@@ -650,7 +669,13 @@ export default function MultiStepForm() {
 
       {stat === "error" && (
         <div className="form-message error">
-          <img src="/icons/error.svg" alt="error" />
+          <OptimizedImage 
+            src="/icons/error.svg" 
+            alt="error" 
+            lazy={true}
+            width={24}
+            height={24}
+          />
           <span>{errorMessage}</span>
         </div>
       )}

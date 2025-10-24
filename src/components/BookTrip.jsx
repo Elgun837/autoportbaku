@@ -3,6 +3,7 @@ import { useLanguage } from "../context/LanguageContext";
 import "../assets/styles/Trip.scss";
 import { translations } from "../translations";
 import videoTrip from "../assets/images/file.mp4";
+import OptimizedVideo from "./OptimizedVideo";
 
 function BookTrip() {
   const { t, lang } = useLanguage();
@@ -34,7 +35,17 @@ function BookTrip() {
             > <button className="trip_button"><span>{t("BookTrip.buttonText", "Book a trip")}</span></button></a>
           </div>
           <div className="right_section">
-            <video className="trip_video" playsInline src={videoTrip} muted loop autoPlay></video>
+            <OptimizedVideo 
+              src={videoTrip}
+              className="trip_video"
+              autoPlay={true}
+              muted={true}
+              loop={true}
+              controls={false}
+              lazy={true}
+              width="100%"
+              height="auto"
+            />
           </div>
         </div>
       </div>

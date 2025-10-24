@@ -1,29 +1,22 @@
 import React from "react";
 import "../assets/styles/Slide.scss";
 import MultiStepForm from "./MultiStepForm";
-import SkeletonSlide from "./SkeletonSlide";
-import useImageLoading from "../hooks/useImageLoading";
 import { useLanguage } from "../context/LanguageContext";
+import OptimizedImage from "./OptimizedImage";
 
 export default function Slide() {
-  const { isLoading, imageLoaded } = useImageLoading("/bg_block.webp", 1000, 3000);
   const { t } = useLanguage();
-
-  if (isLoading) {
-    return <SkeletonSlide />;
-  }
   return (
     <>
     
-      <div className="main_bg slide-fade-in">
+      <div className="main_bg ">
         <div className="slide_container small_heading_banner">
-          <img
+          <OptimizedImage
             src="/bg_block.webp"
-            alt=""
+            alt="Background"
             className="banner_image"
-            style={{
-              opacity: imageLoaded ? 1 : 0,
-              transition: 'opacity 0.3s ease-in-out',
+            lazy={false} // Главное изображение - загружаем сразу
+            style={{             
               position: 'absolute',
             }}
           />
