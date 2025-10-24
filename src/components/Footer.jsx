@@ -4,30 +4,15 @@ import { useLanguage } from "../context/LanguageContext";
 import { useSettings } from "../context/SettingsContext";
 import "../assets/styles/Footer.scss";
 import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 
 export default function Footer() {
     const { t, lang } = useLanguage();
-    const [settings, setSettings] = useState(null);
+    const { settings, loading: settingsLoading } = useSettings();
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const fetchSettings = async () => {
-            try {
-                setLoading(true);
-                const settingsData = await getSettingsData(lang);
-                setSettings(settingsData?.data || settingsData);
-
-            } catch (error) {
-                console.error('Error fetching settings:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchSettings();
-    }, [lang]);
-     const currentYear = new Date().getFullYear(); 
+    const currentYear = new Date().getFullYear(); 
     return (
         <>
             <footer className="footer">
@@ -93,20 +78,20 @@ export default function Footer() {
                                             <li className="footer_link">Loading...</li>
                                         ) : (
                                             <>
-                                                {settings?.address && (
-                                                    <li><a href="https://maps.app.goo.gl/3n1MoL7GDrF7Eb5A7" target="_black" className="footer_link">{settings.address}</a></li>
+                                                {setting?.address && (
+                                                    <li><a href="https://maps.app.goo.gl/3n1MoL7GDrF7Eb5A7" target="_black" className="footer_link">{setting.address}</a></li>
                                                 )}
-                                                {settings?.phone && (
-                                                    <li><a href={`tel:${settings.phone}`} className="footer_link">{settings.phone}</a></li>
+                                                {setting?.phone && (
+                                                    <li><a href={`tel:${setting.phone}`} className="footer_link">{setting.phone}</a></li>
                                                 )}
-                                                {settings?.telephone && (
-                                                    <li><a href={`tel:${settings.telephone}`} className="footer_link">{settings.telephone}</a></li>
+                                                {setting?.telephone && (
+                                                    <li><a href={`tel:${setting.telephone}`} className="footer_link">{setting.telephone}</a></li>
                                                 )}
-                                                {settings?.email && (
-                                                    <li><a href={`mailto:${settings.email}`} className="footer_link">{settings.email}</a></li>
+                                                {setting?.email && (
+                                                    <li><a href={`mailto:${setting.email}`} className="footer_link">{setting.email}</a></li>
                                                 )}
                                                 {/* Fallback если API не работает */}
-                                                {!settings && (
+                                                {!setting && (
                                                     <>
                                                         <li><span className="footer_link">Azure Business Center, 15 Nobel Avenue</span></li>
                                                         <li><a href="tel:(+994) 50 -481-00-81" className="footer_link">(+994) 50 -481-00-81</a></li>

@@ -28,6 +28,7 @@ import { translations } from "./translations";
 import { TourProvider } from "./context/TourContext";
 import { ServiceProvider } from "./context/ServiceContext";
 import { SettingsProvider } from "./context/SettingsContext";
+import { CurrencyProvider } from "./context/CurrencyContext";
 
 const queryClient = new QueryClient();
 
@@ -98,6 +99,7 @@ export default function App() {
         <Router>
           <LanguageProvider>
             <SettingsProvider>
+              <CurrencyProvider>
               <TourProvider>
                 <ServiceProvider>
                   <Header />
@@ -105,6 +107,7 @@ export default function App() {
                   <Footer />
                 </ServiceProvider>
               </TourProvider>
+              </CurrencyProvider>
             </SettingsProvider>
           </LanguageProvider>
         </Router>
