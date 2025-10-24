@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { getSettingsData } from "../api/index";
 
 const SEOHead = ({ 
   title,
@@ -9,15 +10,34 @@ const SEOHead = ({
   canonicalUrl,
   structuredData,
   breadcrumbs,
-  pageType = 'homePage' // homePage, toursPage, servicesPage, aboutPage, contactsPage
+  pageType = 'homePage' // homePage, toursPage, servicesPage, aboutPage, contactsPage, faqPage
 }) => {
   const { lang, t } = useLanguage();
-  
+  const [settings, setSettings] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   // Используем переводы как fallback значения
   const finalTitle = title || t(`seo.${pageType}.title`) || t('seo.defaultTitle');
   const finalDescription = description || t(`seo.${pageType}.description`) || t('seo.defaultDescription');
   const finalKeywords = keywords || t(`seo.${pageType}.keywords`) || t('seo.defaultKeywords');
   const currentUrl = canonicalUrl || (typeof window !== 'undefined' ? window.location.href : '');
+
+  // Загрузка настроек из API
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        setLoading(true);
+        const settingsData = await getSettingsData(lang);
+        setSettings(settingsData?.data || settingsData);
+      } catch (error) {
+        console.error('Error fetching settings:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSettings();
+  }, [lang]);
   
   
   // Функция для обновления или создания meta тега
@@ -100,29 +120,41 @@ const SEOHead = ({
       updateLinkTag('canonical', currentUrl);
     }
 
-    // Базовая структурированная разметка для компании
+    // Базовая структурированная разметка для компании с данными из API
+    const socialLinks = [];
+    if (settings?.facebook) socialLinks.push(settings.facebook);
+    if (settings?.instagram) socialLinks.push(settings.instagram);
+    if (settings?.tiktok) socialLinks.push(settings.tiktok);
+    
+    // Fallback социальные сети
+    if (socialLinks.length === 0) {
+      socialLinks.push(
+        "https://www.facebook.com/autoportbaku",
+        "https://www.instagram.com/autoportbaku"
+      );
+    }
+
     const organizationSchema = {
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "AutoPortBaku",
-      "description": description,
+      "description": finalDescription,
       "url": "https://autoportbaku.com",
-      "logo": "https://autoportbaku.com/images/logo.png",
+      "logo": "https://autoportbaku.com/logo_big.svg",
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+994-50-481-00-81",
+        "telephone": settings?.phone || settings?.telephone || "+994-50-481-00-81",       
         "contactType": "customer service",
         "availableLanguage": ["ru", "az", "en"]
       },
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": settings?.address || "Azure Business Center, 15 Nobel Avenue",
         "addressCountry": "AZ",
-        "addressLocality": "Baku"
+        "addressLocality": "Baku",
+        "postalCode": "AZ1000"
       },
-      "sameAs": [
-        "https://www.facebook.com/autoportbaku",
-        "https://www.instagram.com/autoportbaku"
-      ]
+      "sameAs": socialLinks
     };
 
     // Добавляем структурированные данные
@@ -152,7 +184,7 @@ const SEOHead = ({
     return () => {
       // Очистка происходит автоматически при обновлении значений
     };
-  }, [finalTitle, finalDescription, finalKeywords, ogImage, currentUrl, structuredData, breadcrumbs, lang]);
+  }, [finalTitle, finalDescription, finalKeywords, ogImage, currentUrl, structuredData, breadcrumbs, lang, settings, loading]);
 
   return null; // Компонент не рендерит ничего видимого
 };

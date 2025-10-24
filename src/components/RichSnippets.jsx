@@ -1,4 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
+import { getSettingsData } from "../api/index";
 
 // Компонент для FAQ страницы с разметкой FAQ Schema
 const FAQPageSEO = ({ faqs }) => {
@@ -44,8 +46,46 @@ const FAQPageSEO = ({ faqs }) => {
 
 // Локальный бизнес для Google My Business
 const LocalBusinessSchema = () => {
+  const { lang } = useLanguage();
+  const [settings, setSettings] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    if (typeof document === 'undefined') return;
+    const fetchSettings = async () => {
+      try {
+        setLoading(true);
+        const settingsData = await getSettingsData(lang);
+        setSettings(settingsData?.data || settingsData);
+      } catch (error) {
+        console.error('Error fetching settings:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSettings();
+  }, [lang]);
+
+  useEffect(() => {
+    if (typeof document === 'undefined' || loading) return;
+
+    // Собираем социальные сети в массив, исключая пустые значения
+    const socialLinks = [];
+    if (settings?.facebook) socialLinks.push(settings.facebook);
+    if (settings?.instagram) socialLinks.push(settings.instagram);
+    if (settings?.tiktok) socialLinks.push(settings.tiktok);
+    if (settings?.linkedin) socialLinks.push(settings.linkedin);
+    if (settings?.twitter) socialLinks.push(settings.twitter);
+    if (settings?.youtube) socialLinks.push(settings.youtube);
+    
+    // Fallback социальные сети если API не вернул данные
+    if (socialLinks.length === 0) {
+      socialLinks.push(
+        "https://www.facebook.com/autoportbaku",
+        "https://www.instagram.com/autoportbaku",
+        "https://t.me/autoportbaku"
+      );
+    }
 
     const localBusinessSchema = {
       "@context": "https://schema.org",
@@ -53,11 +93,11 @@ const LocalBusinessSchema = () => {
       "name": "AutoPortBaku",
       "description": "Премиум транспортные услуги в Баку и по всему Азербайджану",
       "url": "https://autoportbaku.com",
-      "telephone": "+994-50-123-45-67",
-      "email": "info@autoportbaku.com",
+      "telephone": settings?.phone || settings?.telephone || "(+994) 50 -481-00-81",
+      "email": settings?.email || "info@autoportbaku.com",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Ваш адрес",
+        "streetAddress": settings?.address || "Azure Business Center, 15 Nobel Avenue",
         "addressLocality": "Baku",
         "addressCountry": "AZ",
         "postalCode": "AZ1000"
@@ -73,11 +113,7 @@ const LocalBusinessSchema = () => {
       "acceptsReservations": true,
       "currenciesAccepted": "AZN, USD, EUR",
       "paymentAccepted": "Cash, Credit Card, Bank Transfer",
-      "sameAs": [
-        "https://www.facebook.com/autoportbaku",
-        "https://www.instagram.com/autoportbaku",
-        "https://t.me/autoportbaku"
-      ],
+      "sameAs": socialLinks,
       "hasMap": "https://maps.google.com/?q=AutoPortBaku",
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -106,7 +142,124 @@ const LocalBusinessSchema = () => {
         scriptToRemove.remove();
       }
     };
-  }, []);
+  }, [settings, loading]);
+
+  return null;
+};
+
+// Организация Schema с данными из API
+const OrganizationSchema = () => {
+  const { lang } = useLanguage();
+  const [settings, setSettings] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        setLoading(true);
+        const settingsData = await getSettingsData(lang);
+        setSettings(settingsData?.data || settingsData);
+      } catch (error) {
+        console.error('Error fetching settings:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSettings();
+  }, [lang]);
+
+  useEffect(() => {
+    if (typeof document === 'undefined' || loading) return;
+
+    // Собираем социальные сети
+    const socialLinks = [];
+    if (settings?.facebook) socialLinks.push(settings.facebook);
+    if (settings?.instagram) socialLinks.push(settings.instagram);
+    if (settings?.tiktok) socialLinks.push(settings.tiktok);
+    if (settings?.linkedin) socialLinks.push(settings.linkedin);
+    if (settings?.twitter) socialLinks.push(settings.twitter);
+    if (settings?.youtube) socialLinks.push(settings.youtube);
+    
+    // Fallback
+    if (socialLinks.length === 0) {
+      socialLinks.push(
+        "https://www.facebook.com/autoportbaku",
+        "https://www.instagram.com/autoportbaku"
+      );
+    }
+
+    const organizationSchema = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "AutoPortBaku",
+      "alternateName": ["Autoport Baku", "AutoPort Baku"],
+      "description": "Премиум транспортная компания в Азербайджане, предоставляющая услуги трансферов, экскурсий и аренды автомобилей",
+      "url": "https://autoportbaku.com",
+      "logo": "https://autoportbaku.com/logo_big.svg",
+      "image": "https://autoportbaku.com/logo_big.svg",
+      "telephone": settings?.phone || settings?.telephone || "(+994) 50 -481-00-81",
+      "email": settings?.email || "info@autoportbaku.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": settings?.address || "Azure Business Center, 15 Nobel Avenue",
+        "addressLocality": "Baku",
+        "addressRegion": "Baku",
+        "addressCountry": "AZ",
+        "postalCode": "AZ1000"
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": settings?.phone || "(+994) 50 -481-00-81",
+          "contactType": "customer service",
+          "availableLanguage": ["ru", "az", "en"],
+          "hoursAvailable": "Mo-Su 00:00-24:00"
+        },
+        {
+          "@type": "ContactPoint", 
+          "telephone": settings?.telephone || "(+994) 12-488-67-98",
+          "contactType": "reservations",
+          "availableLanguage": ["ru", "az", "en"],
+          "hoursAvailable": "Mo-Su 00:00-24:00"
+        }
+      ],
+      "sameAs": socialLinks,
+      "foundingDate": "2015",
+      "numberOfEmployees": "10-50",
+      "slogan": "Премиум транспортные услуги в Азербайджане",
+      "knowsAbout": [
+        "Airport Transfers",
+        "Car Rental", 
+        "Tours",
+        "Chauffeur Services",
+        "Transportation Services"
+      ],
+      "serviceArea": {
+        "@type": "Country",
+        "name": "Azerbaijan"
+      }
+    };
+
+    // Удаляем предыдущий script, если есть
+    const existingScript = document.querySelector('script[data-id="organization-schema"]');
+    if (existingScript) {
+      existingScript.remove();
+    }
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.setAttribute('data-id', 'organization-schema');
+    script.textContent = JSON.stringify(organizationSchema);
+    document.head.appendChild(script);
+
+    return () => {
+      const scriptToRemove = document.querySelector('script[data-id="organization-schema"]');
+      if (scriptToRemove) {
+        scriptToRemove.remove();
+      }
+    };
+  }, [settings, loading]);
 
   return null;
 };
@@ -315,9 +468,101 @@ const PriceRangeSchema = ({ services }) => {
   return null;
 };
 
+// Контактная информация Schema с данными из API
+const ContactInfoSchema = () => {
+  const { lang } = useLanguage();
+  const [settings, setSettings] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        setLoading(true);
+        const settingsData = await getSettingsData(lang);
+        setSettings(settingsData?.data || settingsData);
+      } catch (error) {
+        console.error('Error fetching settings:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSettings();
+  }, [lang]);
+
+  useEffect(() => {
+    if (typeof document === 'undefined' || loading) return;
+
+    const contactSchema = {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Контакты AutoPortBaku",
+      "description": "Свяжитесь с AutoPortBaku для заказа транспортных услуг",
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "AutoPortBaku",
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": settings?.phone || "(+994) 50 -481-00-81",
+            "contactType": "customer service",
+            "availableLanguage": ["ru", "az", "en"],
+            "hoursAvailable": "Mo-Su 00:00-24:00",
+            "areaServed": "AZ"
+          },
+          {
+            "@type": "ContactPoint",
+            "telephone": settings?.telephone || "(+994) 12-488-67-98",
+            "contactType": "reservations", 
+            "availableLanguage": ["ru", "az", "en"],
+            "hoursAvailable": "Mo-Su 00:00-24:00",
+            "areaServed": "AZ"
+          },
+          {
+            "@type": "ContactPoint",
+            "email": settings?.email || "info@autoportbaku.com",
+            "contactType": "customer support",
+            "availableLanguage": ["ru", "az", "en"]
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": settings?.address || "Azure Business Center, 15 Nobel Avenue",
+          "addressLocality": "Baku",
+          "addressCountry": "AZ",
+          "postalCode": "AZ1000"
+        }
+      }
+    };
+
+    // Удаляем предыдущий script, если есть
+    const existingScript = document.querySelector('script[data-id="contact-info-schema"]');
+    if (existingScript) {
+      existingScript.remove();
+    }
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.setAttribute('data-id', 'contact-info-schema');
+    script.textContent = JSON.stringify(contactSchema);
+    document.head.appendChild(script);
+
+    return () => {
+      const scriptToRemove = document.querySelector('script[data-id="contact-info-schema"]');
+      if (scriptToRemove) {
+        scriptToRemove.remove();
+      }
+    };
+  }, [settings, loading]);
+
+  return null;
+};
+
 export {
   FAQPageSEO,
   LocalBusinessSchema,
+  OrganizationSchema,
+  ContactInfoSchema,
   ReviewsSchema,
   VehicleSchema,
   WebSiteSchema,

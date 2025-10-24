@@ -6,6 +6,9 @@ import Scrollline from "../components/Scrolline";
 import SectionTitle from "../components/SectionTitle";
 import Mission from "../components/Mission";
 import SEOHead from '../components/SEOHead';
+import { LocalBusinessSchema, OrganizationSchema } from "../components/RichSnippets";
+
+
 
 
 
@@ -21,11 +24,10 @@ function About() {
   return (
     <>
       <SEOHead
-        title="About Us - AutoPortBaku"
-        description="Learn more about AutoPortBaku, a leading transportation company in Azerbaijan offering premium services with professional drivers and a comfortable fleet."
-        keywords="автопорт, баку, трансфер, экскурсии, азербайджан, туры, автомобили"
-        ogImage="/src/assets/images/about_us/og-about-us.jpg"
+        pageType="aboutPage"
       />
+      <LocalBusinessSchema />
+      <OrganizationSchema />
 
       < div className="about_page" >
         <Page_big_banner

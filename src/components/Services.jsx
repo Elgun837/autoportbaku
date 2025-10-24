@@ -4,6 +4,7 @@ import "../assets/styles/Services.scss";
 import { useLanguage } from "../context/LanguageContext";
 import { useServices } from "../context/ServiceContext";
 
+
 export default function Services() {
 
 
@@ -15,11 +16,12 @@ export default function Services() {
   }
 
   return (
-    <div>
-      <section className="services_section">
-        <div className="services_container">
-          <div className="inner">
-            <div className="services_heading"
+    <>    
+      <div>
+        <section className="services_section">
+          <div className="services_container">
+            <div className="inner">
+              <div className="services_heading"
               data-aos="fade-up"
               data-aos-delay="200"
               data-aos-duration="800"
@@ -35,7 +37,7 @@ export default function Services() {
                   data-aos="flip-left"
                   data-aos-delay={600 + index * 100}
                   data-aos-duration="800"
-                  data-aos-mirror="true"
+                  data-aos-mirror="false"                 
                 >
                   <div className="icon">
                     <img src={service.main_image} alt={service.title} />
@@ -48,5 +50,6 @@ export default function Services() {
         </div>
       </section>
     </div>
+    </>
   );
 }

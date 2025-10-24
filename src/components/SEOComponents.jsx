@@ -8,8 +8,8 @@ const ToursPageSEO = ({ tours }) => {
   const toursSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": "Туры по Азербайджану",
-    "description": "Экскурсионные туры и поездки по достопримечательностям Азербайджана",
+    "name": t('schema.tours.name'),
+    "description": t('schema.tours.description'),
     "numberOfItems": tours?.length || 0,
     "itemListElement": tours?.map((tour, index) => ({
       "@type": "TouristTrip",
@@ -98,8 +98,8 @@ const ServicesPageSEO = ({ services }) => {
   const servicesSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Транспортные услуги AutoPortBaku",
-    "description": "Комплексные транспортные услуги в Баку: трансферы, аренда автомобилей, экскурсии",
+    "name": t('schema.services.name'),
+    "description": t('schema.services.description'),
     "provider": {
       "@type": "Organization",
       "name": "AutoPortBaku",
@@ -112,7 +112,7 @@ const ServicesPageSEO = ({ services }) => {
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Транспортные услуги",
+      "name": t('schema.services.offerCatalogName'),
       "itemListElement": services?.map(service => ({
         "@type": "Offer",
         "itemOffered": {
@@ -144,13 +144,13 @@ const AboutPageSEO = () => {
   const aboutSchema = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    "name": "О компании AutoPortBaku",
-    "description": "AutoPortBaku - ведущая транспортная компания Азербайджана с многолетним опытом качественного обслуживания",
+    "name": t('schema.about.name'),
+    "description": t('schema.about.description'),
     "mainEntity": {
       "@type": "Organization",
       "name": "AutoPortBaku",
       "foundingDate": "2015",
-      "description": "Транспортная компания, специализирующаяся на premium услугах"
+      "description": t('schema.about.organizationDescription')
     }
   };
 
@@ -174,8 +174,8 @@ const ContactsPageSEO = () => {
   const contactSchema = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    "name": "Контакты AutoPortBaku",
-    "description": "Свяжитесь с AutoPortBaku для заказа транспортных услуг",
+    "name": t('schema.contacts.name'),
+    "description": t('schema.contacts.description'),
     "mainEntity": {
       "@type": "Organization",
       "name": "AutoPortBaku",

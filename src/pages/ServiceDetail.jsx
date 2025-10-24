@@ -11,6 +11,8 @@ import Scrollline from "../components/Scrolline";
 import SectionTitle from "../components/SectionTitle";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
+import SEOHead from "../components/SEOHead";
+import { ServicesPageSEO } from '../components/SEOComponents';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -83,6 +85,10 @@ export default function ServiceDetail() {
 
   return (
     <>
+      <SEOHead
+        pageType="servicePage"
+      />
+      <ServicesPageSEO service={service} />
       <div className="services-detail">
         <Page_big_banner
           title={service.mini_title || "Service Details"}
@@ -113,11 +119,11 @@ export default function ServiceDetail() {
                   <div className="image_descr_inner">
                     <div className="image_block">
                       <img
-                      data-aos="fade-in"
-                      data-aos-delay="200"
-                      data-aos-duration="800"
-                      data-aos-mirror="true"
-                       width="750" height="549" src={service.image_1} alt={service.title} />
+                        data-aos="fade-in"
+                        data-aos-delay="200"
+                        data-aos-duration="800"
+                        data-aos-mirror="true"
+                        width="750" height="549" src={service.image_1} alt={service.title} />
                     </div>
                     <div className="descr_block">
                       {service.additional_text && service.additional_text.map((item, index) => (
@@ -151,14 +157,14 @@ export default function ServiceDetail() {
         </section>
         <section className="service-banner-2">
           <div className="banner_2_holder"
-           
+
           >
-            <img 
-             data-aos="zoom-up"
-            data-aos-delay="300"  
-            data-aos-duration="400"
-            data-aos-mirror="true"
-            src={service.banner_2} alt={service.title} />
+            <img
+              data-aos="zoom-up"
+              data-aos-delay="300"
+              data-aos-duration="400"
+              data-aos-mirror="true"
+              src={service.banner_2} alt={service.title} />
           </div>
         </section>
         <section className="fleet_section">
@@ -242,7 +248,7 @@ export default function ServiceDetail() {
                                 data-aos-delay="200"
                                 data-aos-duration="800"
                                 data-aos-mirror="true"
-                              src={vehicle.image} alt={vehicle.title} />
+                                src={vehicle.image} alt={vehicle.title} />
                             </div>
                             <div className="car_info">
                               <h4 className="car_title"

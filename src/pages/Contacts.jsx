@@ -4,6 +4,8 @@ import { useLanguage } from "../context/LanguageContext";
 import Page_small_banner from "../components/Page_small_banner";
 import { getSettingsData } from "../api";
 import ContactBannerImage from "../assets/images/contacts.png";
+import SEOHead from "../components/SEOHead";
+import { ContactInfoSchema } from "../components/RichSnippets";
 
 
 
@@ -11,7 +13,11 @@ export default function Contacts() {
     const { t } = useLanguage();
     return (
         <>
-            <Page_small_banner  title={t("contacts.title")} subtitle={t("contacts.subtitle")} bannerImageSrc={ContactBannerImage} />
+            <SEOHead
+                pageType="contactsPage"
+            />        
+            <ContactInfoSchema />
+            <Page_small_banner title={t("contacts.title")} subtitle={t("contacts.subtitle")} bannerImageSrc={ContactBannerImage} />
             <section className="contact_form_section" >
                 <div className="container">
                     <div className="row">
@@ -27,7 +33,7 @@ export default function Contacts() {
                                 <div className="text_wrapper">
                                     <h2 className="title animate__animated animate__fadeInUp">{t("contacts.phone")}</h2>
                                     <a href="tel:+994504810081" className="contact_link "
-                                    data-aos="fadeInUp" data-aos-delay="200"
+                                        data-aos="fadeInUp" data-aos-delay="200"
                                     >(+994) 50-481-00-81</a>
                                 </div>
                             </div>
@@ -44,7 +50,7 @@ export default function Contacts() {
                                 <div className="text_wrapper">
                                     <h2 className="title animate__animated animate__fadeInUp animate__delay-1s">{t("contacts.address")}</h2>
                                     <a href="#" className="contact_link "
-                                    data-aos="fadeInUp" data-aos-delay="200">Azure Business Center, 15 Nobel Avenue</a>
+                                        data-aos="fadeInUp" data-aos-delay="200">Azure Business Center, 15 Nobel Avenue</a>
                                 </div>
                             </div>
                             <div className="contact_block">
@@ -60,14 +66,14 @@ export default function Contacts() {
                                 <div className="text_wrapper">
                                     <h2 className="title animate__animated animate__fadeInUp animate__delay-2s">{t("contacts.email")}</h2>
                                     <a href="mailto:info@autoport.com" className="contact_link"
-                                     data-aos="fadeInUp" data-aos-delay="200">info@autoport.com</a>
+                                        data-aos="fadeInUp" data-aos-delay="200">info@autoport.com</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-           
+
         </>
 
     );

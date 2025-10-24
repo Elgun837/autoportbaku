@@ -9,6 +9,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { translations } from "../translations";
 import { useTours } from "../context/TourContext";
+import SEOHead from "../components/SEOHead";
+import { ToursPageSEO } from '../components/SEOComponents';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Tours() {
@@ -61,6 +63,11 @@ export default function Tours() {
   if (loading) {
     return (
       <>
+        <SEOHead
+          pageType="toursPage"
+        />
+        <ToursPageSEO tour={tours} />
+     
         <Page_big_banner
           title={t("tours.title")}
           subtitle={t("tours.subtitle")}
@@ -140,7 +147,7 @@ export default function Tours() {
                   <div className="details_block">
                     <h2>{tour.title}</h2>
                     <p>{tour.excerpt}</p>
-                    
+
                     <Link
                       to={`/${lang}/${routes.tours}/${tour.slug[lang]}`}
                       className="btn btn-primary"

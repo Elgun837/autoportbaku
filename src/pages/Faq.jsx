@@ -4,6 +4,8 @@ import Page_small_banner from "../components/Page_small_banner";
 import Accordion from "../components/Accordion";
 import { useLanguage } from "../context/LanguageContext";
 import faqBannerImage from "../assets/images/faq_banner.png";
+import SEOHead from "../components/SEOHead";
+
 
 export default function Faq() {
     const { t } = useLanguage();
@@ -12,6 +14,10 @@ export default function Faq() {
     
     return (
         <>
+            <SEOHead
+                pageType="faqPage"
+            />
+           
             <Page_small_banner
                 title={t("faq.title")}
                 subtitle={t("faq.subtitle")}

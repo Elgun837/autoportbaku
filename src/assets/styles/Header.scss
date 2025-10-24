@@ -100,7 +100,7 @@
                 transition: color 0.3s ease;
 
                 &:hover {
-                   color: #e6e6e6;
+                  color: #e6e6e6;
                 }
               }
 
@@ -142,7 +142,13 @@
               transform: translateY(-10px);
               transition: all 0.3s ease;
               z-index: 1000;
-
+              max-height: 70vh;
+              overflow: auto;
+              scrollbar-width: thin;
+              scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+              &::-webkit-scrollbar {
+                width: 2px;
+              }
               .dropdown-item {
                 display: block;
                 padding: 15px 20px;
@@ -410,55 +416,65 @@
 .skeleton-header-container {
   .react-loading-skeleton {
     border-radius: 4px;
-    
+
     &::before {
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
     }
   }
-  
+
   .skeleton-nav {
     display: flex;
     align-items: center;
-    
+
     .skeleton-nav-item {
       display: flex;
       align-items: center;
-      
+
       &.nav-item.dropdown {
         position: relative;
       }
     }
-    
+
     @media (max-width: 992px) {
       display: none; // Скрываем desktop nav в мобильной версии
     }
   }
-  
+
   .skeleton-language-switcher {
     margin-left: 30px;
-    
+
     @media (max-width: 992px) {
       display: none; // Скрываем в мобильной версии
     }
   }
-  
+
   .skeleton-mobile-toggle {
     display: none;
-    
+
     @media (max-width: 992px) {
       display: block;
     }
   }
-  
+
   // Специальные стили для home версии skeleton
   &.home {
     .react-loading-skeleton {
       &::before {
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
       }
     }
   }
-  
+
   // Адаптивность для mobile
   @media (max-width: 992px) {
     .right_section {
@@ -466,7 +482,7 @@
         display: none;
       }
     }
-    
+
     .skeleton-mobile-toggle {
       display: flex;
       align-items: center;

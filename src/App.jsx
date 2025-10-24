@@ -11,6 +11,7 @@ import { initImageFallback } from "./utils/imageUtils";
 import 'animate.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { AnalyticsProvider } from "./components/Analytics";
 
 
 
@@ -69,7 +70,7 @@ export default function App() {
       duration: 800,         // длительность анимации в миллисекундах (уменьшил для более отзывчивости)
       delay: 0,              // задержка анимации
       easing: 'ease-in-out', // тип easing для анимации (более плавный)
-      once: false,           // анимация НЕ происходит только один раз (повторяется)
+      once: true,           // анимация НЕ происходит только один раз (повторяется)
       mirror: true,          // элементы анимируются при прокрутке обратно (обратная анимация)
       anchorPlacement: 'top-bottom', // определение когда элемент считается в области видимости
       offset: 100,           // отступ (в px) от исходной точки срабатывания (увеличил для раннего срабатывания)
@@ -92,18 +93,22 @@ export default function App() {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Router>
-        <LanguageProvider>
-          <TourProvider>
-            <ServiceProvider>
-              <Header />
-              <AppRoutes />
-              <Footer />
-            </ServiceProvider>
-          </TourProvider>
-        </LanguageProvider>
-      </Router>
-    </QueryClientProvider>
+    <AnalyticsProvider
+      
+    >
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <LanguageProvider>
+            <TourProvider>
+              <ServiceProvider>
+                <Header />
+                <AppRoutes />
+                <Footer />
+              </ServiceProvider>
+            </TourProvider>
+          </LanguageProvider>
+        </Router>
+      </QueryClientProvider>
+    </AnalyticsProvider>
   );
 }

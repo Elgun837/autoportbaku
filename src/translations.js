@@ -11,6 +11,11 @@ export const translations = {
         description: "Experience luxury and comfort with AutoPortBaku's exclusive chauffeur services, airport transfers, and tailored tours across Azerbaijan.",
         keywords: "autoport baku, airport transfer baku, tours azerbaijan, car rental baku"
       },
+      faqPage: {
+        title: "FAQ - AutoPortBaku",
+        description: "Find answers to frequently asked questions about AutoPortBaku's transportation services, transfers, and tours in Azerbaijan.",
+        keywords: "faq autoportbaku, transportation questions, transfer info, tour inquiries"
+      },
       toursPage: {
         title: "Tours in Azerbaijan - AutoPortBaku",
         description: "Discover amazing tours and excursions in Azerbaijan. Explore Baku, Gobustan, Sheki and other attractions with AutoPortBaku.",
@@ -30,6 +35,26 @@ export const translations = {
         title: "Contacts - AutoPortBaku",
         description: "Contact AutoPortBaku for booking transfers and transportation services in Baku. 24/7 customer support.",
         keywords: "contacts autoportbaku, book transfer baku, autoport phone"
+      }
+    },
+    schema: {
+      tours: {
+        name: "Tours in Azerbaijan",
+        description: "Excursion tours and trips to attractions in Azerbaijan"
+      },
+      services: {
+        name: "AutoPortBaku Transportation Services",
+        description: "Comprehensive transportation services in Baku: transfers, car rental, excursions",
+        offerCatalogName: "Transportation Services"
+      },
+      about: {
+        name: "About AutoPortBaku Company",
+        description: "AutoPortBaku - leading transportation company of Azerbaijan with years of quality service experience",
+        organizationDescription: "Transportation company specializing in premium services"
+      },
+      contacts: {
+        name: "AutoPortBaku Contacts", 
+        description: "Contact AutoPortBaku to book transportation services"
       }
     },
     breadcrumbs: {
@@ -194,6 +219,11 @@ export const translations = {
         description: "Увлекательные экскурсионные туры по Азербайджану. Откройте для себя красоты Баку, Гобустан, Шеки и другие достопримечательности с АвтоПорт Баку.",
         keywords: "туры азербайджан, экскурсии баку, гобустан, шеки, туры по азербайджану"
       },
+      faqPage: {
+        title: "Часто задаваемые вопросы - АвтоПорт Баку",
+        description: "Найдите ответы на часто задаваемые вопросы о транспортных услугах, трансферах и турах АвтоПорт Баку.",
+        keywords: "faq автопорт баку, вопросы о транспорте, информация о трансферах, запросы по турам"
+      },
       servicesPage: {
         title: "Транспортные услуги в Баку - АвтоПорт Баку",
         description: "Профессиональные транспортные услуги в Баку и по всему Азербайджану. Трансферы из аэропорта, аренда автомобилей, экскурсионные поездки.",
@@ -208,6 +238,26 @@ export const translations = {
         title: "Контакты - АвтоПорт Баку",
         description: "Свяжитесь с АвтоПорт Баку для заказа трансферов и транспортных услуг в Баку. Круглосуточная поддержка клиентов.",
         keywords: "контакты автопорт баку, заказать трансфер баку, телефон автопорт"
+      }
+    },
+    schema: {
+      tours: {
+        name: "Туры по Азербайджану",
+        description: "Экскурсионные туры и поездки по достопримечательностям Азербайджана"
+      },
+      services: {
+        name: "Транспортные услуги AutoPortBaku",
+        description: "Комплексные транспортные услуги в Баку: трансферы, аренда автомобилей, экскурсии",
+        offerCatalogName: "Транспортные услуги"
+      },
+      about: {
+        name: "О компании AutoPortBaku",
+        description: "AutoPortBaku - ведущая транспортная компания Азербайджана с многолетним опытом качественного обслуживания",
+        organizationDescription: "Транспортная компания, специализирующаяся на premium услугах"
+      },
+      contacts: {
+        name: "Контакты AutoPortBaku", 
+        description: "Свяжитесь с AutoPortBaku для заказа транспортных услуг"
       }
     },
     breadcrumbs: {

@@ -6,6 +6,10 @@ import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import "../assets/styles/TourDetail.scss";
 import { useTours } from "../context/TourContext";
+import SEOHead from "../components/SEOHead";
+import { TourDetailSEO } from '../components/SEOComponents';
+
+
 export default function TourDetail() {
   const { t, lang } = useLanguage();
   const { slug } = useParams();
@@ -15,6 +19,7 @@ export default function TourDetail() {
   if (toursLoading) {
     return (
       <>
+        <TourDetailSEO tour={tour} />
         <Page_big_banner
           title={t("common.loading", "Loading...")}
           subtitle=""
@@ -83,6 +88,10 @@ export default function TourDetail() {
 
   return (
     <>
+      <SEOHead
+        pageType="toursPage"
+      />
+ 
       <div className="tours_details">
         <Page_big_banner
           title=""

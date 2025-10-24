@@ -8,6 +8,7 @@ import Cars from "../components/Cars";
 import WhyUs from "../components/WhyUs";
 import Partners from "../components/Partners";
 import SEOHead from "../components/SEOHead";
+import { LocalBusinessSchema, OrganizationSchema } from "../components/RichSnippets";
 
 
 
@@ -20,6 +21,8 @@ export default function HomePage() {
       <SEOHead
         pageType="homePage"
       />
+      <LocalBusinessSchema />
+      <OrganizationSchema />
       <Slide />
         <Scrollline maxProgress={100} />
         <Services />     
