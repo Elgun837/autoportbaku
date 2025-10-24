@@ -1,9 +1,9 @@
 import { use } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import "../assets/styles/Cars.scss";
-import { getToursData, getVehicleData } from "../api";
+import { getVehicleData } from "../api";
 import { useQuery } from "@tanstack/react-query";
-import { translations } from "../translations";
+// import { translations } from "../translations";
 import OptimizedImage from "./OptimizedImage";
 
 export default function Cars() {

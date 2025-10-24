@@ -7,7 +7,7 @@ import { getPartnersData } from "../api/index";
 import { useQuery } from "@tanstack/react-query";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import OptimizedImage from './OptimizedImage';
+// import OptimizedImage from './OptimizedImage';
 
 
 // Import Swiper styles

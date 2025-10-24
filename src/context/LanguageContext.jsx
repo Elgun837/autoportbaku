@@ -1,8 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { translations } from "../translations";
 import { useNavigate, useLocation } from "react-router-dom";
-import {
-  getToursData,
+import { 
   getServiceData,
   getToursSlug,
   getServicesSlug,
