@@ -4,29 +4,17 @@ import { useLanguage } from "../context/LanguageContext";
 import { useSettings } from "../context/SettingsContext";
 import "../assets/styles/Footer.scss";
 import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+
 
 
 export default function Footer() {
     const { t, lang } = useLanguage();
     const [settings, setSettings] = useState(null);
     const [loading, setLoading] = useState(true);
+    
 
-    useEffect(() => {
-        const fetchSettings = async () => {
-            try {
-                setLoading(true);
-                const settingsData = await getSettingsData(lang);
-                setSettings(settingsData?.data || settingsData);
-
-            } catch (error) {
-                console.error('Error fetching settings:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchSettings();
-    }, [lang]);
      const currentYear = new Date().getFullYear(); 
     return (
         <>

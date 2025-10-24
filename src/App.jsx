@@ -28,6 +28,7 @@ import { translations } from "./translations";
 import { TourProvider } from "./context/TourContext";
 import { ServiceProvider } from "./context/ServiceContext";
 import { SettingsProvider } from "./context/SettingsContext";
+import { CurrencyProvider } from "./context/CurrencyContext";
 
 const queryClient = new QueryClient();
 
@@ -92,19 +93,21 @@ export default function App() {
 
   return (
     <AnalyticsProvider
-      
+
     >
       <QueryClientProvider client={queryClient}>
         <Router>
           <LanguageProvider>
             <SettingsProvider>
-              <TourProvider>
-                <ServiceProvider>
-                  <Header />
-                  <AppRoutes />
-                  <Footer />
-                </ServiceProvider>
-              </TourProvider>
+              <CurrencyProvider>
+                <TourProvider>
+                  <ServiceProvider>
+                    <Header />
+                    <AppRoutes />
+                    <Footer />
+                  </ServiceProvider>
+                </TourProvider>
+              </CurrencyProvider>
             </SettingsProvider>
           </LanguageProvider>
         </Router>
