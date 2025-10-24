@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { getSettingsData } from "../api/index";
+import { useSettings } from '../context/SettingsContext';
 
 // Компонент для FAQ страницы с разметкой FAQ Schema
 const FAQPageSEO = ({ faqs }) => {
@@ -47,24 +47,7 @@ const FAQPageSEO = ({ faqs }) => {
 // Локальный бизнес для Google My Business
 const LocalBusinessSchema = () => {
   const { lang } = useLanguage();
-  const [settings, setSettings] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchSettings = async () => {
-      try {
-        setLoading(true);
-        const settingsData = await getSettingsData(lang);
-        setSettings(settingsData?.data || settingsData);
-      } catch (error) {
-        console.error('Error fetching settings:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSettings();
-  }, [lang]);
+  const { settings, loading } = useSettings();
 
   useEffect(() => {
     if (typeof document === 'undefined' || loading) return;
@@ -150,24 +133,7 @@ const LocalBusinessSchema = () => {
 // Организация Schema с данными из API
 const OrganizationSchema = () => {
   const { lang } = useLanguage();
-  const [settings, setSettings] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchSettings = async () => {
-      try {
-        setLoading(true);
-        const settingsData = await getSettingsData(lang);
-        setSettings(settingsData?.data || settingsData);
-      } catch (error) {
-        console.error('Error fetching settings:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSettings();
-  }, [lang]);
+  const { settings, loading } = useSettings();
 
   useEffect(() => {
     if (typeof document === 'undefined' || loading) return;
@@ -471,24 +437,7 @@ const PriceRangeSchema = ({ services }) => {
 // Контактная информация Schema с данными из API
 const ContactInfoSchema = () => {
   const { lang } = useLanguage();
-  const [settings, setSettings] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchSettings = async () => {
-      try {
-        setLoading(true);
-        const settingsData = await getSettingsData(lang);
-        setSettings(settingsData?.data || settingsData);
-      } catch (error) {
-        console.error('Error fetching settings:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSettings();
-  }, [lang]);
+  const { settings, loading } = useSettings();
 
   useEffect(() => {
     if (typeof document === 'undefined' || loading) return;

@@ -14,6 +14,7 @@ export default function Slide() {
   }
   return (
     <>
+    
       <div className="main_bg slide-fade-in">
         <div className="slide_container small_heading_banner">
           <img

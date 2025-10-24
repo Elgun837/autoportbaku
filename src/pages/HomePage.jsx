@@ -12,7 +12,6 @@ import { LocalBusinessSchema, OrganizationSchema } from "../components/RichSnipp
 
 
 
-
 export default function HomePage() {
   const { lang, t } = useLanguage();
 
@@ -24,15 +23,15 @@ export default function HomePage() {
       <LocalBusinessSchema />
       <OrganizationSchema />
       <Slide />
-        <Scrollline maxProgress={100} />
-        <Services />     
-        <BookTrip />
-        <ToursComponent />
-        <Cars />
-        <Scrollline maxProgress={100} />
-        <WhyUs />
-        <Scrollline />
-        <Partners />
+      <Scrollline maxProgress={100} />
+      <Services />
+      <BookTrip />
+      <ToursComponent />
+      <Cars />
+      <Scrollline maxProgress={100} />
+      <WhyUs />
+      <Scrollline />
+      <Partners />
     </div>
   );
 }

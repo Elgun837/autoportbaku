@@ -28,6 +28,7 @@ import { translations } from "./translations";
 import Scrolltop from "./components/Scrolltop";
 import { TourProvider } from "./context/TourContext";
 import { ServiceProvider } from "./context/ServiceContext";
+import { SettingsProvider } from "./context/SettingsContext";
 
 const queryClient = new QueryClient();
 
@@ -99,13 +100,15 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <Router>
           <LanguageProvider>
-            <TourProvider>
-              <ServiceProvider>
-                <Header />
-                <AppRoutes />
-                <Footer />
-              </ServiceProvider>
-            </TourProvider>
+            <SettingsProvider>
+              <TourProvider>
+                <ServiceProvider>
+                  <Header />
+                  <AppRoutes />
+                  <Footer />
+                </ServiceProvider>
+              </TourProvider>
+            </SettingsProvider>
           </LanguageProvider>
         </Router>
       </QueryClientProvider>

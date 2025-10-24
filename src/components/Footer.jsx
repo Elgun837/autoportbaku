@@ -1,32 +1,14 @@
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { getSettingsData } from "../api/index";
+import { useSettings } from "../context/SettingsContext";
 import "../assets/styles/Footer.scss";
 import { Link, useLocation } from "react-router-dom";
 
 
 export default function Footer() {
     const { t, lang } = useLanguage();
-    const [settings, setSettings] = useState(null);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchSettings = async () => {
-            try {
-                setLoading(true);
-                const settingsData = await getSettingsData(lang);
-                setSettings(settingsData?.data || settingsData);
-
-            } catch (error) {
-                console.error('Error fetching settings:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchSettings();
-    }, [lang]);
+    const { settings, loading } = useSettings();
     return (
         <>
             <footer className="footer">

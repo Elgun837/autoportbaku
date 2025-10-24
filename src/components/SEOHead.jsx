@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { getSettingsData } from "../api/index";
+import { useSettings } from '../context/SettingsContext';
 
 const SEOHead = ({ 
   title,
@@ -13,31 +13,13 @@ const SEOHead = ({
   pageType = 'homePage' // homePage, toursPage, servicesPage, aboutPage, contactsPage, faqPage
 }) => {
   const { lang, t } = useLanguage();
-  const [settings, setSettings] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { settings, loading } = useSettings();
 
   // Используем переводы как fallback значения
   const finalTitle = title || t(`seo.${pageType}.title`) || t('seo.defaultTitle');
   const finalDescription = description || t(`seo.${pageType}.description`) || t('seo.defaultDescription');
   const finalKeywords = keywords || t(`seo.${pageType}.keywords`) || t('seo.defaultKeywords');
   const currentUrl = canonicalUrl || (typeof window !== 'undefined' ? window.location.href : '');
-
-  // Загрузка настроек из API
-  useEffect(() => {
-    const fetchSettings = async () => {
-      try {
-        setLoading(true);
-        const settingsData = await getSettingsData(lang);
-        setSettings(settingsData?.data || settingsData);
-      } catch (error) {
-        console.error('Error fetching settings:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSettings();
-  }, [lang]);
   
   
   // Функция для обновления или создания meta тега
