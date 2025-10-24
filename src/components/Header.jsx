@@ -4,7 +4,7 @@ import { useLanguage } from "../context/LanguageContext";
 import LanguageSwitcher from "./LanguageSwitcher";
 import SkeletonHeader from "./SkeletonHeader";
 import "../assets/styles/Header.scss";
-import logoImage from "/logo.png";
+import logoImage from "/logo.webp";
 import { translations } from "../translations";
 import { useTours } from "../context/TourContext";
 import { useServices } from "../context/ServiceContext";

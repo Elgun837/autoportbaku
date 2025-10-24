@@ -4,7 +4,7 @@ import Scrollline from "../components/Scrolline";
 import "../assets/styles/Tours.scss";
 import { useLanguage } from "../context/LanguageContext";
 import Page_big_banner from "../components/Page_big_banner";
-import ToursBannerImage from "../assets/images/tours.png";
+import ToursBannerImage from "../assets/images/tours.webp";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { translations } from "../translations";

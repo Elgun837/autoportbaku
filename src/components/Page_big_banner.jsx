@@ -1,6 +1,6 @@
 import React from "react";
 import "../assets/styles/Page_banners.scss";
-import defaultBannerImage from "../assets/images/small_heading_banner.png";
+import defaultBannerImage from "../assets/images/small_heading_banner.webp";
 import SkeletonPageBigBanner from "./SkeletonPageBigBanner";
 import useImageLoading from "../hooks/useImageLoading";
 import { SKELETON_CONFIG } from "../config/skeletonConfig";

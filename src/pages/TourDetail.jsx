@@ -55,8 +55,8 @@ export default function TourDetail() {
     ? imageUrls.map((url) => ({ original: url, thumbnail: url }))
     : [
       {
-        original: "../assets/images/small_heading_banner.png",
-        thumbnail: "../assets/images/small_heading_banner.png",
+        original: "../assets/images/small_heading_banner.webp",
+        thumbnail: "../assets/images/small_heading_banner.webp",
       },
     ];
 

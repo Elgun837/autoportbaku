@@ -36,7 +36,7 @@ export default function WhyUs() {
                                         data-aos-mirror="true">
                                         <div className="item_container">
                                             <div className="icon">
-                                                <img width="150" height="150" src="/src/assets/images/icons/Affordable prices.png" alt="icon" />
+                                                <img width="150" height="150" src="/src/assets/images/icons/Affordable prices.webp" alt="icon" />
                                             </div>
                                             <div className="info">
                                                 <h6>{t("whyUs.affordablePrices")}</h6>
@@ -51,7 +51,7 @@ export default function WhyUs() {
                                         data-aos-mirror="true">
                                         <div className="item_container">
                                             <div className="icon">
-                                                <img width="150" height="150" src="/src/assets/images/icons/Cancellation free of charge.png" alt="icon" />
+                                                <img width="150" height="150" src="/src/assets/images/icons/Cancellation free of charge.webp" alt="icon" />
                                             </div>
                                             <div className="info">
                                                 <h6> {t("whyUs.cancellationFree")}</h6>
@@ -66,7 +66,7 @@ export default function WhyUs() {
                                         data-aos-mirror="true">
                                         <div className="item_container">
                                             <div className="icon">
-                                                <img width="150" height="150" src="/src/assets/images/icons/Secure payment.png" alt="icon" />
+                                                <img width="150" height="150" src="/src/assets/images/icons/Secure payment.webp" alt="icon" />
                                             </div>
                                             <div className="info">
                                                 <h6> {t("whyUs.securePayment")}</h6>
@@ -81,7 +81,7 @@ export default function WhyUs() {
                                         data-aos-mirror="true">
                                         <div className="item_container">
                                             <div className="icon">
-                                                <img width="150" height="150" src="/src/assets/images/icons/247 support.png" alt="icon" />
+                                                <img width="150" height="150" src="/src/assets/images/icons/247 support.webp" alt="icon" />
                                             </div>
                                             <div className="info">
                                                 <h6>{t("whyUs.support")}</h6>

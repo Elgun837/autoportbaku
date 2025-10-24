@@ -2,7 +2,7 @@ import React from "react";
 import "../assets/styles/Contacts.scss";
 import { useLanguage } from "../context/LanguageContext";
 import Page_small_banner from "../components/Page_small_banner";
-import ContactBannerImage from "../assets/images/contacts.png";
+import ContactBannerImage from "../assets/images/contacts.webp";
 import SEOHead from "../components/SEOHead";
 import { ContactInfoSchema } from "../components/RichSnippets";
 

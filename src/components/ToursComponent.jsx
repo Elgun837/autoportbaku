@@ -53,7 +53,7 @@ function ToursComponent() {
                           width="506"
                           src={
                             tour.image ||
-                            `/src/assets/images/tours/${index + 1}.png`
+                            `/src/assets/images/tours/${index + 1}.webp`
                           }
                           alt={tour.title}
                         />

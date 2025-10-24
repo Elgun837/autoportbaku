@@ -93,7 +93,6 @@ export default function App() {
 
   return (
     <AnalyticsProvider
-
     >
       <QueryClientProvider client={queryClient}>
         <Router>
