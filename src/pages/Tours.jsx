@@ -66,6 +66,7 @@ export default function Tours() {
       <>
         <SEOHead
           pageType="toursPage"
+          routeKey={t("routes.tours")}
         />
         <ToursPageSEO tour={tours} />
      

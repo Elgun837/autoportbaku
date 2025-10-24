@@ -14,6 +14,7 @@ export default function Contacts() {
         <>
             <SEOHead
                 pageType="contactsPage"
+                routeKey={t("routes.contacts")}
             />        
             <ContactInfoSchema />
             <Page_small_banner title={t("contacts.title")} subtitle={t("contacts.subtitle")} bannerImageSrc={ContactBannerImage} />

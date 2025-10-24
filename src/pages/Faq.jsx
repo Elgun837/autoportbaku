@@ -16,6 +16,7 @@ export default function Faq() {
         <>
             <SEOHead
                 pageType="faqPage"
+                routeKey={t("routes.faq")}
             />
            
             <Page_small_banner

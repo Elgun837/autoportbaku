@@ -89,6 +89,7 @@ export default function ServiceDetail() {
     <>
       <SEOHead
         pageType="servicePage"
+        basePath={`/${t("routes.services")}/${service?.slug}`}
       />
       <ServicesPageSEO service={service} />
       <div className="services-detail">
@@ -125,9 +126,9 @@ export default function ServiceDetail() {
                         data-aos-delay="200"
                         data-aos-duration="800"
                         data-aos-mirror="true"
-                        width={750} 
-                        height={549} 
-                        src={service.image_1} 
+                        width={750}
+                        height={549}
+                        src={service.image_1}
                         alt={service.title}
                         lazy={true}
                       />
@@ -171,7 +172,7 @@ export default function ServiceDetail() {
               data-aos-delay="300"
               data-aos-duration="400"
               data-aos-mirror="true"
-              src={service.banner_2} 
+              src={service.banner_2}
               alt={service.title}
               lazy={true}
               width={1920}
@@ -260,7 +261,7 @@ export default function ServiceDetail() {
                                 data-aos-delay="200"
                                 data-aos-duration="800"
                                 data-aos-mirror="true"
-                                src={vehicle.image} 
+                                src={vehicle.image}
                                 alt={vehicle.title}
                                 lazy={true}
                                 width={300}
