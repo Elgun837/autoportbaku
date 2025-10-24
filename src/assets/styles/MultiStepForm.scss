@@ -7,7 +7,7 @@
   flex-direction: column;
   max-width: 530px;
   width: 100%;
-  gap: 20px;
+  gap: rem(20);
   opacity: 1;
   border-radius: 16px;
   padding: rem(20);
@@ -27,7 +27,7 @@
     align-items: center;
     justify-content: center;
     min-height: 400px;
-    max-width: 348px;
+    max-width: 339px;
   }
 
   .form-message.success img {
@@ -91,21 +91,21 @@
         color: #000;
         border: 1px solid #000;
         border-radius: 50%;
-        width: rem(50);
-        height: rem(50);
+        width: rem(30);
+        height: rem(30);
         flex-shrink: 0;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: rem(30);
+        font-size: rem(16);
         position: relative;
       }
 
       .form-step.active::before {
         content: url("../../../public/flags/mynaui_edit.svg");
         position: absolute;
-        right: 0px;
-        bottom: 10px;
+        right: -8px;
+        bottom: -6px;
         height: 19px;
         width: 19px;
       }
@@ -124,27 +124,26 @@
   .form-step-content {
     flex: 1;
     width: 100%;
-    height: vh(585);
-    max-height: 585px;
+    height: vh(600);
+    max-height: 600px;
     overflow-y: auto;
     padding-right: 12px;
     scrollbar-width: thin;
     scrollbar-color: #888 transparent;
-    textarea{
+    textarea {
       border-radius: 8px;
       min-height: 80px;
     }
-    .react-tel-input{
+    .react-tel-input {
       font-family: inherit;
-      input{
-        padding-left: 50px!important;
+      input {
+        padding-left: 50px !important;
       }
     }
-    .react-tel-input .country-list{
+    .react-tel-input .country-list {
       color: black;
       max-width: 220px;
       padding-left: 20px;
-      
     }
     .vehicle-card {
       display: flex;
@@ -153,7 +152,6 @@
       justify-content: center;
       gap: 10px;
       margin-bottom: 60px;
-      
     }
 
     p.price {
@@ -184,7 +182,6 @@
         justify-content: center;
         align-items: center;
         gap: 8px;
-
       }
     }
 
@@ -192,7 +189,6 @@
       max-height: unset;
       height: auto;
     }
-
 
     .customer_detail {
       display: flex;
@@ -203,9 +199,12 @@
     .form-group {
       display: flex;
       flex-direction: column;
-      margin-bottom: 20px;
-      gap: 10px;
+      margin-bottom: 15px;
+      gap: 4px;
       position: relative;
+      label {
+        font-size: rem(14);
+      }
 
       .react-select__control {
         border-radius: 8px;
@@ -214,8 +213,8 @@
       }
 
       .react-select__indicators {
-        width: 48px;
-        height: 48px;
+        width: 39px;
+        height: 39px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -245,7 +244,7 @@
 
     select,
     input {
-      height: 48px;
+      height: 39px;
       border-radius: 8px;
       appearance: none;
       -webkit-appearance: none;
@@ -303,7 +302,7 @@
   }
 
   .custom-date-input-field {
-    height: 48px;
+    height: 39px;
     border-radius: 4px;
     border: 1px solid #ccc;
   }
@@ -313,7 +312,7 @@
     right: -0px;
     top: 0px;
     pointer-events: none;
-    width: 48px;
+    width: 39px;
     height: 100%;
     background: #444444;
     display: flex;
@@ -328,6 +327,6 @@
   }
 }
 
-.react-datepicker-popper{
-  margin-left: calc(vw(25) + 10px);
+.react-datepicker-popper {
+  margin-left: calc(vw(25) + 10px)!important;
 }

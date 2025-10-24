@@ -15,7 +15,7 @@
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
-    padding-top: vh(180);
+    padding-top: vh(160);
     padding-bottom: vh(180); 
     @include responsive_padding;
     @media (max-width: 576px) {
