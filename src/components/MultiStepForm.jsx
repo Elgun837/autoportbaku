@@ -64,9 +64,9 @@ export default function MultiStepForm() {
     queryFn: () => getVehicleSearch(lang, tourId, passengers, luggage),
     enabled: false, // avtomatik çağırılmasın
   });
-
+  
   const vehicles = Array.isArray(vehiclesData) ? vehiclesData : [];
-
+  
   const [activeStep, setActiveStep] = useState(1);
 
   const locations = [
@@ -267,7 +267,7 @@ export default function MultiStepForm() {
           {activeStep === 1 && (
             <div className="form-step-content">
               <div className="form-group">
-                <label htmlFor="serviceType">Service Type:</label>
+                <label htmlFor="serviceType">{t("formsLocation.types.serviceType")}:</label>
                 {renderSelect(
                   formData.serviceType,
                   (val) => setFormData({ ...formData, serviceType: val }),
@@ -281,7 +281,7 @@ export default function MultiStepForm() {
 
               <div className="time-date-group">
                 <div className="form-group">
-                  <label htmlFor="pickupDate">Pickup Date:</label>
+                  <label htmlFor="pickupDate">{t("formsLocation.types.pickupDate")}:</label>
                   <div className="custom-date-input">
                     <DatePicker
                       selected={
@@ -296,7 +296,6 @@ export default function MultiStepForm() {
                         })
                       }
                       dateFormat="yyyy-MM-dd"
-                      placeholderText="Select a date"
                       customInput={
                         <input
                           type="text"
@@ -317,14 +316,14 @@ export default function MultiStepForm() {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="">Pickup Time:</label>
+                  <label htmlFor="">{t("formsLocation.types.pickupTime")}:</label>
                   <div className="time-selectors">
                     <div className="hour">
                       {renderSelect(
                         formData.pickupHour,
                         (val) => setFormData({ ...formData, pickupHour: val }),
                         hours.map((h) => h.toString().padStart(2, "0")),
-                        "Hour"
+                        "13"
                       )}
                     </div>
                     :
@@ -334,7 +333,7 @@ export default function MultiStepForm() {
                         (val) =>
                           setFormData({ ...formData, pickupMinute: val }),
                         minutes.map((m) => m.toString().padStart(2, "0")),
-                        "Minute"
+                        "00"
                       )}
                     </div>
                   </div>
@@ -345,28 +344,28 @@ export default function MultiStepForm() {
                 formData.serviceType === transferLabel) && (
                 <>
                   <div className="form-group">
-                    <label htmlFor="pickupLocation">Pickup Location:</label>
+                    <label htmlFor="pickupLocation">{t("formsLocation.types.pickupLocation")}:</label>
                     {renderSelect(
                       formData.pickupLocation,
                       (val) =>
                         setFormData({ ...formData, pickupLocation: val }),
                       locations,
-                      "Select Pickup"
+                      `${t("formsLocation.types.pickupPlace")}`
                     )}
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="dropoffLocation">Drop-off Location:</label>
+                    <label htmlFor="dropoffLocation">{t("formsLocation.types.dropoffLocation")}:</label>
                     {renderSelect(
                       formData.dropoffLocation,
                       (val) =>
                         setFormData({ ...formData, dropoffLocation: val }),
                       locations,
-                      "Select Drop-off"
+                      `${t("formsLocation.types.dropoffPlace")}`
                     )}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="flightNumber">Flight Number:</label>
+                    <label htmlFor="flightNumber">{t("formsLocation.types.flightNumber")}:</label>
                     <input
                       type="text"
                       name="flightNumber"
@@ -380,7 +379,7 @@ export default function MultiStepForm() {
               {formData.serviceType === tourLabel && (
                 <>
                   <div className="form-group">
-                    <label htmlFor="selectTour">Select tour</label>
+                    <label htmlFor="selectTour">{t("formsLocation.types.selectTour")}</label>
                     {renderSelect(
                       formData.selectTour, // hazırki seçilmiş tour-un title-ı (string)
                       (selectedTitle) => {
@@ -407,7 +406,7 @@ export default function MultiStepForm() {
                 onClick={handleNext}
                 disabled={!isStep1Valid}
               >
-                Next
+                {t("formsLocation.types.nextBtn")}
               </button>
             </div>
           )}
@@ -416,7 +415,7 @@ export default function MultiStepForm() {
           {activeStep === 2 && (
             <div className="form-step-content">
               <div className="customer_detail">
-                <label htmlFor="passenger">Number of Passengers:</label>
+                <label htmlFor="passenger">{t("formsLocation.types.passengers")}:</label>
                 <input
                   type="number"
                   name="passengers"
@@ -426,7 +425,7 @@ export default function MultiStepForm() {
               </div>
 
               <div className="customer_detail">
-                <label htmlFor="luggage">Number of Luggage:</label>
+                <label htmlFor="luggage">{t("formsLocation.types.luggage")}:</label>
                 <input
                   type="number"
                   name="luggage"
@@ -436,14 +435,14 @@ export default function MultiStepForm() {
               </div>
 
               <button className="flex-left" onClick={handlePrev}>
-                Previous
+                {t("formsLocation.types.prevBtn")}
               </button>
               <button
                 className="flex-right"
                 onClick={handleNext}
                 disabled={!isStep2Valid}
               >
-                Next
+                {t("formsLocation.types.nextBtn")}
               </button>
             </div>
           )}
@@ -489,7 +488,7 @@ export default function MultiStepForm() {
                             fill="white"
                           />
                         </svg>
-                        max {v.passengers} passengers
+                        max {v.passengers} {t("formsLocation.types.maxPassengers")}
                       </p>
                       <p>
                         <svg
@@ -511,7 +510,7 @@ export default function MultiStepForm() {
                             </clipPath>
                           </defs>
                         </svg>
-                        max {v.luggage} pieces of luggage
+                        max {v.luggage} {t("formsLocation.types.maxLuggage")}
                       </p>
                     </div>
 
@@ -522,13 +521,13 @@ export default function MultiStepForm() {
                         handleNext(e); // növbəti step-ə keç
                       }}
                     >
-                      Select This Vehicle
+                      {t("formsLocation.types.selectBtn")}
                     </button>
                   </div>
                 ))}
 
               <button className="flex-left" onClick={handlePrev}>
-                Previous
+                {t("formsLocation.types.prevBtn")}
               </button>
             </div>
           )}
@@ -537,7 +536,7 @@ export default function MultiStepForm() {
           {activeStep === 4 && (
             <div className="form-step-content">
               <div className="form-group">
-                <label htmlFor="user_name">Name</label>
+                <label htmlFor="user_name">{t("formsLocation.types.name")}</label>
                 <input
                   type="text"
                   name="user_name"
@@ -549,7 +548,7 @@ export default function MultiStepForm() {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">{t("formsLocation.types.email")}</label>
                 <input
                   type="email"
                   name="email"
@@ -560,11 +559,11 @@ export default function MultiStepForm() {
                   }
                 />
                 {!validateEmail(formData.email) && formData.email && (
-                  <p className="error">Email format is incorrect</p>
+                  <p className="error">{t("formsLocation.types.mailError")}</p>
                 )}
               </div>
               <div className="form-group">
-                <label htmlFor="">Phone:</label>
+                <label htmlFor="">{t("formsLocation.types.phone")}:</label>
                 <PhoneInput
                   className="phone-input"
                   country={"az"} // default ölkə
@@ -574,7 +573,7 @@ export default function MultiStepForm() {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="special_req">Special requirment:</label>
+                <label htmlFor="special_req">{t("formsLocation.types.specialRequests")}:</label>
                 <textarea
                   name="special_req"
                   id="special_req"
@@ -587,14 +586,14 @@ export default function MultiStepForm() {
                 ></textarea>
               </div>
               <button className="flex-left" onClick={handlePrev}>
-                Previous
+                {t("formsLocation.types.prevBtn")}
               </button>
               <button
                 className="flex-right"
                 onClick={handleSubmit}
                 disabled={!isStep4Valid} // düymə yalnız sahələr dolu olduqda aktiv olur
               >
-                Submit
+                {t("formsLocation.types.submitBtn")}
               </button>
             </div>
           )}
@@ -605,10 +604,9 @@ export default function MultiStepForm() {
       {stat === "success" && (
         <div className="form-message success">
           <img src="/flags/success.svg" alt="success" />
-          <h4>Form submitted successfully!</h4>
+          <h4>{t("formsLocation.types.iconMsg")}!</h4>
           <span>
-            Thank you! The form has been submited successfully. We will reply
-            you soon
+            {t("formsLocation.types.successMsg")}
           </span>
         </div>
       )}
