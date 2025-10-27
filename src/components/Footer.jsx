@@ -148,16 +148,13 @@ export default function Footer() {
                             </div>
                             <div className="copyright_wrapper">
                                 <div className="copyright_text"
-                                    data-aos="fade-up"
-                                    data-aos-delay="300"
-                                    data-aos-duration="600"
+                                   
                                 >
                                 © {currentYear} AutoportBaku. All rights reserved.
                                 </div>
                                 <div className="design_text"
-                                    data-aos="fade-up"
-                                    data-aos-delay="400"
-                                    data-aos-duration="600"
+                                   
+                                   
                                 >
                                     <span>Made by:</span>
                                     <div className="design_link">

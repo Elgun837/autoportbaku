@@ -1,0 +1,123 @@
+/* Анимация shimmer для OptimizedImage */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Базовые стили для оптимизированных изображений */
+.optimized-image {
+  &__container {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    
+    &--loading {
+      background: linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s ease-in-out infinite;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    height: auto;
+    transition: opacity 0.3s ease, filter 0.3s ease;
+    
+    &--loading {
+      opacity: 0;
+      filter: blur(4px);
+    }
+    
+    &--loaded {
+      opacity: 1;
+      filter: none;
+    }
+  }
+
+  &__placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 14px;
+    background-color: #f5f5f5;
+  }
+}
+
+/* Responsive изображения */
+.responsive-image {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Lazy loading placeholder */
+.lazy-placeholder {
+  background: #f0f0f0;
+  display: inline-block;
+  min-height: 100px;
+  width: 100%;
+}
+
+/* Blur-to-clear transition */
+.blur-load {
+  transition: filter 0.3s;
+  
+  &.loading {
+    filter: blur(5px);
+  }
+  
+  &.loaded {
+    filter: blur(0);
+  }
+}
+
+/* WebP поддержка и fallback */
+.webp .webp-image {
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.no-webp .webp-image {
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Адаптивные размеры для разных экранов */
+@media (max-width: 768px) {
+  .optimized-image {
+    &__container {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .optimized-image {
+    &__container {
+      max-width: 100vw;
+    }
+  }
+}
+
+/* Оптимизация для печати */
+@media print {
+  .optimized-image {
+    &__img {
+      filter: none !important;
+      opacity: 1 !important;
+    }
+    
+    &__placeholder {
+      display: none;
+    }
+  }
+}

@@ -1,5 +1,9 @@
 export const translations = {
-  en: {   
+  en: {
+    form: {
+      title: "Book a trip",
+      subtitle: "Fill out the form below to book your trip with AutoPortBaku."
+    },
     seo: {
       defaultTitle: "AutoPortBaku - Premium Transportation Services",
       defaultDescription: "AutoPortBaku offers premium transfers, tours and transportation services in Azerbaijan. Reliable drivers, comfortable vehicles.",
@@ -20,7 +24,7 @@ export const translations = {
         keywords: "tours azerbaijan, excursions baku, gobustan, sheki, azerbaijan tourism"
       },
       servicesPage: {
-        title: "Transportation Services in Baku - AutoPortBaku", 
+        title: "Transportation Services in Baku - AutoPortBaku",
         description: "Professional transportation services in Baku and throughout Azerbaijan. Airport transfers, car rental, sightseeing trips.",
         keywords: "transfer baku, car rental baku, transportation services azerbaijan"
       },
@@ -51,13 +55,13 @@ export const translations = {
         organizationDescription: "Transportation company specializing in premium services"
       },
       contacts: {
-        name: "AutoPortBaku Contacts", 
+        name: "AutoPortBaku Contacts",
         description: "Contact AutoPortBaku to book transportation services"
       }
     },
     breadcrumbs: {
       home: "Home",
-      tours: "Tours", 
+      tours: "Tours",
       services: "Services",
       about: "About",
       contacts: "Contacts"
@@ -75,8 +79,8 @@ export const translations = {
         pickupTime: "Pickup Time",
         pickupLocation: "Pickup Location",
         pickupPlace: "Select Pickup",
-        dropoffLocation: "Dropoff Location",  
-        dropoffPlace: "Select Drop-off",  
+        dropoffLocation: "Dropoff Location",
+        dropoffPlace: "Select Drop-off",
         selectTour: "Select Tour",
         flightNumber: "Flight Number",
         passengers: "Number of Passengers:",
@@ -97,7 +101,7 @@ export const translations = {
       },
       AirpirtBaku: "Airport",
       BakuAirport: "City Centre",
-      
+
     },
     fleet: {
       title: "Our Fleet",
@@ -128,6 +132,7 @@ export const translations = {
       tours: "tours",
       faq: "faq",
       contacts: "contacts",
+      book: "book-form",
     },
     common: {
       loading: "Loading...",
@@ -223,11 +228,15 @@ export const translations = {
     },
     BookTrip: {
       desc: "Start your journey with Autoport and experience first-class comfort and service on every trip.",
-      buttonText: "Забронировать поездку",
+      buttonText: "Book a trip",
     },
 
   },
   ru: {
+    form: {
+      title: "Забронировать поездку",
+      subtitle: "Заполните форму ниже, чтобы забронировать поездку с AutoPortBaku."
+    },
     seo: {
       defaultTitle: "АвтоПорт Баку - Премиум транспортные услуги",
       defaultDescription: "Автопорт Баку предлагает premium трансферы, экскурсии и транспортные услуги в Азербайджане. Надежные водители, комфортные автомобили.",
@@ -279,18 +288,18 @@ export const translations = {
         organizationDescription: "Транспортная компания, специализирующаяся на premium услугах"
       },
       contacts: {
-        name: "Контакты AutoPortBaku", 
+        name: "Контакты AutoPortBaku",
         description: "Свяжитесь с AutoPortBaku для заказа транспортных услуг"
       }
     },
     breadcrumbs: {
       home: "Главная",
-      tours: "Туры", 
+      tours: "Туры",
       services: "Услуги",
       about: "О нас",
       contacts: "Контакты"
     },
-    homePage: { 
+    homePage: {
       title: "Autoport Baku - Ваш премиальный сервис шофёра в Азербайджане",
       description: "Ощутите роскошь и комфорт с эксклюзивными услугами шофёра Autoport Baku, трансферами из аэропорта и индивидуальными турами по Азербайджану.",
     },
@@ -303,7 +312,7 @@ export const translations = {
         pickupTime: "Время подачи",
         pickupLocation: "Место подачи",
         pickupPlace: "Выберите место подачи",
-        dropoffLocation: "Место высадки",  
+        dropoffLocation: "Место высадки",
         dropoffPlace: "Выберите место высадки",
         selectTour: "Выберите тур",
         flightNumber: "Номер рейса",
@@ -325,7 +334,7 @@ export const translations = {
       },
       AirpirtBaku: "Аэропорт",
       BakuAirport: "Центр города",
-    },  
+    },
     fleet: {
       title: "Наш автопарк",
       description: "Комфортные поездки со стилем и безопасностью.",
@@ -338,18 +347,23 @@ export const translations = {
       securePayment: "Безопасный платеж",
       support: "Круглосуточная поддержка",
     },
+     partners: {
+      title: "Узнайте больше о наших партнерах",
+      subtitle: "Партнеры",
+    },
     cars: {
       subtitle: "Автомобили Autoport: Современные VIP-лимузины для эксклюзивности и комфорта",
       title: "Наши автомобили Autoport предлагают эксклюзивный комфорт вождения и подходят для любого случая - будь то VIP-лимузинный сервис, трансферы из аэропорта, свадьбы или крупные мероприятия. С нашими современными и роскошными автомобилями вы всегда будете путешествовать со стилем и расслаблением, пользуясь просторным салоном и современными удобствами. Будь то деловая поездка или отдых, Autoport Baku предлагает вам идеальное сочетание эксклюзивности, безопасности и комфорта для ваших поездок. Наш парк автомобилей Business и First Class состоит исключительно из автомобилей Mercedes-Benz.",
       passengers: "Пассажиров",
       pieces: "Мест для багажа",
-    }, 
-    routes:{
-      about:"o-nas",
-      services:"usluqi",
-      tours:"turi",
-      faq:"faq",
-      contacts:"kontakty",
+    },
+    routes: {
+      about: "o-nas",
+      services: "usluqi",
+      tours: "turi",
+      faq: "faq",
+      contacts: "kontakty",
+      book: "forma-bronirovaniya",
     },
     common: {
       loading: "Загрузка...",
