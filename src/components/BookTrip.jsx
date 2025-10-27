@@ -2,7 +2,7 @@ import { use } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import "../assets/styles/Trip.scss";
 import { translations } from "../translations";
-import videoTrip from "../assets/images/file.mp4";
+import videoTrip from "/file.mp4";
 import OptimizedVideo from "./OptimizedVideo";
 
 function BookTrip() {

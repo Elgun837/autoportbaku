@@ -3,7 +3,7 @@ import "../assets/styles/WhyUs.scss";
 import { useLanguage } from "../context/LanguageContext";
 import OptimizedImage from "./OptimizedImage";
 // Импортируем фоновое изображение
-import comfortBg from "/src/assets/images/comfort.webp";
+import comfortBg from "/comfort.webp";
 
 export default function WhyUs() {
     const { t } = useLanguage();
@@ -38,11 +38,11 @@ export default function WhyUs() {
                                         data-aos-duration="600"
                                         data-aos-mirror="true">
                                         <div className="item_container">
-                                            <div className="icon">
+                                            <div className="icon">                                               
                                                 <OptimizedImage 
                                                     width={150} 
                                                     height={150} 
-                                                    src="/src/assets/images/webp/Affordable prices.webp" 
+                                                    src="/Affordable-prices.webp" 
                                                     alt="Доступные цены"
                                                     lazy={true}
                                                 />
@@ -63,7 +63,7 @@ export default function WhyUs() {
                                                 <OptimizedImage 
                                                     width={150} 
                                                     height={150} 
-                                                    src="/src/assets/images/webp/Cancellation free of charge.webp" 
+                                                    src="/Cancellation free of charge.webp" 
                                                     alt="Бесплатная отмена"
                                                     lazy={true}
                                                 />
@@ -84,7 +84,7 @@ export default function WhyUs() {
                                                 <OptimizedImage 
                                                     width={150} 
                                                     height={150} 
-                                                    src="/src/assets/images/webp/Secure payment.webp" 
+                                                    src="/Secure payment.webp" 
                                                     alt="Безопасная оплата"
                                                     lazy={true}
                                                 />
@@ -105,7 +105,7 @@ export default function WhyUs() {
                                                 <OptimizedImage 
                                                     width={150} 
                                                     height={150} 
-                                                    src="/src/assets/images/webp/247 support.webp" 
+                                                    src="/247 support.webp" 
                                                     alt="Поддержка 24/7"
                                                     lazy={true}
                                                 />

@@ -1,6 +1,6 @@
 import React from "react";
 import "../assets/styles/Page_banners.scss";
-import defaultBannerImage from "../assets/images/small_heading_banner.webp";
+import defaultBannerImage from "/small_heading_banner.webp";
 import OptimizedImage from "./OptimizedImage";
 
 export default function Page_small_banner({ title, subtitle, bannerImageSrc }) {

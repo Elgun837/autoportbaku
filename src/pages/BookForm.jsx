@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/styles/BookForm.scss';
 import { useLanguage } from "../context/LanguageContext";
 import Page_big_banner from "../components/Page_big_banner";
-import FormImage from "../assets/images/form-bg_block.webp";
+import FormImage from "/form-bg_block.webp";
 import MultiStepForm from "../components/MultiStepForm";
 
 const BookForm = () => {
@@ -16,7 +16,7 @@ const BookForm = () => {
                     <div className="row">
                         <div className="book_form__content">
                             <div className="contact_info">
-                                <h6> We look forward to seeing you: </h6>
+                                <h6> {t("form.contactInfo")} </h6>
                                 <div className="info_block">
                                     <a href="tel:(+994) 50 -481-00-81">(+994) 50 -481-00-81</a>
                                     <a href="tel:(+994) 50 -481-00-81">(+994) 50 -481-00-81</a>
