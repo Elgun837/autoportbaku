@@ -8,11 +8,16 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LanguageProvider, useLanguage } from "./context/LanguageContext";
 import { useEffect, Suspense, lazy } from "react";
 import 'animate.css';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import { AnalyticsProvider } from "./components/Analytics";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import LazyAOS from "./components/LazyAOS";
+
+// Core Web Vitals оптимизация
+import WebVitalsMonitor from "./components/WebVitalsMonitor";
+import LCPOptimizer from "./components/LCPOptimizer";
+import CLSOptimizer from "./components/CLSOptimizer";
+import FIDOptimizer from "./components/FIDOptimizer";
 
 // Основная страница загружается сразу (критический путь)
 import HomePage from "./pages/HomePage";
@@ -30,20 +35,10 @@ import { TourProvider } from "./context/TourContext";
 import { ServiceProvider } from "./context/ServiceContext";
 import { SettingsProvider } from "./context/SettingsContext";
 import { CurrencyProvider } from "./context/CurrencyContext";
+import PageLoader from "./components/PageLoader";
+import ResourceOptimizer from "./components/ResourceOptimizer";
 
 const queryClient = new QueryClient();
-
-// Компонент загрузки для Suspense
-const PageLoader = () => (
-  <div style={{
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: '50vh',    
-  }}>
-    <div className="loading-spinner"></div>
-  </div>
-);
 
 function AppRoutes() {
   const { lang } = useLanguage();
@@ -72,34 +67,6 @@ function AppRoutes() {
 }
 
 export default function App() {
-  // Инициализируем AOS (Animate On Scroll)
-  useEffect(() => {
-    AOS.init({
-      duration: 800,         // длительность анимации в миллисекундах (уменьшил для более отзывчивости)
-      delay: 0,              // задержка анимации
-      easing: 'ease-in-out', // тип easing для анимации (более плавный)
-      once: true,           // анимация НЕ происходит только один раз (повторяется)
-      mirror: true,          // элементы анимируются при прокрутке обратно (обратная анимация)
-      anchorPlacement: 'center-bottom', // определение когда элемент считается в области видимости (элементы появляются еще раньше)
-      offset: 200,           // отступ (в px) от исходной точки срабатывания (увеличил для более раннего срабатывания)
-      disable: false,        // условие отключения AOS
-      startEvent: 'DOMContentLoaded', // имя события, после которого AOS будет инициализирован
-      animatedClassName: 'aos-animate', // класс, применяемый к анимированному элементу
-      initClassName: 'aos-init', // класс, применяемый после инициализации
-      useClassNames: false,  // если true, добавит `data-aos` как классы
-      disableMutationObserver: false, // отключить автоматическое обнаружение мутаций
-      debounceDelay: 50, // задержка для debounce при изменении размера окна
-      throttleDelay: 99, // задержка для throttle при прокрутке
-    });
-
-    // Обновляем AOS при изменении контента
-    AOS.refresh();
-
-    return () => {
-      // Очистка при размонтировании не требуется для AOS
-    };
-  }, []);
-
   return (
     <AnalyticsProvider>
       <QueryClientProvider client={queryClient}>
@@ -109,6 +76,14 @@ export default function App() {
               <CurrencyProvider>
                 <TourProvider>
                   <ServiceProvider>
+                    {/* Performance и Web Vitals оптимизация */}
+                    <WebVitalsMonitor />
+                    <LCPOptimizer />
+                    <CLSOptimizer />
+                    <FIDOptimizer />
+                    
+                    <LazyAOS />
+                    <ResourceOptimizer criticalRoutes={['/tours', '/contacts', '/about']} />
                     <Header />
                     <AppRoutes />
                     <Footer />

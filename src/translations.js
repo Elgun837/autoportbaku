@@ -1,5 +1,3 @@
-import { types } from "sass";
-
 export const translations = {
   en: {   
     seo: {

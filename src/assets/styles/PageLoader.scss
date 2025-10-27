@@ -1,0 +1,67 @@
+.page-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  width: 100%;
+  
+  &__container {
+    text-align: center;
+  }
+  
+  &__spinner {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  
+  &__dot {
+    width: 12px;
+    height: 12px;
+    background: var(--primary-color, #007bff);
+    border-radius: 50%;
+    animation: pageLoader 1.4s ease-in-out infinite both;
+    
+    &:nth-child(1) {
+      animation-delay: -0.32s;
+    }
+    
+    &:nth-child(2) {
+      animation-delay: -0.16s;
+    }
+    
+    &:nth-child(3) {
+      animation-delay: 0s;
+    }
+  }
+  
+  &__text {
+    color: var(--text-color, #666);
+    font-size: 14px;
+    margin: 0;
+    opacity: 0.8;
+  }
+}
+
+@keyframes pageLoader {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+// Темная тема
+@media (prefers-color-scheme: dark) {
+  .page-loader {
+    &__dot {
+      background: var(--primary-color-dark, #66b3ff);
+    }
+    
+    &__text {
+      color: var(--text-color-dark, #ccc);
+    }
+  }
+}

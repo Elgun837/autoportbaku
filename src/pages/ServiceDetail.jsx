@@ -19,8 +19,6 @@ import { ServicesPageSEO } from '../components/SEOComponents';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-// Правильный импорт date-fns locale
-import { tr } from "date-fns/locale";
 
 export default function ServiceDetail() {
   const { t, lang } = useLanguage();
