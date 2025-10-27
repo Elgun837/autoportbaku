@@ -228,7 +228,7 @@ export const translations = {
     },
     BookTrip: {
       desc: "Start your journey with Autoport and experience first-class comfort and service on every trip.",
-      buttonText: "Забронировать поездку",
+      buttonText: "Book a trip",
     },
 
   },

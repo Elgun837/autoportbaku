@@ -29,7 +29,7 @@ function BookTrip() {
               data-aos-delay="100"
             >{t("BookTrip.desc")}</div>
 
-            <a href="#"
+            <a href={t("routes.book", "/book-form")}
               data-aos="fade-up"
               data-aos-delay="200"
             > <button className="trip_button"><span>{t("BookTrip.buttonText", "Book a trip")}</span></button></a>

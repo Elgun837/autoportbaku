@@ -1,10 +1,24 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 
-// Добавляем CSS стили для shimmer анимации
+// Добавляем CSS стили для shimmer анимации и спиннера
 const shimmerCSS = `
   @keyframes shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .image-spinner {
+    width: 10px;
+    height: 10px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
   }
 `;
 
@@ -122,7 +136,7 @@ const OptimizedImage = ({
     display: 'inline-block',
     position: 'relative',
     overflow: 'hidden',
-    backgroundColor: placeholder,
+    backgroundColor: 'transparent', // Убираем серый фон
     ...rest.style
   };
 
@@ -138,10 +152,19 @@ const OptimizedImage = ({
     return (
       <div 
         ref={imgRef} 
-        style={containerStyle}
+        style={{
+          ...containerStyle,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: 'rgba(248, 248, 248, 0.02)',
+          minHeight: '100px',
+        }}
         {...rest}
         aria-label={alt}
-      />
+      >
+        <div className="image-spinner" />
+      </div>
     );
   }
 
@@ -156,8 +179,7 @@ const OptimizedImage = ({
         title={`Не удалось загрузить: ${imageSources.webp || imageSources.fallback}`}
         onError={handleError}
         style={{
-          
-          ...rest.style
+         
         }}
         {...rest}
       />
@@ -195,7 +217,7 @@ const OptimizedImage = ({
         {...rest}
       />
       
-      {/* Placeholder/skeleton пока загружается */}
+      {/* Крутящийся прелоадер пока загружается */}
       {!isLoaded && !hasError && (
         <div
           style={{
@@ -204,11 +226,15 @@ const OptimizedImage = ({
             left: 0,
             right: 0,
             bottom: 0,
-            background: `linear-gradient(90deg, ${placeholder} 0%, #e0e0e0 50%, ${placeholder} 100%)`,
-            backgroundSize: '200% 100%',
-            animation: 'shimmer 1.5s ease-in-out infinite',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'rgba(248, 248, 248, 0.02)',
+            backdropFilter: 'blur(2px)',
           }}
-        />
+        >
+          <div className="image-spinner" />
+        </div>
       )}
     </div>
   );
