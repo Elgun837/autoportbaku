@@ -30,7 +30,7 @@ const Partners = () => {
     if (error) return <p>Error loading Partners 😢</p>;
     const partners = Array.isArray(data) ? data : [];
 
-    // console.log("Partners data:", partners);
+    
 
     return (
         <>

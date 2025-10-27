@@ -49,17 +49,17 @@ const LCPOptimizer = () => {
     // Preload изображений в зависимости от страницы
     if (currentPath === '/' || currentPath === '/index.html') {
       // Главная страница - preload hero изображения
-      preloadImage('/src/assets/images/hero-bg.webp');
-      preloadImage('/src/assets/images/cars/car-hero.webp');
+      preloadImage('/hero-bg.webp');
+      preloadImage('/cars/car-hero.webp');
     } else if (currentPath.includes('/about')) {
       // Страница О нас
-      preloadImage('/src/assets/images/about_us/banner_imge_about.webp');
+      preloadImage('/about_us/banner_imge_about.webp');
     } else if (currentPath.includes('/tours')) {
       // Страница туров
-      preloadImage('/src/assets/images/tours.webp');
+      preloadImage('/tours.webp');
     } else if (currentPath.includes('/contacts')) {
       // Страница контактов
-      preloadImage('/src/assets/images/contacts.webp');
+      preloadImage('/contacts.webp');
     }
 
     // Оптимизация LCP через подсказки браузеру

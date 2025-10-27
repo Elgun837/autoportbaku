@@ -174,7 +174,7 @@ const OptimizedImage = ({
     return (
       <img
         ref={imgRef}
-        src={imageSources.webp || imageSources.fallback}
+        src={imageSources.webp }
         alt={`❌ ОШИБКА ЗАГРУЗКИ: ${alt || 'изображение'} | Путь: ${imageSources.webp || imageSources.fallback}`}
         title={`Не удалось загрузить: ${imageSources.webp || imageSources.fallback}`}
         onError={handleError}

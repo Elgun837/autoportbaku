@@ -7,7 +7,7 @@ const SEOHead = ({
   title,
   description,
   keywords,
-  ogImage = "/src/assets/images/og-image.jpg",
+  ogImage = "/og-image.jpg",
   canonicalUrl, // Если не передан, будет автоматически сгенерирован
   basePath, // Для кастомного пути (например, для деталей товара)
   routeKey, // Ключ маршрута из переводов для статических страниц ('about', 'services', etc.)

@@ -52,7 +52,7 @@ function ToursComponent() {
                         <OptimizedImage 
                           src={
                             tour.image ||
-                            `/src/assets/images/tours/${index + 1}.png`
+                            `/tours/${index + 1}.png`
                           }
                           height="319"
                           width="506"

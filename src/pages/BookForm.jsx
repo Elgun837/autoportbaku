@@ -16,7 +16,7 @@ const BookForm = () => {
                     <div className="row">
                         <div className="book_form__content">
                             <div className="contact_info">
-                                <h6> We look forward to seeing you: </h6>
+                                <h6> {t("form.contactInfo")} </h6>
                                 <div className="info_block">
                                     <a href="tel:(+994) 50 -481-00-81">(+994) 50 -481-00-81</a>
                                     <a href="tel:(+994) 50 -481-00-81">(+994) 50 -481-00-81</a>

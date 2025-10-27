@@ -7,7 +7,7 @@ import logoImage from "/logo.webp";
 import { translations } from "../translations";
 import { useTours } from "../context/TourContext";
 import { useServices } from "../context/ServiceContext";
-import OptimizedImage from "./OptimizedImage";
+
 import CurrencySwitcher from "./CurrencySwitcher";
 
 export default function Header() {

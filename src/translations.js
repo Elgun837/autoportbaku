@@ -1,8 +1,10 @@
 export const translations = {
   en: {
+    
     form: {
       title: "Book a trip",
-      subtitle: "Fill out the form below to book your trip with AutoPortBaku."
+      subtitle: "Fill out the form below to book your trip with AutoPortBaku.",
+      contactInfo: "We look forward to seeing you:"
     },
     seo: {
       defaultTitle: "AutoPortBaku - Premium Transportation Services",
@@ -235,7 +237,8 @@ export const translations = {
   ru: {
     form: {
       title: "Забронировать поездку",
-      subtitle: "Заполните форму ниже, чтобы забронировать поездку с AutoPortBaku."
+      subtitle: "Заполните форму ниже, чтобы забронировать поездку с AutoPortBaku.",
+      contactInfo: "Мы с нетерпением ждем встречи с вами:"
     },
     seo: {
       defaultTitle: "АвтоПорт Баку - Премиум транспортные услуги",
