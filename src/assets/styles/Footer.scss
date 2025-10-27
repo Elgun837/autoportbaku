@@ -120,6 +120,19 @@
               font-size: var(--body-xl-size);
             }
           }
+          .whatsapp_contact {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            .whatsapp_icon {
+              display: flex;
+              svg{
+                path{
+                  fill: rgb(37, 211, 102)
+                }
+              }
+            }
+          }
         }
       }
     }

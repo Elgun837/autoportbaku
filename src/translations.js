@@ -141,6 +141,8 @@ export const translations = {
       error: "Error loading data. Please try again.",
       retry: "Retry",
       backToTours: "Back to Tours",
+      whatsappButton: "WhatsApp",
+      whatsappTooltip: "Contact us on WhatsApp",
     },
     header: {
       home: "Home",
@@ -373,6 +375,8 @@ export const translations = {
       error: "Ошибка загрузки данных. Попробуйте снова.",
       retry: "Повторить",
       backToTours: "Назад к турам",
+      whatsappButton: "WhatsApp",
+      whatsappTooltip: "Связаться с нами в WhatsApp",
     },
     header: {
       home: "Главная",

@@ -12,6 +12,8 @@ import { AnalyticsProvider } from "./components/Analytics";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LazyAOS from "./components/LazyAOS";
+// import WhatsAppButton from "./components/WhatsAppButton";
+import WhatsAppButtonAdvanced from "./components/WhatsAppButtonAdvanced";
 
 
 // Core Web Vitals оптимизация
@@ -84,7 +86,14 @@ export default function App() {
                     <LazyAOS />
                     <Header />
                     <AppRoutes />
-                    <Footer />
+                    <Footer />                   
+                    <WhatsAppButtonAdvanced />
+                    {/* <WebVitalsMonitor />
+                    <LCPOptimizer />
+                    <CLSOptimizer />
+                    <INPOptimizer />
+                    <PerformanceOptimizer />
+                    <ResourceOptimizer /> */}
                   </ServiceProvider>
                 </TourProvider>
               </CurrencyProvider>
