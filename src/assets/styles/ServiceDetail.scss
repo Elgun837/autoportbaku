@@ -10,6 +10,9 @@
         @media (max-width: 992px) {
           margin-bottom: vh(100);
         }
+        @media (max-width: 768px) {
+          margin-bottom: vh(40);
+        }
       }
     }
   }
@@ -33,11 +36,9 @@
           flex-direction: column;
           gap: rem(40);
         }
+        
         @media (max-width: 768px) {
-          padding: 0 rem(40);
-        }
-        @media (max-width: 768px) {
-          padding: 0 rem(20);
+          padding: 0 rem(0);
         }
         .image_block {
           display: flex;

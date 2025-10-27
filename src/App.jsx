@@ -13,11 +13,14 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LazyAOS from "./components/LazyAOS";
 
+
 // Core Web Vitals оптимизация
 import WebVitalsMonitor from "./components/WebVitalsMonitor";
 import LCPOptimizer from "./components/LCPOptimizer";
 import CLSOptimizer from "./components/CLSOptimizer";
-import FIDOptimizer from "./components/FIDOptimizer";
+import INPOptimizer from "./components/FIDOptimizer";
+import PerformanceOptimizer from "./components/PerformanceOptimizer";
+import ResourceOptimizer from "./components/ResourceOptimizer";
 
 // Основная страница загружается сразу (критический путь)
 import HomePage from "./pages/HomePage";
@@ -29,6 +32,7 @@ const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
 const Contacts = lazy(() => import("./pages/Contacts"));
 const Faq = lazy(() => import("./pages/Faq"));
 const About = lazy(() => import("./pages/About"));
+const BookForm = lazy(() => import("./pages/BookForm"));
 
 import { translations } from "./translations";
 import { TourProvider } from "./context/TourContext";
@@ -36,7 +40,7 @@ import { ServiceProvider } from "./context/ServiceContext";
 import { SettingsProvider } from "./context/SettingsContext";
 import { CurrencyProvider } from "./context/CurrencyContext";
 import PageLoader from "./components/PageLoader";
-import ResourceOptimizer from "./components/ResourceOptimizer";
+
 
 const queryClient = new QueryClient();
 
@@ -60,6 +64,7 @@ function AppRoutes() {
         <Route path={`/:lang/${slugs.tours}/:slug`} element={<TourDetail />} />
         <Route path={`/:lang/${slugs.faq}`} element={<Faq />} />
         <Route path={`/:lang/${slugs.contacts}`} element={<Contacts />} />
+        <Route path={`/:lang/${slugs.book}`} element={<BookForm />} />
         <Route path="*" element={<p>404 Not Found</p>} />
       </Routes>
     </Suspense>
@@ -76,14 +81,7 @@ export default function App() {
               <CurrencyProvider>
                 <TourProvider>
                   <ServiceProvider>
-                    {/* Performance и Web Vitals оптимизация */}
-                    <WebVitalsMonitor />
-                    <LCPOptimizer />
-                    <CLSOptimizer />
-                    <FIDOptimizer />
-                    
                     <LazyAOS />
-                    <ResourceOptimizer criticalRoutes={['/tours', '/contacts', '/about']} />
                     <Header />
                     <AppRoutes />
                     <Footer />

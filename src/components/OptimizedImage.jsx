@@ -1,5 +1,21 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 
+// Добавляем CSS стили для shimmer анимации
+const shimmerCSS = `
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+`;
+
+// Инжектируем стили только один раз
+if (typeof document !== 'undefined' && !document.querySelector('#shimmer-styles')) {
+  const style = document.createElement('style');
+  style.id = 'shimmer-styles';
+  style.textContent = shimmerCSS;
+  document.head.appendChild(style);
+}
+
 /**
  * Продвинутый компонент изображений с оптимизацией производительности
  * @param {Object} props - Свойства компонента
@@ -45,7 +61,12 @@ const OptimizedImage = ({
       return { webp: src, fallback: src };
     }
     
-    // Генерируем WebP версию
+    // Исключаем SVG из конвертации в WebP
+    if (ext === 'svg') {
+      return { webp: '', fallback: src };
+    }
+    
+    // Генерируем WebP версию только для растровых изображений
     const webpSrc = `${basePath}.webp`;
     
     return { webp: webpSrc, fallback: src };
@@ -83,10 +104,20 @@ const OptimizedImage = ({
 
   const handleError = (event) => {
     setHasError(true);
+    
+    // Отладочная информация в консоли
+    console.error('🖼️ OptimizedImage: Ошибка загрузки изображения', {
+      'Исходный src': src,
+      'WebP путь': imageSources.webp,
+      'Fallback путь': imageSources.fallback,
+      'Alt текст': alt,
+      'Событие ошибки': event
+    });
+    
     onError?.(event);
   };
 
-  // Стили для container
+  // Стили для container (только для загрузки и ошибок)
   const containerStyle = {
     display: 'inline-block',
     position: 'relative',
@@ -95,13 +126,11 @@ const OptimizedImage = ({
     ...rest.style
   };
 
-  // Стили для изображения
-  const imageStyle = {
-    transition: 'opacity 0.3s ease',
+  // Стили для изображения при загрузке
+  const loadingImageStyle = {
     opacity: isLoaded ? 1 : 0,
     filter: (!isLoaded && blur) ? 'blur(4px)' : 'none',
-    width: '100%',
-    height: 'auto'
+    transition: 'opacity 0.3s ease-in-out, filter 0.3s ease-in-out'
   };
 
   // Если не в области видимости и lazy loading включен
@@ -116,33 +145,49 @@ const OptimizedImage = ({
     );
   }
 
-  // При ошибке загрузки
+  // При ошибке загрузки - показываем обычный img тег с broken image иконкой
+  // Это позволяет видеть путь в DevTools и отлаживать проблемы
   if (hasError) {
     return (
-      <div 
+      <img
+        ref={imgRef}
+        src={imageSources.webp || imageSources.fallback}
+        alt={`❌ ОШИБКА ЗАГРУЗКИ: ${alt || 'изображение'} | Путь: ${imageSources.webp || imageSources.fallback}`}
+        title={`Не удалось загрузить: ${imageSources.webp || imageSources.fallback}`}
+        onError={handleError}
         style={{
-          ...containerStyle,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: '#666',
-          fontSize: '14px'
+          
+          ...rest.style
         }}
         {...rest}
-      >
-        Изображение недоступно
-      </div>
+      />
     );
   }
 
-  // Простая версия без picture element (для совместимости)
+  // Простая версия - при успешной загрузке возвращаем только img без контейнера
+  if (isLoaded && !hasError) {
+    return (
+      <img
+        ref={imgRef}
+        src={imageSources.webp || imageSources.fallback}
+        alt={alt}
+        onLoad={handleLoad}
+        onError={handleError}
+        loading={lazy ? "lazy" : "eager"}
+        decoding="async"
+        {...rest}
+      />
+    );
+  }
+
+  // Во время загрузки или при ошибке используем контейнер
   return (
     <div style={containerStyle}>
       <img
         ref={imgRef}
         src={imageSources.webp || imageSources.fallback}
         alt={alt}
-        style={imageStyle}
+        style={loadingImageStyle}
         onLoad={handleLoad}
         onError={handleError}
         loading={lazy ? "lazy" : "eager"}
@@ -151,7 +196,7 @@ const OptimizedImage = ({
       />
       
       {/* Placeholder/skeleton пока загружается */}
-      {!isLoaded && (
+      {!isLoaded && !hasError && (
         <div
           style={{
             position: 'absolute',

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals';
+import { onCLS, onINP, onFCP, onLCP, onTTFB } from 'web-vitals';
 
 // Компонент для мониторинга Core Web Vitals
 const WebVitalsMonitor = ({ enabled = process.env.NODE_ENV === 'development' }) => {
@@ -54,11 +54,11 @@ const WebVitalsMonitor = ({ enabled = process.env.NODE_ENV === 'development' }) 
     };
 
     // Подписываемся на все метрики Web Vitals
-    getCLS(sendToAnalytics);
-    getFID(sendToAnalytics);
-    getFCP(sendToAnalytics);
-    getLCP(sendToAnalytics);
-    getTTFB(sendToAnalytics);
+    onCLS(sendToAnalytics);
+    onINP(sendToAnalytics); // INP заменил FID в Core Web Vitals
+    onFCP(sendToAnalytics);
+    onLCP(sendToAnalytics);
+    onTTFB(sendToAnalytics);
 
     // Добавляем глобальную функцию для доступа из консоли
     window.getWebVitals = () => {

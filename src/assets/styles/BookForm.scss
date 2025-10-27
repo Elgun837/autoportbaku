@@ -1,0 +1,59 @@
+// Импорт функций
+@use "./functions/Functions.scss" as *;
+@use "./functions/Mixins.scss" as *;
+
+.book_form__content {
+  width: 100%;
+  display: flex;
+  padding: vh(100) vw(100);
+  @include responsive_padding;
+  align-items: flex-start;
+  gap: rem(90);
+  align-self: stretch;
+  @media (max-width: 992px) {
+    flex-direction: column;
+    padding-top: vh(30);
+    gap: rem(20);
+  }
+  .contact_info {
+    display: flex;
+    padding: rem(20) rem(50) rem(20) 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: rem(25);
+    @media (max-width: 992px) {
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      padding-right: 0;
+    }
+    .info_block {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: rem(10);
+      align-self: stretch;
+      @media (max-width: 992px) {
+        align-items: center;
+      }
+    }
+  }
+  .form_block {
+    width: 100%;
+    display: flex;
+    padding: 0 rem(200) 0 rem(50);
+    align-items: center;
+    gap: rem(10);
+    flex: 1 0 0;
+    @media (max-width: 1200px) {
+      padding-right: 0;
+      padding-left: 0;
+    }
+    @media (max-width: 992px) {
+    }
+    .form {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+}

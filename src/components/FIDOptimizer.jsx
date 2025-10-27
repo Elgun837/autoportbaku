@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
-// Компонент для оптимизации First Input Delay
-const FIDOptimizer = () => {
+// Компонент для оптимизации INP (Interaction to Next Paint) - заменил FID
+const INPOptimizer = () => {
   useEffect(() => {
     // Функция для разбивки длительных задач
     const scheduleWork = (callback) => {
@@ -232,8 +232,8 @@ const FIDOptimizer = () => {
             if (entry.processingStart && entry.startTime) {
               const fid = entry.processingStart - entry.startTime;
               
-              if (fid > 100) { // Порог для "плохого" FID
-                console.warn(`⚠️ High FID detected: ${fid.toFixed(2)}ms`, {
+              if (fid > 200) { // Порог для "плохого" INP (было 100ms для FID)
+                console.warn(`⚠️ High INP detected: ${fid.toFixed(2)}ms`, {
                   eventType: entry.name,
                   timestamp: entry.startTime,
                   url: window.location.pathname
@@ -243,7 +243,7 @@ const FIDOptimizer = () => {
           }
         });
 
-        observer.observe({ entryTypes: ['first-input'] });
+        observer.observe({ entryTypes: ['first-input', 'event'] }); // Добавляем 'event' для INP
       }
     };
 
@@ -361,4 +361,4 @@ const FIDOptimizer = () => {
   return null; // Невидимый компонент
 };
 
-export default FIDOptimizer;
+export default INPOptimizer;
