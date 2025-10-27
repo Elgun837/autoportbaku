@@ -3,7 +3,7 @@ import "../assets/styles/Faq.scss";
 import Page_small_banner from "../components/Page_small_banner";
 import Accordion from "../components/Accordion";
 import { useLanguage } from "../context/LanguageContext";
-import faqBannerImage from "../assets/images/faq_banner.webp";
+import faqBannerImage from "/faq_banner.webp";
 import SEOHead from "../components/SEOHead";
 
 

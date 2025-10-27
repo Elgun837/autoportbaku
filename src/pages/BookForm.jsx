@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/styles/BookForm.scss';
 import { useLanguage } from "../context/LanguageContext";
 import Page_big_banner from "../components/Page_big_banner";
-import FormImage from "../assets/images/form-bg_block.webp";
+import FormImage from "/form-bg_block.webp";
 import MultiStepForm from "../components/MultiStepForm";
 
 const BookForm = () => {

@@ -53,7 +53,7 @@ const LCPOptimizer = () => {
       preloadImage('/cars/car-hero.webp');
     } else if (currentPath.includes('/about')) {
       // Страница О нас
-      preloadImage('/about_us/banner_imge_about.webp');
+      preloadImage('/banner_imge_about.webp');
     } else if (currentPath.includes('/tours')) {
       // Страница туров
       preloadImage('/tours.webp');
