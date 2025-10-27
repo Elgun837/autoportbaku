@@ -163,7 +163,7 @@ export const getVehicleSearch = async (
 };
 export const getVehicleRequest = async (lang, payload) => {
   if (!lang) return null;
-  console.log("API çağırılır:", { lang, payload });
+  
   try {
     const { data } = await api.post("/vehicle/request", payload, {
       headers: {
@@ -172,7 +172,7 @@ export const getVehicleRequest = async (lang, payload) => {
         Accept: "application/json",
       },
     });
-    console.log("API cavabı alındı:", data);
+    
     return data;
   } catch (error) {
     console.error("getVehicleRequest xətası:", error);

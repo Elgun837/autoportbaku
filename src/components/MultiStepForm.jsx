@@ -28,7 +28,7 @@ export default function MultiStepForm() {
     dropoffLocation: "",
     flightNumber: "",
     passengers: "",
-    luggage: "",
+    luggage: 1,
     selectTour: "",
     selectedVehicle: "",
     tourId: "",
