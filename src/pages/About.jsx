@@ -25,6 +25,7 @@ function About() {
     <>
       <SEOHead
         pageType="aboutPage"
+        routeKey={t("routes.about")}
       />
       <LocalBusinessSchema />
       <OrganizationSchema />

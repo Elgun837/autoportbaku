@@ -1,25 +1,32 @@
 import { useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useSettings } from '../context/SettingsContext';
+import { useCanonicalUrl, useAlternateUrls } from '../hooks/useCanonicalUrl';
 
 const SEOHead = ({ 
   title,
   description,
   keywords,
   ogImage = "/src/assets/images/og-image.jpg",
-  canonicalUrl,
+  canonicalUrl, // Если не передан, будет автоматически сгенерирован
+  basePath, // Для кастомного пути (например, для деталей товара)
+  routeKey, // Ключ маршрута из переводов для статических страниц ('about', 'services', etc.)
   structuredData,
   breadcrumbs,
   pageType = 'homePage' // homePage, toursPage, servicesPage, aboutPage, contactsPage, faqPage
 }) => {
   const { lang, t } = useLanguage();
   const { settings, loading } = useSettings();
+  
+  // Автоматическая генерация canonical URL
+  const autoCanonicalUrl = useCanonicalUrl(basePath, routeKey);
+  const alternateUrls = useAlternateUrls(basePath, routeKey);
 
   // Используем переводы как fallback значения
   const finalTitle = title || t(`seo.${pageType}.title`) || t('seo.defaultTitle');
   const finalDescription = description || t(`seo.${pageType}.description`) || t('seo.defaultDescription');
   const finalKeywords = keywords || t(`seo.${pageType}.keywords`) || t('seo.defaultKeywords');
-  const currentUrl = canonicalUrl || (typeof window !== 'undefined' ? window.location.href : '');
+  const finalCanonicalUrl = canonicalUrl || autoCanonicalUrl;
   
   
   // Функция для обновления или создания meta тега
@@ -86,7 +93,7 @@ const SEOHead = ({
     updateMetaTag('og:title', finalTitle, 'property');
     updateMetaTag('og:description', finalDescription, 'property');
     updateMetaTag('og:image', ogImage, 'property');
-    updateMetaTag('og:url', currentUrl, 'property');
+    updateMetaTag('og:url', finalCanonicalUrl, 'property');
     updateMetaTag('og:type', 'website', 'property');
     updateMetaTag('og:site_name', 'AutoPortBaku', 'property');
     updateMetaTag('og:locale', lang === 'ru' ? 'ru_RU' : lang === 'en' ? 'en_US' : 'az_AZ', 'property');
@@ -98,9 +105,23 @@ const SEOHead = ({
     updateMetaTag('twitter:image', ogImage);
 
     // Canonical URL
-    if (currentUrl) {
-      updateLinkTag('canonical', currentUrl);
+    if (finalCanonicalUrl) {
+      updateLinkTag('canonical', finalCanonicalUrl);
     }
+    
+    // Hreflang теги для многоязычности
+    // Сначала удаляем все существующие hreflang теги
+    const existingHreflangs = document.querySelectorAll('link[hreflang]');
+    existingHreflangs.forEach(link => link.remove());
+    
+    // Добавляем новые hreflang теги
+    alternateUrls.forEach(({ lang: hrefLang, url }) => {
+      const link = document.createElement('link');
+      link.setAttribute('rel', 'alternate');
+      link.setAttribute('hreflang', hrefLang);
+      link.setAttribute('href', url);
+      document.head.appendChild(link);
+    });
 
     // Базовая структурированная разметка для компании с данными из API
     const socialLinks = [];
@@ -166,7 +187,7 @@ const SEOHead = ({
     return () => {
       // Очистка происходит автоматически при обновлении значений
     };
-  }, [finalTitle, finalDescription, finalKeywords, ogImage, currentUrl, structuredData, breadcrumbs, lang, settings, loading]);
+  }, [finalTitle, finalDescription, finalKeywords, ogImage, finalCanonicalUrl, structuredData, breadcrumbs, lang, settings, loading, alternateUrls]);
 
   return null; // Компонент не рендерит ничего видимого
 };

@@ -3,7 +3,7 @@ import "../assets/styles/Faq.scss";
 import Page_small_banner from "../components/Page_small_banner";
 import Accordion from "../components/Accordion";
 import { useLanguage } from "../context/LanguageContext";
-import faqBannerImage from "../assets/images/faq_banner.png";
+import faqBannerImage from "../assets/images/faq_banner.webp";
 import SEOHead from "../components/SEOHead";
 
 
@@ -16,6 +16,7 @@ export default function Faq() {
         <>
             <SEOHead
                 pageType="faqPage"
+                routeKey={t("routes.faq")}
             />
            
             <Page_small_banner

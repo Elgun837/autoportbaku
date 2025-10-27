@@ -1,9 +1,10 @@
 import { use } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import "../assets/styles/Cars.scss";
-import { getToursData, getVehicleData } from "../api";
+import { getVehicleData } from "../api";
 import { useQuery } from "@tanstack/react-query";
-import { translations } from "../translations";
+// import { translations } from "../translations";
+import OptimizedImage from "./OptimizedImage";
 
 export default function Cars() {
   const { t, lang } = useLanguage();
@@ -169,11 +170,12 @@ export default function Cars() {
                           </div>
                         </div>
                         <div className="image_container">
-                          <img
-                            width="860"
-                            height="280"
+                          <OptimizedImage
+                            width={860}
+                            height={280}
                             src={vehicle.image}
-                            alt="Car 1"
+                            alt={`${vehicle.title} car`}
+                            lazy={true}
                           />
                         </div>
                       </div>

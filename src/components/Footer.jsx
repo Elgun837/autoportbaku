@@ -5,6 +5,7 @@ import { useSettings } from "../context/SettingsContext";
 import "../assets/styles/Footer.scss";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import OptimizedImage from "./OptimizedImage";
 
 
 export default function Footer() {
@@ -27,20 +28,30 @@ export default function Footer() {
                                 <div className="mobile_visible mobile_visible__logo">
                                     <div className="logo_wrapper">
                                         <div className="logo">
-                                            <img
+                                            <OptimizedImage
                                                 data-aos="fade-in"
                                                 data-aos-delay="100"
                                                 data-aos-duration="600"
-                                                src="/logo_big.svg" alt="Logo" />
+                                                src="/logo_big.svg" 
+                                                alt="AutoPort Baku Logo"
+                                                lazy={true}
+                                                width={200}
+                                                height={80}
+                                            />
                                         </div>
                                     </div>
                                 </div>
                                 <div className="logo mobile_hidden">
-                                    <img
+                                    <OptimizedImage
                                         data-aos="fade-in"
                                         data-aos-delay="100"
                                         data-aos-duration="600"
-                                        src="/logo_big.svg" alt="Logo" />
+                                        src="/logo_big.svg" 
+                                        alt="AutoPort Baku Logo"
+                                        lazy={true}
+                                        width={200}
+                                        height={80}
+                                    />
                                 </div>
                                 <div className="footer_menu">
                                     <h6 className="footer_menu_title"
@@ -150,7 +161,15 @@ export default function Footer() {
                                 >
                                     <span>Made by:</span>
                                     <div className="design_link">
-                                        <a href="https://amiroff.az/"><img src="/amiroff.svg" alt="Amiroff Logo" /></a>
+                                        <a href="https://amiroff.az/">
+                                          <OptimizedImage 
+                                            src="/amiroff.svg" 
+                                            alt="Amiroff Logo" 
+                                            lazy={true}
+                                            width={98}
+                                            height={30}
+                                          />
+                                        </a>
                                     </div>
                                 </div>
                             </div>

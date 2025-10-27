@@ -7,6 +7,7 @@ import { getPartnersData } from "../api/index";
 import { useQuery } from "@tanstack/react-query";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+// import OptimizedImage from './OptimizedImage';
 
 
 // Import Swiper styles
@@ -132,7 +133,8 @@ const Partners = () => {
                                             <div className="partner_logo">
                                                 <div className="logo_container">
                                                     <a href={partner.link} target="_blank" rel="noopener noreferrer">
-                                                        <img width="121" height="121" src={partner.image} alt={`Partner ${index + 1}`} />
+                                                        
+                                                        <img loading="lazy" width="121" height="121" src={partner.image} alt={`Partner ${index + 1}`} />
                                                     </a>
                                                 </div>
                                                 <div className="separator">

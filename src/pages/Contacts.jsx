@@ -2,7 +2,7 @@ import React from "react";
 import "../assets/styles/Contacts.scss";
 import { useLanguage } from "../context/LanguageContext";
 import Page_small_banner from "../components/Page_small_banner";
-import ContactBannerImage from "../assets/images/contacts.png";
+import ContactBannerImage from "../assets/images/contacts.webp";
 import SEOHead from "../components/SEOHead";
 import { ContactInfoSchema } from "../components/RichSnippets";
 
@@ -14,6 +14,7 @@ export default function Contacts() {
         <>
             <SEOHead
                 pageType="contactsPage"
+                routeKey={t("routes.contacts")}
             />        
             <ContactInfoSchema />
             <Page_small_banner title={t("contacts.title")} subtitle={t("contacts.subtitle")} bannerImageSrc={ContactBannerImage} />

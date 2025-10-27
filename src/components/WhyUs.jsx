@@ -1,6 +1,7 @@
 import react from "react";
 import "../assets/styles/WhyUs.scss";
 import { useLanguage } from "../context/LanguageContext";
+import OptimizedImage from "./OptimizedImage";
 
 export default function WhyUs() {
     const { t } = useLanguage();
@@ -36,7 +37,13 @@ export default function WhyUs() {
                                         data-aos-mirror="true">
                                         <div className="item_container">
                                             <div className="icon">
-                                                <img width="150" height="150" src="/src/assets/images/icons/Affordable prices.png" alt="icon" />
+                                                <OptimizedImage 
+                                                    width={150} 
+                                                    height={150} 
+                                                    src="/src/assets/images/icons/Affordable prices.webp" 
+                                                    alt="Доступные цены"
+                                                    lazy={true}
+                                                />
                                             </div>
                                             <div className="info">
                                                 <h6>{t("whyUs.affordablePrices")}</h6>
@@ -51,7 +58,13 @@ export default function WhyUs() {
                                         data-aos-mirror="true">
                                         <div className="item_container">
                                             <div className="icon">
-                                                <img width="150" height="150" src="/src/assets/images/icons/Cancellation free of charge.png" alt="icon" />
+                                                <OptimizedImage 
+                                                    width={150} 
+                                                    height={150} 
+                                                    src="/src/assets/images/icons/Cancellation free of charge.webp" 
+                                                    alt="Бесплатная отмена"
+                                                    lazy={true}
+                                                />
                                             </div>
                                             <div className="info">
                                                 <h6> {t("whyUs.cancellationFree")}</h6>
@@ -66,7 +79,13 @@ export default function WhyUs() {
                                         data-aos-mirror="true">
                                         <div className="item_container">
                                             <div className="icon">
-                                                <img width="150" height="150" src="/src/assets/images/icons/Secure payment.png" alt="icon" />
+                                                <OptimizedImage 
+                                                    width={150} 
+                                                    height={150} 
+                                                    src="/src/assets/images/icons/Secure payment.webp" 
+                                                    alt="Безопасная оплата"
+                                                    lazy={true}
+                                                />
                                             </div>
                                             <div className="info">
                                                 <h6> {t("whyUs.securePayment")}</h6>
@@ -81,7 +100,13 @@ export default function WhyUs() {
                                         data-aos-mirror="true">
                                         <div className="item_container">
                                             <div className="icon">
-                                                <img width="150" height="150" src="/src/assets/images/icons/247 support.png" alt="icon" />
+                                                <OptimizedImage 
+                                                    width={150} 
+                                                    height={150} 
+                                                    src="/src/assets/images/icons/247 support.webp" 
+                                                    alt="Поддержка 24/7"
+                                                    lazy={true}
+                                                />
                                             </div>
                                             <div className="info">
                                                 <h6>{t("whyUs.support")}</h6>

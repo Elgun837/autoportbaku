@@ -16,6 +16,9 @@ export default function TourDetail() {
 
   const { tours, loading: toursLoading } = useTours();
 
+  // Определяем tour до использования в loading состоянии
+  const tour = tours.find(t => t.slug?.[lang] === slug) || null;
+
   if (toursLoading) {
     return (
       <>
@@ -33,8 +36,6 @@ export default function TourDetail() {
       </>
     );
   }
-
-  const tour = tours.find(t => t.slug?.[lang] === slug) || null;
 
   if (!tour) {
     return <div>Tour not found</div>;
@@ -55,8 +56,8 @@ export default function TourDetail() {
     ? imageUrls.map((url) => ({ original: url, thumbnail: url }))
     : [
       {
-        original: "../assets/images/small_heading_banner.png",
-        thumbnail: "../assets/images/small_heading_banner.png",
+        original: "../assets/images/small_heading_banner.webp",
+        thumbnail: "../assets/images/small_heading_banner.webp",
       },
     ];
 
@@ -90,6 +91,10 @@ export default function TourDetail() {
     <>
       <SEOHead
         pageType="toursPage"
+        title={tour?.title}
+        description={tour?.excerpt}
+        basePath={`/${t("routes.tours")}/${tour?.slug?.[lang] || slug}`}
+        ogImage={tour?.image}
       />
  
       <div className="tours_details">

@@ -8,6 +8,7 @@ import "../assets/styles/ServiceDetail.scss";
 import "../assets/styles/FleetSection.scss";
 import { useQuery } from "@tanstack/react-query";
 import Scrollline from "../components/Scrolline";
+import OptimizedImage from "../components/OptimizedImage";
 import SectionTitle from "../components/SectionTitle";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
@@ -18,6 +19,7 @@ import { ServicesPageSEO } from '../components/SEOComponents';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+// Правильный импорт date-fns locale
 import { tr } from "date-fns/locale";
 
 export default function ServiceDetail() {
@@ -87,6 +89,7 @@ export default function ServiceDetail() {
     <>
       <SEOHead
         pageType="servicePage"
+        basePath={`/${t("routes.services")}/${service?.slug}`}
       />
       <ServicesPageSEO service={service} />
       <div className="services-detail">
@@ -118,12 +121,17 @@ export default function ServiceDetail() {
                 <div className="image_descr">
                   <div className="image_descr_inner">
                     <div className="image_block">
-                      <img
+                      <OptimizedImage
                         data-aos="fade-in"
                         data-aos-delay="200"
                         data-aos-duration="800"
                         data-aos-mirror="true"
-                        width="750" height="549" src={service.image_1} alt={service.title} />
+                        width={750}
+                        height={549}
+                        src={service.image_1}
+                        alt={service.title}
+                        lazy={true}
+                      />
                     </div>
                     <div className="descr_block">
                       {service.additional_text && service.additional_text.map((item, index) => (
@@ -159,12 +167,17 @@ export default function ServiceDetail() {
           <div className="banner_2_holder"
 
           >
-            <img
+            <OptimizedImage
               data-aos="zoom-up"
               data-aos-delay="300"
               data-aos-duration="400"
               data-aos-mirror="true"
-              src={service.banner_2} alt={service.title} />
+              src={service.banner_2}
+              alt={service.title}
+              lazy={true}
+              width={1920}
+              height={600}
+            />
           </div>
         </section>
         <section className="fleet_section">
@@ -243,12 +256,17 @@ export default function ServiceDetail() {
                         <SwiperSlide key={vehicle.id || index}>
                           <div className="car_item">
                             <div className="car_image">
-                              <img
+                              <OptimizedImage
                                 data-aos="fade-in"
                                 data-aos-delay="200"
                                 data-aos-duration="800"
                                 data-aos-mirror="true"
-                                src={vehicle.image} alt={vehicle.title} />
+                                src={vehicle.image}
+                                alt={vehicle.title}
+                                lazy={true}
+                                width={300}
+                                height={200}
+                              />
                             </div>
                             <div className="car_info">
                               <h4 className="car_title"
