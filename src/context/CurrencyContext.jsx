@@ -7,29 +7,41 @@ const CurrencyContext = createContext();
 export const CurrencyProvider = ({ children }) => {
   const [currency, setCurrency] = useState("USD");
   const [rate, setRate] = useState(1.7); // ilkin dəyər
+  const [eurRate, setEurRate] = useState(1.9763);
 
   // --- Məzənnəni AMB-dən çəkmək funksiyası ---
     const fetchRate = async () => {
-      const today = new Date();
-      const day = String(today.getDate()).padStart(2, "0");
-      const month = String(today.getMonth() + 1).padStart(2, "0");
-      const year = today.getFullYear();
-      const url = `https://www.cbar.az/currencies/${day}.${month}.${year}.xml`;
+  const today = new Date();
+  const day = String(today.getDate()).padStart(2, "0");
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const year = today.getFullYear();
+  const url = `https://www.cbar.az/currencies/${day}.${month}.${year}.xml`;
 
-      try {
-        const { data } = await axios.get(url);
-        const parsed = await xml2js.parseStringPromise(data);
-        const usd = parsed.ValCurs.ValType[0].Valute.find(
-          (v) => v.$.Code === "USD"
-        );
-        const value = parseFloat(usd.Value[0].replace(",", "."));
-        setRate(value);
-        localStorage.setItem("usdRate", value);
-        localStorage.setItem("usdRateTime", Date.now());
-      } catch (err) {
-        console.error("Məzənnə alınmadı:", err.message);
-      }
-    };
+  try {
+    const { data } = await axios.get(url);
+    const parsed = await xml2js.parseStringPromise(data);
+
+    // USD məzənnəsi
+    const usd = parsed.ValCurs.ValType[0].Valute.find(
+      (v) => v.$.Code === "USD"
+    );
+    const usdValue = parseFloat(usd.Value[0].replace(",", "."));
+    setRate(usdValue);
+    localStorage.setItem("usdRate", usdValue);
+    localStorage.setItem("usdRateTime", Date.now());
+
+    // EUR məzənnəsi
+    const eur = parsed.ValCurs.ValType[0].Valute.find(
+      (v) => v.$.Code === "EUR"
+    );
+    const eurValue = parseFloat(eur.Value[0].replace(",", "."));
+    setEurRate(eurValue);
+    localStorage.setItem("eurRate", eurValue);
+    localStorage.setItem("eurRateTime", Date.now());
+  } catch (err) {
+    console.error("Məzənnə alınmadı:", err.message);
+  }
+};
   // const fetchRate = async () => {
   //   try {
   //     const res = await fetch("/currencies.xml");
@@ -57,8 +69,7 @@ export const CurrencyProvider = ({ children }) => {
       fetchRate();
     }
   }, []);
-
-  const value = { currency, setCurrency, rate };
+  const value = { currency, setCurrency, rate, eurRate };
 
   return (
     <CurrencyContext.Provider value={value}>
