@@ -13,7 +13,7 @@ export function LanguageProvider({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [lang, setLang] = useState("en");
+  const [lang, setLang] = useState(null);
 
   // 🔹 İlk açılışda URL-dən dili oxu
   useEffect(() => {
