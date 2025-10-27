@@ -1,10 +1,77 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { resolve } from 'path';
+import { copyFileSync, mkdirSync, existsSync, readdirSync, statSync } from 'fs';
+import { join } from 'path';
+
+// Функция для рекурсивного поиска файлов
+const findFiles = (dir, extensions) => {
+  const files = [];
+  
+  const scanDir = (currentDir) => {
+    try {
+      const items = readdirSync(currentDir);
+      
+      items.forEach(item => {
+        const fullPath = join(currentDir, item);
+        const stat = statSync(fullPath);
+        
+        if (stat.isDirectory()) {
+          scanDir(fullPath);
+        } else if (extensions.some(ext => item.toLowerCase().endsWith(ext))) {
+          files.push(fullPath.replace(/\\/g, '/'));
+        }
+      });
+    } catch (err) {
+      // Игнорируем ошибки доступа
+    }
+  };
+  
+  scanDir(dir);
+  return files;
+};
+
+// Плагин для копирования изображений с сохранением структуры
+const copyAssetsPlugin = () => {
+  return {
+    name: 'copy-assets',
+    writeBundle() {
+      // Копируем все изображения из src/assets в dist с сохранением структуры
+      const imageFiles = findFiles('src/assets/images', ['.webp', '.jpg', '.jpeg', '.png', '.svg']);
+      
+      imageFiles.forEach(file => {
+        const distPath = `dist/${file}`;
+        const distDir = distPath.substring(0, distPath.lastIndexOf('/'));
+        
+        // Создаем директорию если не существует
+        if (!existsSync(distDir)) {
+          mkdirSync(distDir, { recursive: true });
+        }
+        
+        // Копируем файл
+        try {
+          copyFileSync(file, distPath);
+          console.log(`✅ Скопировано: ${file} → ${distPath}`);
+        } catch (err) {
+          console.log(`⚠️ Ошибка копирования ${file}:`, err.message);
+        }
+      });
+    }
+  };
+};
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), copyAssetsPlugin()],
   base: '/',
+  // Настройка алиасов для статических ресурсов
+  resolve: {
+    alias: {
+      '/src': resolve(__dirname, 'src')
+    }
+  },
+  // Настройка обработки статических файлов
+  assetsInclude: ['**/*.webp', '**/*.jpg', '**/*.png', '**/*.svg'],
   css: {
     devSourcemap: true,
     preprocessorOptions: { 
@@ -17,6 +84,8 @@ export default defineConfig({
   },
   build: { 
     sourcemap: true,
+    // Настройка для копирования статических файлов
+    copyPublicDir: true,
     rollupOptions: {
       output: {
         manualChunks: (id) => {
@@ -78,7 +147,14 @@ export default defineConfig({
         // Оптимизированные имена файлов
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
-        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
+        assetFileNames: (assetInfo) => {
+          // Сохраняем структуру для изображений из src/assets
+          if (assetInfo.name && assetInfo.name.includes('src/assets/images/')) {
+            return 'src/assets/images/[name].[ext]';
+          }
+          // Обычная структура для остальных файлов
+          return 'assets/[ext]/[name]-[hash].[ext]';
+        }
       }
     },
     // Более строгий лимит
