@@ -9,6 +9,7 @@ export default function CurrencySwitcher() {
   const currencies = [
     { code: "AZN", label: "AZN", icon: "₼" }, // icon yerinə AZN simvolu də ola bilər
     { code: "USD", label: "USD", icon: "$" },
+    { code: "EUR", label: "EUR", icon: "€" },
   ];
 
   const current = currencies.find((c) => c.code === currency) || currencies[0];
@@ -22,8 +23,7 @@ export default function CurrencySwitcher() {
 
   return (
     <div className="currency_switch">
-      {" "}
-      {/* SCSS sinifini eyni saxladım */}
+     
       <button onClick={() => setOpen(!open)}>
         {current.label}
         <i className="drop-icon">
