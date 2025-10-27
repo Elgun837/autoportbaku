@@ -44,7 +44,7 @@ export const CurrencyProvider = ({ children }) => {
   //     console.error("XML fayl oxuna bilmədi:", err);
   //   }
   // };
-  console.log("Məzənnə:", rate);
+  
   // --- İlk açılışda və 24 saatdan bir yeniləmə ---
   useEffect(() => {
     const cached = localStorage.getItem("usdRate");
