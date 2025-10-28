@@ -238,17 +238,15 @@ export default function MultiStepForm() {
     const newErrors = {};
     // Step 4 validasiyası
     if (!formData.user_name?.trim()) {
-      newErrors.user_name = "Please enter your name";
+      newErrors.user_name = t("validation.enterName");
     }
 
     if (!formData.email?.trim()) {
-      newErrors.email = "Please enter your email";
-    } else if (!validateEmail(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
-    }
+      newErrors.email = t("validation.enterEmail");
+    } 
 
     if (!formData.phone?.trim()) {
-      newErrors.phone = "Please enter your phone number";
+      newErrors.phone = t("validation.enterPhone");
     }
 
     // Error varsa, submit dayandırılır
