@@ -5,7 +5,6 @@ import "../assets/styles/Currency.scss"; // eyni SCSS-dən istifadə edə bilər
 export default function CurrencySwitcher() {
   const { currency, setCurrency } = useCurrency();
   const [open, setOpen] = useState(false);
-
   const currencies = [
     { code: "AZN", label: "AZN", icon: "₼" }, // icon yerinə AZN simvolu də ola bilər
     { code: "USD", label: "USD", icon: "$" },
@@ -13,7 +12,7 @@ export default function CurrencySwitcher() {
   ];
 
   const current = currencies.find((c) => c.code === currency) || currencies[0];
-
+  
   const handleSelect = (code) => {
     setOpen(false);
     if (code !== currency) {

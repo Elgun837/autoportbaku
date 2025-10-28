@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import xml2js from "xml2js";
 const api = axios.create({
   baseURL: "https://admin.autoportbaku.com/api/",
 });
@@ -136,7 +136,6 @@ export const getVehicleSearch = async (
 ) => {
   if (!lang) return null;
   try {
-    
     const { data } = await api.post(
       "/vehicles/search",
       {
@@ -148,7 +147,7 @@ export const getVehicleSearch = async (
         headers: { contentLanguage: lang, token },
       }
     );
-    
+
     return data;
   } catch (error) {
     console.error("getVehicleSearch xətası:", error);
@@ -157,7 +156,7 @@ export const getVehicleSearch = async (
 };
 export const getVehicleRequest = async (lang, payload) => {
   if (!lang) return null;
-  
+
   try {
     const { data } = await api.post("/vehicle/request", payload, {
       headers: {
@@ -166,10 +165,51 @@ export const getVehicleRequest = async (lang, payload) => {
         Accept: "application/json",
       },
     });
-    
+
     return data;
   } catch (error) {
     console.error("getVehicleRequest xətası:", error);
+    return null;
+  }
+};
+export const getCurrencies = async () => {
+  try {
+    const res = await fetch(
+      "https://admin.autoportbaku.com/api/currency-rate",
+      {
+        headers: {
+          token,
+        },
+      }
+    );
+    const xmlText = await res.text();
+    // XML parse
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+
+    // Xarici valyutaları tap
+    const valTypeNodes = Array.from(xmlDoc.querySelectorAll("ValType")).filter(
+      (vt) => vt.getAttribute("Type") === "Xarici valyutalar"
+    );
+
+    if (!valTypeNodes.length) return null; // əgər valyuta tapılmadısa
+
+    const valutes = Array.from(valTypeNodes[0].querySelectorAll("Valute"));
+
+    const usd = valutes
+      .find((v) => v.getAttribute("Code") === "USD")
+      ?.querySelector("Value")?.textContent;
+
+    const eur = valutes
+      .find((v) => v.getAttribute("Code") === "EUR")
+      ?.querySelector("Value")?.textContent;
+
+    return {
+      USD: usd ? parseFloat(usd.replace(",", ".")) : null,
+      EUR: eur ? parseFloat(eur.replace(",", ".")) : null,
+    };
+  } catch (error) {
+    console.error("getCurrencies xətası:", error.message || error);
     return null;
   }
 };
