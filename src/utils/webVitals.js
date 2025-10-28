@@ -2,7 +2,7 @@ import { onCLS, onINP, onFCP, onLCP, onTTFB } from 'web-vitals'
 
 // Функция для отправки метрик (можно интегрировать с аналитикой)
 function sendToAnalytics(metric) {
-  console.log('📊 Web Vital:', metric)
+  // console.log('📊 Web Vital:', metric)
   
   // Здесь можно отправить данные в Google Analytics, Sentry или другой сервис
   if (window.gtag) {
