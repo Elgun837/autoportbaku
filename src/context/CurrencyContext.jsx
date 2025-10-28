@@ -36,7 +36,7 @@ export const CurrencyProvider = ({ children }) => {
     }
   }, []);
   const value = { currency, setCurrency, usdRate, eurRate };
-  console.log(value)
+ 
   return (
     <CurrencyContext.Provider value={value}>
       {children}

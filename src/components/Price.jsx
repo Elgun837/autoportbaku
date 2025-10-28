@@ -4,7 +4,7 @@ export default function Price({ price }) {
   const { currency, usdRate, eurRate } = useCurrency();
 
   const usdPrice = Number(price) || 0;
-  console.log(eurRate)
+ 
 
   const displayPrice =
     currency === "AZN"

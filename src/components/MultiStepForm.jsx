@@ -20,6 +20,7 @@ export default function MultiStepForm() {
   const [phone, setPhone] = useState("");
   const { currency, rate } = useCurrency();
   const [errors, setErrors] = useState({});
+  const [newErrors, setNewErrors] = useState({});
 
   const [formData, setFormData] = useState({
     serviceType: "",
@@ -97,8 +98,10 @@ export default function MultiStepForm() {
 
       if (!formData.serviceType)
         newErrors.serviceType = t("validation.selectServiceType");
-      if (!formData.pickupDate) newErrors.pickupDate = t("validation.invalidDate");
-      if (!formData.pickupHour) newErrors.pickupHour = t("validation.invalidHour");
+      if (!formData.pickupDate)
+        newErrors.pickupDate = t("validation.invalidDate");
+      if (!formData.pickupHour)
+        newErrors.pickupHour = t("validation.invalidHour");
       if (!formData.pickupMinute)
         newErrors.pickupMinute = t("validation.invalidMinute");
 
@@ -232,17 +235,30 @@ export default function MultiStepForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // form default davranışını dayandırır
-
+    const newErrors = {};
     // Step 4 validasiyası
-    if (
-      !formData.user_name?.trim() ||
-      !formData.email?.trim() ||
-      !validateEmail(formData.email) || // <-- email regex yoxlanışı
-      !formData.phone?.trim()
-    ) {
-      alert("Please fill all required fields with valid data!");
+    if (!formData.user_name?.trim()) {
+      newErrors.user_name = "Please enter your name";
+    }
+
+    if (!formData.email?.trim()) {
+      newErrors.email = "Please enter your email";
+    } else if (!validateEmail(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    if (!formData.phone?.trim()) {
+      newErrors.phone = "Please enter your phone number";
+    }
+
+    // Error varsa, submit dayandırılır
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
       return;
     }
+
+    // Error yoxdursa, error state-i təmizləyirik
+    setErrors({});
 
     try {
       // API-yə göndəriləcək məlumatları formData-dan götürə bilərsən
@@ -695,13 +711,18 @@ export default function MultiStepForm() {
                   }
                 ></textarea>
               </div>
+              <div className="alert-error">
+                    {errors.user_name && <p className="error">{errors.user_name}</p>}
+                    {errors.email && <p className="error">{errors.email}</p>}
+                    {errors.phone && <p className="error">{errors.phone}</p>}
+              </div>
               <button className="flex-left" onClick={handlePrev}>
                 {t("formsLocation.types.prevBtn")}
               </button>
               <button
                 className="flex-right"
                 onClick={handleSubmit}
-                disabled={!isStep4Valid} // düymə yalnız sahələr dolu olduqda aktiv olur
+                // düymə yalnız sahələr dolu olduqda aktiv olur
               >
                 {t("formsLocation.types.submitBtn")}
               </button>
