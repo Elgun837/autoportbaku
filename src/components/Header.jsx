@@ -227,7 +227,12 @@ export default function Header() {
                       )}
                     </div>
                   </div>
-
+                  <Link
+                    to={`/${lang}/${slugs.book || "book-form"}`}
+                    onClick={closeMobileMenu}
+                  >
+                    {t("header.bookForm")}
+                  </Link>
                   <Link
                     to={`/${lang}/${slugs.faq || "faq"}`}
                     onClick={closeMobileMenu}
