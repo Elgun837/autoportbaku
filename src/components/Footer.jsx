@@ -15,7 +15,7 @@ export default function Footer() {
     // console.log("Footer settings:", settings);
     return (
         <>
-            <footer className="footer">
+            <footer className="footer" style={{ backgroundImage: "url('/footer_bg.webp')" }}>
                 <div className="triangle_decor triangle_decor_top">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1920" height="55" viewBox="0 0 1920 55" fill="none">
                         <path d="M1920 0.654785L0 54.3096V0.654785H1920Z" fill="white" />
