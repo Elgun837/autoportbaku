@@ -12,10 +12,26 @@ export default function Footer() {
     const { t, lang } = useLanguage();
     const { settings, loading: settingsLoading } = useSettings();
     const currentYear = new Date().getFullYear();
+    const [bgLoaded, setBgLoaded] = useState(false);
+    
+    useEffect(() => {
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                setBgLoaded(true);
+                observer.disconnect();
+            }
+        }, { rootMargin: '100px' });
+        
+        const footer = document.querySelector('.footer');
+        if (footer) observer.observe(footer);
+        
+        return () => observer.disconnect();
+    }, []);
+
     // console.log("Footer settings:", settings);
     return (
         <>
-            <footer className="footer" style={{ backgroundImage: "url('/footer_bg.webp')" }}>
+            <footer className="footer" style={{ backgroundImage: bgLoaded ? "url('/footer_bg.webp')" : 'none' }}>
                 <div className="triangle_decor triangle_decor_top">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1920" height="55" viewBox="0 0 1920 55" fill="none">
                         <path d="M1920 0.654785L0 54.3096V0.654785H1920Z" fill="white" />

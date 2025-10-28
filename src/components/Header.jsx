@@ -25,17 +25,23 @@ export default function Header() {
   const { lang, t } = useLanguage();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isHome, setIsHome] = useState(false);
   const [isMobileToursDropdownOpen, setIsMobileToursDropdownOpen] =
     useState(false);
   const [isMobileServicesDropdownOpen, setIsMobileServicesDropdownOpen] =
     useState(false);
 
+  // Отслеживаем изменения маршрута для обновления класса home
+  useEffect(() => {
+    const checkIsHome = /^\/(en|ru)?\/?$/.test(location.pathname);
+    setIsHome(checkIsHome);
+  }, [location.pathname, lang]);
+
   // Проверяем, находимся ли мы на главной странице
-  const isHomePage =
-    location.pathname === `/${lang}` || location.pathname === "/";
+  const isHomePage = isHome;
 
   // Создаем класс для header с условным добавлением класса 'home'
-  const headerClass = `header${isHomePage ? " home" : ""} `;
+  const headerClass = `header${isHomePage ? " home" : ""}`;
 
   // Функция для переключения мобильного меню
   const toggleMobileMenu = () => {
@@ -118,7 +124,7 @@ export default function Header() {
 
             <div className="right_section">
               <div
-                className={`animate__animated animate__fadeIn nav_and_lang ${isMobileMenuOpen ? "mobile-open" : "" }`}
+                className={`animate__animated animate__fadeIn nav_and_lang ${isMobileMenuOpen ? "mobile-open" : ""}`}
               >
                 <nav>
                   <Link to={`/${lang}`} onClick={closeMobileMenu}>
