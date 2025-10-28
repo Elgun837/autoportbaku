@@ -19,6 +19,7 @@ export default function MultiStepForm() {
   const { tours } = useTours();
   const [phone, setPhone] = useState("");
   const { currency, rate } = useCurrency();
+  const [errors, setErrors] = useState({});
 
   const [formData, setFormData] = useState({
     serviceType: "",
@@ -89,8 +90,42 @@ export default function MultiStepForm() {
 
   const handleNext = async (e) => {
     e.preventDefault();
+
+    // yalnız Step 1 üçün yoxlama aparırıq
+    if (activeStep === 1) {
+      const newErrors = {};
+
+      if (!formData.serviceType)
+        newErrors.serviceType = t("validation.selectServiceType");
+      if (!formData.pickupDate) newErrors.pickupDate = t("validation.invalidDate");
+      if (!formData.pickupHour) newErrors.pickupHour = t("validation.invalidHour");
+      if (!formData.pickupMinute)
+        newErrors.pickupMinute = t("validation.invalidMinute");
+
+      // transfer üçün əlavə sahələr
+      if (formData.serviceType === transferLabel && !formData.pickupLocation)
+        newErrors.pickupLocation = t("validation.selectPickupLocation");
+
+      if (formData.serviceType === transferLabel && !formData.dropoffLocation)
+        newErrors.dropoffLocation = t("validation.selectDropoffLocation");
+
+      // tour üçün
+      if (formData.serviceType === tourLabel && !formData.selectTour)
+        newErrors.selectTour = t("validation.selectTour");
+
+      setErrors(newErrors);
+
+      // səhv yoxdursa Step 2-yə keç
+      if (Object.keys(newErrors).length === 0) {
+        setActiveStep(2);
+      }
+
+      return; // Step 1 bitdi
+    }
+
+    // Step 2 və 3 üçün sənin mövcud məntiqini saxlayırıq
     if (activeStep === 2) {
-      await refetchVehicles(); // maşınları yalnız step 3-ə keçərkən çağırırıq
+      await refetchVehicles();
     }
     if (activeStep < 4) setActiveStep(activeStep + 1);
   };
@@ -308,7 +343,7 @@ export default function MultiStepForm() {
                         });
                       }}
                       dateFormat="yyyy-MM-dd"
-                       minDate={new Date()}
+                      minDate={new Date()}
                       customInput={
                         <input
                           type="text"
@@ -437,10 +472,33 @@ export default function MultiStepForm() {
                 </>
               )}
               <br />
+              <div className="alert-error">
+                {errors.serviceType && (
+                  <p className="error-message">{errors.serviceType}</p>
+                )}
+                {errors.pickupDate && (
+                  <p className="error-message">{errors.pickupDate}</p>
+                )}
+                {errors.pickupHour && (
+                  <p className="error-message">{errors.pickupHour}</p>
+                )}
+                {errors.pickupMinute && (
+                  <p className="error-message">{errors.pickupMinute}</p>
+                )}
+                {errors.pickupLocation && (
+                  <p className="error-message">{errors.pickupLocation}</p>
+                )}
+                {errors.dropoffLocation && (
+                  <p className="error-message">{errors.dropoffLocation}</p>
+                )}
+                {errors.selectTour && (
+                  <p className="error-message">{errors.selectTour}</p>
+                )}
+              </div>
               <button
                 className="flex-right"
                 onClick={handleNext}
-                disabled={!isStep1Valid}
+                // disabled={!isStep1Valid}
               >
                 {t("formsLocation.types.nextBtn")}
               </button>
@@ -505,9 +563,9 @@ export default function MultiStepForm() {
                     }`}
                   >
                     <h4>{v.title}</h4>
-                    <OptimizedImage 
-                      src={v.image} 
-                      alt={`${v.title} vehicle`} 
+                    <OptimizedImage
+                      src={v.image}
+                      alt={`${v.title} vehicle`}
                       className=""
                       lazy={true}
                       width={200}
@@ -655,9 +713,9 @@ export default function MultiStepForm() {
       {/* Success və ya Error çıxışı */}
       {stat === "success" && (
         <div className="form-message success">
-          <OptimizedImage 
-            src="/flags/success.svg" 
-            alt="success" 
+          <OptimizedImage
+            src="/flags/success.svg"
+            alt="success"
             lazy={true}
             width={24}
             height={24}
@@ -669,9 +727,9 @@ export default function MultiStepForm() {
 
       {stat === "error" && (
         <div className="form-message error">
-          <OptimizedImage 
-            src="/icons/error.svg" 
-            alt="error" 
+          <OptimizedImage
+            src="/icons/error.svg"
+            alt="error"
             lazy={true}
             width={24}
             height={24}
