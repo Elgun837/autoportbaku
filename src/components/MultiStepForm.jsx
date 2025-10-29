@@ -362,7 +362,7 @@ export default function MultiStepForm() {
                         <input
                           type="text"
                           value={formData.pickupDate}
-                          onChange={() => { }}
+                          onChange={() => {}}
                           className="custom-date-input-field"
                         />
                       }
@@ -409,56 +409,56 @@ export default function MultiStepForm() {
 
               {(!formData.serviceType ||
                 formData.serviceType === transferLabel) && (
-                  <>
-                    <div className="form-group">
-                      <label htmlFor="pickupLocation">
-                        {t("formsLocation.types.pickupLocation")}:
-                      </label>
-                      {renderSelect(
-                        formData.pickupLocation,
-                        (val) =>
-                          setFormData({
-                            ...formData,
-                            pickupLocation: val,
-                            dropoffLocation:
-                              formData.dropoffLocation === val
-                                ? null
-                                : formData.dropoffLocation,
-                          }),
-                        locations,
-                        `${t("formsLocation.types.pickupPlace")}`
-                      )}
-                    </div>
+                <>
+                  <div className="form-group">
+                    <label htmlFor="pickupLocation">
+                      {t("formsLocation.types.pickupLocation")}:
+                    </label>
+                    {renderSelect(
+                      formData.pickupLocation,
+                      (val) =>
+                        setFormData({
+                          ...formData,
+                          pickupLocation: val,
+                          dropoffLocation:
+                            formData.dropoffLocation === val
+                              ? null
+                              : formData.dropoffLocation,
+                        }),
+                      locations,
+                      `${t("formsLocation.types.pickupPlace")}`
+                    )}
+                  </div>
 
-                    <div className="form-group">
-                      <label htmlFor="dropoffLocation">
-                        {t("formsLocation.types.dropoffLocation")}:
-                      </label>
-                      {renderSelect(
-                        formData.dropoffLocation,
-                        (val) =>
-                          setFormData({ ...formData, dropoffLocation: val }),
-                        // pickupLocation-ı çıxırıq
-                        locations.filter(
-                          (loc) => loc !== formData.pickupLocation
-                        ),
-                        `${t("formsLocation.types.dropoffPlace")}`
-                      )}
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="flightNumber">
-                        {t("formsLocation.types.flightNumber")}:
-                      </label>
-                      <input
-                        type="text"
-                        name="flightNumber"
-                        id="flightNumber"
-                        value={formData.flightNumber}
-                        onChange={handleChange}
-                      />
-                    </div>
-                  </>
-                )}
+                  <div className="form-group">
+                    <label htmlFor="dropoffLocation">
+                      {t("formsLocation.types.dropoffLocation")}:
+                    </label>
+                    {renderSelect(
+                      formData.dropoffLocation,
+                      (val) =>
+                        setFormData({ ...formData, dropoffLocation: val }),
+                      // pickupLocation-ı çıxırıq
+                      locations.filter(
+                        (loc) => loc !== formData.pickupLocation
+                      ),
+                      `${t("formsLocation.types.dropoffPlace")}`
+                    )}
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="flightNumber">
+                      {t("formsLocation.types.flightNumber")}:
+                    </label>
+                    <input
+                      type="text"
+                      name="flightNumber"
+                      id="flightNumber"
+                      value={formData.flightNumber}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </>
+              )}
               {formData.serviceType === tourLabel && (
                 <>
                   <div className="form-group">
@@ -513,7 +513,7 @@ export default function MultiStepForm() {
                 <button
                   className="flex-right"
                   onClick={handleNext}
-                // disabled={!isStep1Valid}
+                  // disabled={!isStep1Valid}
                 >
                   {t("formsLocation.types.nextBtn")}
                 </button>
@@ -533,6 +533,11 @@ export default function MultiStepForm() {
                   name="passengers"
                   placeholder="0"
                   onChange={handleChange}
+                  onKeyPress={(e) => {
+                    if (!/[0-9]/.test(e.key)) {
+                      e.preventDefault(); // yalnız rəqəmlərə icazə ver
+                    }
+                  }}
                 />
               </div>
 
@@ -545,6 +550,11 @@ export default function MultiStepForm() {
                   name="luggage"
                   placeholder="0"
                   onChange={handleChange}
+                  onKeyPress={(e) => {
+                    if (!/[0-9]/.test(e.key)) {
+                      e.preventDefault(); // yalnız rəqəmlərə icazə ver
+                    }
+                  }}
                 />
               </div>
 
@@ -560,8 +570,6 @@ export default function MultiStepForm() {
                   {t("formsLocation.types.nextBtn")}
                 </button>
               </div>
-
-
             </div>
           )}
 
@@ -578,8 +586,9 @@ export default function MultiStepForm() {
                 vehicles.map((v) => (
                   <div
                     key={v.id}
-                    className={`vehicle-card ${formData.selectedVehicle === v.id ? "selected" : ""
-                      }`}
+                    className={`vehicle-card ${
+                      formData.selectedVehicle === v.id ? "selected" : ""
+                    }`}
                   >
                     <h4>{v.title}</h4>
                     <OptimizedImage
@@ -656,7 +665,6 @@ export default function MultiStepForm() {
                   {t("formsLocation.types.prevBtn")}
                 </button>
               </div>
-
             </div>
           )}
 
@@ -718,7 +726,9 @@ export default function MultiStepForm() {
                 ></textarea>
               </div>
               <div className="alert-error">
-                {errors.user_name && <p className="error">{errors.user_name}</p>}
+                {errors.user_name && (
+                  <p className="error">{errors.user_name}</p>
+                )}
                 {errors.email && <p className="error">{errors.email}</p>}
                 {errors.phone && <p className="error">{errors.phone}</p>}
               </div>
@@ -729,12 +739,11 @@ export default function MultiStepForm() {
                 <button
                   className="flex-right"
                   onClick={handleSubmit}
-                // düymə yalnız sahələr dolu olduqda aktiv olur
+                  // düymə yalnız sahələr dolu olduqda aktiv olur
                 >
                   {t("formsLocation.types.submitBtn")}
                 </button>
               </div>
-
             </div>
           )}
         </form>
