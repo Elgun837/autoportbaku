@@ -73,17 +73,17 @@ export default defineConfig({
   // Настройка обработки статических файлов
   assetsInclude: ['**/*.webp', '**/*.jpg', '**/*.png', '**/*.svg'],
   css: {
-    devSourcemap: true,
+    devSourcemap: false,
     preprocessorOptions: { 
       scss: { 
-        sourceMap: true 
+        sourceMap: false 
       } 
     },
     // PostCSS обработка (включая PurgeCSS) только в production
     postcss: process.env.NODE_ENV === 'production' ? './postcss.config.js' : undefined
   },
   build: { 
-    sourcemap: true,
+    sourcemap: false,
     // Настройка для копирования статических файлов
     copyPublicDir: true,
     rollupOptions: {
