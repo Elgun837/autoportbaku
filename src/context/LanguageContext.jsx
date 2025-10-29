@@ -201,10 +201,10 @@ export function LanguageProvider({ children }) {
             }
           } else if (slugKey === "services") {
             const serviceDataArray = await getServicesSlug(newLang, slugToUse);
-            console.log(serviceDataArray)
+           
             if (Array.isArray(serviceDataArray) && serviceDataArray.length > 0) {
               const serviceData = serviceDataArray[0];
-              console.log(serviceData)
+              
               if (serviceData.slug && typeof serviceData.slug === "object") {
                 newSlug = serviceData.slug[newLang] || tourData.slug.en;
                 // console.log("newSlug:", newSlug);

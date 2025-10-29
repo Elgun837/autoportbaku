@@ -11,6 +11,28 @@ const WhatsAppButtonAdvanced = ({
 }) => {
   // Safely get language context
   let t, lang;
+    // Hide when footer is visible
+  useEffect(() => {
+    const footer = document.querySelector("footer");
+    if (!footer) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setIsVisible(false);
+          } else {
+            if (window.scrollY > 300) setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(footer);
+
+    return () => observer.disconnect();
+  }, []);
   try {
     const languageContext = useLanguage();
     t = languageContext.t;
