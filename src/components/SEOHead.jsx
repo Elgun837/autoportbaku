@@ -88,6 +88,14 @@ const SEOHead = ({
     updateMetaTag('robots', 'index, follow');
     updateMetaTag('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1');
     updateMetaTag('Content-Language', 'ru', 'http-equiv');
+    
+    // Author and Creator meta tags
+    updateMetaTag('author', 'Amiroff Creative Agency');
+    updateMetaTag('creator', 'Amiroff Creative Agency - https://amiroff.az');
+    updateMetaTag('publisher', 'Amiroff Creative Agency');
+    updateMetaTag('designer', 'Amiroff Creative Agency');
+    updateMetaTag('developer', 'Amiroff Creative Agency');
+    updateMetaTag('generator', 'React + Vite - Created by Amiroff Creative Agency');
 
     // Open Graph теги
     updateMetaTag('og:title', finalTitle, 'property');
