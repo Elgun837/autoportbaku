@@ -1,7 +1,7 @@
 import "../assets/styles/About.scss";
 import { useLanguage } from "../context/LanguageContext";
 import Page_big_banner from "../components/Page_big_banner";
-import AboutBanner from "/banner_imge_about.webp";
+import AboutBanner from "/ab_banner.webp";
 import Scrollline from "../components/Scrolline";
 import SectionTitle from "../components/SectionTitle";
 import Mission from "../components/Mission";
