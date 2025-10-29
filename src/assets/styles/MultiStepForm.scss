@@ -131,7 +131,7 @@
     width: 100%;
     height: vh(600);
     max-height: 470px;
-    overflow-y: auto;
+    overflow-y: visible;
     padding-right: 12px;
     scrollbar-width: thin;
     scrollbar-color: #888 transparent;
@@ -196,8 +196,8 @@
     }
 
     @media (max-width: 992px) {
-      max-height: unset;
-      height: auto;
+      // max-height: unset;
+      // height: auto;
     }
 
     .customer_detail {

@@ -134,7 +134,7 @@ export const translations = {
         successMsg:
           "Thank you! The form has been submited successfully. We will reply you soon",
         mailError: "Email format is incorrect",
-        prevBtn: "Previous",
+        prevBtn: "Back",
         nextBtn: "Next",
       },
       AirpirtBaku: "Airport",
