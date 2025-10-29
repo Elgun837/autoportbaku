@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 const CurrencyContext = createContext();
 
 export const CurrencyProvider = ({ children }) => {
-  const [currency, setCurrency] = useState("USD");
+  const [currency, setCurrency] = useState("AZN");
   const [usdRate, setUsdRate] = useState(); // ilkin dəyər
   const [eurRate, setEurRate] = useState();
 

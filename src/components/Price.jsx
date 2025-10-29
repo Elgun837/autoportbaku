@@ -3,15 +3,18 @@ import { useCurrency } from "../context/CurrencyContext";
 export default function Price({ price }) {
   const { currency, usdRate, eurRate } = useCurrency();
 
-  const usdPrice = Number(price) || 0;
- 
+  const aznPrice = Number(price) || 0; // Əsas valyuta AZN-dir
 
   const displayPrice =
-    currency === "AZN"
-      ? (usdPrice * usdRate).toFixed(2)
+    currency === "USD"
+      ? (aznPrice / usdRate).toFixed(2)   // AZN → USD
       : currency === "EUR"
-      ? (usdPrice * (usdRate / eurRate)).toFixed(2)
-      : usdPrice.toFixed(2);
+      ? (aznPrice / eurRate).toFixed(2)   // AZN → EUR ✅ düz formulu
+      : aznPrice.toFixed(2);              // Əgər AZN seçilibsə, olduğu kimi göstər
 
-  return <span>{displayPrice} {currency}</span>;
+  return (
+    <span>
+      {displayPrice} {currency}
+    </span>
+  );
 }
