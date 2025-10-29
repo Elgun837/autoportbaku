@@ -7,10 +7,14 @@ export default function Price({ price }) {
 
   const displayPrice =
     currency === "USD"
-      ? (aznPrice / usdRate).toFixed(2)           // Manatdan dollara
+      ? (aznPrice / usdRate).toFixed(2)   // AZN → USD
       : currency === "EUR"
-      ? (aznPrice / (usdRate / eurRate)).toFixed(2) // Manatdan avroya
-      : aznPrice.toFixed(2);                      // Əgər AZN seçilibsə, olduğu kimi göstər
+      ? (aznPrice / eurRate).toFixed(2)   // AZN → EUR ✅ düz formulu
+      : aznPrice.toFixed(2);              // Əgər AZN seçilibsə, olduğu kimi göstər
 
-  return <span>{displayPrice} {currency}</span>;
+  return (
+    <span>
+      {displayPrice} {currency}
+    </span>
+  );
 }

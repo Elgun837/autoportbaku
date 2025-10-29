@@ -527,9 +527,9 @@ export default function MultiStepForm() {
                   {t("formsLocation.types.passengers")}:
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   name="passengers"
-                  value={formData.passengers || 0}
+                  placeholder="0"
                   onChange={handleChange}
                 />
               </div>
@@ -539,9 +539,9 @@ export default function MultiStepForm() {
                   {t("formsLocation.types.luggage")}:
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   name="luggage"
-                  value={formData.luggage || 0}
+                  placeholder="0"
                   onChange={handleChange}
                 />
               </div>
