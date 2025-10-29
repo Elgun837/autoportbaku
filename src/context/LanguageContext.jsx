@@ -164,6 +164,7 @@ export function LanguageProvider({ children }) {
 
           // Yeni dil slug-u tap
           let slugToUse = pathParts[2]; // default
+          
           if (Array.isArray(slugMapping)) {
             // API array qaytarırsa
             slugMapping = slugMapping[0];
@@ -199,9 +200,11 @@ export function LanguageProvider({ children }) {
               console.warn("tourData array boşdur!");
             }
           } else if (slugKey === "services") {
-            const serviceDataArray = await getServiceData(newLang, slugToUse);
+            const serviceDataArray = await getServicesSlug(newLang, slugToUse);
+            console.log(serviceDataArray)
             if (Array.isArray(serviceDataArray) && serviceDataArray.length > 0) {
               const serviceData = serviceDataArray[0];
+              console.log(serviceData)
               if (serviceData.slug && typeof serviceData.slug === "object") {
                 newSlug = serviceData.slug[newLang] || tourData.slug.en;
                 // console.log("newSlug:", newSlug);
@@ -209,7 +212,7 @@ export function LanguageProvider({ children }) {
                 newSlug = serviceData.slug;
               }
             } else {
-              console.warn("tourData array boşdur!");
+              console.warn("serviceData array boşdur!");
             }
           }
         }

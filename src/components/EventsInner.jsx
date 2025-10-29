@@ -8,17 +8,17 @@ function EventsInner() {
   const { t, lang } = useLanguage();
   const { tours, loading: isLoading } = useTours();
   const { services, loading: serviceLoading } = useServices();
-  console.log(services.text_block);
+ 
   const slugs = translations[lang]?.routes || {};
   if (isLoading) {
     return <div>{t("common.loading", "Loading...")}</div>;
   }
-  console.log(services)
+ 
   const events = services
   ?.flatMap(service => service.text_blok || [])
   .filter(item => item && item.title); // boş olanları təmizləmək üçün (optional)
 
-console.log(events);
+
   return (
     <>
     {events.length > 0 ? (
