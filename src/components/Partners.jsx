@@ -93,6 +93,10 @@ const Partners = () => {
                                     spaceBetween={30}
                                     slidesPerView={5}
                                     breakpoints={{
+                                        320: {
+                                            slidesPerView: 2,
+                                            spaceBetween: 20,
+                                        },
                                         580: {
                                             slidesPerView: 2,
                                             spaceBetween: 20,
@@ -109,7 +113,7 @@ const Partners = () => {
                                             slidesPerView: 5,
                                             spaceBetween: 30,
                                         },
-                                        1902: {
+                                        1920: {
                                             slidesPerView: 5,
                                             spaceBetween: 30,
                                         },
