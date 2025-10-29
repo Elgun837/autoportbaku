@@ -30,7 +30,7 @@ console.log(events);
                 {events.slice(0, 3).map((block, index) => (
                   <div className="tour_card" key={index}>
                     <div className="tour_image tour_image_1">
-                      <a href="none">
+                      <a href="javascript:void(0)">
                         <OptimizedImage
                           src={block.image || `/events/${index + 1}.png`}
                           height="319"

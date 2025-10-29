@@ -7,6 +7,7 @@ import OptimizedVideo from "./OptimizedVideo";
 
 function BookTrip() {
   const { t, lang } = useLanguage();
+  const slugs = translations[lang]?.routes || {};
   return (
     <>
     <div className="trip_section bg_black">
@@ -29,7 +30,7 @@ function BookTrip() {
               data-aos-delay="100"
             >{t("BookTrip.desc")}</div>
 
-            <a href={t("routes.book", "/book-form")}
+            <a href={`/${lang}/${slugs.book || "book-form"}`}
               data-aos="fade-up"
               data-aos-delay="200"
             > <button className="trip_button"><span>{t("BookTrip.buttonText", "Book a trip")}</span></button></a>
