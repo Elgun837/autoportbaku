@@ -73,7 +73,7 @@ export default defineConfig({
   // Настройка обработки статических файлов
   assetsInclude: ['**/*.webp', '**/*.jpg', '**/*.png', '**/*.svg'],
   css: {
-    devSourcemap: false,
+    devSourcemap: true,
     preprocessorOptions: { 
       scss: { 
         sourceMap: false 
