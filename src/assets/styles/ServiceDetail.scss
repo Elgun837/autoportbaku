@@ -5,7 +5,7 @@
   // padding: 60px 0;
   .row {
     &:last-child {
-      .inner {
+      .image_descr {
         margin-bottom: vh(150);
         @media (max-width: 992px) {
           margin-bottom: vh(100);
@@ -20,7 +20,16 @@
     width: 100%;
 
     @include responsive_padding;
-
+    .events_section{
+      .inner{
+        background-color: rgba(249, 249, 249, 1);
+        padding: 60px;
+        margin-top: 20px 0;
+        .tours_grid{
+          padding: 0;
+        }
+      }
+    }
     .image_descr {
       margin-top: vh(90);
       @media (max-width: 576px) {

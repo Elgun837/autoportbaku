@@ -10,15 +10,16 @@ import { useQuery } from "@tanstack/react-query";
 import Scrollline from "../components/Scrolline";
 import OptimizedImage from "../components/OptimizedImage";
 import SectionTitle from "../components/SectionTitle";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
 import SEOHead from "../components/SEOHead";
-import { ServicesPageSEO } from '../components/SEOComponents';
+import { ServicesPageSEO } from "../components/SEOComponents";
+import EventsInner from "../components/EventsInner";
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 export default function ServiceDetail() {
   const { t, lang } = useLanguage();
@@ -50,11 +51,11 @@ export default function ServiceDetail() {
   const serviceArray = Array.isArray(serviceData)
     ? serviceData
     : Array.isArray(serviceData?.data)
-      ? serviceData.data
-      : [];
+    ? serviceData.data
+    : [];
 
   const service = serviceArray[0] || null;
-
+  const serviceId = serviceArray.find((s) => s.slug.en === "your-events-chauffeur");
   const {
     data: vehicleData,
     isLoading: isVehicleLoading,
@@ -69,8 +70,8 @@ export default function ServiceDetail() {
   const vehicleArray = Array.isArray(vehicleData)
     ? vehicleData
     : Array.isArray(vehicleData?.data)
-      ? vehicleData.data
-      : [];
+    ? vehicleData.data
+    : [];
 
   if (isError || isVehicleError || !service) {
     return (
@@ -97,7 +98,10 @@ export default function ServiceDetail() {
           bannerImageSrc={service.banner || service.banner || ""}
         />
         <Scrollline maxProgress={100} />
-        <SectionTitle sectionHeadingBig={service.title} sectionHeadingSmall="" />
+        <SectionTitle
+          sectionHeadingBig={service.title}
+          sectionHeadingSmall=""
+        />
         <section className="service-detail">
           <div className="container">
             <div className="row">
@@ -109,8 +113,15 @@ export default function ServiceDetail() {
                       data-aos-delay="200"
                       data-aos-duration="800"
                       data-aos-mirror="true"
-                    >{service.text}</p>
+                    >
+                      {service.text}
+                    </p>
                   </div>
+                  {service?.text_blok?.length > 0 && (
+                    <div className="events_section">
+                      <EventsInner />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -132,28 +143,34 @@ export default function ServiceDetail() {
                       />
                     </div>
                     <div className="descr_block">
-                      {service.additional_text && service.additional_text.map((item, index) => (
-                        <div className="description_content" key={index}>
-                          <h5
-                            data-aos="fade-up"
-                            data-aos-delay={200 + index * 100}
-                            data-aos-duration="800"
-                            data-aos-mirror="true"
-                          >{item.title[lang] || item.title.en}</h5>
-                          <p
-                            data-aos="fade-up"
-                            data-aos-delay={300 + index * 100}
-                            data-aos-duration="800"
-                            data-aos-mirror="true"
-                          >{item.text[lang] || item.text.en}</p>
-                          <div className="separator"
-                            data-aos="fade-up"
-                            data-aos-delay={400 + index * 100}
-                            data-aos-duration="800"
-                            data-aos-mirror="true"
-                          ></div>
-                        </div>
-                      ))}
+                      {service.additional_text &&
+                        service.additional_text.map((item, index) => (
+                          <div className="description_content" key={index}>
+                            <h5
+                              data-aos="fade-up"
+                              data-aos-delay={200 + index * 100}
+                              data-aos-duration="800"
+                              data-aos-mirror="true"
+                            >
+                              {item.title[lang] || item.title.en}
+                            </h5>
+                            <p
+                              data-aos="fade-up"
+                              data-aos-delay={300 + index * 100}
+                              data-aos-duration="800"
+                              data-aos-mirror="true"
+                            >
+                              {item.text[lang] || item.text.en}
+                            </p>
+                            <div
+                              className="separator"
+                              data-aos="fade-up"
+                              data-aos-delay={400 + index * 100}
+                              data-aos-duration="800"
+                              data-aos-mirror="true"
+                            ></div>
+                          </div>
+                        ))}
                     </div>
                   </div>
                 </div>
@@ -162,9 +179,7 @@ export default function ServiceDetail() {
           </div>
         </section>
         <section className="service-banner-2">
-          <div className="banner_2_holder"
-
-          >
+          <div className="banner_2_holder">
             <OptimizedImage
               data-aos="zoom-up"
               data-aos-delay="300"
@@ -188,16 +203,19 @@ export default function ServiceDetail() {
                     data-aos-delay="200"
                     data-aos-duration="800"
                     data-aos-mirror="true"
-                  >{t("fleet.title")}</h2>
+                  >
+                    {t("fleet.title")}
+                  </h2>
                   <p
                     data-aos="fade-up"
                     data-aos-delay="400"
                     data-aos-duration="800"
                     data-aos-mirror="true"
-                  >{t("fleet.description")}</p>
+                  >
+                    {t("fleet.description")}
+                  </p>
                 </div>
                 <div className="fleet_cars">
-
                   <div className="fleet_cars_slider">
                     <Swiper
                       ref={fleetSwiperRef}
@@ -246,7 +264,6 @@ export default function ServiceDetail() {
                           spaceBetween: 30,
                         },
                       }}
-
                       loop={vehicleArray.length > 3}
                       className="fleet_swiper"
                     >
@@ -267,13 +284,15 @@ export default function ServiceDetail() {
                               />
                             </div>
                             <div className="car_info">
-                              <h4 className="car_title"
+                              <h4
+                                className="car_title"
                                 data-aos="fade-up"
                                 data-aos-delay="300"
                                 data-aos-duration="800"
                                 data-aos-mirror="true"
-                              >{vehicle.title}</h4>
-
+                              >
+                                {vehicle.title}
+                              </h4>
                             </div>
                           </div>
                         </SwiperSlide>
