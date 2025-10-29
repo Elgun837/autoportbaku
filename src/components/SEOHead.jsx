@@ -86,7 +86,7 @@ const SEOHead = ({
     updateMetaTag('description', finalDescription);
     updateMetaTag('keywords', finalKeywords);
     updateMetaTag('robots', 'index, follow');
-    updateMetaTag('viewport', 'width=device-width, initial-scale=1.0');
+    updateMetaTag('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1');
     updateMetaTag('Content-Language', 'ru', 'http-equiv');
 
     // Open Graph теги
