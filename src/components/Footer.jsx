@@ -7,6 +7,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import OptimizedImage from "./OptimizedImage";
 
+import { translations } from "../translations";
 
 export default function Footer() {
     const { t, lang } = useLanguage();
@@ -27,7 +28,7 @@ export default function Footer() {
         
         return () => observer.disconnect();
     }, []);
-
+    const slugs = translations[lang]?.routes || {};
     // console.log("Footer settings:", settings);
     return (
         <>
@@ -81,10 +82,11 @@ export default function Footer() {
                                         data-aos-duration="600"
                                     >
                                         <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}`}>{t("header.home")}</Link>
-                                        <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/about-us`} >{t("header.about")}</Link>
-                                        <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/tours`} >{t("header.tours")}</Link>
-                                        <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/faq`} >{t("header.faq")}</Link>
-                                        <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/contacts`} >{t("header.contacts")}</Link>
+                                        <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/${slugs.about || "about-us"}`}>{t("header.about")}</Link>
+                                        <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/${slugs.tours || "tours"}`} >{t("header.tours")}</Link>
+                                        <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/${slugs.faq || "faq"}`} >{t("header.faq")}</Link>
+                                        <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/${slugs.contacts || "contacts"}`} >{t("header.contacts")}</Link>
+                                        <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/${slugs.book || "book-form"}`} >{t("header.bookForm")}</Link>
 
                                     </ul>
                                 </div>
