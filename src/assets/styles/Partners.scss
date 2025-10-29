@@ -18,6 +18,10 @@
         justify-content: center;
         margin-bottom: rem(30);
       }
+      @media (max-width: 580px) {
+        justify-content: flex-end;
+        margin-bottom: rem(30);
+      }
 
       .nav_slider {
         display: flex;

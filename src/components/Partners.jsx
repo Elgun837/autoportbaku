@@ -30,14 +30,14 @@ const Partners = () => {
     if (error) return <p>Error loading Partners 😢</p>;
     const partners = Array.isArray(data) ? data : [];
 
-    
+
 
     return (
         <>
             <section className="partners_section">
                 <div className="container">
                     <div className="row">
-                        <div className="inner_slider">                           
+                        <div className="inner_slider">
                             <div className="text_details">
                                 <h6 className="subtitle"
                                     data-aos="flip-up"
@@ -93,6 +93,10 @@ const Partners = () => {
                                     spaceBetween={30}
                                     slidesPerView={5}
                                     breakpoints={{
+                                        320: {
+                                            slidesPerView: 2,
+                                            spaceBetween: 20,
+                                        },
                                         580: {
                                             slidesPerView: 2,
                                             spaceBetween: 20,
@@ -109,7 +113,7 @@ const Partners = () => {
                                             slidesPerView: 5,
                                             spaceBetween: 30,
                                         },
-                                        1902: {
+                                        1920: {
                                             slidesPerView: 5,
                                             spaceBetween: 30,
                                         },
@@ -121,7 +125,7 @@ const Partners = () => {
                                             releaseOnEdges: true, // This is crucial for preventing page jump
                                         }
                                     }
-                                    
+
                                     autoplay={{
                                         delay: 3000,
                                     }}
@@ -133,7 +137,7 @@ const Partners = () => {
                                             <div className="partner_logo">
                                                 <div className="logo_container">
                                                     <a href={partner.link} target="_blank" rel="noopener noreferrer">
-                                                        
+
                                                         <img loading="lazy" width="121" height="121" src={partner.image} alt={`Partner ${index + 1}`} />
                                                     </a>
                                                 </div>
