@@ -159,9 +159,9 @@ export const translations = {
 
     cars: {
       subtitle:
-        "Autoport vehicles: Modern VIP limousines for exclusivity and comfort",
+        "At Autoport Baku, we redefine luxury travel.",
       title:
-        "Our Autoport vehicles offer exclusive driving comfort and are suitable for any occasion - whether VIP limousine service, airport transfers, weddings or large events. With our modern and luxurious vehicles, you'll always travel in style and relaxation, benefiting from generous space and state-of-the-art amenities. Whether for business or pleasure, Driver Now offers you the ideal combination of exclusivity, safety and comfort for your travels. Our Business and First Class fleet consists exclusively of Mercedes-Benz vehicles.",
+        "Our exclusive fleet of Mercedes-Benz vehicles delivers unmatched comfort and elegance for every occasion — from VIP limousine service and airport transfers to corporate travel and major events. Travel in style and relaxation with our modern, spacious, and fully equipped vehicles featuring the latest amenities. Whether you’re on a business trip or a leisurely outing, Autoport Baku ensures a seamless blend of exclusivity, safety, and comfort every time you ride.",
       passengers: "Passengers",
       pieces: "Pieces of Luggage",
     },
@@ -236,10 +236,9 @@ export const translations = {
     },
     ToursComponent: {
       subtitle:
-        "Autoport short trip: Exclusive, comfortable and safe on the road",
+        "Autoport Baku — Where Every Journey Turns into an Adventure.",
       title:
-        "With Autoport you can enjoy short trips at the highest level. Our exclusive chauffeur service offers you the ideal solution to get from A to B in comfort and safety. Whether for business or pleasure, we make sure you arrive on time and relaxed.",
-      btn: "Discover all tours",
+        "Discover the art of travel with Autoport Baku. From short tours to memorable journeys, every adventure with our chauffeur service is defined by comfort, safety, and style. Wherever you go, we make sure you arrive on time and at ease.",
     },
     missions: {
       title: "Our Mission",
@@ -436,9 +435,9 @@ export const translations = {
     },
     cars: {
       subtitle:
-        "Автомобили Autoport: Современные VIP-лимузины для эксклюзивности и комфорта",
+        "В Autoport Baku мы переосмысливаем понятие роскошных путешествий.",
       title:
-        "Наши автомобили Autoport предлагают эксклюзивный комфорт вождения и подходят для любого случая - будь то VIP-лимузинный сервис, трансферы из аэропорта, свадьбы или крупные мероприятия. С нашими современными и роскошными автомобилями вы всегда будете путешествовать со стилем и расслаблением, пользуясь просторным салоном и современными удобствами. Будь то деловая поездка или отдых, Autoport Baku предлагает вам идеальное сочетание эксклюзивности, безопасности и комфорта для ваших поездок. Наш парк автомобилей Business и First Class состоит исключительно из автомобилей Mercedes-Benz.",
+        "Наш эксклюзивный парк автомобилей Mercedes-Benz обеспечивает непревзойдённый комфорт и элегантность для любого случая — от VIP-лимузин-сервиса и трансферов в аэропорт до корпоративных поездок и крупных мероприятий.Путешествуйте с комфортом и стилем в наших современных, просторных и полностью оборудованных автомобилях, оснащённых новейшими технологиями и удобствами. Будь то деловая поездка или отдых, Autoport Baku гарантирует безупречное сочетание эксклюзивности, безопасности и уюта в каждой поездке.",
       passengers: "Пассажиров",
       pieces: "Мест для багажа",
     },
@@ -516,9 +515,9 @@ export const translations = {
     },
     ToursComponent: {
       subtitle:
-        "Короткая поездка Autoport: эксклюзивно, комфортно и безопасно в дороге",
+        "Autoport Baku — там, где каждое путешествие превращается в приключение.",
       title:
-        "С Autoport вы сможете наслаждаться короткими поездками на высшем уровне. Наша эксклюзивная услуга водителя — идеальное решение для комфортного и безопасного перемещения из пункта А в пункт Б. Будь то деловая поездка или отдых, мы позаботимся о том, чтобы вы прибыли вовремя и чувствовали себя комфортно.",
+        "Откройте для себя искусство путешествий с Autoport Baku. От коротких туров до незабываемых поездок — каждое приключение с нашим сервисом характеризуется комфортом, безопасностью и стилем. Куда бы вы ни направлялись, мы гарантируем, что вы прибудете вовремя, расслабленными и в полном комфорте.",
       btn: "Узнать все туры",
     },
     missions: {
