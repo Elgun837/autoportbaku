@@ -138,6 +138,9 @@
     padding-right: 12px;
     scrollbar-width: thin;
     scrollbar-color: #888 transparent;
+    &#main_selection{
+      overflow: visible;
+    }
     @media(max-width: 576px) {
       height: 525px;
     }

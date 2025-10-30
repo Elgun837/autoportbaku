@@ -13,6 +13,7 @@ import { getVehicleRequest } from "../api";
 import { useCurrency } from "../context/CurrencyContext";
 import Price from "./Price";
 import OptimizedImage from "./OptimizedImage";
+import DOMPurify from "dompurify";
 
 export default function MultiStepForm() {
   const { t, lang } = useLanguage();
@@ -316,7 +317,7 @@ export default function MultiStepForm() {
         <form onSubmit={handleSubmit}>
           {/* Step 1 */}
           {activeStep === 1 && (
-            <div className="form-step-content">
+            <div className="form-step-content" id="main_selection">
               <div className="form-group">
                 <label htmlFor="serviceType">
                   {t("formsLocation.types.serviceType")}:
@@ -567,7 +568,7 @@ export default function MultiStepForm() {
 
           {/* Step 3 */}
           {activeStep === 3 && (
-            <div className="form-step-content">
+            <div className="form-step-content" >
               {vehiclesLoading && <p>Loading vehicles...</p>}
 
               {!vehiclesLoading && vehicles.length === 0 && (
@@ -593,7 +594,10 @@ export default function MultiStepForm() {
                     <p className="price">
                       <Price price={v.price} />
                     </p>
-                    <p className="vehicle_desc">{v.text}</p>
+                    <p 
+                      className="vehicle_desc" 
+                      dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(v.text) }}
+                    />
                     <div className="vehicle-spec">
                       <p>
                         <svg
