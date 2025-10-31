@@ -220,8 +220,9 @@ export default function MultiStepForm() {
       color: "#333",
     }),
   };
-  const renderSelect = (value, onChange, options, placeholder) => (
+  const renderSelect = (value, onChange, options, placeholder, inputId) => (
     <Select
+      inputId={inputId}
       value={value ? { value, label: value } : null}
       onChange={(selected) => onChange(selected.value)}
       options={options.map((opt) => ({ value: opt, label: opt }))}
@@ -329,7 +330,8 @@ export default function MultiStepForm() {
                     t("formsLocation.types.transfer"),
                     t("formsLocation.types.tour"),
                   ],
-                  " "
+                  " ",
+                  "serviceType"
                 )}
               </div>
 
@@ -340,6 +342,7 @@ export default function MultiStepForm() {
                   </label>
                   <div className="custom-date-input">
                     <DatePicker
+                      id="pickupDate"
                       selected={
                         formData.pickupDate
                           ? new Date(formData.pickupDate)
@@ -362,6 +365,7 @@ export default function MultiStepForm() {
                       customInput={
                         <input
                           type="text"
+                          id="pickupDate"
                           value={formData.pickupDate}
                           onChange={() => { }}
                           className="custom-date-input-field"
@@ -382,7 +386,7 @@ export default function MultiStepForm() {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="">
+                  <label htmlFor="pickupHour">
                     {t("formsLocation.types.pickupTime")}:
                   </label>
                   <div className="time-selectors">
@@ -391,7 +395,8 @@ export default function MultiStepForm() {
                         formData.pickupHour,
                         (val) => setFormData({ ...formData, pickupHour: val }),
                         hours.map((h) => h.toString().padStart(2, "0")),
-                        "13"
+                        "13",
+                        "pickupHour"
                       )}
                     </div>
                     :
@@ -401,7 +406,8 @@ export default function MultiStepForm() {
                         (val) =>
                           setFormData({ ...formData, pickupMinute: val }),
                         minutes.map((m) => m.toString().padStart(2, "0")),
-                        "00"
+                        "00",
+                        "pickupMinute"
                       )}
                     </div>
                   </div>
@@ -427,7 +433,8 @@ export default function MultiStepForm() {
                                 : formData.dropoffLocation,
                           }),
                         locations,
-                        `${t("formsLocation.types.pickupPlace")}`
+                        `${t("formsLocation.types.pickupPlace")}`,
+                        "pickupLocation"
                       )}
                     </div>
 
@@ -443,7 +450,8 @@ export default function MultiStepForm() {
                         locations.filter(
                           (loc) => loc !== formData.pickupLocation
                         ),
-                        `${t("formsLocation.types.dropoffPlace")}`
+                        `${t("formsLocation.types.dropoffPlace")}`,
+                        "dropoffLocation"
                       )}
                     </div>
                     <div className="form-group">
@@ -481,7 +489,8 @@ export default function MultiStepForm() {
                       tours.map(
                         (t) => t.title?.[lang] || t.title || "No title"
                       ), // string array
-                      ""
+                      "",
+                      "selectTour"
                     )}
                   </div>
                 </>
@@ -526,11 +535,12 @@ export default function MultiStepForm() {
           {activeStep === 2 && (
             <div className="form-step-content">
               <div className="customer_detail">
-                <label htmlFor="passenger">
+                <label htmlFor="passengers">
                   {t("formsLocation.types.passengers")}:
                 </label>
                 <input
                   type="text"
+                  id="passengers"
                   name="passengers"
                   placeholder="0"
                   onChange={handleChange}
@@ -543,6 +553,7 @@ export default function MultiStepForm() {
                 </label>
                 <input
                   type="text"
+                  id="luggage"
                   name="luggage"
                   placeholder="0"
                   onChange={handleChange}
@@ -697,8 +708,12 @@ export default function MultiStepForm() {
                 )}
               </div>
               <div className="form-group">
-                <label htmlFor="">{t("formsLocation.types.phone")}:</label>
+                <label htmlFor="phone">{t("formsLocation.types.phone")}:</label>
                 <PhoneInput
+                  inputProps={{
+                    id: "phone",
+                    name: "phone",
+                  }}
                   className="phone-input"
                   country={"az"} // default ölkə
                   value={formData.phone}

@@ -14,7 +14,7 @@ export default function Footer() {
     const { settings, loading: settingsLoading } = useSettings();
     const currentYear = new Date().getFullYear();
     const [bgLoaded, setBgLoaded] = useState(false);
-    
+
     useEffect(() => {
         const observer = new IntersectionObserver(([entry]) => {
             if (entry.isIntersecting) {
@@ -22,10 +22,10 @@ export default function Footer() {
                 observer.disconnect();
             }
         }, { rootMargin: '100px' });
-        
+
         const footer = document.querySelector('.footer');
         if (footer) observer.observe(footer);
-        
+
         return () => observer.disconnect();
     }, []);
     const slugs = translations[lang]?.routes || {};
@@ -81,12 +81,12 @@ export default function Footer() {
                                         data-aos-delay="300"
                                         data-aos-duration="600"
                                     >
-                                        <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}`}>{t("header.home")}</Link>
-                                        <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/${slugs.about || "about-us"}`}>{t("header.about")}</Link>
-                                        <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/${slugs.tours || "tours"}`} >{t("header.tours")}</Link>
-                                        <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/${slugs.faq || "faq"}`} >{t("header.faq")}</Link>
-                                        <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/${slugs.contacts || "contacts"}`} >{t("header.contacts")}</Link>
-                                        <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/${slugs.book || "book-form"}`} >{t("header.bookForm")}</Link>
+                                        <li><Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}`}>{t("header.home")}</Link></li>
+                                        <li><Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/${slugs.about || "about-us"}`}>{t("header.about")}</Link></li>
+                                        <li><Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/${slugs.tours || "tours"}`} >{t("header.tours")}</Link></li>
+                                        <li><Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/${slugs.faq || "faq"}`} >{t("header.faq")}</Link></li>
+                                        <li><Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/${slugs.contacts || "contacts"}`} >{t("header.contacts")}</Link></li>
+                                        <li><Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/${lang}/${slugs.book || "book-form"}`} >{t("header.bookForm")}</Link></li>
 
                                     </ul>
                                 </div>
@@ -124,7 +124,7 @@ export default function Footer() {
                                                     </li>
 
                                                 )}
-                                                
+
                                                 {settings?.phone && (
                                                     <li><a href={`tel:${settings.phone}`} className="footer_link">{settings.phone}</a></li>
                                                 )}

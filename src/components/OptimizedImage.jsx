@@ -56,6 +56,8 @@ const OptimizedImage = ({
   onLoad,
   onError,
   quality = 80,
+  width,
+  height,
   ...rest
 }) => {
   const [isInView, setIsInView] = useState(!lazy);
@@ -137,7 +139,6 @@ const OptimizedImage = ({
     position: 'relative',
     overflow: 'hidden',
     backgroundColor: 'transparent', // Убираем серый фон
-    ...rest.style
   };
 
   // Стили для изображения при загрузке
@@ -160,10 +161,10 @@ const OptimizedImage = ({
           backgroundColor: 'rgba(248, 248, 248, 0.02)',
           minHeight: '100px',
         }}
-        {...rest}
-        aria-label={alt}
+        role="img"
+        aria-label={alt || 'Loading image'}
       >
-        <div className="image-spinner" />
+        <div className="image-spinner" aria-hidden="true" />
       </div>
     );
   }
@@ -177,6 +178,8 @@ const OptimizedImage = ({
         src={imageSources.webp }
         alt={`❌ ОШИБКА ЗАГРУЗКИ: ${alt || 'изображение'} | Путь: ${imageSources.webp || imageSources.fallback}`}
         title={`Не удалось загрузить: ${imageSources.webp || imageSources.fallback}`}
+        width={width}
+        height={height}
         onError={handleError}
         style={{
          
@@ -193,6 +196,8 @@ const OptimizedImage = ({
         ref={imgRef}
         src={imageSources.webp || imageSources.fallback}
         alt={alt}
+        width={width}
+        height={height}
         onLoad={handleLoad}
         onError={handleError}
         loading={lazy ? "lazy" : "eager"}
@@ -204,11 +209,13 @@ const OptimizedImage = ({
 
   // Во время загрузки или при ошибке используем контейнер
   return (
-    <div style={containerStyle}>
+    <div style={containerStyle} role="img" aria-label={alt || 'Image'}>
       <img
         ref={imgRef}
         src={imageSources.webp || imageSources.fallback}
         alt={alt}
+        width={width}
+        height={height}
         style={loadingImageStyle}
         onLoad={handleLoad}
         onError={handleError}
@@ -232,6 +239,7 @@ const OptimizedImage = ({
             backgroundColor: 'rgba(248, 248, 248, 0.02)',
             backdropFilter: 'blur(2px)',
           }}
+          aria-hidden="true"
         >
           <div className="image-spinner" />
         </div>
