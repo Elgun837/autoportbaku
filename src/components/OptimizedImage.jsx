@@ -43,6 +43,7 @@ if (typeof document !== 'undefined' && !document.querySelector('#shimmer-styles'
  * @param {Function} props.onLoad - Callback при загрузке изображения
  * @param {Function} props.onError - Callback при ошибке загрузки
  * @param {number} props.quality - Качество изображения (для WebP)
+ * @param {string} props.fetchpriority - Приоритет загрузки (high, low, auto)
  * @param {Object} rest - Остальные props передаются напрямую в img тег
  */
 const OptimizedImage = ({
@@ -58,6 +59,7 @@ const OptimizedImage = ({
   quality = 80,
   width,
   height,
+  fetchpriority = 'auto',
   ...rest
 }) => {
   const [isInView, setIsInView] = useState(!lazy);
@@ -201,6 +203,7 @@ const OptimizedImage = ({
         onLoad={handleLoad}
         onError={handleError}
         loading={lazy ? "lazy" : "eager"}
+        fetchPriority={fetchpriority}
         decoding="async"
         {...rest}
       />
@@ -220,6 +223,7 @@ const OptimizedImage = ({
         onLoad={handleLoad}
         onError={handleError}
         loading={lazy ? "lazy" : "eager"}
+        fetchPriority={fetchpriority}
         decoding="async"
         {...rest}
       />
