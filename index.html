@@ -4,7 +4,6 @@
         <meta charset="UTF-8">
         <link rel="icon" type="image/svg+xml" href="/vite.svg">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        
         <!-- Author and Creator Meta Tags -->
         <meta name="author" content="Amiroff Creative Agency">
         <meta name="creator" content="Amiroff Creative Agency - https://amiroff.az">
@@ -12,7 +11,11 @@
         <meta name="designer" content="Amiroff Creative Agency">
         <meta name="developer" content="Amiroff Creative Agency">
         <meta name="generator" content="React + Vite - Created by Amiroff Creative Agency">
-        
+        <!-- Preconnect для ускорения загрузки -->
+        <link rel="preconnect" href="https://www.autoportbaku.com">
+        <link rel="dns-prefetch" href="https://www.autoportbaku.com">
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
         <link
             rel="icon"
@@ -24,87 +27,110 @@
             rel="icon"
             type="image/png"
             sizes="16x16"
-            href="/favicon//favicon-16x16.png"
+            href="/favicon/favicon-16x16.png"
         >
         <title>AutoPortBaku - Premium Transportation Services</title>
-        
-        <!-- КРИТИЧЕСКИЙ CSS ДЛЯ ПЕРВОГО ЭКРАНА (FOLD) -->
+        <!-- ========== КРИТИЧЕСКИЙ CSS ДЛЯ ПЕРВОГО ЭКРАНА ========== -->
         <style>
-/* БАЗОВЫЕ СТИЛИ */
-*,*::before,*::after{box-sizing:border-box}
-html{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.5}
+/* === БАЗОВЫЕ СТИЛИ === */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.5;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased}
 body{margin:0;padding:0;background:#fff;color:#333;overflow-x:hidden}
 #root{min-height:100vh}
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 20px}
 
-/* HEADER - КРИТИЧЕСКИЕ СТИЛИ */
-.header{position:absolute;z-index:40;top:0;width:100%;background:rgba(0,0,0,0.34)}
+/* === HEADER КРИТИЧЕСКИЕ СТИЛИ === */
+.header{position:absolute;z-index:40;top:0;width:100%;background:rgba(0,0,0,0.34);transition:background 0.3s}
 .header.home{background:transparent}
 .header .inner{max-width:100%;width:100%;display:flex;justify-content:space-between;align-items:center;padding:calc(1.3vw + 10px) 4.17vw}
 .header .logo a{display:block;max-width:calc(16.15vw + 30px);width:100%;height:auto}
-.header .logo img{width:100%;height:auto}
+.header .logo img{width:100%;height:auto;display:block}
 .header .right_section{display:flex;align-items:center;gap:20px}
 .header .right_section nav{display:flex;align-items:center;gap:30px}
 .header .right_section nav a{font-weight:500;padding:12px 0;font-size:1.125rem;color:#fff;text-decoration:none;transition:color 0.3s ease}
 .header.home .right_section nav a{color:#ffffff}
 .header.home .right_section nav a:hover{color:#ffd700}
+.burger_menu{display:none}
 
-/* SLIDE/BANNER - КРИТИЧЕСКИЕ СТИЛИ */
-.main_bg{background-position:center;background-repeat:no-repeat;background-size:cover;display:flex;justify-content:center;min-height:100vh}
-.slide_container{width:100%;height:100%;display:flex;align-items:center;justify-content:space-between;padding:17vh 4.17vw 19vh}
-.slide_inner{width:100%;margin:0 auto;display:flex;justify-content:space-between;z-index:9;align-items:stretch}
+/* === MAIN BANNER/SLIDE КРИТИЧЕСКИЕ СТИЛИ === */
+.main_bg{background-position:center;background-repeat:no-repeat;background-size:cover;display:flex;justify-content:center;min-height:100vh;position:relative}
+.slide_container{width:100%;height:100%;display:flex;align-items:center;justify-content:space-between;padding:17vh 4.17vw 19vh;position:relative}
+.slide_inner{width:100%;margin:0 auto;display:flex;justify-content:space-between;z-index:9;align-items:stretch;gap:40px}
 .text_section{flex:1;gap:20px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
-.text_section h1{font-weight:500;font-size:clamp(40px,5vw,81px);line-height:120%;color:#ffffff;padding-right:2.6vw}
-.text_section p{font-weight:400;font-size:30px;line-height:130%;color:#ffffff;padding-right:2.6vw}
-.banner_image{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.8)}
+.text_section h1{font-weight:500;font-size:clamp(40px,5vw,81px);line-height:120%;color:#ffffff;padding-right:2.6vw;margin:0}
+.text_section p{font-weight:400;font-size:clamp(18px,2.5vw,30px);line-height:130%;color:#ffffff;padding-right:2.6vw;margin:0}
+.banner_image{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.8);z-index:1}
+.form_section{flex:1;z-index:2}
 
-/* МОБИЛЬНЫЕ СТИЛИ */
+/* === ФОРМА КРИТИЧЕСКИЕ СТИЛИ === */
+.form{background:#fff;border-radius:12px;padding:30px;box-shadow:0 10px 40px rgba(0,0,0,0.1);max-width:550px;width:100%}
+.steps-indicator{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.form-step{width:40px;height:40px;border-radius:50%;background:#e0e0e0;display:flex;align-items:center;justify-content:center;font-weight:600;transition:all 0.3s}
+
+
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:#ffd700}
+button{background:#ffd700;color:#000;border:none;padding:14px 30px;border-radius:6px;font-weight:600;cursor:pointer;transition:all 0.3s;font-size:16px}
+button:hover{background:#ffed4e;transform:translateY(-2px)}
+button:disabled{opacity:0.5;cursor:not-allowed}
+
+/* === МОБИЛЬНЫЕ КРИТИЧЕСКИЕ СТИЛИ === */
 @media (max-width:992px){
   .header .logo a{max-width:calc(26vw + 40px)}
-  .header .right_section .nav_and_lang{position:fixed;top:0;right:-100%;width:300px;height:100vh;background:rgba(0,0,0,0.95);backdrop-filter:blur(10px);flex-direction:column;justify-content:flex-start;padding:80px 30px 30px;transition:right 0.4s ease}
+  .header .right_section .nav_and_lang{position:fixed;top:0;right:-100%;width:300px;height:100vh;background:rgba(0,0,0,0.95);backdrop-filter:blur(10px);flex-direction:column;justify-content:flex-start;padding:80px 30px 30px;transition:right 0.4s ease;z-index:1000}
   .header .right_section .nav_and_lang.mobile-open{right:0}
   .header .burger_menu{display:block;cursor:pointer;z-index:1001}
-  .slide_inner{flex-direction:column;gap:3.125rem}
+  .slide_inner{flex-direction:column;gap:30px}
+  .text_section{text-align:center;align-items:center}
+  .text_section h1,.text_section p{padding-right:0}
+  .form{max-width:100%}
 }
+
 @media (max-width:576px){
-  .slide_container{padding:16vh 4.17vw}
-  .text_section p{margin-bottom:1.25rem}
+  .slide_container{padding:16vh 20px;min-height:100vh}
+  .text_section h1{font-size:32px}
+
+  .form{padding:20px}
+  .form-step{width:35px;height:35px;font-size:14px}
 }
 
-/* АНИМАЦИИ */
-.header-fade-in{animation:fadeIn 0.5s ease-out}
-.slide-fade-in{animation:slideContentFadeIn 0.2s ease-out}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes slideContentFadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-
-/* LOADING STATES */
-.skeleton-header{background:rgba(255,255,255,0.1);border-radius:8px;height:60px}
-.skeleton-slide-container{min-height:100vh}
-.react-loading-skeleton{border-radius:8px}
-
-/* PAGE LOADER (для lazy loading) */
+/* === LOADING & SKELETON === */
 .loading-spinner{display:inline-block;width:40px;height:40px;border:3px solid #f3f3f3;border-top:3px solid #3498db;border-radius:50%;animation:spin 1s linear infinite}
 @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.skeleton{background:linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%);background-size:200% 100%;animation:shimmer 1.5s infinite}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
-/* OPTIMIZED IMAGES */
-.optimized-image{display:block;max-width:100%;height:auto}
-.optimized-image img{display:block;width:100%;height:auto;transition:opacity 0.3s ease}
-.optimized-video{display:block;max-width:100%;height:auto}
+/* === ОПТИМИЗАЦИЯ ИЗОБРАЖЕНИЙ === */
 
-/* FONT OPTIMIZATION */
+.optimized-image{transition:opacity 0.3s ease}
+
+/* === FONT OPTIMIZATION === */
 @font-face{font-family:'Bitter';font-style:normal;font-weight:300;font-display:swap;src:url('/src/assets/fonts/Bitter-Light.woff2') format('woff2')}
 @font-face{font-family:'Bitter';font-style:normal;font-weight:400;font-display:swap;src:url('/src/assets/fonts/Bitter-Regular.woff2') format('woff2')}
 @font-face{font-family:'Bitter';font-style:normal;font-weight:500;font-display:swap;src:url('/src/assets/fonts/Bitter-Medium.woff2') format('woff2')}
         </style>
-        
-        <!-- PRELOAD ВАЖНЫХ РЕСУРСОВ -->
-        <link rel="preload" href="/bg_block.webp" as="image" type="image/webp" fetchpriority="high">
-        <link rel="preload" href="/src/assets/fonts/Bitter-Regular.woff2" as="font" type="font/woff2" crossorigin>
-        <link rel="preload" href="/src/assets/fonts/Bitter-Medium.woff2" as="font" type="font/woff2" crossorigin>
+        <!-- ========== PRELOAD КРИТИЧЕСКИХ РЕСУРСОВ ========== -->
+        <link
+            rel="preload"
+            href="/bg_block.webp"
+            as="image"
+            type="image/webp"
+            fetchpriority="high"
+        >
+        <link
+            rel="preload"
+            href="/src/assets/fonts/Bitter-Regular.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        >
+        <link
+            rel="preload"
+            href="/src/assets/fonts/Bitter-Medium.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        >
         <link rel="preload" href="/src/main.jsx" as="script">
-        
-        <!-- DNS PREFETCH -->
-        <link rel="dns-prefetch" href="//fonts.googleapis.com">
-        <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     </head>
     <body>
         <div id="root"></div>

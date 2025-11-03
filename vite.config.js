@@ -80,12 +80,16 @@ export default defineConfig({
       } 
     },
     // PostCSS обработка (включая PurgeCSS) только в production
-    postcss: process.env.NODE_ENV === 'production' ? './postcss.config.js' : undefined
+    postcss: process.env.NODE_ENV === 'production' ? './postcss.config.js' : undefined,
+    // Минификация CSS
+    minify: true,
   },
   build: { 
     sourcemap: false,
     // Настройка для копирования статических файлов
     copyPublicDir: true,
+    // CSS Code Splitting - разделяем CSS по чанкам
+    cssCodeSplit: true,
     rollupOptions: {
       output: {
         manualChunks: (id) => {

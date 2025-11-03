@@ -23,6 +23,7 @@ import CLSOptimizer from "./components/CLSOptimizer";
 import INPOptimizer from "./components/FIDOptimizer";
 import PerformanceOptimizer from "./components/PerformanceOptimizer";
 import ResourceOptimizer from "./components/ResourceOptimizer";
+import DeferredStyles from "./components/DeferredStyles";
 
 // Основная страница загружается сразу (критический путь)
 import HomePage from "./pages/HomePage";
@@ -84,6 +85,7 @@ export default function App() {
                 <TourProvider>
                   <ServiceProvider>
                     <LazyAOS />
+                    <DeferredStyles />
                     <Header />
                     <AppRoutes />
                     <Footer />                   
