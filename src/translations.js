@@ -239,6 +239,7 @@ export const translations = {
         "Autoport Baku — Where Every Journey Turns into an Adventure.",
       title:
         "Discover the art of travel with Autoport Baku. From short tours to memorable journeys, every adventure with our chauffeur service is defined by comfort, safety, and style. Wherever you go, we make sure you arrive on time and at ease.",
+      btn: "Explore All Tours",
     },
     missions: {
       title: "Our Mission",
