@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../assets/styles/Slide.scss";
 import MultiStepForm from "./MultiStepForm";
 import { useLanguage } from "../context/LanguageContext";
@@ -6,6 +6,24 @@ import OptimizedImage from "./OptimizedImage";
 
 export default function Slide() {
   const { t } = useLanguage();
+  
+  // Preload критического фонового изображения
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = '/bg_block.webp';
+    link.type = 'image/webp';
+    link.fetchPriority = 'high';
+    document.head.appendChild(link);
+    
+    return () => {
+      if (document.head.contains(link)) {
+        document.head.removeChild(link);
+      }
+    };
+  }, []);
+  
   return (
     <>
     
@@ -16,6 +34,7 @@ export default function Slide() {
             alt="Background"
             className="banner_image"
             lazy={false} // Главное изображение - загружаем сразу
+            fetchpriority="high" // Высокий приоритет загрузки
             style={{             
               position: 'absolute',
             }}

@@ -43,6 +43,7 @@ if (typeof document !== 'undefined' && !document.querySelector('#shimmer-styles'
  * @param {Function} props.onLoad - Callback при загрузке изображения
  * @param {Function} props.onError - Callback при ошибке загрузки
  * @param {number} props.quality - Качество изображения (для WebP)
+ * @param {string} props.fetchpriority - Приоритет загрузки (high, low, auto)
  * @param {Object} rest - Остальные props передаются напрямую в img тег
  */
 const OptimizedImage = ({
@@ -56,6 +57,9 @@ const OptimizedImage = ({
   onLoad,
   onError,
   quality = 80,
+  width,
+  height,
+  fetchpriority = 'auto',
   ...rest
 }) => {
   const [isInView, setIsInView] = useState(!lazy);
@@ -137,7 +141,6 @@ const OptimizedImage = ({
     position: 'relative',
     overflow: 'hidden',
     backgroundColor: 'transparent', // Убираем серый фон
-    ...rest.style
   };
 
   // Стили для изображения при загрузке
@@ -160,10 +163,10 @@ const OptimizedImage = ({
           backgroundColor: 'rgba(248, 248, 248, 0.02)',
           minHeight: '100px',
         }}
-        {...rest}
-        aria-label={alt}
+        role="img"
+        aria-label={alt || 'Loading image'}
       >
-        <div className="image-spinner" />
+        <div className="image-spinner" aria-hidden="true" />
       </div>
     );
   }
@@ -177,6 +180,8 @@ const OptimizedImage = ({
         src={imageSources.webp }
         alt={`❌ ОШИБКА ЗАГРУЗКИ: ${alt || 'изображение'} | Путь: ${imageSources.webp || imageSources.fallback}`}
         title={`Не удалось загрузить: ${imageSources.webp || imageSources.fallback}`}
+        width={width}
+        height={height}
         onError={handleError}
         style={{
          
@@ -193,9 +198,12 @@ const OptimizedImage = ({
         ref={imgRef}
         src={imageSources.webp || imageSources.fallback}
         alt={alt}
+        width={width}
+        height={height}
         onLoad={handleLoad}
         onError={handleError}
         loading={lazy ? "lazy" : "eager"}
+        fetchPriority={fetchpriority}
         decoding="async"
         {...rest}
       />
@@ -204,15 +212,18 @@ const OptimizedImage = ({
 
   // Во время загрузки или при ошибке используем контейнер
   return (
-    <div style={containerStyle}>
+    <div style={containerStyle} role="img" aria-label={alt || 'Image'}>
       <img
         ref={imgRef}
         src={imageSources.webp || imageSources.fallback}
         alt={alt}
+        width={width}
+        height={height}
         style={loadingImageStyle}
         onLoad={handleLoad}
         onError={handleError}
         loading={lazy ? "lazy" : "eager"}
+        fetchPriority={fetchpriority}
         decoding="async"
         {...rest}
       />
@@ -232,6 +243,7 @@ const OptimizedImage = ({
             backgroundColor: 'rgba(248, 248, 248, 0.02)',
             backdropFilter: 'blur(2px)',
           }}
+          aria-hidden="true"
         >
           <div className="image-spinner" />
         </div>

@@ -83,7 +83,7 @@ function ToursComponent() {
                 ))}
               </div>
 
-              <div className="bottom_button_wrapper">
+              <div className="bottom_button_wrapper">                
                 <a
                   href={`/${lang}/${slugs.tours || "tours"}`}
                   className="btn btn-secondary"
