@@ -98,7 +98,12 @@
             padding-right: vw(100);
           }
         }
-
+        .payment_method ul {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
         .footer_menu_title {
           color: #fff;
           font-weight: 400;

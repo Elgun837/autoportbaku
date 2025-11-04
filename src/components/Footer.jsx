@@ -183,11 +183,38 @@ export default function Footer() {
                                             <ul>
                                                 <li>
                                                     <OptimizedImage
-                                                src="/amiroff.svg"
-                                                alt="Amiroff Logo"
+                                                src="/amex.webp"
+                                                alt="amex Logo"
                                                 lazy={true}
-                                                width={98}
+                                                width={45}
+                                                height={45}
+                                            />
+                                                </li>
+                                                <li>
+                                                    <OptimizedImage
+                                                src="/mc.webp"
+                                                alt="mc Logo"
+                                                lazy={true}
+                                                width={45}
                                                 height={30}
+                                            />
+                                                </li>
+                                                <li>
+                                                    <OptimizedImage
+                                                src="/visa.webp"
+                                                alt="amex Logo"
+                                                lazy={true}
+                                                width={40}
+                                                height={40}
+                                            />
+                                                </li>
+                                                <li>
+                                                    <OptimizedImage
+                                                src="/a-pay.webp"
+                                                alt="a-pay Logo"
+                                                lazy={true}
+                                                width={50}
+                                                height={50}
                                             />
                                                 </li>
                                             </ul>
