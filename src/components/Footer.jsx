@@ -179,6 +179,19 @@ export default function Footer() {
                                             </>
                                         }
                                     </ul>
+                                    <div className="payment_method">
+                                            <ul>
+                                                <li>
+                                                    <OptimizedImage
+                                                src="/amiroff.svg"
+                                                alt="Amiroff Logo"
+                                                lazy={true}
+                                                width={98}
+                                                height={30}
+                                            />
+                                                </li>
+                                            </ul>
+                                    </div>
                                 </div>
                             </div>
                             <div className="copyright_wrapper">

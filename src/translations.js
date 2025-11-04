@@ -463,7 +463,7 @@ export const translations = {
       about: "О нас",
       products: "Продукты",
       contacts: "Контакты",
-      faq: "ЧЗВ",
+      faq: "Вопросы",
       bookForm: "Забронировать поездку",
       tours: "Туры",
       services: "Услуги",
