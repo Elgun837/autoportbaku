@@ -4,14 +4,14 @@ import "../assets/styles/Services.scss";
 import { useLanguage } from "../context/LanguageContext";
 import { useServices } from "../context/ServiceContext";
 import OptimizedImage from "./OptimizedImage";
-
+import { translations } from "../translations";
 
 export default function Services() {
 
 
   const { t, lang } = useLanguage();
   const { services, loading } = useServices();
-
+   const slugs = translations[lang]?.routes || {};
   if (loading || services.length === 0) {
     return null; // Yüklənmə zamanı heç nə göstərmirik
   }
@@ -33,7 +33,7 @@ export default function Services() {
               {services.map((service, index) => (
                 <Link
                   key={index}
-                  to={`/${lang}/services/${service.slug[lang]}`}
+                  to={`/${lang}/${slugs.services || "services"}/${service.slug[lang]}`}
                   className="service_item "
                   data-aos="flip-left"
                   data-aos-delay={600 + index * 100}
