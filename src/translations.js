@@ -199,7 +199,7 @@ export const translations = {
       subtitle: "Exclusivity . Safety . Comfort",
     },
     about: {
-      title: "Autoport - More than just a driving service",
+      title: "Autoport Baku - More than just a driving service",
       subtitle:
         "Your partner for tailor-made mobility, first-class service and exclusive driving experiences.",
       secTitle: "Autoport Baku",
@@ -270,7 +270,7 @@ export const translations = {
       socialMedia: "Social Media",
     },
     BookTrip: {
-      desc: "Start your journey with Autoport and experience first-class comfort and service on every trip.",
+      desc: "Start your journey with Autoport Baku and experience first-class comfort and service on every trip.",
       buttonText: "Book a trip",
     },
   },
@@ -476,7 +476,7 @@ export const translations = {
       subtitle: "Эксклюзивность . Безопасность . Комфорт",
     },
     about: {
-      title: "Autoport — больше, чем просто водительские услуги",
+      title: "Autoport Baku — больше, чем просто водительские услуги",
       subtitle:
         "Ваш партнер в сфере индивидуальной мобильности, первоклассного обслуживания и эксклюзивных ощущений от вождения.",
       secTitle: "Autoport Baku",

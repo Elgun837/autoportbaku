@@ -46,7 +46,7 @@ export default function TourDetail() {
 
   // Prepare images for gallery
   const imageUrls = [];
-  if (tour.image) imageUrls.push(tour.image);
+  // if (tour.image) imageUrls.push(tour.image);
   if (tour.gallery) {
     if (typeof tour.gallery === "string") imageUrls.push(tour.gallery);
     if (Array.isArray(tour.gallery)) imageUrls.push(...tour.gallery);
