@@ -23,9 +23,7 @@ const BookForm = () => {
                                     {settings?.phone && (
                                         <a href={`tel:${settings.phone}`}>{settings.phone}</a>
                                     )}
-                                    {settings?.telephone && (
-                                        <a href={`tel:${settings.telephone}`}>{settings.telephone}</a>
-                                    )}
+                                    
                                     {settings?.email && (
                                         <a href={`mailto:${settings.email}`}>{settings.email}</a>
                                     )}
@@ -33,8 +31,7 @@ const BookForm = () => {
                                     {/* Fallback если API не работает */}
                                     {!settings && !settingsLoading && (
                                         <>
-                                            <a href="tel:(+994) 50 -481-00-81">(+994) 50 -481-00-81</a>
-                                            <a href="tel:(+994) 50 -481-00-81">(+994) 50 -481-00-81</a>
+                                            <a href="tel:(+994) 50 -481-00-81">(+994) 50 -100-25-25</a>
                                             <a href="mailto:info@autoportbaku.com">info@autoportbaku.com</a>
                                         </>
                                     )}
