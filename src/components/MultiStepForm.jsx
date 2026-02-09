@@ -14,7 +14,7 @@ import { useCurrency } from "../context/CurrencyContext";
 import Price from "./Price";
 import OptimizedImage from "./OptimizedImage";
 import DOMPurify from "dompurify";
-
+import Toasts from "./Toasts.jsx";
 export default function MultiStepForm() {
   const { t, lang } = useLanguage();
   const { tours } = useTours();
@@ -117,14 +117,23 @@ export default function MultiStepForm() {
       if (formData.serviceType === tourLabel && !formData.selectTour)
         newErrors.selectTour = t("validation.selectTour");
 
-      setErrors(newErrors);
+      setErrors({});
+      setTimeout(() => {
+        setErrors(newErrors);
 
-      // səhv yoxdursa Step 2-yə keç
-      if (Object.keys(newErrors).length === 0) {
-        setActiveStep(2);
+        const errorList = Object.values(newErrors).filter(Boolean);
+        errorList.forEach((err) => showToast(err));
+      }, 0);
+      // ------------------------------------------------
+
+      // Errorlar varsa, step dəyişmə
+      if (Object.keys(newErrors).length > 0) {
+        return;
       }
 
-      return; // Step 1 bitdi
+      // Error yoxdur → Step 2
+      setActiveStep(2);
+      return;
     }
 
     // Step 2 və 3 üçün sənin mövcud məntiqini saxlayırıq
@@ -251,14 +260,20 @@ export default function MultiStepForm() {
       newErrors.phone = t("validation.enterPhone");
     }
 
-    // Error varsa, submit dayandırılır
-    if (Object.keys(newErrors).length > 0) {
+    setErrors({});
+    setTimeout(() => {
       setErrors(newErrors);
+
+      // Toastları göstər
+      const errorList = Object.values(newErrors).filter(Boolean);
+      errorList.forEach((err) => showToast(err));
+    }, 0);
+    // ------------------------------------------------
+
+    // Error varsa submit dayandır
+    if (Object.keys(newErrors).length > 0) {
       return;
     }
-
-    // Error yoxdursa, error state-i təmizləyirik
-    setErrors({});
 
     try {
       // API-yə göndəriləcək məlumatları formData-dan götürə bilərsən
@@ -276,6 +291,10 @@ export default function MultiStepForm() {
         email: formData.email,
         phone: formData.phone,
         comment: formData.specialRequirements,
+        price:
+          vehicles.find((v) => v.id === formData.selectedVehicle)?.price ||
+          null,
+        currency: currency,
       };
       const cleanedPayload = Object.fromEntries(
         Object.entries(payload).filter(
@@ -297,6 +316,8 @@ export default function MultiStepForm() {
 
   return (
     <div className="form ">
+      <div id="toast-container" className="toast-container"></div>
+
       <div className="form-header">
         <div className="steps-indicator">
           {[1, 2, 3, 4].map((step) => (
@@ -434,7 +455,7 @@ export default function MultiStepForm() {
                         }),
                       locations,
                       `${t("formsLocation.types.pickupPlace")}`,
-                        "pickupLocation"
+                      "pickupLocation"
                     )}
                   </div>
 
@@ -451,7 +472,7 @@ export default function MultiStepForm() {
                         (loc) => loc !== formData.pickupLocation
                       ),
                       `${t("formsLocation.types.dropoffPlace")}`,
-                        "dropoffLocation"
+                      "dropoffLocation"
                     )}
                   </div>
                   <div className="form-group">
@@ -496,29 +517,7 @@ export default function MultiStepForm() {
                 </>
               )}
               <br />
-              <div className="alert-error">
-                {errors.serviceType && (
-                  <p className="error-message">{errors.serviceType}</p>
-                )}
-                {errors.pickupDate && (
-                  <p className="error-message">{errors.pickupDate}</p>
-                )}
-                {errors.pickupHour && (
-                  <p className="error-message">{errors.pickupHour}</p>
-                )}
-                {errors.pickupMinute && (
-                  <p className="error-message">{errors.pickupMinute}</p>
-                )}
-                {errors.pickupLocation && (
-                  <p className="error-message">{errors.pickupLocation}</p>
-                )}
-                {errors.dropoffLocation && (
-                  <p className="error-message">{errors.dropoffLocation}</p>
-                )}
-                {errors.selectTour && (
-                  <p className="error-message">{errors.selectTour}</p>
-                )}
-              </div>
+              <Toasts errors={errors} />
               <div className="button_group">
                 <button
                   className="flex-right"
@@ -569,7 +568,7 @@ export default function MultiStepForm() {
                   }}
                 />
               </div>
-
+              <Toasts errors={errors} />
               <div className="button_group">
                 <button className="flex-left" onClick={handlePrev}>
                   {t("formsLocation.types.prevBtn")}
@@ -587,7 +586,7 @@ export default function MultiStepForm() {
 
           {/* Step 3 */}
           {activeStep === 3 && (
-            <div className="form-step-content" >
+            <div className="form-step-content">
               {vehiclesLoading && <p>Loading vehicles...</p>}
 
               {!vehiclesLoading && vehicles.length === 0 && (
@@ -614,9 +613,11 @@ export default function MultiStepForm() {
                     <p className="price">
                       <Price price={v.price} />
                     </p>
-                    <p 
-                      className="vehicle_desc" 
-                      dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(v.text) }}
+                    <p
+                      className="vehicle_desc"
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(v.text),
+                      }}
                     />
                     <div className="vehicle-spec">
                       <p>
@@ -744,13 +745,8 @@ export default function MultiStepForm() {
                   }
                 ></textarea>
               </div>
-              <div className="alert-error">
-                {errors.user_name && (
-                  <p className="error">{errors.user_name}</p>
-                )}
-                {errors.email && <p className="error">{errors.email}</p>}
-                {errors.phone && <p className="error">{errors.phone}</p>}
-              </div>
+              <Toasts errors={errors} />
+
               <div className="button_group">
                 <button className="flex-left" onClick={handlePrev}>
                   {t("formsLocation.types.prevBtn")}

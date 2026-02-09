@@ -8,6 +8,7 @@
   align-self: stretch;
   // background-image: url("/footer_bg.webp");
   background-size: cover;
+
   .footer_content {
     display: flex;
     padding: 20px 80px;
@@ -16,9 +17,11 @@
     align-items: flex-start;
     align-self: stretch;
     width: 100%;
+
     .mobile_visible__logo {
       margin-bottom: vh(80);
       width: 100%;
+
       @media (max-width: 576px) {
         margin-bottom: vh(80);
       }
@@ -27,9 +30,11 @@
         display: flex;
         width: 100%;
         justify-content: center;
+
         .logo {
           width: vw(600);
           height: auto;
+
           img {
             width: 100%;
             height: auto;
@@ -38,12 +43,22 @@
         }
       }
     }
+
     .logo_menu_wrapper {
       display: flex;
       padding: vh(160) 0;
       justify-content: space-between;
       align-items: flex-start;
       align-self: stretch;
+      .trip_advisor_wrapper {
+        padding: 0px 0px 40px 0px;
+      }
+      @media(min-width: 768px){
+        .trip_advisor_wrapper {
+        padding: 50px 0;
+      }
+      } 
+
       @media (max-width: 1200px) {
         padding: vh(80) 0;
       }
@@ -52,12 +67,15 @@
         flex-wrap: wrap;
         padding-top: vh(80);
       }
+
       @media (max-width: 576px) {
         padding-bottom: vh(40);
       }
+
       .logo {
         width: vw(281.3);
         height: auto;
+
         @media (min-width: 1650px) {
           padding-right: rem(40);
         }
@@ -67,9 +85,10 @@
           height: auto;
           aspect-ratio: 281.3/210.65;
         }
-        @media (max-width: 992px) {
-        }
+
+        @media (max-width: 992px) {}
       }
+
       .footer_menu {
         display: flex;
         max-width: vw(300);
@@ -78,61 +97,74 @@
         justify-content: center;
         align-items: flex-start;
         gap: 30px;
+
         @media (max-width: 1200px) {
           max-width: vw(400);
         }
+
         @media (max-width: 992px) {
           max-width: 33.33%;
           padding-right: vw(100);
+
           &:last-child {
             max-width: 25%;
             padding-right: 0;
           }
         }
+
         @media (max-width: 576px) {
           max-width: 100%;
           margin-bottom: vh(60);
           gap: 15px;
+
           &:last-child {
             max-width: 100%;
             padding-right: vw(100);
           }
         }
+
         .payment_method ul {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
         }
+
         .footer_menu_title {
           color: #fff;
           font-weight: 400;
           align-self: stretch;
         }
+
         .footer_menu_list {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
           gap: 20px;
           align-self: stretch;
+
           a {
             color: #fff;
             font-size: var(--body-xl-size);
           }
+
           li {
             a {
               color: #fff;
               font-size: var(--body-xl-size);
             }
           }
+
           .whatsapp_contact {
             display: flex;
             align-items: center;
             gap: 5px;
+
             .whatsapp_icon {
               display: flex;
-              svg{
-                path{
+
+              svg {
+                path {
                   fill: rgb(37, 211, 102)
                 }
               }
@@ -141,30 +173,36 @@
         }
       }
     }
+
     .copyright_wrapper {
       display: flex;
       padding: 10px;
       justify-content: space-between;
       align-items: flex-start;
       align-self: stretch;
+
       @media (max-width: 768px) {
         flex-direction: column;
         align-items: flex-start;
         gap: 20px;
       }
+
       .copyright_text {
         color: var(--White, #fff);
         font-size: 17px;
       }
+
       .design_text {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 10px;
+
         span {
           color: var(--White, #fff);
           font-size: 17px;
         }
+
         img {
           width: 98.826px;
           height: 30px;

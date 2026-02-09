@@ -257,7 +257,7 @@ export const translations = {
     },
     tour: {
       duration: "Duration",
-      cancellation: "Cancellation",
+      cancellation: "Starting from",
       bookingLink: "Book a tour",
     },
     services: {
@@ -531,7 +531,7 @@ export const translations = {
     },
     tour: {
       duration: "Длительность",
-      cancellation: "Отмена",
+      cancellation: "Начиная от",
       bookingLink: "Забронировать тур",
     },
     services: {

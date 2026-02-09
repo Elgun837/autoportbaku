@@ -3,7 +3,7 @@
 
 .header {
   position: absolute;
-  z-index: 40;
+  z-index: 10;
   top: 0;
   width: 100%;
   background: rgba(0, 0, 0, 0.34); // Полупрозрачный черный фон
@@ -114,8 +114,8 @@
                 }
 
                 svg {
-                  width: 12px;
-                  height: 8px;
+                  width: 100%;
+                  height: 100%;
                   fill: none;
                   stroke: currentColor;
                 }
@@ -273,6 +273,8 @@
                 .dropdown-arrow {
                   color: #fff;
                   transition: all 0.3s ease;
+                  height: 12px;
+                  width: 12px;
 
                   &:hover {
                     color: #ffd700;

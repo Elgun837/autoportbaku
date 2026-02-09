@@ -147,7 +147,7 @@ export const getVehicleSearch = async (
         headers: { contentLanguage: lang, token },
       }
     );
-
+  
     return data;
   } catch (error) {
     console.error("getVehicleSearch xətası:", error);
@@ -156,7 +156,6 @@ export const getVehicleSearch = async (
 };
 export const getVehicleRequest = async (lang, payload) => {
   if (!lang) return null;
-
   try {
     const { data } = await api.post("/vehicle/request", payload, {
       headers: {
